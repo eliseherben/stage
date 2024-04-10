@@ -75,6 +75,7 @@ with tab1:
         dataframe['impact B'] = dataframe['budget']/dataframe['totaal']
         dataframe['impact W'] = dataframe['woonbeleving']/dataframe['totaal']
         impact = dataframe[['PRODUCTGROEP', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
+        impact = impact.groupby('PRODUCTGROEP')['impact O', 'impact CD', 'impact K', 'impact B', 'impact W'].first()
         st.dataframe(impact)
     
     st.markdown("**Budget**")
