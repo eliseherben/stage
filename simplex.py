@@ -7,7 +7,7 @@
 # pip install pulp
 
 
-# In[5]:
+# In[20]:
 
 
 import streamlit as st
@@ -21,7 +21,7 @@ import pulp as pl
 # als de impact cijfers integers zijn dan kunnen de weighted dingen niet integers zijn, om te voorkomen dat er 0 uit komt bij een van de opties
 # 
 
-# In[6]:
+# In[21]:
 
 
 st.title("Eigen Haard")
@@ -53,7 +53,7 @@ with tab1:
     st.markdown("**Projectbestand**")
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        dataframe = pd.read_csv(uploaded_file, sep = ';')
+        dataframe = pd.read_csv(uploaded_file, sep = ';', endcoding ='iso-8859-1')
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]], axis = 1)
         dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[13]: "impact circulair"}, inplace=True)
