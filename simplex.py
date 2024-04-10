@@ -56,7 +56,7 @@ with tab1:
         dataframe = pd.read_csv(uploaded_file, sep = ';')
         df = pd.DataFrame(dataframe)
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 23, 25]], axis = 1)
-        dataframe.columns[9] = "impact onderhoud"
+        dataframe.rename(columns={dataframe.columns[9]: "impact onderhoud"}, inplace=True)
         st.dataframe(dataframe)
     
     st.markdown("**Budget**")
