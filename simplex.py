@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[21]:
+# In[4]:
 
 
 # pip install pulp
 
 
-# In[22]:
+# In[5]:
 
 
 import streamlit as st
@@ -21,7 +21,7 @@ import pulp as pl
 # als de impact cijfers integers zijn dan kunnen de weighted dingen niet integers zijn, om te voorkomen dat er 0 uit komt bij een van de opties
 # 
 
-# In[24]:
+# In[6]:
 
 
 st.title("Eigen Haard")
@@ -30,7 +30,7 @@ tab1, tab2, tab3 = st.tabs(["Input", "Optimalisatie", "Aanpassingen"])
 
 # **input tab**
 
-# In[25]:
+# In[7]:
 
 
 with tab1:
@@ -54,8 +54,9 @@ with tab1:
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
         dataframe = pd.read_csv(uploaded_file, sep = ';')
-        dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 23, 25]], axis = 1)
-        st.write(dataframe)
+        df = pd.DataFrame(dataframe)
+        dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 23, 25]], axis = 1)
+        st.dataframe(dataframe)
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
@@ -79,6 +80,14 @@ with tab1:
     st.number_input("Het aandeel van de productgroep 'Sanitair' in dit project", value=0, min_value = 0, max_value = 100)
     st.number_input("Het aandeel van de productgroep 'Na-isolatie' in dit project", value=0, min_value = 0, max_value = 100)
 
+
+
+# In[10]:
+
+
+test = pd.read_csv("test.csv", sep=';')
+test = test.drop(test.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 23, 25]], axis = 1)
+test.head()
 
 
 # **optimalisatie op basis van impact waardes van materialenlijst**
