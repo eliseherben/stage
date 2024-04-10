@@ -63,6 +63,7 @@ with tab1:
         dataframe.rename(columns={dataframe.columns[13]: "impact woonbeleving"}, inplace=True)
         dataframe = dataframe.dropna(how='all')
         dataframe = dataframe.drop(0)
+        dataframe = dataframe.reset_index()
         st.dataframe(dataframe)
     
     st.markdown("**Budget**")
