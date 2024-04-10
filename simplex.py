@@ -69,6 +69,11 @@ with tab1:
         dataframe['kwaliteit'] = dataframe.groupby(['PRODUCTGROEP'])['impact kwaliteit'].transform('count')
         dataframe['budget'] = dataframe.groupby(['PRODUCTGROEP'])['impact budget'].transform('count')
         dataframe['woonbeleving'] = dataframe.groupby(['PRODUCTGROEP'])['impact woonbeleving'].transform('count')
+        dataframe['impact O'] = dataframe['onderhoud']/dataframe['totaal']
+        dataframe['impact CD'] = dataframe['circulair']/dataframe['totaal']
+        dataframe['impact K'] = dataframe['kwaliteit']/dataframe['totaal']
+        dataframe['impact B'] = dataframe['budget']/dataframe['totaal']
+        dataframe['impact W'] = dataframe['woonbeleving']/dataframe['totaal']
         st.dataframe(dataframe)
     
     st.markdown("**Budget**")
