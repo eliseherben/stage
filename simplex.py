@@ -14,8 +14,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import pulp as pl
-from menu import menu_with_redirect
-menu_with_redirect()
+#from menu import menu_with_redirect
+#menu_with_redirect()
 
 
 # als de impact cijfers integers zijn dan kunnen de weighted dingen niet integers zijn, om te voorkomen dat er 0 uit komt bij een van de opties
@@ -49,6 +49,12 @@ with tab1:
     index = None,
     placeholder = "Selecteer de fase van het project"
     )
+
+    st.markdown("**Projectbestand**")
+    uploaded_file = st.file_uploader("Choose a file")
+    if uploaded_file is not None:
+        dataframe = pd.read_csv(uploaded_file, sep = ';')
+        st.write(dataframe)
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
