@@ -127,6 +127,7 @@ with tab1:
 
 
 st.dataframe(impact)
+st.markdown([impact.iloc[i, 0] for i in range(len(impact))])
 # data = {
 #     "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
 #                      '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
