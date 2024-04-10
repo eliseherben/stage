@@ -94,6 +94,7 @@ with tab1:
         dataframe['impact W'] = dataframe['woonbeleving']/dataframe['totaal']
         impact = dataframe[['PRODUCTGROEP', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
         impact = impact.groupby('PRODUCTGROEP')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
+        st.dataframe(dataframe)
         st.dataframe(impact)
         st.markdown([impact.iloc[i, 0] for i in range(len(impact))])
         st.markdown([impact.iloc[i, 1] for i in range(len(impact))])
