@@ -66,6 +66,7 @@ with tab1:
         s=str(bytes_data,encoding)
     
     data = StringIO(s)
+    data = pd.Dataframe(data)
     st.write(data)
     
     uploaded_file = st.file_uploader("Choose a file")
