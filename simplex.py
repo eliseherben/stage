@@ -126,55 +126,56 @@ with tab1:
 # In[36]:
 
 
-# data = {
-#     "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
-#                      '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
-#                      '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
-#                      '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
-#                      '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
-#                      '90 Terreininrichting'],
-#     "impact duurzaam": [0.5, 0.6, 0, 0, 0.786, 0, 0.257, 0.188, 0.2, 0, 0.154, 0.15, 0, 1, 0.158, 0, 0.091, 0, 0.667, 0, 0, 0, 0.2, 0.182, 0], 
-#     "impact kosten": [0.042, 0.1, -0.25, 0.111, 0.143, 0, 0.086, 0.063, 0, 0, 0.231, 0, 0, 0, 0.158, 0, 0, 0.083, 0.5, 0.182, 0, 0, -0.2, 0.182, 0.111], 
-#     "impact woonbeleving": [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0], 
-#     "impact kwaliteit": [0.167, 0, 0, 0.111, 0.071, 0, 0.2, 0.125, 0, 0, 0.077, 0.6, 0.25, 0, 0.053, 0.222, 0.091, 0.083, 0.667, 0.545, 0, 1, 0.2, 0, 0], 
-#     "impact onderhoud": [0.042, 0, 0.25, 0, 0.214, 0, 0.086, 0, 0, 0, 0.308, 0.4, 0, 0, 0, 0, 0.091, 0.083, 0.667, 0, 0, 1, 0, 0, 0]
-# }
-
-data = {
-    "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
-                     '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
-                     '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
-                     '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
-                     '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
-                     '90 Terreininrichting'],
-    "impact duurzaam": [impact.iloc[i, 0] for i in range(len(impact))], 
-    "impact kosten": [impact.iloc[i, 1] for i in range(len(impact))], 
-    "impact woonbeleving": [impact.iloc[i, 2] for i in range(len(impact))], 
-    "impact kwaliteit": [impact.iloc[i, 3] for i in range(len(impact))], 
-    "impact onderhoud": [impact.iloc[i, 4] for i in range(len(impact))]
-}
-
-df = pd.DataFrame(data)
-
-duurzaam = df[['productgroep', 'impact duurzaam']]
-duurzaam = duurzaam.sort_values(by='impact duurzaam', ascending=False)
-duurzaam = duurzaam.reset_index(drop=True)
-
-kosten = df[['productgroep', 'impact kosten']]
-kosten = kosten.sort_values(by='impact kosten', ascending=False)
-kosten = kosten.reset_index(drop=True)
-
-woonbeleving = df[['productgroep', 'impact woonbeleving']]
-woonbeleving = woonbeleving.sort_values(by='impact woonbeleving', ascending=False)
-woonbeleving = woonbeleving.reset_index(drop=True)
-
-kwaliteit = df[['productgroep', 'impact kwaliteit']]
-kwaliteit = kwaliteit.sort_values(by='impact kwaliteit', ascending=False)
-kwaliteit = kwaliteit.reset_index(drop=True)
-
-onderhoud = df[['productgroep', 'impact onderhoud']]
-onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
-onderhoud = onderhoud.reset_index(drop=True)
+with tab1:
+    # data = {
+    #     "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
+    #                      '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
+    #                      '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
+    #                      '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
+    #                      '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
+    #                      '90 Terreininrichting'],
+    #     "impact duurzaam": [0.5, 0.6, 0, 0, 0.786, 0, 0.257, 0.188, 0.2, 0, 0.154, 0.15, 0, 1, 0.158, 0, 0.091, 0, 0.667, 0, 0, 0, 0.2, 0.182, 0], 
+    #     "impact kosten": [0.042, 0.1, -0.25, 0.111, 0.143, 0, 0.086, 0.063, 0, 0, 0.231, 0, 0, 0, 0.158, 0, 0, 0.083, 0.5, 0.182, 0, 0, -0.2, 0.182, 0.111], 
+    #     "impact woonbeleving": [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0], 
+    #     "impact kwaliteit": [0.167, 0, 0, 0.111, 0.071, 0, 0.2, 0.125, 0, 0, 0.077, 0.6, 0.25, 0, 0.053, 0.222, 0.091, 0.083, 0.667, 0.545, 0, 1, 0.2, 0, 0], 
+    #     "impact onderhoud": [0.042, 0, 0.25, 0, 0.214, 0, 0.086, 0, 0, 0, 0.308, 0.4, 0, 0, 0, 0, 0.091, 0.083, 0.667, 0, 0, 1, 0, 0, 0]
+    # }
+    
+    data = {
+        "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
+                         '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
+                         '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
+                         '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
+                         '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
+                         '90 Terreininrichting'],
+        "impact duurzaam": [impact.iloc[i, 0] for i in range(len(impact))], 
+        "impact kosten": [impact.iloc[i, 1] for i in range(len(impact))], 
+        "impact woonbeleving": [impact.iloc[i, 2] for i in range(len(impact))], 
+        "impact kwaliteit": [impact.iloc[i, 3] for i in range(len(impact))], 
+        "impact onderhoud": [impact.iloc[i, 4] for i in range(len(impact))]
+    }
+    
+    df = pd.DataFrame(data)
+    
+    duurzaam = df[['productgroep', 'impact duurzaam']]
+    duurzaam = duurzaam.sort_values(by='impact duurzaam', ascending=False)
+    duurzaam = duurzaam.reset_index(drop=True)
+    
+    kosten = df[['productgroep', 'impact kosten']]
+    kosten = kosten.sort_values(by='impact kosten', ascending=False)
+    kosten = kosten.reset_index(drop=True)
+    
+    woonbeleving = df[['productgroep', 'impact woonbeleving']]
+    woonbeleving = woonbeleving.sort_values(by='impact woonbeleving', ascending=False)
+    woonbeleving = woonbeleving.reset_index(drop=True)
+    
+    kwaliteit = df[['productgroep', 'impact kwaliteit']]
+    kwaliteit = kwaliteit.sort_values(by='impact kwaliteit', ascending=False)
+    kwaliteit = kwaliteit.reset_index(drop=True)
+    
+    onderhoud = df[['productgroep', 'impact onderhoud']]
+    onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
+    onderhoud = onderhoud.reset_index(drop=True)
 
 
 # In[37]:
