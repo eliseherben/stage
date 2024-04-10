@@ -54,7 +54,7 @@ with tab1:
 
     from io import StringIO
 
-    file = st.file_uploader()   
+    file = st.file_uploader("kies")   
     bytes_data = file.read()
     
     try:        
