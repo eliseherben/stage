@@ -71,7 +71,7 @@ with tab1:
     
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        dataframe = pd.read_csv(uploaded_file, encoding ='iso-8859-1')
+        dataframe = pd.read_csv(uploaded_file)
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]], axis = 1)
         dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[13]: "impact circulair"}, inplace=True)
