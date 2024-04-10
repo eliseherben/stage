@@ -74,7 +74,8 @@ with tab1:
         dataframe['impact K'] = dataframe['kwaliteit']/dataframe['totaal']
         dataframe['impact B'] = dataframe['budget']/dataframe['totaal']
         dataframe['impact W'] = dataframe['woonbeleving']/dataframe['totaal']
-        st.dataframe(dataframe)
+        impact = dataframe[['PRODUCTGROEP', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
+        st.dataframe(impact)
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
@@ -98,14 +99,6 @@ with tab1:
     st.number_input("Het aandeel van de productgroep 'Sanitair' in dit project", value=0, min_value = 0, max_value = 100)
     st.number_input("Het aandeel van de productgroep 'Na-isolatie' in dit project", value=0, min_value = 0, max_value = 100)
 
-
-
-# In[10]:
-
-
-# test = pd.read_csv("test.csv", sep=';')
-# test = test.drop(test.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 23, 25]], axis = 1)
-# test.head()
 
 
 # **optimalisatie op basis van impact waardes van materialenlijst**
