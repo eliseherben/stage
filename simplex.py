@@ -79,6 +79,7 @@ with tab1:
         st.dataframe(impact)
         st.markdown(impact.iloc[0,2])
         st.markdown(impact.iloc[0,1])
+        st.markdown(len(impact))
         st.markdown([impact.iloc[i, 0] for i in range(23)])
     
     st.markdown("**Budget**")
