@@ -127,7 +127,13 @@ with tab1:
 
 
 st.dataframe(impact)
-st.markdown([impact.iloc[i, 0] for i in range(len(impact))])
+impact_onderhoud = [impact.iloc[i, 0] for i in range(len(impact))]
+impact_circulair = [impact.iloc[i, 1] for i in range(len(impact))]
+impact_kwaliteit = [impact.iloc[i, 2] for i in range(len(impact))]
+impact_budget = [impact.iloc[i, 3] for i in range(len(impact))]
+impact_woonbeleving = [impact.iloc[i, 4] for i in range(len(impact))]
+
+
 # data = {
 #     "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
 #                      '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
@@ -149,11 +155,11 @@ data = {
                      '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
                      '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
                      '90 Terreininrichting'],
-    "impact duurzaam": [impact.iloc[i, 0] for i in range(len(impact))], 
-    "impact kosten": [impact.iloc[i, 1] for i in range(len(impact))], 
-    "impact woonbeleving": [impact.iloc[i, 2] for i in range(len(impact))], 
-    "impact kwaliteit": [impact.iloc[i, 3] for i in range(len(impact))], 
-    "impact onderhoud": [impact.iloc[i, 4] for i in range(len(impact))]
+    "impact duurzaam": impact_circulair, 
+    "impact kosten": impact_budget, 
+    "impact woonbeleving": impact_woonbeleving, 
+    "impact kwaliteit": impact_kwaliteit, 
+    "impact onderhoud": impact_onderhoud
 }
 
 df = pd.DataFrame(data)
