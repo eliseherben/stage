@@ -64,6 +64,11 @@ with tab1:
         dataframe = dataframe.drop(0)
         dataframe = dataframe.reset_index(drop=True)
         dataframe['totaal'] = dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
+        dataframe['onderhoud'] = dataframe.groupby(['PRODUCTGROEP'])['impact onderhoud'].transform('count')
+        dataframe['circulair'] = dataframe.groupby(['PRODUCTGROEP'])['impact circulair'].transform('count')
+        dataframe['kwaliteit'] = dataframe.groupby(['PRODUCTGROEP'])['impact kwaliteit'].transform('count')
+        dataframe['budget'] = dataframe.groupby(['PRODUCTGROEP'])['impact budget'].transform('count')
+        dataframe['woonbeleving'] = dataframe.groupby(['PRODUCTGROEP'])['impact woonbeleving'].transform('count')
         st.dataframe(dataframe)
     
     st.markdown("**Budget**")
