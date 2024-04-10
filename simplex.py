@@ -86,9 +86,9 @@ with tab1:
 # In[10]:
 
 
-test = pd.read_csv("test.csv", sep=';')
-test = test.drop(test.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 23, 25]], axis = 1)
-test.head()
+# test = pd.read_csv("test.csv", sep=';')
+# test = test.drop(test.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 23, 25]], axis = 1)
+# test.head()
 
 
 # **optimalisatie op basis van impact waardes van materialenlijst**
