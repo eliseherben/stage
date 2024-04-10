@@ -54,6 +54,7 @@ with tab1:
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
         dataframe = pd.read_csv(uploaded_file, sep = ';')
+        dataframe.drop([1,0])
         st.write(dataframe)
     
     st.markdown("**Budget**")
