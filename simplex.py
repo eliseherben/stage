@@ -121,10 +121,15 @@ with tab1:
 
     st.dataframe(impact)
 impact_onderhoud = [impact.iloc[i, 0] for i in range(len(impact))]
+st.markdown(len(impact_onderhoud))
 impact_circulair = [impact.iloc[i, 1] for i in range(len(impact))]
+st.markdown(len(impact_circulair))
 impact_kwaliteit = [impact.iloc[i, 2] for i in range(len(impact))]
+st.markdown(len(impact_kwaliteit))
 impact_budget = [impact.iloc[i, 3] for i in range(len(impact))]
+st.markdown(len(impact_budget))
 impact_woonbeleving = [impact.iloc[i, 4] for i in range(len(impact))]
+st.markdown(len(impact_woonbeleving))
 
 
 # data = {
