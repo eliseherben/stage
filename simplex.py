@@ -61,6 +61,7 @@ with tab1:
         dataframe.rename(columns={dataframe.columns[11]: "impact kwaliteit"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[12]: "impact budget"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[13]: "impact woonbeleving"}, inplace=True)
+        dataframe.drop(0)
         st.dataframe(dataframe)
     
     st.markdown("**Budget**")
