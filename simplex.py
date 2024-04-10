@@ -78,6 +78,7 @@ with tab1:
         impact = impact.groupby('PRODUCTGROEP')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
         st.dataframe(impact)
         st.markdown(impact.iloc[0,2])
+        st.markdown(impact.iloc[0,1])
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
