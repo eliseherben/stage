@@ -66,8 +66,8 @@ with tab1:
         s=str(bytes_data,encoding)
     
     data = StringIO(s)
-    data = pd.DataFrame(data)
-    st.write(data)
+    data = pd.read_csv(data, sep=',')
+    st.dataframe(data)
     
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
