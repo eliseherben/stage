@@ -79,6 +79,7 @@ with tab1:
         st.dataframe(impact)
         st.markdown(impact.iloc[0,2])
         st.markdown(impact.iloc[0,1])
+        st.markdown([impact.iloc[i, 0] for i in range(len(impact['PRODUCTGROEP']))])
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
@@ -122,6 +123,20 @@ data = {
     "impact kwaliteit": [0.167, 0, 0, 0.111, 0.071, 0, 0.2, 0.125, 0, 0, 0.077, 0.6, 0.25, 0, 0.053, 0.222, 0.091, 0.083, 0.667, 0.545, 0, 1, 0.2, 0, 0], 
     "impact onderhoud": [0.042, 0, 0.25, 0, 0.214, 0, 0.086, 0, 0, 0, 0.308, 0.4, 0, 0, 0, 0, 0.091, 0.083, 0.667, 0, 0, 1, 0, 0, 0]
 }
+
+# data = {
+#     "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
+#                      '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
+#                      '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
+#                      '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
+#                      '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
+#                      '90 Terreininrichting'],
+#     "impact duurzaam": [impact.iloc[i, 0] for i in range(len(impact['PRODUCTGROEP']))], 
+#     "impact kosten": [0.042, 0.1, -0.25, 0.111, 0.143, 0, 0.086, 0.063, 0, 0, 0.231, 0, 0, 0, 0.158, 0, 0, 0.083, 0.5, 0.182, 0, 0, -0.2, 0.182, 0.111], 
+#     "impact woonbeleving": [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0], 
+#     "impact kwaliteit": [0.167, 0, 0, 0.111, 0.071, 0, 0.2, 0.125, 0, 0, 0.077, 0.6, 0.25, 0, 0.053, 0.222, 0.091, 0.083, 0.667, 0.545, 0, 1, 0.2, 0, 0], 
+#     "impact onderhoud": [0.042, 0, 0.25, 0, 0.214, 0, 0.086, 0, 0, 0, 0.308, 0.4, 0, 0, 0, 0, 0.091, 0.083, 0.667, 0, 0, 1, 0, 0, 0]
+# }
 
 df = pd.DataFrame(data)
 
