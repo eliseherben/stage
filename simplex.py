@@ -79,7 +79,7 @@ with tab1:
         st.dataframe(impact)
         st.markdown(impact.iloc[0,2])
         st.markdown(impact.iloc[0,1])
-        st.markdown([impact.iloc[i, 0] for i in range(len(impact['PRODUCTGROEP']))])
+        st.markdown([impact.iloc[i, 0] for i in range(25)])
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
