@@ -30,7 +30,7 @@ tab1, tab2, tab3 = st.tabs(["Input", "Optimalisatie", "Aanpassingen"])
 
 # **input tab**
 
-# In[7]:
+# In[11]:
 
 
 with tab1:
@@ -57,6 +57,10 @@ with tab1:
         df = pd.DataFrame(dataframe)
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 23, 25]], axis = 1)
         dataframe.rename(columns={dataframe.columns[9]: "impact onderhoud"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[10]: "impact circulair"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[11]: "impact kwaliteit"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[12]: "impact budget"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[13]: "impact woonbeleving"}, inplace=True)
         st.dataframe(dataframe)
     
     st.markdown("**Budget**")
