@@ -63,7 +63,7 @@ with tab1:
         dataframe = dataframe.dropna(how='all')
         dataframe = dataframe.drop(0)
         dataframe = dataframe.reset_index(drop=True)
-        dataframe['totaal'] = dataframe.groupby('PRODUCTGROEP')['materiaal ID'].count()
+        dataframe['totaal'] = dataframe.groupby('PRODUCTGROEP').size()
         st.dataframe(dataframe)
     
     st.markdown("**Budget**")
