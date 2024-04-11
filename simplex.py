@@ -622,23 +622,23 @@ with tab3:
             st.markdown(f"- {productgroep[i]}: {variabelen[i]}%")
         
         #Impact themas op productgroepen
-        impact_duurzaamheid = [0.5, 0.6, 0, 0, 0.786, 0, 0.257, 0.188, 0.2, 0, 0.154, 0.15, 0, 1, 0.158, 0, 0.091, 0, 0.667, 0, 0, 0, 0.2, 0.182, 0]
+        impact_duurzaamheid = [impact.iloc[a, 2] for a in range(len(impact))]
         duurzaamheid = sum([variabelen[i] * impact_duurzaamheid[i] for i in range(25)])
         st.markdown(f"score duurzaamheid: {duurzaamheid}")
         
-        impact_prijs = [0.042, 0.1, -0.25, 0.111, 0.143, 0, 0.086, 0.063, 0, 0, 0.231, 0, 0, 0, 0.158, 0, 0, 0.083, 0.5, 0.182, 0, 0, -0.2, 0.182, 0.111]
+        impact_prijs = [impact.iloc[a, 4] for a in range(len(impact))]
         prijs = sum([variabelen[i] * impact_prijs[i] for i in range(25)])
         st.markdown(f"score prijs: {prijs}")  
     
-        impact_woonbeleving = [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0]
+        impact_woonbeleving = [impact.iloc[a, 5] for a in range(len(impact))]
         woonbeleving = sum([variabelen[i] * impact_woonbeleving[i] for i in range(25)])
         st.markdown(f"score woonbeleving: {woonbeleving}")  
         
-        impact_kwaliteit = [0.167, 0, 0, 0.111, 0.071, 0, 0.2, 0.125, 0, 0, 0.077, 0.6, 0.25, 0, 0.053, 0.222, 0.091, 0.083, 0.667, 0.545, 0, 1, 0.2, 0, 0]
+        impact_kwaliteit = [impact.iloc[a, 3] for a in range(len(impact))]
         kwaliteit = sum([variabelen[i] * impact_kwaliteit[i] for i in range(25)])
         st.markdown(f"score kwaliteit: {kwaliteit}")  
         
-        impact_onderhoud = [0.042, 0, 0.25, 0, 0.214, 0, 0.086, 0, 0, 0, 0.308, 0.4, 0, 0, 0, 0, 0.091, 0.083, 0.667, 0, 0, 1, 0, 0, 0]
+        impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
         onderhoud = sum([variabelen[i] * impact_onderhoud[i] for i in range(25)])
         st.markdown(f"score onderhoud: {onderhoud}")  
 
