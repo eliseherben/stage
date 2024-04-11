@@ -34,7 +34,7 @@ tab1, tab2, tab3 = st.tabs(["Input", "Optimalisatie", "Aanpassingen"])
 
 
 with tab1:
-    dataframe = None
+    # dataframe = None
     st.markdown("**Afdeling**")
     st.selectbox(
         "Welke afdeling?", 
@@ -57,7 +57,7 @@ with tab1:
     if uploaded_file is not None:
         dataframe = pd.read_csv(uploaded_file)
     
-    if dataframe is not none:
+    if dataframe is not None:
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29]], axis = 1)
         dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[13]: "impact circulair"}, inplace=True)
