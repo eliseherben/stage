@@ -105,7 +105,7 @@ with tab1:
             if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
                 impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
         impact = impact.sort_values(by='PRODUCTGROEP', ascending=True)
-        impact = impact.reset_index()
+        impact = impact.reset_index(drop=True)
 
         st.dataframe(impact)
     
