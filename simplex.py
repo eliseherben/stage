@@ -112,11 +112,11 @@ with tab1:
                          '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
                          '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
                          '90 Terreininrichting'],
-        "impact onderhoud": [impact.iloc[i, 0] for i in range(len(impact))],
-        "impact circulair": [impact.iloc[i, 1] for i in range(len(impact))],
-        "impact kwaliteit": [impact.iloc[i, 2] for i in range(len(impact))],
-        "impact budget": [impact.iloc[i, 3] for i in range(len(impact))], 
-        "impact woonbeleving": [impact.iloc[i, 4] for i in range(len(impact))]
+        "impact onderhoud": [impact.iloc[i, 1] for i in range(len(impact))],
+        "impact circulair": [impact.iloc[i, 2] for i in range(len(impact))],
+        "impact kwaliteit": [impact.iloc[i, 3] for i in range(len(impact))],
+        "impact budget": [impact.iloc[i, 4] for i in range(len(impact))], 
+        "impact woonbeleving": [impact.iloc[i, 5] for i in range(len(impact))]
         }
         
         df = pd.DataFrame(data)
