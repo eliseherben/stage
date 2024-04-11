@@ -223,9 +223,9 @@ with tab2:
     st.markdown(
     f"""
     De productgroepen die het meeste impact maken op het thema 'Onderhoud':
-    - {onderhoud['productgroep'].iloc[0] if onderhoud['impact onderhoud'].iloc[0] > 0 else pass}
-    - {onderhoud['productgroep'].iloc[1] if onderhoud['impact onderhoud'].iloc[1] > 0 else pass}
-    - {onderhoud['productgroep'].iloc[2] if onderhoud['impact onderhoud'].iloc[2] > 0 else pass}
+    - {onderhoud['productgroep'].iloc[0] if onderhoud['impact onderhoud'].iloc[0] > 0 else ""}
+    - {onderhoud['productgroep'].iloc[1] if onderhoud['impact onderhoud'].iloc[1] > 0 else ""}
+    - {onderhoud['productgroep'].iloc[2] if onderhoud['impact onderhoud'].iloc[2] > 0 else ""}
     """
     )
 # if (duurzaam['impact circulair'].iloc[0] and duurzaam['impact circulair'].iloc[1] and duurzaam['impact circulair'].iloc[2]) > 0:
@@ -233,9 +233,9 @@ with tab2:
     st.markdown(
     f"""
     De productgroepen die het meeste impact maken op het thema 'Duurzaam':
-    - {duurzaam['productgroep'].iloc[0] if duurzaam['impact circulair'].iloc[0] > 0 else pass}
-    - {duurzaam['productgroep'].iloc[1] if duurzaam['impact circulair'].iloc[1] > 0 else pass}
-    - {duurzaam['productgroep'].iloc[2] if duurzaam['impact circulair'].iloc[2] > 0 else pass}
+    - {duurzaam['productgroep'].iloc[0] if duurzaam['impact circulair'].iloc[0] > 0 else ""}
+    - {duurzaam['productgroep'].iloc[1] if duurzaam['impact circulair'].iloc[1] > 0 else ""}
+    - {duurzaam['productgroep'].iloc[2] if duurzaam['impact circulair'].iloc[2] > 0 else ""}
     """
     )
 # if (kwaliteit['impact kwaliteit'].iloc[0] and kwaliteit['impact kwaliteit'].iloc[1] and kwaliteit['impact kwaliteit'].iloc[2]) > 0:
@@ -243,9 +243,9 @@ with tab2:
     st.markdown(
     f"""
     De productgroepen die het meeste impact maken op het thema 'Kwaliteit':
-    - {kwaliteit['productgroep'].iloc[0] if kwaliteit['impact kwaliteit'].iloc[0] > 0 else pass}
-    - {kwaliteit['productgroep'].iloc[1] if kwaliteit['impact kwaliteit'].iloc[0] > 0 else pass}
-    - {kwaliteit['productgroep'].iloc[2] if kwaliteit['impact kwaliteit'].iloc[0] > 0 else pass}
+    - {kwaliteit['productgroep'].iloc[0] if kwaliteit['impact kwaliteit'].iloc[0] > 0 else ""}
+    - {kwaliteit['productgroep'].iloc[1] if kwaliteit['impact kwaliteit'].iloc[0] > 0 else ""}
+    - {kwaliteit['productgroep'].iloc[2] if kwaliteit['impact kwaliteit'].iloc[0] > 0 else ""}
     """
     )
 # if (budget['impact budget'].iloc[0] and budget['impact budget'].iloc[1] and budget['impact budget'].iloc[2]) > 0:
@@ -253,9 +253,9 @@ with tab2:
     st.markdown(
     f"""
     De productgroepen die het meeste impact maken op het thema 'Budget':
-    - {budget['productgroep'].iloc[0] if budget['impact budget'].iloc[0] > 0 else pass}
-    - {budget['productgroep'].iloc[1] if budget['impact budget'].iloc[0] > 0 else pass}
-    - {budget['productgroep'].iloc[2] if budget['impact budget'].iloc[0] > 0 else pass}
+    - {budget['productgroep'].iloc[0] if budget['impact budget'].iloc[0] > 0 else ""}
+    - {budget['productgroep'].iloc[1] if budget['impact budget'].iloc[0] > 0 else ""}
+    - {budget['productgroep'].iloc[2] if budget['impact budget'].iloc[0] > 0 else ""}
     """
     )
 # if (woonbeleving['impact woonbeleving'].iloc[0] and woonbeleving['impact woonbeleving'].iloc[1] and woonbeleving['impact woonbeleving'].iloc[2]) > 0:
@@ -263,9 +263,9 @@ with tab2:
     st.markdown(
     f"""
     De productgroepen die het meeste impact maken op het thema 'Woonbeleving':
-    - {woonbeleving['productgroep'].iloc[0] if woonbeleving['impact woonbeleving'].iloc[0] > 0 else pass}
-    - {woonbeleving['productgroep'].iloc[1] if woonbeleving['impact woonbeleving'].iloc[0] > 0 else pass}
-    - {woonbeleving['productgroep'].iloc[2] if woonbeleving['impact woonbeleving'].iloc[0] > 0 else pass}
+    - {woonbeleving['productgroep'].iloc[0] if woonbeleving['impact woonbeleving'].iloc[0] > 0 else ""}
+    - {woonbeleving['productgroep'].iloc[1] if woonbeleving['impact woonbeleving'].iloc[0] > 0 else ""}
+    - {woonbeleving['productgroep'].iloc[2] if woonbeleving['impact woonbeleving'].iloc[0] > 0 else ""}
     """
     )
 
