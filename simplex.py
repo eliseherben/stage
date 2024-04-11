@@ -112,6 +112,8 @@ with tab1:
     "impact B": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
     "impact W": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 
+    st.markdown(productgroepen)
+    
     for i, row in productgroepen.iterrows():
         if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
             impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
