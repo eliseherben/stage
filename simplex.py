@@ -231,6 +231,7 @@ if dataframe is not None:
 
 
 with tab2: 
+    st.markdown(onderhoud)
     if onderhoud is not None:
         st.markdown(onderhoud)
         st.dataframe(onderhoud)
