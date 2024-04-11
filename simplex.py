@@ -34,6 +34,7 @@ tab1, tab2, tab3 = st.tabs(["Input", "Optimalisatie", "Aanpassingen"])
 
 
 with tab1:
+    dataframe = None
     st.markdown("**Afdeling**")
     st.selectbox(
         "Welke afdeling?", 
