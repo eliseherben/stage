@@ -386,7 +386,7 @@ with tab2:
     prob += binnenwandafwerkingen <= 4.5
     prob += vloerafwerkingen <= 7.5
     prob += plafonds <= 1.5
-    prob += sanitair <= 3.4
+    prob += sanitair <= 10
     prob += keuken <= 1.9
     prob += buitenwanden <= 9.8 
     prob += vloeren <= 1.5
