@@ -38,6 +38,7 @@ with tab1:
     onderhoud = None
     circulair = None
     kwaliteit = None
+    budget = None
     woonbeleving = None
     
     st.markdown("**Afdeling**")
@@ -267,7 +268,6 @@ with tab2:
             - {kwaliteit['productgroep'].iloc[2]}
             """
             )
-    budget = None
     if budget is not None:
         if (budget['impact budget'].iloc[0] and budget['impact budget'].iloc[1] and budget['impact budget'].iloc[2]) > 0:
             st.markdown('**Budget**')
