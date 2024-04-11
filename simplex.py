@@ -87,6 +87,8 @@ with tab1:
         impact = dataframe[['PRODUCTGROEP', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
         impact = impact.groupby('PRODUCTGROEP')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
         impact = impact.reset_index()
+        st.markdown("impact dataframe")
+        st.dataframe(impact)
         
         productgroepen = pd.DataFrame({
         "PRODUCTGROEP": ['21. Buitenwanden', '22. Binnenwanden', '23. Vloeren', '24. Trappen en hellingen', '27. Daken', '28. Hoofddraag- constructie', 
@@ -120,6 +122,7 @@ with tab1:
         }
         
         df = pd.DataFrame(data)
+        st.markdown("df dataframe")
         st.dataframe(df)
     
         onderhoud = df[['productgroep', 'impact onderhoud']]
