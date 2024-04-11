@@ -381,12 +381,12 @@ with tab2:
     prob += beveiliging >= 1.1
     
     prob += buitenkozijnen <= 12.8
-    prob += lift <= 0.4
+    prob += lift <= 1.4
     prob += binnenkozijnen <= 6.4
     prob += binnenwandafwerkingen <= 4.5
     prob += vloerafwerkingen <= 7.5
     prob += plafonds <= 1.5
-    prob += sanitair <= 10
+    prob += sanitair <= 3.4
     prob += keuken <= 1.9
     prob += buitenwanden <= 9.8 
     prob += vloeren <= 1.5
@@ -401,7 +401,7 @@ with tab2:
     prob += binnenwanden <= 3.8
     prob += trappen_hellingen <= 3.4
     prob += luiken_vensters <= 1.9
-    prob += balustrades_leuningen <= 0.4
+    prob += balustrades_leuningen <= 1.4
     prob += water_installaties  <= 3.4
     prob += elektrische_installaties <= 2.3
     prob += beveiliging <= 1.9
