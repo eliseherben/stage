@@ -375,7 +375,7 @@ prob += binnenkozijnen <= 6.4
 prob += binnenwandafwerkingen <= 4.5
 prob += vloerafwerkingen <= 7.5
 prob += plafonds <= 1.5
-prob += sanitair <= 3.4
+# prob += sanitair <= 3.4
 prob += keuken <= 1.9
 prob += buitenwanden <= 9.8 
 prob += vloeren <= 1.5
@@ -415,6 +415,7 @@ print(df)
 print("Optimale oplossing:")
 
 print(pl.LpStatus[status])
+st.markdown(pl.LpStatus[status])
 print("buitenkozijnen = ", buitenkozijnen.varValue)
 print("lift = ", lift.varValue)
 print("binnenkozijnen = ", binnenkozijnen.varValue)
@@ -442,7 +443,7 @@ print("elektrische_installaties =", elektrische_installaties.varValue)
 print("beveiliging =", beveiliging.varValue)
 
 print("Maximale waarde van de doelfunctie:", prob.objective.value())
-print(prob.objective.value())
+st.markdown(prob.objective.value())
 
 
 # In[ ]:
