@@ -120,6 +120,7 @@ with tab1:
         }
         
         df = pd.DataFrame(data)
+        st.dataframe(df)
     
         onderhoud = df[['productgroep', 'impact onderhoud']]
         onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
