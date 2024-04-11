@@ -112,7 +112,7 @@ with tab1:
     "impact B": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
     "impact W": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 
-    st.markdown(productgroepen)
+    st.dataframe(productgroepen)
     
     for i, row in productgroepen.iterrows():
         if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
