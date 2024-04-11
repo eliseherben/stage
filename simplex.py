@@ -7,7 +7,7 @@
 # pip install pulp
 
 
-# In[20]:
+# In[2]:
 
 
 import streamlit as st
@@ -87,8 +87,8 @@ with tab1:
     "Als een thema neutraal is kan deze op '0' blijven staan. Als een thema zwaarder meeweegt kan deze op +1 of +2 staan, "
     "als een thema minder zwaar meeweegt kan deze op -1 of -2 gezet worden. ")
     weging_woonbeleving = st.number_input("De weging in voor het thema 'Woonbeleving' in dit project", value=0, min_value = -2, max_value = 2)
-    weging_duurzaam = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=0, min_value = -2, max_value = 2)
-    weging_kosten = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=0, min_value = -2, max_value = 2)
+    weging_circulair = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=0, min_value = -2, max_value = 2)
+    weging_budget = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=0, min_value = -2, max_value = 2)
     weging_onderhoud = st.number_input("De weging in voor het thema 'Onderhoud' in dit project", value=0, min_value = -2, max_value = 2)
     weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=0, min_value = -2, max_value = 2)
     
@@ -98,6 +98,16 @@ with tab1:
     st.number_input("Het aandeel van de productgroep 'Sanitair' in dit project", value=0, min_value = 0, max_value = 100)
     st.number_input("Het aandeel van de productgroep 'Na-isolatie' in dit project", value=0, min_value = 0, max_value = 100)
 
+    productgroepen = pd.DataFrame({
+    "PRODUCTGROEP": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
+                     '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
+                     '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
+                     '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
+                     '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
+                     '90 Terreininrichting']})
+
+    impact = pd.merge(productgroepen, impact, how='left', on= 'PRODUCTGROEP')
+    
     # st.dataframe(impact)
     # impact_onderhoud = [impact.iloc[i, 0] for i in range(len(impact))]
     # st.markdown(len(impact_onderhoud))
@@ -114,14 +124,14 @@ with tab1:
     "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
                      '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
                      '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
-                     '52 Riolering en HWA', '53 Warm- en koud water installaties', '57 Luchtbehandeling', 
-                     '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '73 Keuken', '74 Sanitair', 
+                     '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
+                     '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
                      '90 Terreininrichting'],
-    "impact circulair": [impact.iloc[i, 1] for i in range(len(impact))], 
+    "impact onderhoud": [impact.iloc[i, 0] for i in range(len(impact))],
+    "impact circulair": [impact.iloc[i, 1] for i in range(len(impact))],
+    "impact kwaliteit": [impact.iloc[i, 2] for i in range(len(impact))],
     "impact budget": [impact.iloc[i, 3] for i in range(len(impact))], 
-    "impact woonbeleving": [impact.iloc[i, 4] for i in range(len(impact))], 
-    "impact kwaliteit": [impact.iloc[i, 2] for i in range(len(impact))], 
-    "impact onderhoud": [impact.iloc[i, 0] for i in range(len(impact))]
+    "impact woonbeleving": [impact.iloc[i, 4] for i in range(len(impact))]
     }
     
     df = pd.DataFrame(data)
@@ -130,9 +140,9 @@ with tab1:
     onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
     onderhoud = onderhoud.reset_index(drop=True)
     
-    duurzaam = df[['productgroep', 'impact circulair']]
-    duurzaam = duurzaam.sort_values(by='impact circulair', ascending=False)
-    duurzaam = duurzaam.reset_index(drop=True)
+    circulair = df[['productgroep', 'impact circulair']]
+    circulair = circulair.sort_values(by='impact circulair', ascending=False)
+    circulair = circulair.reset_index(drop=True)
 
     kwaliteit = df[['productgroep', 'impact kwaliteit']]
     kwaliteit = kwaliteit.sort_values(by='impact kwaliteit', ascending=False)
@@ -145,10 +155,6 @@ with tab1:
     woonbeleving = df[['productgroep', 'impact woonbeleving']]
     woonbeleving = woonbeleving.sort_values(by='impact woonbeleving', ascending=False)
     woonbeleving = woonbeleving.reset_index(drop=True)
-    
-
-    
-
 
 
 # **optimalisatie op basis van impact waardes van materialenlijst**
@@ -228,14 +234,14 @@ with tab2:
         - {onderhoud['productgroep'].iloc[2]}
         """
         )
-    if (duurzaam['impact circulair'].iloc[0] and duurzaam['impact circulair'].iloc[1] and duurzaam['impact circulair'].iloc[2]) > 0:
-        st.markdown('**Duurzaam**')
+    if (circulair['impact circulair'].iloc[0] and circulair['impact circulair'].iloc[1] and circulair['impact circulair'].iloc[2]) > 0:
+        st.markdown('**Circulair**')
         st.markdown(
         f"""
         De productgroepen die het meeste impact maken op het thema 'Duurzaam':
-        - {duurzaam['productgroep'].iloc[0]}
-        - {duurzaam['productgroep'].iloc[1]}
-        - {duurzaam['productgroep'].iloc[2]}
+        - {circulair['productgroep'].iloc[0]}
+        - {circulair['productgroep'].iloc[1]}
+        - {circulair['productgroep'].iloc[2]}
         """
         )
     if (kwaliteit['impact kwaliteit'].iloc[0] and kwaliteit['impact kwaliteit'].iloc[1] and kwaliteit['impact kwaliteit'].iloc[2]) > 0:
@@ -308,23 +314,22 @@ variabelen = [buitenwanden, binnenwanden, vloeren, trappen_hellingen, daken, hoo
               verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
 
 #Impact themas op productgroepen
-impact_duurzaamheid = [0.5, 0.6, 0, 0, 0.786, 0, 0.257, 0.188, 0.2, 0, 0.154, 0.15, 0, 1, 0.158, 0, 0.091, 0, 0.667, 0, 0, 0, 0.2, 0.182, 0]
-duurzaamheid = pl.lpSum(variabelen[i] * impact_duurzaamheid[i] for i in range(25))
+impact_onderhoud = [0.042, 0, 0.25, 0, 0.214, 0, 0.086, 0, 0, 0, 0.308, 0.4, 0, 0, 0, 0, 0.091, 0.083, 0.667, 0, 0, 1, 0, 0, 0]
+onderhoud = pl.lpSum(variabelen[i] * impact_onderhoud[i] for i in range(25))
 
-impact_prijs = [0.042, 0.1, -0.25, 0.111, 0.143, 0, 0.086, 0.063, 0, 0, 0.231, 0, 0, 0, 0.158, 0, 0, 0.083, 0.5, 0.182, 0, 0, -0.2, 0.182, 0.111]
-prijs = pl.lpSum(variabelen[i] * impact_prijs[i] for i in range(25))
-
-impact_woonbeleving = [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0]
-woonbeleving = pl.lpSum(variabelen[i] * impact_woonbeleving[i] for i in range(25))
+impact_circulair = [0.5, 0.6, 0, 0, 0.786, 0, 0.257, 0.188, 0.2, 0, 0.154, 0.15, 0, 1, 0.158, 0, 0.091, 0, 0.667, 0, 0, 0, 0.2, 0.182, 0]
+circulair = pl.lpSum(variabelen[i] * impact_circulair[i] for i in range(25))
 
 impact_kwaliteit = [0.167, 0, 0, 0.111, 0.071, 0, 0.2, 0.125, 0, 0, 0.077, 0.6, 0.25, 0, 0.053, 0.222, 0.091, 0.083, 0.667, 0.545, 0, 1, 0.2, 0, 0]
 kwaliteit = pl.lpSum(variabelen[i] * impact_kwaliteit[i] for i in range(25))
 
-impact_onderhoud = [0.042, 0, 0.25, 0, 0.214, 0, 0.086, 0, 0, 0, 0.308, 0.4, 0, 0, 0, 0, 0.091, 0.083, 0.667, 0, 0, 1, 0, 0, 0]
-onderhoud = pl.lpSum(variabelen[i] * impact_onderhoud[i] for i in range(25))
-print(prijs) 
+impact_budget = [0.042, 0.1, -0.25, 0.111, 0.143, 0, 0.086, 0.063, 0, 0, 0.231, 0, 0, 0, 0.158, 0, 0, 0.083, 0.5, 0.182, 0, 0, -0.2, 0.182, 0.111]
+budget = pl.lpSum(variabelen[i] * impact_budget[i] for i in range(25))
 
-prob += weging_duurzaam * duurzaamheid - weging_kosten * prijs + weging_woonbeleving * woonbeleving + weging_kwaliteit * kwaliteit + weging_onderhoud * onderhoud
+impact_woonbeleving = [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0]
+woonbeleving = pl.lpSum(variabelen[i] * impact_woonbeleving[i] for i in range(25))
+
+prob += weging_circulair * circulair - weging_budget * budget + weging_woonbeleving * woonbeleving + weging_kwaliteit * kwaliteit + weging_onderhoud * onderhoud
 # prob += 2 * keuken + 3 * sanitair + 4 * buitenwanden + 6 * binnenwanden + 5 * elektra
 
 # Voeg beperkingen toe (voorbeeldbeperkingen)
@@ -639,17 +644,20 @@ with tab3:
         st.markdown(f"score onderhoud: {onderhoud2/sum(impact_onderhoud)}")
 
 
-# In[2]:
+# In[3]:
 
 
-test1 = [0.5, 0.6, 0, 0, 0.786, 0, 0.257, 0.188, 0.2, 0, 0.154, 0.15, 0, 1, 0.158, 0, 0.091, 0, 0.667, 0, 0, 0, 0.2, 0.182, 0]
-test2 = [9.8, 3.8, 1.5, 3.4, 5.3, 0.8, 12.8, 6.4, 1.9, 0.4, 4.5, 7.5, 1.5, 2.3, 7.1, 3.4, 4.5, 4.5, 2.3, 5.7, 1.9, 0.4, 1.9, 3.4, 3.0]
+productgroepen = pd.DataFrame({'productgroep': ['21', '22', '23', '24']})
+impacten = pd.DataFrame({'productgroep': ['21', '23', '24'], 
+                         'impact': [2, 4, 1]})
+result = pd.merge(productgroepen, impacten, how='left', on= 'productgroep')
+result.head()
 
 
 # In[3]:
 
 
-sum([test1[i] * test2[i] for i in range(25)])
+
 
 
 # In[ ]:
