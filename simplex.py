@@ -227,6 +227,9 @@ with tab1:
 
 with tab2: 
     if onderhoud is not None:
+        st.markdown(onderhoud['impact onderhoud'].iloc[0])
+        st.markdown(onderhoud['impact onderhoud'].iloc[1])
+        st.markdown(onderhoud['impact onderhoud'].iloc[3])
         if (onderhoud['impact onderhoud'].iloc[0] and onderhoud['impact onderhoud'].iloc[1] and onderhoud['impact onderhoud'].iloc[2]) > 0:
             st.markdown('**Onderhoud**')
             st.markdown(
