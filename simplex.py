@@ -79,6 +79,73 @@ with tab1:
         impact = impact.reset_index()
         st.dataframe(dataframe)
         st.dataframe(impact)
+
+        productgroepen = pd.DataFrame({
+        "PRODUCTGROEP": ['21. Buitenwanden', '22. Binnenwanden', '23. Vloeren', '24. Trappen en hellingen', '27. Daken', '28. Hoofddraag- constructie', 
+                         '31. Buitenkozijnen, -ramen, -deuren en -puien.', '32. Binnenkozijnen en - deuren', '33. Luiken en vensters', 
+                         '34. Balustrades en leuningen', '42. Binnenwand- afwerkingen', '43. Vloer- afwerkingen', '45 Plafonds', '48. Na-isolatie', 
+                         '52. Riolering en HWA', '53. Warm- en koud water installaties', '56. Verwarming en koeling', '57. Lucht- behandeling', 
+                         '61. Elektrische installaties', '64. Vaste gebouw- voorzieningen', '65. Beveiliging', '66. Lift', '73. Keuken', '74. Sanitair', 
+                         '90.Terrein'],
+        "impact O": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "impact CD": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "impact K": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "impact B": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "impact W": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
+    
+        st.dataframe(productgroepen)
+        
+        for i, row in productgroepen.iterrows():
+            if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
+                impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
+        st.dataframe(impact)
+        # st.dataframe(impact)
+        # impact_onderhoud = [impact.iloc[i, 0] for i in range(len(impact))]
+        # st.markdown(len(impact_onderhoud))
+        # impact_circulair = [impact.iloc[i, 1] for i in range(len(impact))]
+        # st.markdown(len(impact_circulair))
+        # impact_kwaliteit = [impact.iloc[i, 2] for i in range(len(impact))]
+        # st.markdown(len(impact_kwaliteit))
+        # impact_budget = [impact.iloc[i, 3] for i in range(len(impact))]
+        # st.markdown(len(impact_budget))
+        # impact_woonbeleving = [impact.iloc[i, 4] for i in range(len(impact))]
+        # st.markdown(len(impact_woonbeleving))
+    
+        data = {
+        "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
+                         '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
+                         '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
+                         '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
+                         '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
+                         '90 Terreininrichting'],
+        "impact onderhoud": [impact.iloc[i, 0] for i in range(len(impact))],
+        "impact circulair": [impact.iloc[i, 1] for i in range(len(impact))],
+        "impact kwaliteit": [impact.iloc[i, 2] for i in range(len(impact))],
+        "impact budget": [impact.iloc[i, 3] for i in range(len(impact))], 
+        "impact woonbeleving": [impact.iloc[i, 4] for i in range(len(impact))]
+        }
+        
+        df = pd.DataFrame(data)
+    
+        onderhoud = df[['productgroep', 'impact onderhoud']]
+        onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
+        onderhoud = onderhoud.reset_index(drop=True)
+        
+        circulair = df[['productgroep', 'impact circulair']]
+        circulair = circulair.sort_values(by='impact circulair', ascending=False)
+        circulair = circulair.reset_index(drop=True)
+    
+        kwaliteit = df[['productgroep', 'impact kwaliteit']]
+        kwaliteit = kwaliteit.sort_values(by='impact kwaliteit', ascending=False)
+        kwaliteit = kwaliteit.reset_index(drop=True)
+        
+        budget = df[['productgroep', 'impact budget']]
+        budget = budget.sort_values(by='impact budget', ascending=False)
+        budget = budget.reset_index(drop=True)
+        
+        woonbeleving = df[['productgroep', 'impact woonbeleving']]
+        woonbeleving = woonbeleving.sort_values(by='impact woonbeleving', ascending=False)
+        woonbeleving = woonbeleving.reset_index(drop=True)
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
@@ -99,72 +166,7 @@ with tab1:
     st.number_input("Het aandeel van de productgroep 'Sanitair' in dit project", value=0, min_value = 0, max_value = 100)
     st.number_input("Het aandeel van de productgroep 'Na-isolatie' in dit project", value=0, min_value = 0, max_value = 100)
 
-    productgroepen = pd.DataFrame({
-    "PRODUCTGROEP": ['21. Buitenwanden', '22. Binnenwanden', '23. Vloeren', '24. Trappen en hellingen', '27. Daken', '28. Hoofddraag- constructie', 
-                     '31. Buitenkozijnen, -ramen, -deuren en -puien.', '32. Binnenkozijnen en - deuren', '33. Luiken en vensters', 
-                     '34. Balustrades en leuningen', '42. Binnenwand- afwerkingen', '43. Vloer- afwerkingen', '45 Plafonds', '48. Na-isolatie', 
-                     '52. Riolering en HWA', '53. Warm- en koud water installaties', '56. Verwarming en koeling', '57. Lucht- behandeling', 
-                     '61. Elektrische installaties', '64. Vaste gebouw- voorzieningen', '65. Beveiliging', '66. Lift', '73. Keuken', '74. Sanitair', 
-                     '90.Terrein'],
-    "impact O": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-    "impact CD": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-    "impact K": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-    "impact B": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-    "impact W": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
-
-    st.dataframe(productgroepen)
-    
-    for i, row in productgroepen.iterrows():
-        if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
-            impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
-    st.dataframe(impact)
-    # st.dataframe(impact)
-    # impact_onderhoud = [impact.iloc[i, 0] for i in range(len(impact))]
-    # st.markdown(len(impact_onderhoud))
-    # impact_circulair = [impact.iloc[i, 1] for i in range(len(impact))]
-    # st.markdown(len(impact_circulair))
-    # impact_kwaliteit = [impact.iloc[i, 2] for i in range(len(impact))]
-    # st.markdown(len(impact_kwaliteit))
-    # impact_budget = [impact.iloc[i, 3] for i in range(len(impact))]
-    # st.markdown(len(impact_budget))
-    # impact_woonbeleving = [impact.iloc[i, 4] for i in range(len(impact))]
-    # st.markdown(len(impact_woonbeleving))
-
-    data = {
-    "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
-                     '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
-                     '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
-                     '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
-                     '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
-                     '90 Terreininrichting'],
-    "impact onderhoud": [impact.iloc[i, 0] for i in range(len(impact))],
-    "impact circulair": [impact.iloc[i, 1] for i in range(len(impact))],
-    "impact kwaliteit": [impact.iloc[i, 2] for i in range(len(impact))],
-    "impact budget": [impact.iloc[i, 3] for i in range(len(impact))], 
-    "impact woonbeleving": [impact.iloc[i, 4] for i in range(len(impact))]
-    }
-    
-    df = pd.DataFrame(data)
-
-    onderhoud = df[['productgroep', 'impact onderhoud']]
-    onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
-    onderhoud = onderhoud.reset_index(drop=True)
-    
-    circulair = df[['productgroep', 'impact circulair']]
-    circulair = circulair.sort_values(by='impact circulair', ascending=False)
-    circulair = circulair.reset_index(drop=True)
-
-    kwaliteit = df[['productgroep', 'impact kwaliteit']]
-    kwaliteit = kwaliteit.sort_values(by='impact kwaliteit', ascending=False)
-    kwaliteit = kwaliteit.reset_index(drop=True)
-    
-    budget = df[['productgroep', 'impact budget']]
-    budget = budget.sort_values(by='impact budget', ascending=False)
-    budget = budget.reset_index(drop=True)
-    
-    woonbeleving = df[['productgroep', 'impact woonbeleving']]
-    woonbeleving = woonbeleving.sort_values(by='impact woonbeleving', ascending=False)
-    woonbeleving = woonbeleving.reset_index(drop=True)
+   
 
 
 # **optimalisatie op basis van impact waardes van materialenlijst**
