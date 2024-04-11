@@ -329,27 +329,21 @@ with tab2:
     
     #Impact themas op productgroepen
     impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
-    st.markdown(impact_onderhoud)
     onderhoud = pl.lpSum(variabelen[i] * impact_onderhoud[i] for i in range(25))
     
     impact_circulair = [impact.iloc[a, 2] for a in range(len(impact))]
-    st.markdown(impact_circulair)
     circulair = pl.lpSum(variabelen[i] * impact_circulair[i] for i in range(25))
     
     impact_kwaliteit = [impact.iloc[a, 3] for a in range(len(impact))]
-    st.markdown(impact_kwaliteit)
     kwaliteit = pl.lpSum(variabelen[i] * impact_kwaliteit[i] for i in range(25))
     
     impact_budget = [impact.iloc[a, 4] for a in range(len(impact))]
-    st.markdown(impact_budget)
     budget = pl.lpSum(variabelen[i] * impact_budget[i] for i in range(25))
     
     impact_woonbeleving = [impact.iloc[a, 5] for a in range(len(impact))]
-    st.markdown(impact_woonbeleving)
     woonbeleving = pl.lpSum(variabelen[i] * impact_woonbeleving[i] for i in range(25))
     
     prob += weging_circulair * circulair - weging_budget * budget + weging_woonbeleving * woonbeleving + weging_kwaliteit * kwaliteit + weging_onderhoud * onderhoud
-    # prob += 2 * keuken + 3 * sanitair + 4 * buitenwanden + 6 * binnenwanden + 5 * elektra
     
     # Voeg beperkingen toe (voorbeeldbeperkingen)
     prob += buitenkozijnen + lift + binnenkozijnen + binnenwandafwerkingen + vloerafwerkingen + plafonds + sanitair + keuken + buitenwanden + vloeren + daken + hoofddraagconstructie + na_isolatie + riolering_hwa + terreininrichting + verwarming_koeling + luchtbehandeling + gebouwvoorzieningen + binnenwanden + trappen_hellingen + luiken_vensters + balustrades_leuningen+ water_installaties + elektrische_installaties + beveiliging == 100
