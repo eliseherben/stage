@@ -109,9 +109,9 @@ with tab1:
 
 
     for i, row in productgroepen.iterrows():
-    if row['productgroep'] not in impact['productgroep'].values:
-        print(row['productgroep'] + ' can be added to dfOld')
-        impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
+        if row['productgroep'] not in impact['productgroep'].values:
+            print(row['productgroep'] + ' can be added to dfOld')
+            impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
     impact.head()
     # st.dataframe(impact)
     # impact_onderhoud = [impact.iloc[i, 0] for i in range(len(impact))]
