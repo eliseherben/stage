@@ -107,7 +107,6 @@ with tab1:
             if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
                 impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
         impact = impact.sort_values(by='PRODUCTGROEP', ascending=True)
-        st.dataframe(impact)
     
         data = {
         "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
@@ -124,8 +123,6 @@ with tab1:
         }
         
         df = pd.DataFrame(data)
-        st.markdown("df dataframe")
-        st.dataframe(df)
     
         onderhoud = df[['productgroep', 'impact onderhoud']]
         onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
@@ -330,19 +327,24 @@ with tab2:
                   verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
     
     #Impact themas op productgroepen
-    impact_onderhoud = [0.042, 0, 0.25, 0, 0.214, 0, 0.086, 0, 0, 0, 0.308, 0.4, 0, 0, 0, 0, 0.091, 0.083, 0.667, 0, 0, 1, 0, 0, 0]
+    impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
+    st.markdown(impact_onderhoud)
     onderhoud = pl.lpSum(variabelen[i] * impact_onderhoud[i] for i in range(25))
     
-    impact_circulair = [0.5, 0.6, 0, 0, 0.786, 0, 0.257, 0.188, 0.2, 0, 0.154, 0.15, 0, 1, 0.158, 0, 0.091, 0, 0.667, 0, 0, 0, 0.2, 0.182, 0]
+    impact_circulair = [impact.iloc[a, 2] for a in range(len(impact))]
+    st.markdown(impact_circulair)
     circulair = pl.lpSum(variabelen[i] * impact_circulair[i] for i in range(25))
     
-    impact_kwaliteit = [0.167, 0, 0, 0.111, 0.071, 0, 0.2, 0.125, 0, 0, 0.077, 0.6, 0.25, 0, 0.053, 0.222, 0.091, 0.083, 0.667, 0.545, 0, 1, 0.2, 0, 0]
+    impact_kwaliteit = [impact.iloc[a, 3] for a in range(len(impact))]
+    st.markdown(impact_kwaliteit)
     kwaliteit = pl.lpSum(variabelen[i] * impact_kwaliteit[i] for i in range(25))
     
-    impact_budget = [0.042, 0.1, -0.25, 0.111, 0.143, 0, 0.086, 0.063, 0, 0, 0.231, 0, 0, 0, 0.158, 0, 0, 0.083, 0.5, 0.182, 0, 0, -0.2, 0.182, 0.111]
+    impact_budget = [impact.iloc[a, 4] for a in range(len(impact))]
+    st.markdown(impact_budget)
     budget = pl.lpSum(variabelen[i] * impact_budget[i] for i in range(25))
     
-    impact_woonbeleving = [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0]
+    impact_woonbeleving = [impact.iloc[a, 5] for a in range(len(impact))]
+    st.markdown(impact_woonbeleving)
     woonbeleving = pl.lpSum(variabelen[i] * impact_woonbeleving[i] for i in range(25))
     
     prob += weging_circulair * circulair - weging_budget * budget + weging_woonbeleving * woonbeleving + weging_kwaliteit * kwaliteit + weging_onderhoud * onderhoud
