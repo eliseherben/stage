@@ -218,7 +218,7 @@ with tab1:
 
 
 with tab2: 
-    if (onderhoud['productgroep'].iloc[0] and onderhoud['productgroep'].iloc[1] and onderhoud['productgroep'].iloc[2]) > 0:
+    if (onderhoud['impact_onderhoud'].iloc[0] and onderhoud['impact_onderhoud'].iloc[1] and onderhoud['impact_onderhoud'].iloc[2]) > 0:
         st.markdown('**Onderhoud**')
         st.markdown(
         f"""
@@ -228,7 +228,7 @@ with tab2:
         - {onderhoud['productgroep'].iloc[2]}
         """
         )
-    if (duurzaam['productgroep'].iloc[0] and duurzaam['productgroep'].iloc[1] and duurzaam['productgroep'].iloc[2]) > 0:
+    if (duurzaam['impact_circulair'].iloc[0] and duurzaam['impact_circulair'].iloc[1] and duurzaam['impact_circulair'].iloc[2]) > 0:
         st.markdown('**Duurzaam**')
         st.markdown(
         f"""
@@ -238,7 +238,7 @@ with tab2:
         - {duurzaam['productgroep'].iloc[2]}
         """
         )
-    if (kwaliteit['productgroep'].iloc[0] and kwaliteit['productgroep'].iloc[1] and kwaliteit['productgroep'].iloc[2]) > 0:
+    if (kwaliteit['impact_kwaliteit'].iloc[0] and kwaliteit['impact_kwaliteit'].iloc[1] and kwaliteit['impact_kwaliteit'].iloc[2]) > 0:
         st.markdown('**Kwaliteit**')
         st.markdown(
         f"""
@@ -248,7 +248,7 @@ with tab2:
         - {kwaliteit['productgroep'].iloc[2]}
         """
         )
-    if (budget['productgroep'].iloc[0] and budget['productgroep'].iloc[1] and budget['productgroep'].iloc[2]) > 0:
+    if (budget['impact_budget'].iloc[0] and budget['impact_budget'].iloc[1] and budget['impact_budget'].iloc[2]) > 0:
         st.markdown('**Budget**')
         st.markdown(
         f"""
@@ -258,7 +258,7 @@ with tab2:
         - {budget['productgroep'].iloc[2]}
         """
         )
-    if (woonbeleving['productgroep'].iloc[0] and woonbeleving['productgroep'].iloc[1] and woonbeleving['productgroep'].iloc[2]) > 0:
+    if (woonbeleving['impact_woonbeleving'].iloc[0] and woonbeleving['impact_woonbeleving'].iloc[1] and woonbeleving['impact_woonbeleving'].iloc[2]) > 0:
         st.markdown('**Woonbeleving**')
         st.markdown(
         f"""
