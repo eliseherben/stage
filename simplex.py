@@ -223,9 +223,9 @@ with tab2:
     st.markdown(
     f"""
     De productgroepen die het meeste impact maken op het thema 'Onderhoud':
-    - {onderhoud['productgroep'].iloc[0] if onderhoud['impact onderhoud'].iloc[0] > 0 else "niks"}
-    - {onderhoud['productgroep'].iloc[1] if onderhoud['impact onderhoud'].iloc[1] > 0 else "niks"}
-    - {onderhoud['productgroep'].iloc[2] if onderhoud['impact onderhoud'].iloc[2] > 0 else "niks"}
+    - {onderhoud['productgroep'].iloc[0] if onderhoud['impact onderhoud'].iloc[0] > 0 else pass}
+    - {onderhoud['productgroep'].iloc[1] if onderhoud['impact onderhoud'].iloc[1] > 0 else pass}
+    - {onderhoud['productgroep'].iloc[2] if onderhoud['impact onderhoud'].iloc[2] > 0 else pass}
     """
     )
 # if (duurzaam['impact circulair'].iloc[0] and duurzaam['impact circulair'].iloc[1] and duurzaam['impact circulair'].iloc[2]) > 0:
