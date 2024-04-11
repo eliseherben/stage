@@ -87,7 +87,6 @@ with tab1:
         impact = dataframe[['PRODUCTGROEP', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
         impact = impact.groupby('PRODUCTGROEP')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
         impact = impact.reset_index()
-        st.markdown("impact dataframe")
         
         productgroepen = pd.DataFrame({
         "PRODUCTGROEP": ['21. Buitenwanden', '22. Binnenwanden', '23. Vloeren', '24. Trappen en hellingen', '27. Daken', '28. Hoofddraag- constructie', 
@@ -106,6 +105,7 @@ with tab1:
             if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
                 impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
         impact = impact.sort_values(by='PRODUCTGROEP', ascending=True)
+        impact = impact.reset_index()
 
         st.dataframe(impact)
     
