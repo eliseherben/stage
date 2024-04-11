@@ -222,6 +222,7 @@ with tab1:
 
 
 with tab2: 
+    onderhoud = None
     if onderhoud is not None:
         if (onderhoud['impact onderhoud'].iloc[0] and onderhoud['impact onderhoud'].iloc[1] and onderhoud['impact onderhoud'].iloc[2]) > 0:
             st.markdown('**Onderhoud**')
@@ -233,6 +234,7 @@ with tab2:
             - {onderhoud['productgroep'].iloc[2]}
             """
             )
+    circulair = None
     if circulair is not None:
         if (circulair['impact circulair'].iloc[0] and circulair['impact circulair'].iloc[1] and circulair['impact circulair'].iloc[2]) > 0:
             st.markdown('**Circulair**')
@@ -244,6 +246,7 @@ with tab2:
             - {circulair['productgroep'].iloc[2]}
             """
             )
+    kwaliteit = None    
     if kwaliteit is not None:
         if (kwaliteit['impact kwaliteit'].iloc[0] and kwaliteit['impact kwaliteit'].iloc[1] and kwaliteit['impact kwaliteit'].iloc[2]) > 0:
             st.markdown('**Kwaliteit**')
@@ -255,6 +258,7 @@ with tab2:
             - {kwaliteit['productgroep'].iloc[2]}
             """
             )
+    budget = None
     if budget is not None:
         if (budget['impact budget'].iloc[0] and budget['impact budget'].iloc[1] and budget['impact budget'].iloc[2]) > 0:
             st.markdown('**Budget**')
@@ -266,6 +270,7 @@ with tab2:
             - {budget['productgroep'].iloc[2]}
             """
             )
+    woonbeleving = None
     if woonbeleving is not None:
         if (woonbeleving['impact woonbeleving'].iloc[0] and woonbeleving['impact woonbeleving'].iloc[1] and woonbeleving['impact woonbeleving'].iloc[2]) > 0:
             st.markdown('**Woonbeleving**')
