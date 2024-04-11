@@ -77,7 +77,7 @@ with tab1:
         impact = dataframe[['PRODUCTGROEP', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
         impact = impact.groupby('PRODUCTGROEP')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
         st.dataframe(dataframe)
-        st.dataframe(impact)
+        # st.dataframe(impact)
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
@@ -109,10 +109,9 @@ with tab1:
 
 
     for i, row in productgroepen.iterrows():
-        if row['productgroep'] not in impact['productgroep'].values:
-            print(row['productgroep'] + ' can be added to dfOld')
+        if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
             impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
-    impact.head()
+    st.dataframe(impact)
     # st.dataframe(impact)
     # impact_onderhoud = [impact.iloc[i, 0] for i in range(len(impact))]
     # st.markdown(len(impact_onderhoud))
