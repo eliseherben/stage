@@ -76,8 +76,9 @@ with tab1:
         dataframe['impact W'] = dataframe['woonbeleving']/dataframe['totaal']
         impact = dataframe[['PRODUCTGROEP', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
         impact = impact.groupby('PRODUCTGROEP')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
+        impact = impact.reset_index()
         st.dataframe(dataframe)
-        # st.dataframe(impact)
+        st.dataframe(impact)
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
