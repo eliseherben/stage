@@ -62,32 +62,7 @@ with tab1:
     if uploaded_file is not None:
         dataframe = pd.read_csv(uploaded_file)
     
-    st.markdown("**Budget**")
-    st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
-    
-    st.markdown("**Wegingen**")
-    st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
-    "Als een thema neutraal is kan deze op '0' blijven staan. Als een thema zwaarder meeweegt kan deze op +1 of +2 staan, "
-    "als een thema minder zwaar meeweegt kan deze op -1 of -2 gezet worden. ")
-    weging_woonbeleving = st.number_input("De weging in voor het thema 'Woonbeleving' in dit project", value=0, min_value = -2, max_value = 2)
-    weging_circulair = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=0, min_value = -2, max_value = 2)
-    weging_budget = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=0, min_value = -2, max_value = 2)
-    weging_onderhoud = st.number_input("De weging in voor het thema 'Onderhoud' in dit project", value=0, min_value = -2, max_value = 2)
-    weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=0, min_value = -2, max_value = 2)
-    
-    st.markdown("**Productgroepen**")
-    st.markdown("Hierbij kan er aangegeven worden wat het aandeel van de productgroepen momenteel in het project is. Dit is uitgedrukt in percentages. ")
-    st.number_input("Het aandeel van de productgroep 'Keuken' in dit project", value=0, min_value = 0, max_value = 100)
-    st.number_input("Het aandeel van de productgroep 'Sanitair' in dit project", value=0, min_value = 0, max_value = 100)
-    st.number_input("Het aandeel van de productgroep 'Na-isolatie' in dit project", value=0, min_value = 0, max_value = 100)
-
-
-# **optimalisatie op basis van impact waardes van materialenlijst**
-
-# In[ ]:
-
-
-if dataframe is not None:
+    if dataframe is not None:
     dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29]], axis = 1)
     dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
     dataframe.rename(columns={dataframe.columns[13]: "impact circulair"}, inplace=True)
@@ -111,7 +86,8 @@ if dataframe is not None:
     impact = dataframe[['PRODUCTGROEP', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
     impact = impact.groupby('PRODUCTGROEP')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
     impact = impact.reset_index()
-
+    st.dataframe(impact)
+    
     productgroepen = pd.DataFrame({
     "PRODUCTGROEP": ['21. Buitenwanden', '22. Binnenwanden', '23. Vloeren', '24. Trappen en hellingen', '27. Daken', '28. Hoofddraag- constructie', 
                      '31. Buitenkozijnen, -ramen, -deuren en -puien.', '32. Binnenkozijnen en - deuren', '33. Luiken en vensters', 
@@ -164,6 +140,33 @@ if dataframe is not None:
     woonbeleving = df[['productgroep', 'impact woonbeleving']]
     woonbeleving = woonbeleving.sort_values(by='impact woonbeleving', ascending=False)
     woonbeleving = woonbeleving.reset_index(drop=True)
+    
+    st.markdown("**Budget**")
+    st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
+    
+    st.markdown("**Wegingen**")
+    st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
+    "Als een thema neutraal is kan deze op '0' blijven staan. Als een thema zwaarder meeweegt kan deze op +1 of +2 staan, "
+    "als een thema minder zwaar meeweegt kan deze op -1 of -2 gezet worden. ")
+    weging_woonbeleving = st.number_input("De weging in voor het thema 'Woonbeleving' in dit project", value=0, min_value = -2, max_value = 2)
+    weging_circulair = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=0, min_value = -2, max_value = 2)
+    weging_budget = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=0, min_value = -2, max_value = 2)
+    weging_onderhoud = st.number_input("De weging in voor het thema 'Onderhoud' in dit project", value=0, min_value = -2, max_value = 2)
+    weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=0, min_value = -2, max_value = 2)
+    
+    st.markdown("**Productgroepen**")
+    st.markdown("Hierbij kan er aangegeven worden wat het aandeel van de productgroepen momenteel in het project is. Dit is uitgedrukt in percentages. ")
+    st.number_input("Het aandeel van de productgroep 'Keuken' in dit project", value=0, min_value = 0, max_value = 100)
+    st.number_input("Het aandeel van de productgroep 'Sanitair' in dit project", value=0, min_value = 0, max_value = 100)
+    st.number_input("Het aandeel van de productgroep 'Na-isolatie' in dit project", value=0, min_value = 0, max_value = 100)
+
+
+# **optimalisatie op basis van impact waardes van materialenlijst**
+
+# In[ ]:
+
+
+
 
 
 # In[36]:
