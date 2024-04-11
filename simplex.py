@@ -126,12 +126,12 @@ with tab1:
     
     df = pd.DataFrame(data)
     
-    duurzaam = df[['productgroep', 'impact duurzaam']]
-    duurzaam = duurzaam.sort_values(by='impact duurzaam', ascending=False)
+    duurzaam = df[['productgroep', 'impact circulair']]
+    duurzaam = duurzaam.sort_values(by='impact circulair', ascending=False)
     duurzaam = duurzaam.reset_index(drop=True)
     
-    kosten = df[['productgroep', 'impact kosten']]
-    kosten = kosten.sort_values(by='impact kosten', ascending=False)
+    kosten = df[['productgroep', 'impact budget']]
+    kosten = kosten.sort_values(by='impact budget', ascending=False)
     kosten = kosten.reset_index(drop=True)
     
     woonbeleving = df[['productgroep', 'impact woonbeleving']]
