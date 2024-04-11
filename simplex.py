@@ -104,10 +104,15 @@ with tab1:
                      '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
                      '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
                      '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
-                     '90 Terreininrichting']})
+                     '90 Terreininrichting'],
+    "impact": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 
-    impact = pd.merge(productgroepen, impact, how='left', on= 'PRODUCTGROEP')
-    
+
+    for i, row in productgroepen.iterrows():
+    if row['productgroep'] not in impact['productgroep'].values:
+        print(row['productgroep'] + ' can be added to dfOld')
+        impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
+    impact.head()
     # st.dataframe(impact)
     # impact_onderhoud = [impact.iloc[i, 0] for i in range(len(impact))]
     # st.markdown(len(impact_onderhoud))
@@ -644,14 +649,19 @@ with tab3:
         st.markdown(f"score onderhoud: {onderhoud2/sum(impact_onderhoud)}")
 
 
-# In[3]:
+# In[9]:
 
 
-productgroepen = pd.DataFrame({'productgroep': ['21', '22', '23', '24']})
+productgroepen = pd.DataFrame({'productgroep': ['21', '22', '23', '24'], 
+                              'impact': [0, 0, 0, 0]})
 impacten = pd.DataFrame({'productgroep': ['21', '23', '24'], 
                          'impact': [2, 4, 1]})
-result = pd.merge(productgroepen, impacten, how='left', on= 'productgroep')
-result.head()
+
+for i, row in productgroepen.iterrows():
+    if row['productgroep'] not in impacten['productgroep'].values:
+        print(row['productgroep'] + ' can be added to dfOld')
+        impacten = pd.concat([impacten, row.to_frame().T], ignore_index=True)
+impacten.head()
 
 
 # In[3]:
