@@ -1,12 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-# pip install streamlit-extras
-
-
 # In[ ]:
 
 
@@ -14,7 +8,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import pulp as pl
-from  streamlit_vertical_slider import vertical_slider 
 #from menu import menu_with_redirect
 #menu_with_redirect()
 
@@ -615,22 +608,6 @@ for i, row in productgroepen.iterrows():
         print(row['productgroep'] + ' can be added to dfOld')
         impacten = pd.concat([impacten, row.to_frame().T], ignore_index=True)
 impacten.head()
-
-
-# In[ ]:
-
-
-st.write("## Vertical Slider")
-vertical_slider(
-    key="slider",
-    default_value=25,
-    step=1,
-    min_value=0,
-    max_value=100,
-    track_color="gray",  # optional
-    thumb_color="blue",  # optional
-    slider_color="red",  # optional
-)
 
 
 # In[ ]:
