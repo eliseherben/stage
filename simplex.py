@@ -619,18 +619,17 @@ impacten.head()
 # In[ ]:
 
 
-def example():
-    st.write("## Vertical Slider")
-    vertical_slider(
-        key="slider",
-        default_value=25,
-        step=1,
-        min_value=0,
-        max_value=100,
-        track_color="gray",  # optional
-        thumb_color="blue",  # optional
-        slider_color="red",  # optional
-    )
+st.write("## Vertical Slider")
+vertical_slider(
+    key="slider",
+    default_value=25,
+    step=1,
+    min_value=0,
+    max_value=100,
+    track_color="gray",  # optional
+    thumb_color="blue",  # optional
+    slider_color="red",  # optional
+)
 
 
 # In[ ]:
