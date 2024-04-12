@@ -40,6 +40,7 @@ with tab1:
     kwaliteit = None
     budget = None
     woonbeleving = None
+    impact = None
     
     st.markdown("**Afdeling**")
     st.selectbox(
