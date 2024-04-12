@@ -396,8 +396,6 @@ with tab2:
         fig1 = px.pie(values=df['Waarde'], names=df['Productgroep'], color_discrete_sequence=px.colors.sequential.RdBu)
         
         st.plotly_chart(fig1)
-    else:
-        st.markdown("Upload een bestand om de aanpassingen toe te passen")
 
 
 # **aanpassingen**
@@ -536,7 +534,8 @@ with tab3:
                                              na_isolatie, riolering_hwa, water_installaties, verwarming_koeling, luchtbehandeling, elektrische_installaties, 
                                                gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, 0.0])
         terreininrichting = st.number_input('Het aandeel van de productgroep Terreininrichting', value = 0.0, min_value = 0.0, max_value = terreininrichting_max+0.05, step = 0.1)
-        
+    else:
+        st.markdown("Upload een bestand om de aanpassingen toe te passen")
 
 
 # In[ ]:
