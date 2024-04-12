@@ -14,7 +14,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import pulp as pl
-import streamlit-vertical-slider
+from  streamlit_vertical_slider import vertical_slider 
 #from menu import menu_with_redirect
 #menu_with_redirect()
 
