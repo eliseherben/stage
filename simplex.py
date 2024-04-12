@@ -332,7 +332,7 @@ with tab2:
                   verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
     
     #Impact themas op productgroepen
-    if impact not None:
+    if impact is not None:
         impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
         onderhoud = pl.lpSum(variabelen[i] * impact_onderhoud[i] for i in range(25))
         
