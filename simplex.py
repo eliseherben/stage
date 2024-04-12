@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
-# pip install pulp
+# pip install streamlit-extras
 
 
 # In[ ]:
@@ -14,6 +14,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import pulp as pl
+import streamlit-vertical-slider
 #from menu import menu_with_redirect
 #menu_with_redirect()
 
