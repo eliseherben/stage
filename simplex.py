@@ -48,7 +48,7 @@ with tab1:
     st.markdown("**Projectbestand**")
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        dataframe = pd.read_csv(uploaded_file, sep=None)
+        dataframe = pd.read_csv(uploaded_file)
     
     if uploaded_file is not None:
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29]], axis = 1)
