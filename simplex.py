@@ -12,9 +12,6 @@ import pulp as pl
 #menu_with_redirect()
 
 
-# als de impact cijfers integers zijn dan kunnen de weighted dingen niet integers zijn, om te voorkomen dat er 0 uit komt bij een van de opties
-# 
-
 # In[ ]:
 
 
@@ -57,20 +54,17 @@ with tab1:
         dataframe.rename(columns={dataframe.columns[14]: "impact kwaliteit"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[15]: "impact budget"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[16]: "impact woonbeleving"}, inplace=True)
+        
         dataframe = dataframe.dropna(how='all')
         dataframe = dataframe.drop(0)
         dataframe = dataframe.reset_index(drop=True)
-        dataframe['totaal'] = dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
-        dataframe['onderhoud'] = dataframe.groupby(['PRODUCTGROEP'])['impact onderhoud'].transform('count')
-        dataframe['circulair'] = dataframe.groupby(['PRODUCTGROEP'])['impact circulair'].transform('count')
-        dataframe['kwaliteit'] = dataframe.groupby(['PRODUCTGROEP'])['impact kwaliteit'].transform('count')
-        dataframe['budget'] = dataframe.groupby(['PRODUCTGROEP'])['impact budget'].transform('count')
-        dataframe['woonbeleving'] = dataframe.groupby(['PRODUCTGROEP'])['impact woonbeleving'].transform('count')
-        dataframe['impact O'] = dataframe['onderhoud']/dataframe['totaal']
-        dataframe['impact CD'] = dataframe['circulair']/dataframe['totaal']
-        dataframe['impact K'] = dataframe['kwaliteit']/dataframe['totaal']
-        dataframe['impact B'] = dataframe['budget']/dataframe['totaal']
-        dataframe['impact W'] = dataframe['woonbeleving']/dataframe['totaal']
+
+        dataframe['impact O'] = dataframe.groupby(['PRODUCTGROEP'])['impact onderhoud'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
+        dataframe['impact CD'] = dataframe.groupby(['PRODUCTGROEP'])['impact circulair'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
+        dataframe['impact K'] = dataframe.groupby(['PRODUCTGROEP'])['impact kwaliteit'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
+        dataframe['impact B'] = dataframe.groupby(['PRODUCTGROEP'])['impact budget'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
+        dataframe['impact W'] = dataframe.groupby(['PRODUCTGROEP'])['impact woonbeleving'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
+        
         impact = dataframe[['PRODUCTGROEP', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
         impact = impact.groupby('PRODUCTGROEP')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
         impact = impact.reset_index()
@@ -90,6 +84,8 @@ with tab1:
         
         for i, row in productgroepen.iterrows():
             if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
+                st.markdown(row['PRODUCTGROEP'])
+                st.markdown(row.to_frame().T)
                 impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
         impact = impact.sort_values(by='PRODUCTGROEP', ascending=True)
         impact = impact.reset_index(drop=True)
