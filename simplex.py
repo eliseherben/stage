@@ -171,7 +171,6 @@ with tab2:
             - {onderhoud['productgroep'].iloc[2]}
             """
             )
-    if uploaded_file is not None:
         if (circulair['impact circulair'].iloc[0] and circulair['impact circulair'].iloc[1] and circulair['impact circulair'].iloc[2]) > 0:
             st.markdown('**Circulair**')
             st.markdown(
@@ -182,7 +181,6 @@ with tab2:
             - {circulair['productgroep'].iloc[2]}
             """
             )    
-    if uploaded_file is not None:
         if (kwaliteit['impact kwaliteit'].iloc[0] and kwaliteit['impact kwaliteit'].iloc[1] and kwaliteit['impact kwaliteit'].iloc[2]) > 0:
             st.markdown('**Kwaliteit**')
             st.markdown(
@@ -193,7 +191,6 @@ with tab2:
             - {kwaliteit['productgroep'].iloc[2]}
             """
             )
-    if uploaded_file is not None:
         if (budget['impact budget'].iloc[0] and budget['impact budget'].iloc[1] and budget['impact budget'].iloc[2]) > 0:
             st.markdown('**Budget**')
             st.markdown(
@@ -204,7 +201,6 @@ with tab2:
             - {budget['productgroep'].iloc[2]}
             """
             )
-    if uploaded_file is not None:
         if (woonbeleving['impact woonbeleving'].iloc[0] and woonbeleving['impact woonbeleving'].iloc[1] and woonbeleving['impact woonbeleving'].iloc[2]) > 0:
             st.markdown('**Woonbeleving**')
             st.markdown(
@@ -215,6 +211,8 @@ with tab2:
             - {woonbeleving['productgroep'].iloc[2]}
             """
             )
+    else:
+        st.markdown("Upload een bestand om de optimalisatie te starten")
 
 
 # pulp lp model
