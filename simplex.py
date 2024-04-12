@@ -228,6 +228,8 @@ with tab1:
 # onderhoud = onderhoud.reset_index(drop=True)
 
 
+# opsomming themas met meeste impact
+
 # In[37]:
 
 
@@ -289,6 +291,8 @@ with tab2:
             )
 
 
+# pulp lp model
+
 # In[6]:
 
 
@@ -328,20 +332,21 @@ with tab2:
                   verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
     
     #Impact themas op productgroepen
-    impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
-    onderhoud = pl.lpSum(variabelen[i] * impact_onderhoud[i] for i in range(25))
-    
-    impact_circulair = [impact.iloc[a, 2] for a in range(len(impact))]
-    circulair = pl.lpSum(variabelen[i] * impact_circulair[i] for i in range(25))
-    
-    impact_kwaliteit = [impact.iloc[a, 3] for a in range(len(impact))]
-    kwaliteit = pl.lpSum(variabelen[i] * impact_kwaliteit[i] for i in range(25))
-    
-    impact_budget = [impact.iloc[a, 4] for a in range(len(impact))]
-    budget = pl.lpSum(variabelen[i] * impact_budget[i] for i in range(25))
-    
-    impact_woonbeleving = [impact.iloc[a, 5] for a in range(len(impact))]
-    woonbeleving = pl.lpSum(variabelen[i] * impact_woonbeleving[i] for i in range(25))
+    if impact not None:
+        impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
+        onderhoud = pl.lpSum(variabelen[i] * impact_onderhoud[i] for i in range(25))
+        
+        impact_circulair = [impact.iloc[a, 2] for a in range(len(impact))]
+        circulair = pl.lpSum(variabelen[i] * impact_circulair[i] for i in range(25))
+        
+        impact_kwaliteit = [impact.iloc[a, 3] for a in range(len(impact))]
+        kwaliteit = pl.lpSum(variabelen[i] * impact_kwaliteit[i] for i in range(25))
+        
+        impact_budget = [impact.iloc[a, 4] for a in range(len(impact))]
+        budget = pl.lpSum(variabelen[i] * impact_budget[i] for i in range(25))
+        
+        impact_woonbeleving = [impact.iloc[a, 5] for a in range(len(impact))]
+        woonbeleving = pl.lpSum(variabelen[i] * impact_woonbeleving[i] for i in range(25))
     
     prob += weging_circulair * circulair - weging_budget * budget + weging_woonbeleving * woonbeleving + weging_kwaliteit * kwaliteit + weging_onderhoud * onderhoud
     
@@ -450,6 +455,8 @@ with tab2:
     print("Maximale waarde van de doelfunctie:", prob.objective.value())
     st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
 
+
+# uitkomst optimalisatie
 
 # In[ ]:
 
