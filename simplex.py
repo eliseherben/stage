@@ -396,6 +396,8 @@ with tab2:
         fig1 = px.pie(values=df['Waarde'], names=df['Productgroep'], color_discrete_sequence=px.colors.sequential.RdBu)
         
         st.plotly_chart(fig1)
+    else:
+        st.markdown("Upload een bestand om de aanpassingen toe te passen")
 
 
 # **aanpassingen**
