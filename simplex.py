@@ -21,6 +21,9 @@ if "projectbestand" not in st.session_state:
     
 st.session_state._projectbestand = st.session_state.projectbestand
 
+def set_projectbestand():
+    st.session_state.projectbestand = st.session_state._projectbestand
+
 menu()
 
 
@@ -55,7 +58,7 @@ with tab1:
     )
 
     st.markdown("**Projectbestand**")
-    uploaded_file = st.file_uploader("Choose a file")
+    uploaded_file = st.file_uploader("Choose a file", key="_projectbestand", on_change = set_projectbestand)
     if uploaded_file is not None:
         dataframe = pd.read_csv(uploaded_file)
     
