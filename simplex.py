@@ -24,6 +24,9 @@ st.session_state._projectbestand = st.session_state.projectbestand
 def set_projectbestand():
     st.session_state.projectbestand = st.session_state._projectbestand
 
+if 'file' not in st.session_state:
+    st.session_state.file = None
+
 menu()
 
 
@@ -106,7 +109,10 @@ with tab1:
         impact = impact.reset_index(drop=True)
 
         st.dataframe(impact)
-    
+
+        st.session_state.file = impact
+        st.markdown(st.session_state.file)
+        
         data = {
         "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
                          '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
