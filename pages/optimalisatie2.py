@@ -45,27 +45,27 @@ data = {
         "impact woonbeleving": [impact.iloc[i, 5] for i in range(len(impact))]
         }
         
-        df = pd.DataFrame(data)
-    
-        onderhoud = df[['productgroep', 'impact onderhoud']]
-        onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
-        onderhoud = onderhoud.reset_index(drop=True)
-        
-        circulair = df[['productgroep', 'impact circulair']]
-        circulair = circulair.sort_values(by='impact circulair', ascending=False)
-        circulair = circulair.reset_index(drop=True)
-    
-        kwaliteit = df[['productgroep', 'impact kwaliteit']]
-        kwaliteit = kwaliteit.sort_values(by='impact kwaliteit', ascending=False)
-        kwaliteit = kwaliteit.reset_index(drop=True)
-        
-        budget = df[['productgroep', 'impact budget']]
-        budget = budget.sort_values(by='impact budget', ascending=False)
-        budget = budget.reset_index(drop=True)
-        
-        woonbeleving = df[['productgroep', 'impact woonbeleving']]
-        woonbeleving = woonbeleving.sort_values(by='impact woonbeleving', ascending=False)
-        woonbeleving = woonbeleving.reset_index(drop=True)
+df = pd.DataFrame(data)
+
+onderhoud = df[['productgroep', 'impact onderhoud']]
+onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
+onderhoud = onderhoud.reset_index(drop=True)
+
+circulair = df[['productgroep', 'impact circulair']]
+circulair = circulair.sort_values(by='impact circulair', ascending=False)
+circulair = circulair.reset_index(drop=True)
+
+kwaliteit = df[['productgroep', 'impact kwaliteit']]
+kwaliteit = kwaliteit.sort_values(by='impact kwaliteit', ascending=False)
+kwaliteit = kwaliteit.reset_index(drop=True)
+
+budget = df[['productgroep', 'impact budget']]
+budget = budget.sort_values(by='impact budget', ascending=False)
+budget = budget.reset_index(drop=True)
+
+woonbeleving = df[['productgroep', 'impact woonbeleving']]
+woonbeleving = woonbeleving.sort_values(by='impact woonbeleving', ascending=False)
+woonbeleving = woonbeleving.reset_index(drop=True)
 
 
 # In[ ]:
