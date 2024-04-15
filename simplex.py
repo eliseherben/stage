@@ -54,11 +54,13 @@ with tab1:
         "Wat is de fase van het project?",
         ['Projectdefinitie', 'Structuurontwerp', 'Voorontwerp', 'Definitief ontwerp', 'Technisch ontwerp bestek', 'Uitvoeringsgereed ontwerp', 'Gebruik'],
         index = None,
-        placeholder = "Selecteer de fase van het project"
+        placeholder = "Selecteer de fase van het project", 
+        key="_projectbestand", 
+        on_change = set_projectbestand
     )
 
     st.markdown("**Projectbestand**")
-    uploaded_file = st.file_uploader("Choose a file", key="_projectbestand", on_change = set_projectbestand)
+    uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
         dataframe = pd.read_csv(uploaded_file)
     
