@@ -8,7 +8,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import pulp as pl
-from menu import menu
+from menu2 import menu
 #from menu import menu_with_redirect
 #menu_with_redirect()
 
