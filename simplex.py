@@ -27,6 +27,51 @@ def set_projectbestand():
 if 'file' not in st.session_state:
     st.session_state.file = None
 
+st.session_state._file = st.session_state.file
+
+def set_file():
+    st.session_state.file = st.session_state._file
+
+if 'weging_onderhoud' not in st.session_state:
+    st.session_state.weging_onderhoud = None
+
+st.session_state._weging_onderhoud = st.session_state.weging_onderhoud
+
+def set_weging_onderhoud():
+    st.session_state.weging_onderhoud = st.session_state._weging_onderhoud
+
+if 'weging_circulair' not in st.session_state:
+    st.session_state.weging_circulair = None
+
+st.session_state._weging_circulair = st.session_state.weging_circulair
+
+def set_weging_circulair():
+    st.session_state.weging_circulair = st.session_state._weging_circulair
+
+if 'weging_kwaliteit' not in st.session_state:
+    st.session_state.weging_kwaliteit = None
+
+st.session_state._weging_kwaliteit = st.session_state.weging_kwaliteit
+
+def set_weging_kwaliteit():
+    st.session_state.weging_kwaliteit = st.session_state._weging_kwaliteit
+
+if 'weging_budget' not in st.session_state:
+    st.session_state.weging_budget = None
+
+st.session_state._weging_budget = st.session_state.weging_budget
+
+def set_weging_budget():
+    st.session_state.weging_budget = st.session_state._weging_budget
+
+if 'weging_woonbeleving' not in st.session_state:
+    st.session_state.weging_woonbeleving = None
+
+st.session_state._weging_woonbeleving = st.session_state.weging_woonbeleving
+
+def set_weging_woonbeleving():
+    st.session_state.weging_woonbeleving = st.session_state._weging_woonbeleving
+
 menu()
 
 
@@ -112,42 +157,6 @@ with tab1:
 
         st.session_state.file = impact
         st.markdown(st.session_state.file)
-        
-        data = {
-        "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
-                         '31 Buitenkozijnen, -ramen, -deuren, en -puien', '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', 
-                         '34 Balustrades en leuningen', '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '48 Na-isolatie', 
-                         '52 Riolering en HWA', '53 Warm- en koud water installaties', '56 Verwarming en koeling', '57 Luchtbehandeling', 
-                         '61 Elektrische installaties', '64 Vaste gebouwvoorziening', '65 Beveiliging', '66 Lift', '73 Keuken', '74 Sanitair', 
-                         '90 Terreininrichting'],
-        "impact onderhoud": [impact.iloc[i, 1] for i in range(len(impact))],
-        "impact circulair": [impact.iloc[i, 2] for i in range(len(impact))],
-        "impact kwaliteit": [impact.iloc[i, 3] for i in range(len(impact))],
-        "impact budget": [impact.iloc[i, 4] for i in range(len(impact))], 
-        "impact woonbeleving": [impact.iloc[i, 5] for i in range(len(impact))]
-        }
-        
-        df = pd.DataFrame(data)
-    
-        onderhoud = df[['productgroep', 'impact onderhoud']]
-        onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
-        onderhoud = onderhoud.reset_index(drop=True)
-        
-        circulair = df[['productgroep', 'impact circulair']]
-        circulair = circulair.sort_values(by='impact circulair', ascending=False)
-        circulair = circulair.reset_index(drop=True)
-    
-        kwaliteit = df[['productgroep', 'impact kwaliteit']]
-        kwaliteit = kwaliteit.sort_values(by='impact kwaliteit', ascending=False)
-        kwaliteit = kwaliteit.reset_index(drop=True)
-        
-        budget = df[['productgroep', 'impact budget']]
-        budget = budget.sort_values(by='impact budget', ascending=False)
-        budget = budget.reset_index(drop=True)
-        
-        woonbeleving = df[['productgroep', 'impact woonbeleving']]
-        woonbeleving = woonbeleving.sort_values(by='impact woonbeleving', ascending=False)
-        woonbeleving = woonbeleving.reset_index(drop=True)
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
@@ -156,11 +165,11 @@ with tab1:
     st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
     "Als een thema neutraal is kan deze op '0' blijven staan. Als een thema zwaarder meeweegt kan deze op +1 of +2 staan, "
     "als een thema minder zwaar meeweegt kan deze op -1 of -2 gezet worden. ")
-    weging_woonbeleving = st.number_input("De weging in voor het thema 'Woonbeleving' in dit project", value=0, min_value = -2, max_value = 2)
-    weging_circulair = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=0, min_value = -2, max_value = 2)
-    weging_budget = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=0, min_value = -2, max_value = 2)
-    weging_onderhoud = st.number_input("De weging in voor het thema 'Onderhoud' in dit project", value=0, min_value = -2, max_value = 2)
-    weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=0, min_value = -2, max_value = 2)
+    weging_woonbeleving = st.number_input("De weging in voor het thema 'Woonbeleving' in dit project", value=0, min_value = -2, max_value = 2, key = '_weging_woonbeleving', on_change=set_weging_woonbeleving)
+    weging_circulair = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=0, min_value = -2, max_value = 2, key = '_weging_circulair', on_change=set_weging_circulair)
+    weging_budget = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=0, min_value = -2, max_value = 2, key = '_weging_budget', on_change=set_weging_budget)
+    weging_onderhoud = st.number_input("De weging in voor het thema 'Onderhoud' in dit project", value=0, min_value = -2, max_value = 2, key = '_weging_onderhoud', on_change=set_weging_onderhoud)
+    weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=0, min_value = -2, max_value = 2, key = '_weging_kwaliteit', on_change=set_weging_kwaliteit)
     
     st.markdown("**Productgroepen**")
     st.markdown("Hierbij kan er aangegeven worden wat het aandeel van de productgroepen momenteel in het project is. Dit is uitgedrukt in percentages. ")
