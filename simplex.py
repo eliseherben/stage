@@ -21,6 +21,8 @@ if "projectbestand" not in st.session_state:
     
 st.session_state._projectbestand = st.session_state.projectbestand
 
+menu()
+
 
 # In[ ]:
 
