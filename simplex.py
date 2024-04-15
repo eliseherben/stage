@@ -108,7 +108,7 @@ with tab1:
     )
 
     st.markdown("**Projectbestand**")
-    uploaded_file = st.file_uploader("Choose a file")
+    uploaded_file = st.file_uploader("Choose a file", key="_projectbestand", on_change = set_projectbestand)
     if uploaded_file is not None:
         dataframe = pd.read_csv(uploaded_file)
     
@@ -156,7 +156,6 @@ with tab1:
         st.dataframe(impact)
 
         st.session_state.file = impact
-        st.markdown(st.session_state.file)
     
     st.markdown("**Budget**")
     st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
