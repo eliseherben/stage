@@ -96,13 +96,11 @@ with tab1:
         
         for i, row in productgroepen.iterrows():
             if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
-                st.markdown(row['PRODUCTGROEP'])
-                st.markdown(row.to_frame().T)
                 impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
         impact = impact.sort_values(by='PRODUCTGROEP', ascending=True)
         impact = impact.reset_index(drop=True)
 
-        # st.dataframe(impact)
+        st.dataframe(impact)
     
         data = {
         "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
