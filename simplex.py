@@ -15,6 +15,15 @@ import pulp as pl
 # In[ ]:
 
 
+if "projectbestand" not in st.session_state:
+    st.session_state.projectbestand = None
+    
+st.session_state._projectbestand = st.session_state.projectbestand
+
+
+# In[ ]:
+
+
 st.title("Eigen Haard")
 tab1, tab2, tab3 = st.tabs(["Input", "Optimalisatie", "Aanpassingen"])
 
