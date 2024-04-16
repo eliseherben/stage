@@ -111,8 +111,8 @@ with tab1:
     st.markdown("**Projectbestand**")
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        st.session_state.file = 'test'
-        st.markdown(st.session_state.file)
+        st.session_state.projectbestand = 'test'
+        st.markdown(st.session_state.projectbestand)
         dataframe = pd.read_csv(uploaded_file)
     
     if uploaded_file is not None:
