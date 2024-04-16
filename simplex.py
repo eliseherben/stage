@@ -94,7 +94,6 @@ st.title("Eigen Haard")
 
 # with tab1:
 st.session_state.file = None 
-uploaded_file = None 
 st.markdown("**Afdeling**")
 st.selectbox(
     "Welke afdeling?", 
@@ -113,7 +112,7 @@ st.selectbox(
 )
 
 st.markdown("**Projectbestand**")
-uploaded_file = st.file_uploader("Choose a file", on_change=set_projectbestand(uploaded_file))
+uploaded_file = st.file_uploader("Choose a file", on_change=set_projectbestand)
 if uploaded_file is not None:
     # st.session_state.projectbestand = 'test'
     # st.markdown(st.session_state.projectbestand)
