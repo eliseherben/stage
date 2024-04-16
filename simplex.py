@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# https://discuss.streamlit.io/t/how-to-use-session-state-to-save-file-uploads-and-filters/36443
+
 # In[ ]:
 
 
@@ -113,8 +115,8 @@ with tab1:
     st.markdown("**Projectbestand**")
     uploaded_file = st.file_uploader("Choose a file", on_change=set_projectbestand(uploaded_file))
     if uploaded_file is not None:
-        st.session_state.projectbestand = 'test'
-        st.markdown(st.session_state.projectbestand)
+        # st.session_state.projectbestand = 'test'
+        # st.markdown(st.session_state.projectbestand)
         dataframe = pd.read_csv(uploaded_file)
     
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29]], axis = 1)
@@ -191,60 +193,60 @@ with tab1:
 # In[ ]:
 
 
-with tab2: 
-    if uploaded_file is not None:
-        if (onderhoud['impact onderhoud'].iloc[0] and onderhoud['impact onderhoud'].iloc[1] and onderhoud['impact onderhoud'].iloc[2]) > 0:
-            st.markdown('**Onderhoud**')
-            st.markdown(
-            f"""
-            De productgroepen die het meeste impact maken op het thema 'Onderhoud':
-            - {onderhoud['productgroep'].iloc[0]}
-            - {onderhoud['productgroep'].iloc[1]}
-            - {onderhoud['productgroep'].iloc[2]}
-            """
-            )
-        if (circulair['impact circulair'].iloc[0] and circulair['impact circulair'].iloc[1] and circulair['impact circulair'].iloc[2]) > 0:
-            st.markdown('**Circulair**')
-            st.markdown(
-            f"""
-            De productgroepen die het meeste impact maken op het thema 'Duurzaam':
-            - {circulair['productgroep'].iloc[0]}
-            - {circulair['productgroep'].iloc[1]}
-            - {circulair['productgroep'].iloc[2]}
-            """
-            )    
-        if (kwaliteit['impact kwaliteit'].iloc[0] and kwaliteit['impact kwaliteit'].iloc[1] and kwaliteit['impact kwaliteit'].iloc[2]) > 0:
-            st.markdown('**Kwaliteit**')
-            st.markdown(
-            f"""
-            De productgroepen die het meeste impact maken op het thema 'Kwaliteit':
-            - {kwaliteit['productgroep'].iloc[0]}
-            - {kwaliteit['productgroep'].iloc[1]}
-            - {kwaliteit['productgroep'].iloc[2]}
-            """
-            )
-        if (budget['impact budget'].iloc[0] and budget['impact budget'].iloc[1] and budget['impact budget'].iloc[2]) > 0:
-            st.markdown('**Budget**')
-            st.markdown(
-            f"""
-            De productgroepen die het meeste impact maken op het thema 'Budget':
-            - {budget['productgroep'].iloc[0]}
-            - {budget['productgroep'].iloc[1]}
-            - {budget['productgroep'].iloc[2]}
-            """
-            )
-        if (woonbeleving['impact woonbeleving'].iloc[0] and woonbeleving['impact woonbeleving'].iloc[1] and woonbeleving['impact woonbeleving'].iloc[2]) > 0:
-            st.markdown('**Woonbeleving**')
-            st.markdown(
-            f"""
-            De productgroepen die het meeste impact maken op het thema 'Woonbeleving':
-            - {woonbeleving['productgroep'].iloc[0]}
-            - {woonbeleving['productgroep'].iloc[1]}
-            - {woonbeleving['productgroep'].iloc[2]}
-            """
-            )
-    else:
-        st.markdown("Upload een bestand om de optimalisatie te starten")
+# with tab2: 
+#     if uploaded_file is not None:
+#         if (onderhoud['impact onderhoud'].iloc[0] and onderhoud['impact onderhoud'].iloc[1] and onderhoud['impact onderhoud'].iloc[2]) > 0:
+#             st.markdown('**Onderhoud**')
+#             st.markdown(
+#             f"""
+#             De productgroepen die het meeste impact maken op het thema 'Onderhoud':
+#             - {onderhoud['productgroep'].iloc[0]}
+#             - {onderhoud['productgroep'].iloc[1]}
+#             - {onderhoud['productgroep'].iloc[2]}
+#             """
+#             )
+#         if (circulair['impact circulair'].iloc[0] and circulair['impact circulair'].iloc[1] and circulair['impact circulair'].iloc[2]) > 0:
+#             st.markdown('**Circulair**')
+#             st.markdown(
+#             f"""
+#             De productgroepen die het meeste impact maken op het thema 'Duurzaam':
+#             - {circulair['productgroep'].iloc[0]}
+#             - {circulair['productgroep'].iloc[1]}
+#             - {circulair['productgroep'].iloc[2]}
+#             """
+#             )    
+#         if (kwaliteit['impact kwaliteit'].iloc[0] and kwaliteit['impact kwaliteit'].iloc[1] and kwaliteit['impact kwaliteit'].iloc[2]) > 0:
+#             st.markdown('**Kwaliteit**')
+#             st.markdown(
+#             f"""
+#             De productgroepen die het meeste impact maken op het thema 'Kwaliteit':
+#             - {kwaliteit['productgroep'].iloc[0]}
+#             - {kwaliteit['productgroep'].iloc[1]}
+#             - {kwaliteit['productgroep'].iloc[2]}
+#             """
+#             )
+#         if (budget['impact budget'].iloc[0] and budget['impact budget'].iloc[1] and budget['impact budget'].iloc[2]) > 0:
+#             st.markdown('**Budget**')
+#             st.markdown(
+#             f"""
+#             De productgroepen die het meeste impact maken op het thema 'Budget':
+#             - {budget['productgroep'].iloc[0]}
+#             - {budget['productgroep'].iloc[1]}
+#             - {budget['productgroep'].iloc[2]}
+#             """
+#             )
+#         if (woonbeleving['impact woonbeleving'].iloc[0] and woonbeleving['impact woonbeleving'].iloc[1] and woonbeleving['impact woonbeleving'].iloc[2]) > 0:
+#             st.markdown('**Woonbeleving**')
+#             st.markdown(
+#             f"""
+#             De productgroepen die het meeste impact maken op het thema 'Woonbeleving':
+#             - {woonbeleving['productgroep'].iloc[0]}
+#             - {woonbeleving['productgroep'].iloc[1]}
+#             - {woonbeleving['productgroep'].iloc[2]}
+#             """
+#             )
+#     else:
+#         st.markdown("Upload een bestand om de optimalisatie te starten")
 
 
 # pulp lp model
@@ -252,165 +254,165 @@ with tab2:
 # In[ ]:
 
 
-with tab2: 
-    if uploaded_file is not None:
-        # Creëer een LP probleem
-        prob = pl.LpProblem("Eigen Haard", pl.LpMaximize)
+# with tab2: 
+#     if uploaded_file is not None:
+#         # Creëer een LP probleem
+#         prob = pl.LpProblem("Eigen Haard", pl.LpMaximize)
         
-        # Definieer de variabelen
-        buitenwanden = pl.LpVariable("buitenwanden", lowBound=0)
-        binnenwanden = pl.LpVariable("binnenwanden", lowBound=0)
-        vloeren = pl.LpVariable("vloeren", lowBound=0)
-        trappen_hellingen = pl.LpVariable("trappen_hellingen", lowBound=0)
-        daken = pl.LpVariable("daken", lowBound=0)
-        hoofddraagconstructie = pl.LpVariable("hoofddraagconstructie", lowBound=0)
-        buitenkozijnen = pl.LpVariable("buitenkozijnen", lowBound=0)
-        binnenkozijnen = pl.LpVariable("binnenkozijnen", lowBound=0)
-        luiken_vensters = pl.LpVariable("luiken_vensters", lowBound=0)
-        balustrades_leuningen = pl.LpVariable("balustrades_leuningen", lowBound=0)
-        binnenwandafwerkingen = pl.LpVariable("binnenwandafwerkingen", lowBound=0)
-        vloerafwerkingen = pl.LpVariable("vloerafwerkingen", lowBound=0)
-        plafonds = pl.LpVariable("plafonds", lowBound=0)
-        na_isolatie = pl.LpVariable("na_isolatie", lowBound=0)
-        riolering_hwa = pl.LpVariable("riolering_hwa", lowBound=0)
-        water_installaties = pl.LpVariable("water_installaties", lowBound=0)
-        verwarming_koeling = pl.LpVariable("verwarming_koeling", lowBound=0)
-        luchtbehandeling = pl.LpVariable("luchtbehandeling", lowBound=0)
-        elektrische_installaties = pl.LpVariable("elektrische_installaties", lowBound=0)
-        gebouwvoorzieningen = pl.LpVariable("gebouwvoorzieningen", lowBound=0)
-        beveiliging = pl.LpVariable("beveiliging", lowBound=0)
-        lift = pl.LpVariable("lift", lowBound=0)
-        keuken = pl.LpVariable("keuken", lowBound=0)
-        sanitair = pl.LpVariable("sanitair", lowBound=0)
-        terreininrichting = pl.LpVariable("terreininrichting", lowBound=0)
+#         # Definieer de variabelen
+#         buitenwanden = pl.LpVariable("buitenwanden", lowBound=0)
+#         binnenwanden = pl.LpVariable("binnenwanden", lowBound=0)
+#         vloeren = pl.LpVariable("vloeren", lowBound=0)
+#         trappen_hellingen = pl.LpVariable("trappen_hellingen", lowBound=0)
+#         daken = pl.LpVariable("daken", lowBound=0)
+#         hoofddraagconstructie = pl.LpVariable("hoofddraagconstructie", lowBound=0)
+#         buitenkozijnen = pl.LpVariable("buitenkozijnen", lowBound=0)
+#         binnenkozijnen = pl.LpVariable("binnenkozijnen", lowBound=0)
+#         luiken_vensters = pl.LpVariable("luiken_vensters", lowBound=0)
+#         balustrades_leuningen = pl.LpVariable("balustrades_leuningen", lowBound=0)
+#         binnenwandafwerkingen = pl.LpVariable("binnenwandafwerkingen", lowBound=0)
+#         vloerafwerkingen = pl.LpVariable("vloerafwerkingen", lowBound=0)
+#         plafonds = pl.LpVariable("plafonds", lowBound=0)
+#         na_isolatie = pl.LpVariable("na_isolatie", lowBound=0)
+#         riolering_hwa = pl.LpVariable("riolering_hwa", lowBound=0)
+#         water_installaties = pl.LpVariable("water_installaties", lowBound=0)
+#         verwarming_koeling = pl.LpVariable("verwarming_koeling", lowBound=0)
+#         luchtbehandeling = pl.LpVariable("luchtbehandeling", lowBound=0)
+#         elektrische_installaties = pl.LpVariable("elektrische_installaties", lowBound=0)
+#         gebouwvoorzieningen = pl.LpVariable("gebouwvoorzieningen", lowBound=0)
+#         beveiliging = pl.LpVariable("beveiliging", lowBound=0)
+#         lift = pl.LpVariable("lift", lowBound=0)
+#         keuken = pl.LpVariable("keuken", lowBound=0)
+#         sanitair = pl.LpVariable("sanitair", lowBound=0)
+#         terreininrichting = pl.LpVariable("terreininrichting", lowBound=0)
         
-        variabelen = [buitenwanden, binnenwanden, vloeren, trappen_hellingen, daken, hoofddraagconstructie, buitenkozijnen, binnenkozijnen, luiken_vensters, 
-                      balustrades_leuningen, binnenwandafwerkingen, vloerafwerkingen, plafonds, na_isolatie, riolering_hwa, water_installaties, 
-                      verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
+#         variabelen = [buitenwanden, binnenwanden, vloeren, trappen_hellingen, daken, hoofddraagconstructie, buitenkozijnen, binnenkozijnen, luiken_vensters, 
+#                       balustrades_leuningen, binnenwandafwerkingen, vloerafwerkingen, plafonds, na_isolatie, riolering_hwa, water_installaties, 
+#                       verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
         
-        #Impact themas op productgroepen
+#         #Impact themas op productgroepen
 
-        impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
-        onderhoud = pl.lpSum(variabelen[i] * impact_onderhoud[i] for i in range(25))
+#         impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
+#         onderhoud = pl.lpSum(variabelen[i] * impact_onderhoud[i] for i in range(25))
         
-        impact_circulair = [impact.iloc[a, 2] for a in range(len(impact))]
-        circulair = pl.lpSum(variabelen[i] * impact_circulair[i] for i in range(25))
+#         impact_circulair = [impact.iloc[a, 2] for a in range(len(impact))]
+#         circulair = pl.lpSum(variabelen[i] * impact_circulair[i] for i in range(25))
         
-        impact_kwaliteit = [impact.iloc[a, 3] for a in range(len(impact))]
-        kwaliteit = pl.lpSum(variabelen[i] * impact_kwaliteit[i] for i in range(25))
+#         impact_kwaliteit = [impact.iloc[a, 3] for a in range(len(impact))]
+#         kwaliteit = pl.lpSum(variabelen[i] * impact_kwaliteit[i] for i in range(25))
         
-        impact_budget = [impact.iloc[a, 4] for a in range(len(impact))]
-        budget = pl.lpSum(variabelen[i] * impact_budget[i] for i in range(25))
+#         impact_budget = [impact.iloc[a, 4] for a in range(len(impact))]
+#         budget = pl.lpSum(variabelen[i] * impact_budget[i] for i in range(25))
         
-        impact_woonbeleving = [impact.iloc[a, 5] for a in range(len(impact))]
-        woonbeleving = pl.lpSum(variabelen[i] * impact_woonbeleving[i] for i in range(25))
+#         impact_woonbeleving = [impact.iloc[a, 5] for a in range(len(impact))]
+#         woonbeleving = pl.lpSum(variabelen[i] * impact_woonbeleving[i] for i in range(25))
     
-        prob += weging_circulair * circulair - weging_budget * budget + weging_woonbeleving * woonbeleving + weging_kwaliteit * kwaliteit + weging_onderhoud * onderhoud
+#         prob += weging_circulair * circulair - weging_budget * budget + weging_woonbeleving * woonbeleving + weging_kwaliteit * kwaliteit + weging_onderhoud * onderhoud
         
-        # Voeg beperkingen toe (voorbeeldbeperkingen)
-        prob += buitenkozijnen + lift + binnenkozijnen + binnenwandafwerkingen + vloerafwerkingen + plafonds + sanitair + keuken + buitenwanden + vloeren + daken + hoofddraagconstructie + na_isolatie + riolering_hwa + terreininrichting + verwarming_koeling + luchtbehandeling + gebouwvoorzieningen + binnenwanden + trappen_hellingen + luiken_vensters + balustrades_leuningen+ water_installaties + elektrische_installaties + beveiliging == 100
+#         # Voeg beperkingen toe (voorbeeldbeperkingen)
+#         prob += buitenkozijnen + lift + binnenkozijnen + binnenwandafwerkingen + vloerafwerkingen + plafonds + sanitair + keuken + buitenwanden + vloeren + daken + hoofddraagconstructie + na_isolatie + riolering_hwa + terreininrichting + verwarming_koeling + luchtbehandeling + gebouwvoorzieningen + binnenwanden + trappen_hellingen + luiken_vensters + balustrades_leuningen+ water_installaties + elektrische_installaties + beveiliging == 100
         
-        prob += buitenkozijnen >= 6.8
-        prob += lift >= 0.4
-        prob += binnenkozijnen >= 3.4
-        prob += binnenwandafwerkingen >= 2.6
-        prob += vloerafwerkingen >= 3.8
-        prob += plafonds >= 1.1
-        prob += sanitair >= 2.3
-        prob += keuken >= 0.4
-        prob += buitenwanden >= 6.0 
-        prob += vloeren >= 1.5
-        prob += daken >= 2.3
-        prob += hoofddraagconstructie >= 0.8
-        prob += na_isolatie >= 0.8
-        prob += riolering_hwa >= 3.4 
-        prob += terreininrichting >= 2.6
-        prob += verwarming_koeling >= 3.0
-        prob += luchtbehandeling >= 1.9
-        prob += gebouwvoorzieningen >= 1.5
-        prob += binnenwanden >= 3.0
-        prob += trappen_hellingen >= 2.3
-        prob += luiken_vensters >= 1.9
-        prob += balustrades_leuningen >= 0.4
-        prob += water_installaties  >= 2.3
-        prob += elektrische_installaties >= 0.4
-        prob += beveiliging >= 1.1
+#         prob += buitenkozijnen >= 6.8
+#         prob += lift >= 0.4
+#         prob += binnenkozijnen >= 3.4
+#         prob += binnenwandafwerkingen >= 2.6
+#         prob += vloerafwerkingen >= 3.8
+#         prob += plafonds >= 1.1
+#         prob += sanitair >= 2.3
+#         prob += keuken >= 0.4
+#         prob += buitenwanden >= 6.0 
+#         prob += vloeren >= 1.5
+#         prob += daken >= 2.3
+#         prob += hoofddraagconstructie >= 0.8
+#         prob += na_isolatie >= 0.8
+#         prob += riolering_hwa >= 3.4 
+#         prob += terreininrichting >= 2.6
+#         prob += verwarming_koeling >= 3.0
+#         prob += luchtbehandeling >= 1.9
+#         prob += gebouwvoorzieningen >= 1.5
+#         prob += binnenwanden >= 3.0
+#         prob += trappen_hellingen >= 2.3
+#         prob += luiken_vensters >= 1.9
+#         prob += balustrades_leuningen >= 0.4
+#         prob += water_installaties  >= 2.3
+#         prob += elektrische_installaties >= 0.4
+#         prob += beveiliging >= 1.1
         
-        prob += buitenkozijnen <= 12.8
-        prob += lift <= 1.4
-        prob += binnenkozijnen <= 6.4
-        prob += binnenwandafwerkingen <= 4.5
-        prob += vloerafwerkingen <= 7.5
-        prob += plafonds <= 1.5
-        prob += sanitair <= 3.4
-        prob += keuken <= 1.9
-        prob += buitenwanden <= 9.8 
-        prob += vloeren <= 1.5
-        prob += daken <= 5.3
-        prob += hoofddraagconstructie <= 0.8
-        prob += na_isolatie <= 2.3
-        prob += riolering_hwa <= 7.1 
-        prob += terreininrichting <= 3.0
-        prob += verwarming_koeling <= 4.5
-        prob += luchtbehandeling <= 4.5
-        prob += gebouwvoorzieningen <= 4.1
-        prob += binnenwanden <= 3.8
-        prob += trappen_hellingen <= 3.4
-        prob += luiken_vensters <= 1.9
-        prob += balustrades_leuningen <= 1.4
-        prob += water_installaties  <= 3.4
-        prob += elektrische_installaties <= 2.3
-        prob += beveiliging <= 1.9
+#         prob += buitenkozijnen <= 12.8
+#         prob += lift <= 1.4
+#         prob += binnenkozijnen <= 6.4
+#         prob += binnenwandafwerkingen <= 4.5
+#         prob += vloerafwerkingen <= 7.5
+#         prob += plafonds <= 1.5
+#         prob += sanitair <= 3.4
+#         prob += keuken <= 1.9
+#         prob += buitenwanden <= 9.8 
+#         prob += vloeren <= 1.5
+#         prob += daken <= 5.3
+#         prob += hoofddraagconstructie <= 0.8
+#         prob += na_isolatie <= 2.3
+#         prob += riolering_hwa <= 7.1 
+#         prob += terreininrichting <= 3.0
+#         prob += verwarming_koeling <= 4.5
+#         prob += luchtbehandeling <= 4.5
+#         prob += gebouwvoorzieningen <= 4.1
+#         prob += binnenwanden <= 3.8
+#         prob += trappen_hellingen <= 3.4
+#         prob += luiken_vensters <= 1.9
+#         prob += balustrades_leuningen <= 1.4
+#         prob += water_installaties  <= 3.4
+#         prob += elektrische_installaties <= 2.3
+#         prob += beveiliging <= 1.9
         
-        # Los het probleem op
-        status = prob.solve()
+#         # Los het probleem op
+#         status = prob.solve()
         
-        # Maak een lege lijst om de variabelen en hun waarden op te slaan
-        variabelen_waarden = []
+#         # Maak een lege lijst om de variabelen en hun waarden op te slaan
+#         variabelen_waarden = []
         
-        # Voeg de variabelen en hun waarden toe aan de lijst
-        for var in variabelen:
-            variabelen_waarden.append((var.name, var.varValue))
+#         # Voeg de variabelen en hun waarden toe aan de lijst
+#         for var in variabelen:
+#             variabelen_waarden.append((var.name, var.varValue))
         
-        # Maak een DataFrame van de lijst
-        df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
+#         # Maak een DataFrame van de lijst
+#         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
         
-        # Toon de DataFrame
-        print(df)
+#         # Toon de DataFrame
+#         print(df)
         
-        # Toon de resultaten
-        print("Optimale oplossing:")
+#         # Toon de resultaten
+#         print("Optimale oplossing:")
         
-        print(pl.LpStatus[status])
-        st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
-        print("buitenkozijnen = ", buitenkozijnen.varValue)
-        print("lift = ", lift.varValue)
-        print("binnenkozijnen = ", binnenkozijnen.varValue)
-        print("binnenwandafwerkingen = ", binnenwandafwerkingen.varValue)
-        print("vloerafwerkingen = ", vloerafwerkingen.varValue)
-        print("plafonds = ", plafonds.varValue)
-        print("sanitair = ", sanitair.varValue)
-        print("keuken = ", keuken.varValue)
-        print("buitenwanden = ", buitenwanden.varValue)
-        print("daken = ", daken.varValue)
-        print("vloeren = ", vloeren.varValue)
-        print("hoofddraagconstructie = ", hoofddraagconstructie.varValue)
-        print("na_isolatie = ", na_isolatie.varValue)
-        print("riolering_hwa = ", riolering_hwa.varValue)
-        print("terreininrichting = ", terreininrichting.varValue)
-        print("verwarming_koeling = ", verwarming_koeling.varValue)
-        print("luchtbehandeling = ", luchtbehandeling.varValue)
-        print("gebouwvoorzieningen =", gebouwvoorzieningen.varValue)
-        print("binnenwanden =", binnenwanden.varValue)
-        print("trappen_hellingen =", trappen_hellingen.varValue)
-        print("luiken_vensters =", luiken_vensters.varValue)
-        print("balustrades_leuningen =", balustrades_leuningen.varValue)
-        print("water_installaties =", water_installaties.varValue)
-        print("elektrische_installaties =", elektrische_installaties.varValue)
-        print("beveiliging =", beveiliging.varValue)
+#         print(pl.LpStatus[status])
+#         st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
+#         print("buitenkozijnen = ", buitenkozijnen.varValue)
+#         print("lift = ", lift.varValue)
+#         print("binnenkozijnen = ", binnenkozijnen.varValue)
+#         print("binnenwandafwerkingen = ", binnenwandafwerkingen.varValue)
+#         print("vloerafwerkingen = ", vloerafwerkingen.varValue)
+#         print("plafonds = ", plafonds.varValue)
+#         print("sanitair = ", sanitair.varValue)
+#         print("keuken = ", keuken.varValue)
+#         print("buitenwanden = ", buitenwanden.varValue)
+#         print("daken = ", daken.varValue)
+#         print("vloeren = ", vloeren.varValue)
+#         print("hoofddraagconstructie = ", hoofddraagconstructie.varValue)
+#         print("na_isolatie = ", na_isolatie.varValue)
+#         print("riolering_hwa = ", riolering_hwa.varValue)
+#         print("terreininrichting = ", terreininrichting.varValue)
+#         print("verwarming_koeling = ", verwarming_koeling.varValue)
+#         print("luchtbehandeling = ", luchtbehandeling.varValue)
+#         print("gebouwvoorzieningen =", gebouwvoorzieningen.varValue)
+#         print("binnenwanden =", binnenwanden.varValue)
+#         print("trappen_hellingen =", trappen_hellingen.varValue)
+#         print("luiken_vensters =", luiken_vensters.varValue)
+#         print("balustrades_leuningen =", balustrades_leuningen.varValue)
+#         print("water_installaties =", water_installaties.varValue)
+#         print("elektrische_installaties =", elektrische_installaties.varValue)
+#         print("beveiliging =", beveiliging.varValue)
         
-        print("Maximale waarde van de doelfunctie:", prob.objective.value())
-        st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
+#         print("Maximale waarde van de doelfunctie:", prob.objective.value())
+#         st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
 
 
 # uitkomst optimalisatie
