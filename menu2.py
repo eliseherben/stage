@@ -13,7 +13,7 @@ import streamlit as st
 def authenticated_menu():
     st.sidebar.page_link("simplex.py", label = "Input")
         
-    if st.session_state.file:
+    if st.session_state.file is not None:
         st.sidebar.page_link("pages/optimalisatie2.py", label = "Optimalisatie")
         
 def unauthenticated_menu():
