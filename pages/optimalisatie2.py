@@ -79,7 +79,7 @@ with tab1:
 # In[ ]:
 
 
-tab1:
+with tab1:
     if (onderhoud['impact onderhoud'].iloc[0] and onderhoud['impact onderhoud'].iloc[1] and onderhoud['impact onderhoud'].iloc[2]) > 0:
         st.markdown('**Onderhoud**')
         st.markdown(
