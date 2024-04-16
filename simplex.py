@@ -21,8 +21,11 @@ if "projectbestand" not in st.session_state:
     
 st.session_state._projectbestand = st.session_state.projectbestand
 
-def set_projectbestand():
-    st.session_state.projectbestand = "tets"
+def set_projectbestand(uploaded_file):
+    if uploaded_file is None:
+        st.session_state.projectbestand = None
+    else: 
+        st.session_state.projectbestand = "tets"
 
 if 'file' not in st.session_state:
     st.session_state.file = None
@@ -107,7 +110,7 @@ with tab1:
     )
 
     st.markdown("**Projectbestand**")
-    uploaded_file = st.file_uploader("Choose a file", on_change=set_projectbestand)
+    uploaded_file = st.file_uploader("Choose a file", on_change=set_projectbestand|(uploaded_file))
     if uploaded_file is not None:
         st.session_state.projectbestand = 'test'
         st.markdown(st.session_state.projectbestand)
