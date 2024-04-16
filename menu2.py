@@ -20,13 +20,13 @@ def unauthenticated_menu():
     st.sidebar.page_link("simplex.py", label = "Input")
         
 def menu():
-    if "projectbestand" not in st.session_state or st.session_state.projectbestand is None:
+    if "file" not in st.session_state or st.session_state.file is None:
         unauthenticated_menu()
         return
     authenticated_menu()
     
 def menu_with_redirect():
-    if "projectbestand" not in st.session_state or st.session_state.projectbestand is None:
+    if "file" not in st.session_state or st.session_state.file is None:
         st.switch_page("simplex.py")
     menu()
 

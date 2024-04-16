@@ -88,6 +88,7 @@ tab1, tab2, tab3 = st.tabs(["Input", "Optimalisatie", "Aanpassingen"])
 
 
 with tab1:
+    st.session_state.file = None 
     st.markdown("**Afdeling**")
     st.selectbox(
         "Welke afdeling?", 
@@ -110,6 +111,7 @@ with tab1:
     st.markdown("**Projectbestand**")
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
+        st.session_state.file = uploaded_file
         dataframe = pd.read_csv(uploaded_file)
     
     if uploaded_file is not None:
