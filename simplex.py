@@ -92,6 +92,7 @@ tab1, tab2, tab3 = st.tabs(["Input", "Optimalisatie", "Aanpassingen"])
 
 with tab1:
     st.session_state.file = None 
+    uploaded_file = None 
     st.markdown("**Afdeling**")
     st.selectbox(
         "Welke afdeling?", 
@@ -110,7 +111,7 @@ with tab1:
     )
 
     st.markdown("**Projectbestand**")
-    uploaded_file = st.file_uploader("Choose a file", on_change=set_projectbestand)
+    uploaded_file = st.file_uploader("Choose a file", on_change=set_projectbestand(uploaded_file)
     if uploaded_file is not None:
         st.session_state.projectbestand = 'test'
         st.markdown(st.session_state.projectbestand)
