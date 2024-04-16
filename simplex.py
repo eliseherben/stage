@@ -24,10 +24,7 @@ if "projectbestand" not in st.session_state:
 st.session_state._projectbestand = st.session_state.projectbestand
 
 def set_projectbestand():
-    if uploaded_file is None:
-        st.session_state.projectbestand = None
-    else: 
-        st.session_state.projectbestand = "tets"
+    st.session_state.projectbestand = "tets"
 
 if 'file' not in st.session_state:
     st.session_state.file = None
