@@ -103,9 +103,7 @@ with tab1:
         "Wat is de fase van het project?",
         ['Projectdefinitie', 'Structuurontwerp', 'Voorontwerp', 'Definitief ontwerp', 'Technisch ontwerp bestek', 'Uitvoeringsgereed ontwerp', 'Gebruik'],
         index = None,
-        placeholder = "Selecteer de fase van het project", 
-        key="_projectbestand", 
-        on_change = set_projectbestand
+        placeholder = "Selecteer de fase van het project"
     )
 
     st.markdown("**Projectbestand**")
