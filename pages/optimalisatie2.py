@@ -6,6 +6,7 @@
 
 import streamlit as st
 import pandas as pd
+import pulp as pl
 from menu2 import menu_with_redirect
 menu_with_redirect()
 
