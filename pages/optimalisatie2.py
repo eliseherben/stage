@@ -135,7 +135,7 @@ tab1:
 # In[ ]:
 
 
-tab1: 
+with tab1: 
 # Creëer een LP probleem
     prob = pl.LpProblem("Eigen Haard", pl.LpMaximize)
     
