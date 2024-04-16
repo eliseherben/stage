@@ -107,7 +107,7 @@ with tab1:
     )
 
     st.markdown("**Projectbestand**")
-    uploaded_file = st.file_uploader("Choose a file")
+    uploaded_file = st.file_uploader("Choose a file", on_change=set_projectbestand)
     if uploaded_file is not None:
         st.session_state.projectbestand = 'test'
         st.markdown(st.session_state.projectbestand)
