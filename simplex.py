@@ -179,6 +179,8 @@ weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in d
 if uploaded_file is not None:
     st.page_link("pages/optimalisatie2.py", label="Naar optimalisatie")
 
+st.markdown(st.session_state.projectbestand)
+
 # st.markdown("**Productgroepen**")
 # st.markdown("Hierbij kan er aangegeven worden wat het aandeel van de productgroepen momenteel in het project is. Dit is uitgedrukt in percentages. ")
 # st.number_input("Het aandeel van de productgroep 'Keuken' in dit project", value=0, min_value = 0, max_value = 100)
