@@ -69,7 +69,7 @@ st.selectbox(
 )
 
 st.markdown("**Projectbestand**")
-uploaded_file = st.file_uploader("Choose a file", on_change=set_projectbestand)
+uploaded_file = st.file_uploader("Choose a file", help='test12354')
 if uploaded_file is not None:
     # st.session_state.projectbestand = 'test'
     # st.markdown(st.session_state.projectbestand)
@@ -86,8 +86,10 @@ if uploaded_file is not None:
     dataframe = dataframe.drop(0)
     dataframe = dataframe.reset_index(drop=True)
 
+    st.session_state.projectbestand = dataframe
+    
     st.markdown("dataframe") 
-    st.dataframe(dataframe, use_container_width = True)
+    st.dataframe(st.session_state.projectbestand)
 
     dataframe['impact O'] = dataframe.groupby(['PRODUCTGROEP'])['impact onderhoud'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
     dataframe['impact CD'] = dataframe.groupby(['PRODUCTGROEP'])['impact circulair'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
