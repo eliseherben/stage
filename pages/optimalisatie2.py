@@ -70,7 +70,7 @@ with tab1:
     if st.session_state.projectbestand is None:
         st.markdown("upload een bestand")
     else: 
-        st.dataframe(st.session_state.file)
+        st.dataframe(st.session_state.file, hide_index = True)
     
         st.markdown("**Wegingen**")
         st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
