@@ -128,8 +128,7 @@ if uploaded_file is not None:
 
     st.markdown("dataframe") 
     st.dataframe(dataframe, use_container_width = True)
-    st.table(dataframe)
-    
+
     dataframe['impact O'] = dataframe.groupby(['PRODUCTGROEP'])['impact onderhoud'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
     dataframe['impact CD'] = dataframe.groupby(['PRODUCTGROEP'])['impact circulair'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
     dataframe['impact K'] = dataframe.groupby(['PRODUCTGROEP'])['impact kwaliteit'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
