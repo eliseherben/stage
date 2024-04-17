@@ -126,6 +126,8 @@ if uploaded_file is not None:
     dataframe = dataframe.drop(0)
     dataframe = dataframe.reset_index(drop=True)
 
+    st.markdown("dataframe") 
+    st.markdown(dataframe)
     dataframe['impact O'] = dataframe.groupby(['PRODUCTGROEP'])['impact onderhoud'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
     dataframe['impact CD'] = dataframe.groupby(['PRODUCTGROEP'])['impact circulair'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
     dataframe['impact K'] = dataframe.groupby(['PRODUCTGROEP'])['impact kwaliteit'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
@@ -175,7 +177,7 @@ weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in d
 if uploaded_file is not None:
     st.page_link("pages/optimalisatie2.py", label="Naar optimalisatie")
 
-st.markdown(st.session_state.projectbestand)
+
 
 # st.markdown("**Productgroepen**")
 # st.markdown("Hierbij kan er aangegeven worden wat het aandeel van de productgroepen momenteel in het project is. Dit is uitgedrukt in percentages. ")
