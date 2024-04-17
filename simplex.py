@@ -34,46 +34,6 @@ st.session_state._file = st.session_state.file
 def set_file():
     st.session_state.file = st.session_state._file
 
-if 'weging_onderhoud' not in st.session_state:
-    st.session_state.weging_onderhoud = None
-
-st.session_state._weging_onderhoud = st.session_state.weging_onderhoud
-
-def set_weging_onderhoud():
-    st.session_state.weging_onderhoud = st.session_state._weging_onderhoud
-
-if 'weging_circulair' not in st.session_state:
-    st.session_state.weging_circulair = None
-
-st.session_state._weging_circulair = st.session_state.weging_circulair
-
-def set_weging_circulair():
-    st.session_state.weging_circulair = st.session_state._weging_circulair
-
-if 'weging_kwaliteit' not in st.session_state:
-    st.session_state.weging_kwaliteit = None
-
-st.session_state._weging_kwaliteit = st.session_state.weging_kwaliteit
-
-def set_weging_kwaliteit():
-    st.session_state.weging_kwaliteit = st.session_state._weging_kwaliteit
-
-if 'weging_budget' not in st.session_state:
-    st.session_state.weging_budget = None
-
-st.session_state._weging_budget = st.session_state.weging_budget
-
-def set_weging_budget():
-    st.session_state.weging_budget = st.session_state._weging_budget
-
-if 'weging_woonbeleving' not in st.session_state:
-    st.session_state.weging_woonbeleving = None
-
-st.session_state._weging_woonbeleving = st.session_state.weging_woonbeleving
-
-def set_weging_woonbeleving():
-    st.session_state.weging_woonbeleving = st.session_state._weging_woonbeleving
-
 menu()
 
 
