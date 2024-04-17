@@ -69,8 +69,7 @@ st.selectbox(
 )
 
 st.markdown("**Projectbestand**")
-uploaded_file = st.file_uploader("Choose a file", help='Upload hier het projectbestand, op basis van dit bestand wordt de optimalisatie uitgevoerd. ', 
-                                 key = "_projectbestand")
+uploaded_file = st.file_uploader("Choose a file", help='Upload hier het projectbestand, op basis van dit bestand wordt de optimalisatie uitgevoerd. ')
 if uploaded_file is not None:
     # st.session_state.projectbestand = 'test'
     # st.markdown(st.session_state.projectbestand)
