@@ -55,6 +55,7 @@ st.title("Eigen Haard")
 
 
 st.session_state.file = None 
+st.markdown(st.session_state.afdeling)
 st.markdown("**Afdeling**")
 st.selectbox(
     "Welke afdeling?", 
@@ -104,7 +105,6 @@ if uploaded_file is not None:
         dataframe = dataframe.dropna(how='all')
         dataframe = dataframe.drop(0)
         dataframe = dataframe.reset_index(drop=True)
-
 
     st.markdown("dataframe") 
     st.dataframe(dataframe, hide_index = True)
