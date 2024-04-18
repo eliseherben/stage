@@ -32,6 +32,14 @@ st.session_state._file = st.session_state.file
 def set_file():
     st.session_state.file = st.session_state._file
 
+if 'afdeling' not in st.session_state:
+    st.session_state.afdeling = None
+
+st.session_state._afdeling = st.session_state.afdeling
+
+def set_afdeling():
+    st.session_state.afdeling = st.session_state._afdeling
+
 menu()
 
 
@@ -53,7 +61,7 @@ st.selectbox(
     ['Nieuwbouw ontwikkeling', 'Nieuwbouw realisatie', 'Renovatie ontwikkeling', 'Renovatie realisatie', 'Planmatig onderhoud ontwikkeling', 
      'Planmatig onderhoud realisatie', 'Mutatie onderhoud', 'Dagelijks onderhoud'],
     index=None,
-    placeholder="Selecteer een afdeling"
+    placeholder="Selecteer een afdeling", key = "_afdeling", on_change = set_afdeling
 )
 
 st.markdown("**Projectfase**")
@@ -71,19 +79,33 @@ if uploaded_file is not None:
     # st.session_state.projectbestand = 'test'
     # st.markdown(st.session_state.projectbestand)
     dataframe = pd.read_csv(uploaded_file)
+    
+    if st.session_state.adfeling is in ['Nieuwbouw ontwikkeling', 'Renovatie ontwikkeling', 'Planmatig onderhoud ontwikkeling']:
+        dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29, 31, 33, 35, 37]], axis = 1)
+        dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[13]: "impact circulair"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[14]: "impact kwaliteit"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[15]: "impact budget"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[16]: "impact woonbeleving"}, inplace=True)
+        
+        dataframe = dataframe.dropna(how='all')
+        dataframe = dataframe.drop(0)
+        dataframe = dataframe.reset_index(drop=True)
+        
+    if st.session_state.adfeling is in ['Nieuwbouw renovatie', 'Renovatie renovatie', 'Planmatig onderhoud renovatie', 
+                                         'Mutatie onderhoud', 'Dagelijks onderhoud']:
+        dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29, 31, 33, 35]], axis = 1)
+        dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[13]: "impact circulair"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[14]: "impact kwaliteit"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[15]: "impact budget"}, inplace=True)
+        dataframe.rename(columns={dataframe.columns[16]: "impact woonbeleving"}, inplace=True)
+        
+        dataframe = dataframe.dropna(how='all')
+        dataframe = dataframe.drop(0)
+        dataframe = dataframe.reset_index(drop=True)
 
-    dataframe = dataframe.drop(['Unnamed: 1', 'Unnamed: 3', 'Unnamed: 37'], axis = 1)
-    # dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29, 31, 33, 35]], axis = 1)
-    dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
-    dataframe.rename(columns={dataframe.columns[13]: "impact circulair"}, inplace=True)
-    dataframe.rename(columns={dataframe.columns[14]: "impact kwaliteit"}, inplace=True)
-    dataframe.rename(columns={dataframe.columns[15]: "impact budget"}, inplace=True)
-    dataframe.rename(columns={dataframe.columns[16]: "impact woonbeleving"}, inplace=True)
-    
-    dataframe = dataframe.dropna(how='all')
-    dataframe = dataframe.drop(0)
-    dataframe = dataframe.reset_index(drop=True)
-    
+
     st.markdown("dataframe") 
     st.dataframe(dataframe, hide_index = True)
 
