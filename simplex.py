@@ -92,7 +92,7 @@ if uploaded_file is not None:
         dataframe = dataframe.drop(0)
         dataframe = dataframe.reset_index(drop=True)
         
-    if st.session_state.adfeling in ['Nieuwbouw renovatie', 'Renovatie renovatie', 'Planmatig onderhoud renovatie', 
+    if st.session_state.afdeling in ['Nieuwbouw renovatie', 'Renovatie renovatie', 'Planmatig onderhoud renovatie', 
                                          'Mutatie onderhoud', 'Dagelijks onderhoud']:
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29, 31, 33, 35]], axis = 1)
         dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
