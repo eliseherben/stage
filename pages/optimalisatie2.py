@@ -71,7 +71,15 @@ with tab1:
         st.markdown("upload een bestand")
     else: 
         st.dataframe(st.session_state.file, hide_index = True)
-    
+
+        st.markdown("**Rank**")
+        data = {
+          "thema's": ['onderhoud', 'budget', 'kwaliteit', 'woonbeleving', 'circulariteit'],
+          "rank": [1, 2, 3, 4, 5]
+        }
+        df = pd.DataFrame(data)
+        st.st.data_editor(df, disabled = "thema's")
+        
         st.markdown("**Wegingen**")
         st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
         "Als een thema neutraal is kan deze op '0' blijven staan. Als een thema zwaarder meeweegt kan deze op +1 of +2 staan, "
