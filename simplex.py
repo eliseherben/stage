@@ -79,7 +79,7 @@ st.session_state.projectbestand = uploaded_file
 if uploaded_file is not None:
     # st.session_state.projectbestand = 'test'
     # st.markdown(st.session_state.projectbestand)
-    dataframe = pd.read_csv(uploaded_file, sep=';')
+    dataframe = pd.read_csv(uploaded_file)
     
     if st.session_state.afdeling in ['Nieuwbouw ontwikkeling', 'Renovatie ontwikkeling', 'Planmatig onderhoud ontwikkeling']:
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29, 31, 33, 35, 37]], axis = 1)
