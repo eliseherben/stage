@@ -76,11 +76,11 @@ with tab1:
         st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
         "Als een thema neutraal is kan deze op '0' blijven staan. Als een thema zwaarder meeweegt kan deze op +1 of +2 staan, "
         "als een thema minder zwaar meeweegt kan deze op -1 of -2 gezet worden. ")
-        weging_woonbeleving = st.number_input("De weging in voor het thema 'Woonbeleving' in dit project", value=0, min_value = -2, max_value = 2, key = '_weging_woonbeleving', on_change=set_weging_woonbeleving)
-        weging_circulair = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=0, min_value = -2, max_value = 2, key = '_weging_circulair', on_change=set_weging_circulair)
-        weging_budget = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=0, min_value = -2, max_value = 2, key = '_weging_budget', on_change=set_weging_budget)
-        weging_onderhoud = st.number_input("De weging in voor het thema 'Onderhoud' in dit project", value=0, min_value = -2, max_value = 2, key = '_weging_onderhoud', on_change=set_weging_onderhoud)
-        weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=0, min_value = -2, max_value = 2, key = '_weging_kwaliteit', on_change=set_weging_kwaliteit)
+        weging_woonbeleving = st.number_input("De weging in voor het thema 'Woonbeleving' in dit project", value=0, min_value = 1, max_value = 5, key = '_weging_woonbeleving', on_change=set_weging_woonbeleving)
+        weging_circulair = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=0, min_value = 1, max_value = 5, key = '_weging_circulair', on_change=set_weging_circulair)
+        weging_budget = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=0, min_value = 1, max_value = 5, key = '_weging_budget', on_change=set_weging_budget)
+        weging_onderhoud = st.number_input("De weging in voor het thema 'Onderhoud' in dit project", value=0, min_value = 1, max_value = 5, key = '_weging_onderhoud', on_change=set_weging_onderhoud)
+        weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=0, min_value = 1, max_value = 5, key = '_weging_kwaliteit', on_change=set_weging_kwaliteit)
     
         
         impact = st.session_state.file
