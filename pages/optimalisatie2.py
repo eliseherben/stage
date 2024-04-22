@@ -81,7 +81,7 @@ with tab1:
         ranking_df = st.data_editor(df, disabled = "thema's", width = 500)
         ranking_df = ranking_df.sort_values(by = ['rank'])
         ranking_df = ranking_df.reset_index(drop=True)
-        st.markdown(ranking_df)
+        st.dataframe(ranking_df)
         
         st.markdown("**Wegingen**")
         st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
