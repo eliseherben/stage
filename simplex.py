@@ -102,9 +102,9 @@ if uploaded_file is not None:
         dataframe.rename(columns={dataframe.columns[15]: "impact budget"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[16]: "impact woonbeleving"}, inplace=True)
         
-        dataframe = dataframe.dropna(how='all')
-        dataframe = dataframe.drop(0)
-        dataframe = dataframe.reset_index(drop=True)
+        # dataframe = dataframe.dropna(how='all')
+        # dataframe = dataframe.drop(0)
+        # dataframe = dataframe.reset_index(drop=True)
 
     st.markdown("dataframe") 
     st.dataframe(dataframe, hide_index = True)
