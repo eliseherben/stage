@@ -95,7 +95,7 @@ if uploaded_file is not None:
         
     if st.session_state.afdeling in ['Nieuwbouw realisatie', 'Renovatie realisatie', 'Planmatig onderhoud realisatie', 
                                          'Mutatie onderhoud', 'Dagelijks onderhoud']:
-        dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29, 31, 33, 35]], axis = 1)
+        # dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29]], axis = 1)
         dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[13]: "impact circulair"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[14]: "impact kwaliteit"}, inplace=True)
