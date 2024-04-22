@@ -91,6 +91,17 @@ with tab1:
         weights_df = weights_df.reset_index(drop=True)
         st.dataframe(ranking_df)
         st.dataframe(weights_df)
+
+        rs_budget = weights_df['rank sum (RS)'].iloc[0]
+        st.markdown(rs_budget)
+        rs_circulariteit = weights_df['rank sum (RS)'].iloc[1]
+        st.markdown(rs_circulariteit)
+        rs_kwaliteit = weights_df['rank sum (RS)'].iloc[2]
+        st.markdown(rs_kwaliteit)
+        rs_onderhoud = weights_df['rank sum (RS)'].iloc[3]
+        st.markdown(rs_onderhoud)
+        rs_woonbeleving = weights_df['rank sum (RS)'].iloc[4]
+        st.markdown(rs_woonbeleving)
         
         st.markdown("**Wegingen**")
         st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
