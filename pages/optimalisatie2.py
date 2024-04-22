@@ -78,7 +78,7 @@ with tab1:
           "rank": [1, 2, 3, 4, 5]
         }
         df = pd.DataFrame(data)
-        st.data_editor(df, disabled = "thema's", width = 30)
+        st.data_editor(df, disabled = "thema's", width = 1000)
         
         st.markdown("**Wegingen**")
         st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
