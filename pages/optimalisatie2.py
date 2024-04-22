@@ -79,15 +79,18 @@ with tab1:
         }
         df = pd.DataFrame(data)
         ranking_df = st.data_editor(df, disabled = ["thema"], width = 500, hide_index = True)
-        # ranking_df = ranking_df.sort_values(by = ['rank'])
-        # ranking_df = ranking_df.reset_index(drop=True)
+        ranking_df = ranking_df.sort_values(by = ['rank'])
+        ranking_df = ranking_df.reset_index(drop=True)
         
         ranking_df['rank sum (RS)'] = (len(ranking_df) - ranking_df['rank'] + 1)/sum(ranking_df['rank'])
         ranking_df['rank reciprocal (RR)'] = (1/ranking_df['rank'])/sum(1/ranking_df['rank'])
         ranking_df['rank order centroid (ROC)'] = (1/len(ranking_df))*((1/ranking_df['rank'].iloc[::-1]).cumsum())
         ranking_df = ranking_df.round({"rank":0, "rank sum (RS)":2, "rank reciprocal (RR)":2,"rank order centroid (ROC)":2})
-        
+
+        weights_df = ranking_df.sort_values(by = ['thema'])
+        weights_df = weights_df.reset_index(drop=True)
         st.dataframe(ranking_df)
+        st.dataframe(weights_df)
         
         st.markdown("**Wegingen**")
         st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
