@@ -270,7 +270,7 @@ with tab1:
         impact_woonbeleving = [impact.iloc[a, 5] for a in range(len(impact))]
         woonbeleving = pl.lpSum(variabelen[i] * impact_woonbeleving[i] for i in range(25))
         
-        prob += weging_circulair * circulair - weging_budget * budget + weging_woonbeleving * woonbeleving + weging_kwaliteit * kwaliteit + weging_onderhoud * onderhoud
+        prob += rs_circulariteit * circulair - rs_budget * budget + rs_woonbeleving * woonbeleving + rs_kwaliteit * kwaliteit + rs_onderhoud * onderhoud
         
         # Voeg beperkingen toe (voorbeeldbeperkingen)
         prob += buitenkozijnen + lift + binnenkozijnen + binnenwandafwerkingen + vloerafwerkingen + plafonds + sanitair + keuken + buitenwanden + vloeren + daken + hoofddraagconstructie + na_isolatie + riolering_hwa + terreininrichting + verwarming_koeling + luchtbehandeling + gebouwvoorzieningen + binnenwanden + trappen_hellingen + luiken_vensters + balustrades_leuningen+ water_installaties + elektrische_installaties + beveiliging == 100
