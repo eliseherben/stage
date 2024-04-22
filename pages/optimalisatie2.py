@@ -74,11 +74,11 @@ with tab1:
 
         st.markdown("**Rank**")
         data = {
-          "thema's": ['onderhoud', 'budget', 'kwaliteit', 'woonbeleving', 'circulariteit'],
+          "thema": ['onderhoud', 'budget', 'kwaliteit', 'woonbeleving', 'circulariteit'],
           "rank": [1, 2, 3, 4, 5]
         }
         df = pd.DataFrame(data)
-        ranking_df = st.data_editor(df, disabled = ("thema's"), width = 500, hide_index = True)
+        ranking_df = st.data_editor(df, disabled = ("thema"), width = 500, hide_index = True)
         ranking_df = ranking_df.sort_values(by = ['rank'])
         ranking_df = ranking_df.reset_index(drop=True)
         
