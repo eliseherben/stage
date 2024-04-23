@@ -234,40 +234,43 @@ with tab1:
     # Creëer een LP probleem
         prob = pl.LpProblem("Eigen Haard", pl.LpMaximize)
 
-        # for index, row in df.iterrows():
-        # variabelen[row["variabele"]] = pl.LpVariable(row["variabele"], lowBound=row["ondergrens"], upBound=row["bovengrens"])
+        for index, row in df.iterrows():
+            variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
 
         
-        # Definieer de variabelen
-        buitenwanden = pl.LpVariable("buitenwanden", lowBound=0)
-        binnenwanden = pl.LpVariable("binnenwanden", lowBound=0)
-        vloeren = pl.LpVariable("vloeren", lowBound=0)
-        trappen_hellingen = pl.LpVariable("trappen_hellingen", lowBound=0)
-        daken = pl.LpVariable("daken", lowBound=0)
-        hoofddraagconstructie = pl.LpVariable("hoofddraagconstructie", lowBound=0)
-        buitenkozijnen = pl.LpVariable("buitenkozijnen", lowBound=0)
-        binnenkozijnen = pl.LpVariable("binnenkozijnen", lowBound=0)
-        luiken_vensters = pl.LpVariable("luiken_vensters", lowBound=0)
-        balustrades_leuningen = pl.LpVariable("balustrades_leuningen", lowBound=0)
-        binnenwandafwerkingen = pl.LpVariable("binnenwandafwerkingen", lowBound=0)
-        vloerafwerkingen = pl.LpVariable("vloerafwerkingen", lowBound=0)
-        plafonds = pl.LpVariable("plafonds", lowBound=0)
-        na_isolatie = pl.LpVariable("na_isolatie", lowBound=0)
-        riolering_hwa = pl.LpVariable("riolering_hwa", lowBound=0)
-        water_installaties = pl.LpVariable("water_installaties", lowBound=0)
-        verwarming_koeling = pl.LpVariable("verwarming_koeling", lowBound=0)
-        luchtbehandeling = pl.LpVariable("luchtbehandeling", lowBound=0)
-        elektrische_installaties = pl.LpVariable("elektrische_installaties", lowBound=0)
-        gebouwvoorzieningen = pl.LpVariable("gebouwvoorzieningen", lowBound=0)
-        beveiliging = pl.LpVariable("beveiliging", lowBound=0)
-        lift = pl.LpVariable("lift", lowBound=0)
-        keuken = pl.LpVariable("keuken", lowBound=0)
-        sanitair = pl.LpVariable("sanitair", lowBound=0)
-        terreininrichting = pl.LpVariable("terreininrichting", lowBound=0)
+        # # Definieer de variabelen
+        # buitenwanden = pl.LpVariable("buitenwanden", lowBound=0)
+        # binnenwanden = pl.LpVariable("binnenwanden", lowBound=0)
+        # vloeren = pl.LpVariable("vloeren", lowBound=0)
+        # trappen_hellingen = pl.LpVariable("trappen_hellingen", lowBound=0)
+        # daken = pl.LpVariable("daken", lowBound=0)
+        # hoofddraagconstructie = pl.LpVariable("hoofddraagconstructie", lowBound=0)
+        # buitenkozijnen = pl.LpVariable("buitenkozijnen", lowBound=0)
+        # binnenkozijnen = pl.LpVariable("binnenkozijnen", lowBound=0)
+        # luiken_vensters = pl.LpVariable("luiken_vensters", lowBound=0)
+        # balustrades_leuningen = pl.LpVariable("balustrades_leuningen", lowBound=0)
+        # binnenwandafwerkingen = pl.LpVariable("binnenwandafwerkingen", lowBound=0)
+        # vloerafwerkingen = pl.LpVariable("vloerafwerkingen", lowBound=0)
+        # plafonds = pl.LpVariable("plafonds", lowBound=0)
+        # na_isolatie = pl.LpVariable("na_isolatie", lowBound=0)
+        # riolering_hwa = pl.LpVariable("riolering_hwa", lowBound=0)
+        # water_installaties = pl.LpVariable("water_installaties", lowBound=0)
+        # verwarming_koeling = pl.LpVariable("verwarming_koeling", lowBound=0)
+        # luchtbehandeling = pl.LpVariable("luchtbehandeling", lowBound=0)
+        # elektrische_installaties = pl.LpVariable("elektrische_installaties", lowBound=0)
+        # gebouwvoorzieningen = pl.LpVariable("gebouwvoorzieningen", lowBound=0)
+        # beveiliging = pl.LpVariable("beveiliging", lowBound=0)
+        # lift = pl.LpVariable("lift", lowBound=0)
+        # keuken = pl.LpVariable("keuken", lowBound=0)
+        # sanitair = pl.LpVariable("sanitair", lowBound=0)
+        # terreininrichting = pl.LpVariable("terreininrichting", lowBound=0)
         
-        variabelen = [buitenwanden, binnenwanden, vloeren, trappen_hellingen, daken, hoofddraagconstructie, buitenkozijnen, binnenkozijnen, luiken_vensters, 
-                      balustrades_leuningen, binnenwandafwerkingen, vloerafwerkingen, plafonds, na_isolatie, riolering_hwa, water_installaties, 
-                      verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
+        # variabelen = [buitenwanden, binnenwanden, vloeren, trappen_hellingen, daken, hoofddraagconstructie, buitenkozijnen, binnenkozijnen, luiken_vensters, 
+        #               balustrades_leuningen, binnenwandafwerkingen, vloerafwerkingen, plafonds, na_isolatie, riolering_hwa, water_installaties, 
+        #               verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
+
+        variabelen = [i for i in df['productgroep']]
+        st.markdown(variabelen)
         
         #Impact themas op productgroepen
         
