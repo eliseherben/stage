@@ -234,6 +234,7 @@ with tab1:
     # Creëer een LP probleem
         prob = pl.LpProblem("Eigen Haard", pl.LpMaximize)
 
+        variabelen = {}
         for index, row in df.iterrows():
             variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
 
@@ -269,7 +270,7 @@ with tab1:
         #               balustrades_leuningen, binnenwandafwerkingen, vloerafwerkingen, plafonds, na_isolatie, riolering_hwa, water_installaties, 
         #               verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
 
-        variabelen = [i for i in df['productgroep']]
+        # variabels = [i for i in df['productgroep']]
         st.markdown(variabelen)
         
         #Impact themas op productgroepen
