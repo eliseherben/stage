@@ -70,17 +70,15 @@ with tab1:
     if st.session_state.projectbestand is None:
         st.markdown("upload een bestand")
     else: 
+        #barplot
         st.dataframe(st.session_state.file, hide_index = True)
-        df_fig = pd.melt(st.session_state.file, id_vars=['productgroep'], var_name='Optie', value_name='Waarde')
+        df_fig = pd.melt(st.session_state.file, id_vars=['productgroep'], var_name='Optie', value_name='impact')
 
         df_fig = df_fig[df_fig['Waarde'] != 0]
         
         # Plot met Plotly Express
-        fig = px.bar(df_fig, x='productgroep', y='Waarde', color='Optie',
-             barmode='group', title='Voorbeeld Bar Plot met Barmode=group')
-
-       
-        # fig = px.bar(st.session_state.file, x="productgroep", y="impact O")
+        fig = px.bar(df_fig, x='productgroep', y='impact', color='Optie',
+             barmode='group', title="Impact thema's op productgroepen")
         st.plotly_chart(fig)
         
         st.markdown("**Rank**")
@@ -88,6 +86,7 @@ with tab1:
           "thema": ['onderhoud', 'budget', 'kwaliteit', 'woonbeleving', 'circulariteit'],
           "rank": [1, 2, 3, 4, 5]
         }
+        
         df = pd.DataFrame(data)
         ranking_df = st.data_editor(df, disabled = ["thema"], width = 500, hide_index = True)
         ranking_df = ranking_df.sort_values(by = ['rank'])
@@ -114,17 +113,16 @@ with tab1:
         rs_woonbeleving = weights_df['rank sum (RS)'].iloc[4]
         st.markdown(rs_woonbeleving)
         
-        st.markdown("**Wegingen**")
-        st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
-        "Als een thema neutraal is kan deze op '0' blijven staan. Als een thema zwaarder meeweegt kan deze op +1 of +2 staan, "
-        "als een thema minder zwaar meeweegt kan deze op -1 of -2 gezet worden. ")
-        weging_woonbeleving = st.number_input("De weging in voor het thema 'Woonbeleving' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_woonbeleving', on_change=set_weging_woonbeleving)
-        weging_circulair = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_circulair', on_change=set_weging_circulair)
-        weging_budget = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_budget', on_change=set_weging_budget)
-        weging_onderhoud = st.number_input("De weging in voor het thema 'Onderhoud' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_onderhoud', on_change=set_weging_onderhoud)
-        weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_kwaliteit', on_change=set_weging_kwaliteit)
+        # st.markdown("**Wegingen**")
+        # st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
+        # "Als een thema neutraal is kan deze op '0' blijven staan. Als een thema zwaarder meeweegt kan deze op +1 of +2 staan, "
+        # "als een thema minder zwaar meeweegt kan deze op -1 of -2 gezet worden. ")
+        # weging_woonbeleving = st.number_input("De weging in voor het thema 'Woonbeleving' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_woonbeleving', on_change=set_weging_woonbeleving)
+        # weging_circulair = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_circulair', on_change=set_weging_circulair)
+        # weging_budget = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_budget', on_change=set_weging_budget)
+        # weging_onderhoud = st.number_input("De weging in voor het thema 'Onderhoud' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_onderhoud', on_change=set_weging_onderhoud)
+        # weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_kwaliteit', on_change=set_weging_kwaliteit)
     
-        
         impact = st.session_state.file
         
         data = {
@@ -142,6 +140,8 @@ with tab1:
                 }
                 
         df = pd.DataFrame(data)
+        st.markdown("dataframe impact?")
+        st.dataframe(df)
         
         onderhoud = df[['productgroep', 'impact onderhoud']]
         onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
@@ -232,6 +232,10 @@ with tab1:
     else: 
     # Creëer een LP probleem
         prob = pl.LpProblem("Eigen Haard", pl.LpMaximize)
+
+        for index, row in df.iterrows():
+        variabelen[row["variabele"]] = pl.LpVariable(row["variabele"], lowBound=row["ondergrens"], upBound=row["bovengrens"])
+
         
         # Definieer de variabelen
         buitenwanden = pl.LpVariable("buitenwanden", lowBound=0)
