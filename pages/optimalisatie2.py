@@ -299,59 +299,60 @@ with tab1:
         prob += rs_circulariteit * circulair - rs_budget * budget + rs_woonbeleving * woonbeleving + rs_kwaliteit * kwaliteit + rs_onderhoud * onderhoud
         
         # Voeg beperkingen toe (voorbeeldbeperkingen)
-        prob += buitenkozijnen + lift + binnenkozijnen + binnenwandafwerkingen + vloerafwerkingen + plafonds + sanitair + keuken + buitenwanden + vloeren + daken + hoofddraagconstructie + na_isolatie + riolering_hwa + terreininrichting + verwarming_koeling + luchtbehandeling + gebouwvoorzieningen + binnenwanden + trappen_hellingen + luiken_vensters + balustrades_leuningen+ water_installaties + elektrische_installaties + beveiliging == 100
+        prob += sum(lp_variabelen) == 100
+        # prob += buitenkozijnen + lift + binnenkozijnen + binnenwandafwerkingen + vloerafwerkingen + plafonds + sanitair + keuken + buitenwanden + vloeren + daken + hoofddraagconstructie + na_isolatie + riolering_hwa + terreininrichting + verwarming_koeling + luchtbehandeling + gebouwvoorzieningen + binnenwanden + trappen_hellingen + luiken_vensters + balustrades_leuningen+ water_installaties + elektrische_installaties + beveiliging == 100
         
-        prob += buitenkozijnen >= 6.8
-        prob += lift >= 0.4
-        prob += binnenkozijnen >= 3.4
-        prob += binnenwandafwerkingen >= 2.6
-        prob += vloerafwerkingen >= 3.8
-        prob += plafonds >= 1.1
-        prob += sanitair >= 2.3
-        prob += keuken >= 0.4
-        prob += buitenwanden >= 6.0 
-        prob += vloeren >= 1.5
-        prob += daken >= 2.3
-        prob += hoofddraagconstructie >= 0.8
-        prob += na_isolatie >= 0.8
-        prob += riolering_hwa >= 3.4 
-        prob += terreininrichting >= 2.6
-        prob += verwarming_koeling >= 3.0
-        prob += luchtbehandeling >= 1.9
-        prob += gebouwvoorzieningen >= 1.5
-        prob += binnenwanden >= 3.0
-        prob += trappen_hellingen >= 2.3
-        prob += luiken_vensters >= 1.9
-        prob += balustrades_leuningen >= 0.4
-        prob += water_installaties  >= 2.3
-        prob += elektrische_installaties >= 0.4
-        prob += beveiliging >= 1.1
+        # prob += buitenkozijnen >= 6.8
+        # prob += lift >= 0.4
+        # prob += binnenkozijnen >= 3.4
+        # prob += binnenwandafwerkingen >= 2.6
+        # prob += vloerafwerkingen >= 3.8
+        # prob += plafonds >= 1.1
+        # prob += sanitair >= 2.3
+        # prob += keuken >= 0.4
+        # prob += buitenwanden >= 6.0 
+        # prob += vloeren >= 1.5
+        # prob += daken >= 2.3
+        # prob += hoofddraagconstructie >= 0.8
+        # prob += na_isolatie >= 0.8
+        # prob += riolering_hwa >= 3.4 
+        # prob += terreininrichting >= 2.6
+        # prob += verwarming_koeling >= 3.0
+        # prob += luchtbehandeling >= 1.9
+        # prob += gebouwvoorzieningen >= 1.5
+        # prob += binnenwanden >= 3.0
+        # prob += trappen_hellingen >= 2.3
+        # prob += luiken_vensters >= 1.9
+        # prob += balustrades_leuningen >= 0.4
+        # prob += water_installaties  >= 2.3
+        # prob += elektrische_installaties >= 0.4
+        # prob += beveiliging >= 1.1
         
-        prob += buitenkozijnen <= 12.8
-        prob += lift <= 1.4
-        prob += binnenkozijnen <= 6.4
-        prob += binnenwandafwerkingen <= 4.5
-        prob += vloerafwerkingen <= 7.5
-        prob += plafonds <= 1.5
-        prob += sanitair <= 3.4
-        prob += keuken <= 1.9
-        prob += buitenwanden <= 9.8 
-        prob += vloeren <= 1.5
-        prob += daken <= 5.3
-        prob += hoofddraagconstructie <= 0.8
-        prob += na_isolatie <= 2.3
-        prob += riolering_hwa <= 7.1 
-        prob += terreininrichting <= 3.0
-        prob += verwarming_koeling <= 4.5
-        prob += luchtbehandeling <= 4.5
-        prob += gebouwvoorzieningen <= 4.1
-        prob += binnenwanden <= 3.8
-        prob += trappen_hellingen <= 3.4
-        prob += luiken_vensters <= 1.9
-        prob += balustrades_leuningen <= 1.4
-        prob += water_installaties  <= 3.4
-        prob += elektrische_installaties <= 2.3
-        prob += beveiliging <= 1.9
+        # prob += buitenkozijnen <= 12.8
+        # prob += lift <= 1.4
+        # prob += binnenkozijnen <= 6.4
+        # prob += binnenwandafwerkingen <= 4.5
+        # prob += vloerafwerkingen <= 7.5
+        # prob += plafonds <= 1.5
+        # prob += sanitair <= 3.4
+        # prob += keuken <= 1.9
+        # prob += buitenwanden <= 9.8 
+        # prob += vloeren <= 1.5
+        # prob += daken <= 5.3
+        # prob += hoofddraagconstructie <= 0.8
+        # prob += na_isolatie <= 2.3
+        # prob += riolering_hwa <= 7.1 
+        # prob += terreininrichting <= 3.0
+        # prob += verwarming_koeling <= 4.5
+        # prob += luchtbehandeling <= 4.5
+        # prob += gebouwvoorzieningen <= 4.1
+        # prob += binnenwanden <= 3.8
+        # prob += trappen_hellingen <= 3.4
+        # prob += luiken_vensters <= 1.9
+        # prob += balustrades_leuningen <= 1.4
+        # prob += water_installaties  <= 3.4
+        # prob += elektrische_installaties <= 2.3
+        # prob += beveiliging <= 1.9
         
         # Los het probleem op
         status = prob.solve()
@@ -374,31 +375,31 @@ with tab1:
         
         print(pl.LpStatus[status])
         st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
-        print("buitenkozijnen = ", buitenkozijnen.varValue)
-        print("lift = ", lift.varValue)
-        print("binnenkozijnen = ", binnenkozijnen.varValue)
-        print("binnenwandafwerkingen = ", binnenwandafwerkingen.varValue)
-        print("vloerafwerkingen = ", vloerafwerkingen.varValue)
-        print("plafonds = ", plafonds.varValue)
-        print("sanitair = ", sanitair.varValue)
-        print("keuken = ", keuken.varValue)
-        print("buitenwanden = ", buitenwanden.varValue)
-        print("daken = ", daken.varValue)
-        print("vloeren = ", vloeren.varValue)
-        print("hoofddraagconstructie = ", hoofddraagconstructie.varValue)
-        print("na_isolatie = ", na_isolatie.varValue)
-        print("riolering_hwa = ", riolering_hwa.varValue)
-        print("terreininrichting = ", terreininrichting.varValue)
-        print("verwarming_koeling = ", verwarming_koeling.varValue)
-        print("luchtbehandeling = ", luchtbehandeling.varValue)
-        print("gebouwvoorzieningen =", gebouwvoorzieningen.varValue)
-        print("binnenwanden =", binnenwanden.varValue)
-        print("trappen_hellingen =", trappen_hellingen.varValue)
-        print("luiken_vensters =", luiken_vensters.varValue)
-        print("balustrades_leuningen =", balustrades_leuningen.varValue)
-        print("water_installaties =", water_installaties.varValue)
-        print("elektrische_installaties =", elektrische_installaties.varValue)
-        print("beveiliging =", beveiliging.varValue)
+        # print("buitenkozijnen = ", buitenkozijnen.varValue)
+        # print("lift = ", lift.varValue)
+        # print("binnenkozijnen = ", binnenkozijnen.varValue)
+        # print("binnenwandafwerkingen = ", binnenwandafwerkingen.varValue)
+        # print("vloerafwerkingen = ", vloerafwerkingen.varValue)
+        # print("plafonds = ", plafonds.varValue)
+        # print("sanitair = ", sanitair.varValue)
+        # print("keuken = ", keuken.varValue)
+        # print("buitenwanden = ", buitenwanden.varValue)
+        # print("daken = ", daken.varValue)
+        # print("vloeren = ", vloeren.varValue)
+        # print("hoofddraagconstructie = ", hoofddraagconstructie.varValue)
+        # print("na_isolatie = ", na_isolatie.varValue)
+        # print("riolering_hwa = ", riolering_hwa.varValue)
+        # print("terreininrichting = ", terreininrichting.varValue)
+        # print("verwarming_koeling = ", verwarming_koeling.varValue)
+        # print("luchtbehandeling = ", luchtbehandeling.varValue)
+        # print("gebouwvoorzieningen =", gebouwvoorzieningen.varValue)
+        # print("binnenwanden =", binnenwanden.varValue)
+        # print("trappen_hellingen =", trappen_hellingen.varValue)
+        # print("luiken_vensters =", luiken_vensters.varValue)
+        # print("balustrades_leuningen =", balustrades_leuningen.varValue)
+        # print("water_installaties =", water_installaties.varValue)
+        # print("elektrische_installaties =", elektrische_installaties.varValue)
+        # print("beveiliging =", beveiliging.varValue)
         
         print("Maximale waarde van de doelfunctie:", prob.objective.value())
         st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
