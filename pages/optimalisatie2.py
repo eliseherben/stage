@@ -238,7 +238,9 @@ with tab1:
         for index, row in df.iterrows():
             variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
 
-        st.markdown(variabelen[row["productgroep"]])
+        for key, value in variabelen.items():
+        	st.markdown(key, "=", value)
+        # st.markdown(variabelen[row["productgroep"]])
         # # Definieer de variabelen
         # buitenwanden = pl.LpVariable("buitenwanden", lowBound=0)
         # binnenwanden = pl.LpVariable("binnenwanden", lowBound=0)
@@ -271,7 +273,7 @@ with tab1:
         #               verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
 
         # variabels = [i for i in df['productgroep']]
-        st.markdown(variabelen)
+        # st.markdown(variabelen)
         
         #Impact themas op productgroepen
         
