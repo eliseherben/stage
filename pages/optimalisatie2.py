@@ -241,7 +241,7 @@ with tab1:
         lp_variabelen = []
         for key, value in variabelen.items():
             st.markdown(f"{key} = {value}")
-            lp_variabelen.append(key)
+            lp_variabelen.append(value)
 
         st.markdown(lp_variabelen)
         # st.markdown(variabelen[row["productgroep"]])
