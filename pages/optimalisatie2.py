@@ -124,6 +124,7 @@ with tab1:
         # weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_kwaliteit', on_change=set_weging_kwaliteit)
     
         impact = st.session_state.file
+        st.dataframe(impact)
         
         data = {
                 "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
