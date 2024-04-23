@@ -73,6 +73,8 @@ with tab1:
         st.dataframe(st.session_state.file, hide_index = True)
         df_fig = pd.melt(st.session_state.file, id_vars=['productgroep'], var_name='Optie', value_name='Waarde')
 
+        df_fig = df_fig[df_fig['Waarde'] != 0]
+        
         # Plot met Plotly Express
         fig = px.bar(df_fig, x='productgroep', y='Waarde', color='Optie',
              barmode='group', title='Voorbeeld Bar Plot met Barmode=group')
