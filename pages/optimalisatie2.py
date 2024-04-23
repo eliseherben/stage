@@ -237,9 +237,13 @@ with tab1:
         variabelen = {}
         for index, row in df.iterrows():
             variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
-
+        
+        lp_variabelen = []
         for key, value in variabelen.items():
-        	st.markdown(f"{key} = {value}")
+            st.markdown(f"{key} = {value}")
+            lp_variabelen.append(value)
+
+        st.markdown(lp_variabelen)
         # st.markdown(variabelen[row["productgroep"]])
         # # Definieer de variabelen
         # buitenwanden = pl.LpVariable("buitenwanden", lowBound=0)
