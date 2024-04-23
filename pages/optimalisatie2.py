@@ -361,7 +361,7 @@ with tab1:
         variabelen_waarden = []
         
         # Voeg de variabelen en hun waarden toe aan de lijst
-        for var in variabelen:
+        for var in lp_variabelen:
             variabelen_waarden.append((var.name, var.varValue))
         
         # Maak een DataFrame van de lijst
