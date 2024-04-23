@@ -233,8 +233,8 @@ with tab1:
     # Creëer een LP probleem
         prob = pl.LpProblem("Eigen Haard", pl.LpMaximize)
 
-        for index, row in df.iterrows():
-        variabelen[row["variabele"]] = pl.LpVariable(row["variabele"], lowBound=row["ondergrens"], upBound=row["bovengrens"])
+        # for index, row in df.iterrows():
+        # variabelen[row["variabele"]] = pl.LpVariable(row["variabele"], lowBound=row["ondergrens"], upBound=row["bovengrens"])
 
         
         # Definieer de variabelen
