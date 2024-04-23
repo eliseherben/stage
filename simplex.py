@@ -111,18 +111,18 @@ if uploaded_file is not None:
     st.markdown("dataframe") 
     st.dataframe(dataframe, hide_index = True)
 
-    dataframe['impact O'] = dataframe.groupby(['PRODUCTGROEP'])['impact onderhoud'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
-    dataframe['impact CD'] = dataframe.groupby(['PRODUCTGROEP'])['impact circulair'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
-    dataframe['impact K'] = dataframe.groupby(['PRODUCTGROEP'])['impact kwaliteit'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
-    dataframe['impact B'] = dataframe.groupby(['PRODUCTGROEP'])['impact budget'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
-    dataframe['impact W'] = dataframe.groupby(['PRODUCTGROEP'])['impact woonbeleving'].transform('count')/dataframe.groupby(['PRODUCTGROEP'])['PRODUCTGROEP'].transform('count')
+    dataframe['impact O'] = dataframe.groupby(['productgroep'])['impact onderhoud'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
+    dataframe['impact CD'] = dataframe.groupby(['productgroep'])['impact circulair'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
+    dataframe['impact K'] = dataframe.groupby(['productgroep'])['impact kwaliteit'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
+    dataframe['impact B'] = dataframe.groupby(['productgroep'])['impact budget'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
+    dataframe['impact W'] = dataframe.groupby(['productgroep'])['impact woonbeleving'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
     
-    impact = dataframe[['PRODUCTGROEP', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
-    impact = impact.groupby('PRODUCTGROEP')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
+    impact = dataframe[['productgroep', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
+    impact = impact.groupby('productgroep')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
     impact = impact.reset_index()
     
     productgroepen = pd.DataFrame({
-    "PRODUCTGROEP": ['21. Buitenwanden', '22. Binnenwanden', '23. Vloeren', '24. Trappen en hellingen', '27. Daken', '28. Hoofddraag- constructie', 
+    "productgroep": ['21. Buitenwanden', '22. Binnenwanden', '23. Vloeren', '24. Trappen en hellingen', '27. Daken', '28. Hoofddraag- constructie', 
                      '31. Buitenkozijnen, -ramen, -deuren en -puien.', '32. Binnenkozijnen en - deuren', '33. Luiken en vensters', 
                      '34. Balustrades en leuningen', '42. Binnenwand- afwerkingen', '43. Vloer- afwerkingen', '45 Plafonds', '48. Na-isolatie', 
                      '52. Riolering en HWA', '53. Warm- en koud water installaties', '56. Verwarming en koeling', '57. Lucht- behandeling', 
@@ -135,9 +135,9 @@ if uploaded_file is not None:
     "impact W": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
     
     for i, row in productgroepen.iterrows():
-        if row['PRODUCTGROEP'] not in impact['PRODUCTGROEP'].values:
+        if row['productgroep'] not in impact['productgroep'].values:
             impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
-    impact = impact.sort_values(by='PRODUCTGROEP', ascending=True)
+    impact = impact.sort_values(by='productgroep', ascending=True)
     impact = impact.reset_index(drop=True)
 
     st.session_state.file = impact
