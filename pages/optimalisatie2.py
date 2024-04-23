@@ -71,7 +71,10 @@ with tab1:
         st.markdown("upload een bestand")
     else: 
         st.dataframe(st.session_state.file, hide_index = True)
-
+        fig = px.bar(st.session_state.file, x="productgroep", y=["impact O", "impact CD", "impact K", "impact B", "impact W"]
+                     , barmode='group')
+        st.plotly_chart(fig)
+        
         st.markdown("**Rank**")
         data = {
           "thema": ['onderhoud', 'budget', 'kwaliteit', 'woonbeleving', 'circulariteit'],
