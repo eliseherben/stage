@@ -239,7 +239,7 @@ with tab1:
             variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
 
         for key, value in variabelen.items():
-        	st.markdown(key, "=", value)
+        	st.markdown(f"{key} = {value}")
         # st.markdown(variabelen[row["productgroep"]])
         # # Definieer de variabelen
         # buitenwanden = pl.LpVariable("buitenwanden", lowBound=0)
