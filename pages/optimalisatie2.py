@@ -59,6 +59,7 @@ def set_weging_woonbeleving():
 # In[ ]:
 
 
+st.write("#")
 st.title("Optimalisatie")
 tab1, tab2 = st.tabs(["Optimalisatie", "Aanpassingen"])
 
