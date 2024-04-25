@@ -81,9 +81,10 @@ with tab1:
              barmode='group', title="Impact thema's op productgroepen")
         st.plotly_chart(fig)
         
-        st.text_area(" ", " 
-                      
-                      ")
+        st.text_area(" ", 
+                     " "
+                     " "
+                    " ")
         
         st.markdown("**Rank**")
         data = {
