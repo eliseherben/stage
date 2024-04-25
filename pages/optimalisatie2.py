@@ -302,6 +302,14 @@ with tab1:
         prob += sum(lp_variabelen) == 100
         # prob += buitenkozijnen + lift + binnenkozijnen + binnenwandafwerkingen + vloerafwerkingen + plafonds + sanitair + keuken + buitenwanden + vloeren + daken + hoofddraagconstructie + na_isolatie + riolering_hwa + terreininrichting + verwarming_koeling + luchtbehandeling + gebouwvoorzieningen + binnenwanden + trappen_hellingen + luiken_vensters + balustrades_leuningen+ water_installaties + elektrische_installaties + beveiliging == 100
         
+        minimale = [15.5, 1.7, 12.0, 1.0, 2.3, 4.6, 13.7, 1.2, 0.1, 2.8, 0.4, 1.5, 1.4, 0, 0, 0, 0, 0, 0, 0.3, 0, 0, 1.7, 0, 0]
+        maximale = [35.0, 4.4, 21.6, 2.3, 6.1, 8.4, 18.0, 6.1, 0.2, 3.6, 3.5, 3.2, 2.5, 0, 5.6, 0, 5.6, 5.6, 9.0, 0.4, 0, 0, 1.8, 2.0, 0.1]
+        
+        for i in range(len(lp_variabelen)):
+            prob += lp_variabelen[i] >= minimale[i]
+            prob += lp_variabelen[i] <= maximale[i]
+
+        
         # prob += buitenkozijnen >= 6.8
         # prob += lift >= 0.4
         # prob += binnenkozijnen >= 3.4
@@ -616,4 +624,18 @@ with tab2:
             st.markdown(f"score woonbeleving: {woonbeleving2/sum(impact_woonbeleving)}")
             st.markdown(f"score kwaliteit: {kwaliteit2/sum(impact_kwaliteit)}")
             st.markdown(f"score onderhoud: {onderhoud2/sum(impact_onderhoud)}")
+
+
+# In[2]:
+
+
+minimale = [15.5, 1.7, 12.0, 1.0, 2.3, 4.6, 13.7, 1.2, 0.1, 2.8, 0.4, 1.5, 1.4, 0, 0, 0, 0, 0, 0, 0.3, 0, 0, 1.7, 0, 0]
+maximale = [35.0, 4.4, 21.6, 2.3, 6.1, 8.4, 18.0, 6.1, 0.2, 3.6, 3.5, 3.2, 2.5, 0, 5.6, 0, 5.6, 5.6, 9.0, 0.4, 0, 0, 1.8, 2.0, 0.1]
+len(maximale)
+
+
+# In[ ]:
+
+
+
 
