@@ -10,7 +10,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import pulp as pl
-from menu2 import menu
+# from menu2 import menu
 
 
 # In[ ]:
@@ -40,7 +40,7 @@ st.session_state._afdeling = st.session_state.afdeling
 def set_afdeling():
     st.session_state.afdeling = st.session_state._afdeling
 
-menu()
+# menu()
 
 
 # In[ ]:
