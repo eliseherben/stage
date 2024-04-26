@@ -63,7 +63,6 @@ st.title("Eigen Haard")
 
 
 st.session_state.file = None 
-st.markdown(st.session_state.afdeling)
 st.markdown("**Afdeling**")
 st.selectbox(
     "Welke afdeling?", 
@@ -86,8 +85,6 @@ uploaded_file = st.file_uploader("Choose a file", help='Upload hier het projectb
 st.session_state.projectbestand = uploaded_file
 if uploaded_file is not None:
     st.session_state.name = uploaded_file.name
-    # st.session_state.projectbestand = 'test'
-    # st.markdown(st.session_state.projectbestand)
     dataframe = pd.read_csv(uploaded_file)
     
     if st.session_state.afdeling in ['Nieuwbouw ontwikkeling', 'Renovatie ontwikkeling', 'Planmatig onderhoud ontwikkeling']:
@@ -120,6 +117,9 @@ if uploaded_file is not None:
 
     st.markdown("dataframe") 
     st.dataframe(dataframe, hide_index = True)
+    
+    dataframe_plus = dataframe[dataframe["norm / '+' optie"] == "'+' optie"]
+    st.dataframe(dataframe_plus)
 
     dataframe['impact O'] = dataframe.groupby(['productgroep'])['impact onderhoud'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
     dataframe['impact CD'] = dataframe.groupby(['productgroep'])['impact circulair'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
@@ -149,7 +149,7 @@ if uploaded_file is not None:
             impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
     impact = impact.sort_values(by='productgroep', ascending=True)
     impact = impact.reset_index(drop=True)
-
+    
     st.session_state.file = impact
 
 st.markdown("**Budget**")
