@@ -118,7 +118,7 @@ if uploaded_file is not None:
     st.markdown("dataframe") 
     st.dataframe(dataframe, hide_index = True)
     
-    dataframe_plus = dataframe[dataframe["norm / \n'+' optie"] == "'+' optie"]
+    dataframe_plus = dataframe[dataframe["norm / \n'+' optie"] == " '+' optie"]
     st.dataframe(dataframe_plus)
 
     st.markdown(f"{dataframe.columns}")
