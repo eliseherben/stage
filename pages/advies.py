@@ -18,10 +18,10 @@ st.markdown(f"* het projectbestand met de naam {st.session_state.name}")
 
 with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     st.markdown('''**Impact op circulair**
-    *Isolatie, isovlas of houtvezel: 
+    * Isolatie, isovlas of houtvezel: 
         - indien mogelijk Isovlas of houtvezel isolatie (zoals Gutex Thermoflex of gelijkwaardig) toepassen in buitenwanden.
-        \n
-    *Kalkzandsteen lijmblok/-elementen:
+        
+    \n * Kalkzandsteen lijmblok/-elementen:
         - kalkzandsteen elementen met recyclaat (zoals bijvoorbeeld Caldubo);
         - druksterkte: volgens opgave constructeur
         - Oppervlaktegroep overeenkomstig STABU Standaard, hfst. 22, bijlage A: groep 2;
