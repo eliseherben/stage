@@ -62,7 +62,7 @@ def set_weging_woonbeleving():
 st.write("#")
 st.title("Optimalisatie")
 tab1, tab2 = st.tabs(["Optimalisatie", "Aanpassingen"])
-page_link("pages/advies.py", label="Naar advies")
+st.page_link("pages/advies.py", label="Naar advies")
 
 
 # In[ ]:
