@@ -16,7 +16,7 @@ st.title("Advies")
 st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown(f"* het projectbestand met de naam {st.session_state.name}")
 
-with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
+with st.expander("**'+' opties voor productgroep 21. Buitenwanden**"):
     st.write('''**Kalkzandsteen lijmblok/-elementen:** 
 - kalkzandsteen elementen met recyclaat (zoals bijvoorbeeld Caldubo);
 - druksterkte: volgens opgave constructeur
