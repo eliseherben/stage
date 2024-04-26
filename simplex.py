@@ -83,9 +83,9 @@ st.selectbox(
 
 st.markdown("**Projectbestand**")
 uploaded_file = st.file_uploader("Choose a file", help='Upload hier het projectbestand, op basis van dit bestand wordt de optimalisatie uitgevoerd. ')
-st.session_state.name = uploaded_file.name
 st.session_state.projectbestand = uploaded_file
 if uploaded_file is not None:
+    st.session_state.name = uploaded_file.name
     # st.session_state.projectbestand = 'test'
     # st.markdown(st.session_state.projectbestand)
     dataframe = pd.read_csv(uploaded_file)
