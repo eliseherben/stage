@@ -118,16 +118,6 @@ with tab1:
         rs_woonbeleving = weights_df['rank sum (RS)'].iloc[4]
         st.markdown(rs_woonbeleving)
         
-        # st.markdown("**Wegingen**")
-        # st.markdown("Hieronder kan er per thema aangegeven worden of deze zwaarder of minder zwaar meeweegt tijdens dit project. "
-        # "Als een thema neutraal is kan deze op '0' blijven staan. Als een thema zwaarder meeweegt kan deze op +1 of +2 staan, "
-        # "als een thema minder zwaar meeweegt kan deze op -1 of -2 gezet worden. ")
-        # weging_woonbeleving = st.number_input("De weging in voor het thema 'Woonbeleving' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_woonbeleving', on_change=set_weging_woonbeleving)
-        # weging_circulair = st.number_input("De weging in voor het thema 'Duurzaam' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_circulair', on_change=set_weging_circulair)
-        # weging_budget = st.number_input("De weging in voor het thema 'Kosten' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_budget', on_change=set_weging_budget)
-        # weging_onderhoud = st.number_input("De weging in voor het thema 'Onderhoud' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_onderhoud', on_change=set_weging_onderhoud)
-        # weging_kwaliteit = st.number_input("De weging in voor het thema 'Kwaliteit' in dit project", value=1, min_value = 1, max_value = 5, key = '_weging_kwaliteit', on_change=set_weging_kwaliteit)
-    
         impact = st.session_state.file
         st.dataframe(impact)
         
@@ -249,43 +239,8 @@ with tab1:
             lp_variabelen.append(value)
 
         st.markdown(lp_variabelen)
-        # st.markdown(variabelen[row["productgroep"]])
-        # # Definieer de variabelen
-        # buitenwanden = pl.LpVariable("buitenwanden", lowBound=0)
-        # binnenwanden = pl.LpVariable("binnenwanden", lowBound=0)
-        # vloeren = pl.LpVariable("vloeren", lowBound=0)
-        # trappen_hellingen = pl.LpVariable("trappen_hellingen", lowBound=0)
-        # daken = pl.LpVariable("daken", lowBound=0)
-        # hoofddraagconstructie = pl.LpVariable("hoofddraagconstructie", lowBound=0)
-        # buitenkozijnen = pl.LpVariable("buitenkozijnen", lowBound=0)
-        # binnenkozijnen = pl.LpVariable("binnenkozijnen", lowBound=0)
-        # luiken_vensters = pl.LpVariable("luiken_vensters", lowBound=0)
-        # balustrades_leuningen = pl.LpVariable("balustrades_leuningen", lowBound=0)
-        # binnenwandafwerkingen = pl.LpVariable("binnenwandafwerkingen", lowBound=0)
-        # vloerafwerkingen = pl.LpVariable("vloerafwerkingen", lowBound=0)
-        # plafonds = pl.LpVariable("plafonds", lowBound=0)
-        # na_isolatie = pl.LpVariable("na_isolatie", lowBound=0)
-        # riolering_hwa = pl.LpVariable("riolering_hwa", lowBound=0)
-        # water_installaties = pl.LpVariable("water_installaties", lowBound=0)
-        # verwarming_koeling = pl.LpVariable("verwarming_koeling", lowBound=0)
-        # luchtbehandeling = pl.LpVariable("luchtbehandeling", lowBound=0)
-        # elektrische_installaties = pl.LpVariable("elektrische_installaties", lowBound=0)
-        # gebouwvoorzieningen = pl.LpVariable("gebouwvoorzieningen", lowBound=0)
-        # beveiliging = pl.LpVariable("beveiliging", lowBound=0)
-        # lift = pl.LpVariable("lift", lowBound=0)
-        # keuken = pl.LpVariable("keuken", lowBound=0)
-        # sanitair = pl.LpVariable("sanitair", lowBound=0)
-        # terreininrichting = pl.LpVariable("terreininrichting", lowBound=0)
-        
-        # variabelen = [buitenwanden, binnenwanden, vloeren, trappen_hellingen, daken, hoofddraagconstructie, buitenkozijnen, binnenkozijnen, luiken_vensters, 
-        #               balustrades_leuningen, binnenwandafwerkingen, vloerafwerkingen, plafonds, na_isolatie, riolering_hwa, water_installaties, 
-        #               verwarming_koeling, luchtbehandeling, elektrische_installaties, gebouwvoorzieningen, beveiliging, lift, keuken, sanitair, terreininrichting]
-
-        # variabels = [i for i in df['productgroep']]
-        # st.markdown(variabelen)
         
         #Impact themas op productgroepen
-        
         impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
         onderhoud = pl.lpSum(lp_variabelen[i] * impact_onderhoud[i] for i in range(25))
         
@@ -305,8 +260,21 @@ with tab1:
         
         # Voeg beperkingen toe (voorbeeldbeperkingen)
         prob += sum(lp_variabelen) == 100
-        # prob += buitenkozijnen + lift + binnenkozijnen + binnenwandafwerkingen + vloerafwerkingen + plafonds + sanitair + keuken + buitenwanden + vloeren + daken + hoofddraagconstructie + na_isolatie + riolering_hwa + terreininrichting + verwarming_koeling + luchtbehandeling + gebouwvoorzieningen + binnenwanden + trappen_hellingen + luiken_vensters + balustrades_leuningen+ water_installaties + elektrische_installaties + beveiliging == 100
         
+        data_restricties = {
+            "productgroep": ["21 Buitenwanden", "22 Binnenwanden", "23 Vloeren", "24 Trappen en hellingen", "27 Daken", 
+                             "28 Hoofddraagconstructie", "31 Buitenkozijnen, -ramen, -deuren en -puien", 
+                             "32 Binnenkozijnen en -deuren", "33 Luiken en vensters", "34 Balustrades en leuningen", 
+                            "42 Binnenwandafwerkingen", "43 Vloerafwerkingen", "45 Plafonds", "48 Na-isolatie", 
+                            "52 Riolering en HWA", "53 Warm- en koud water installaties", "56 Verwarming en koeling", 
+                            "57 Luchtbehandeling", "61 Elektrische installaties", "64 Vaste gebouwvoorziening", 
+                             "65 Beveiliging", "66 Lift", "73 Keuken", "74 Sanitair", "90 Terreininrichting"], 
+            "minimale": [15.5, 1.7, 12.0, 1.0, 2.3, 4.6, 13.7, 1.2, 0.1, 2.8, 0.4, 1.5, 1.4, 0, 0, 0, 0, 
+                          0, 0, 0.3, 0, 0, 1.7, 0, 0], 
+            "maximale": [35.0, 4.4, 21.6, 2.3, 6.1, 8.4, 18.0, 6.1, 0.2, 3.6, 3.5, 3.2, 2.5, 0, 5.6, 0, 5.6, 5.6, 
+                         9.0, 0.4, 0, 0, 1.8, 2.0, 0.1]
+        }
+    
         minimale = [15.5, 1.7, 12.0, 1.0, 2.3, 4.6, 13.7, 1.2, 0.1, 2.8, 0.4, 1.5, 1.4, 0, 0, 0, 0, 0, 0, 0.3, 0, 0, 1.7, 0, 0]
         maximale = [35.0, 4.4, 21.6, 2.3, 6.1, 8.4, 18.0, 6.1, 0.2, 3.6, 3.5, 3.2, 2.5, 0, 5.6, 0, 5.6, 5.6, 9.0, 0.4, 0, 0, 1.8, 2.0, 0.1]
         
@@ -314,59 +282,6 @@ with tab1:
             prob += lp_variabelen[i] >= minimale[i]
             prob += lp_variabelen[i] <= maximale[i]
 
-        
-        # prob += buitenkozijnen >= 6.8
-        # prob += lift >= 0.4
-        # prob += binnenkozijnen >= 3.4
-        # prob += binnenwandafwerkingen >= 2.6
-        # prob += vloerafwerkingen >= 3.8
-        # prob += plafonds >= 1.1
-        # prob += sanitair >= 2.3
-        # prob += keuken >= 0.4
-        # prob += buitenwanden >= 6.0 
-        # prob += vloeren >= 1.5
-        # prob += daken >= 2.3
-        # prob += hoofddraagconstructie >= 0.8
-        # prob += na_isolatie >= 0.8
-        # prob += riolering_hwa >= 3.4 
-        # prob += terreininrichting >= 2.6
-        # prob += verwarming_koeling >= 3.0
-        # prob += luchtbehandeling >= 1.9
-        # prob += gebouwvoorzieningen >= 1.5
-        # prob += binnenwanden >= 3.0
-        # prob += trappen_hellingen >= 2.3
-        # prob += luiken_vensters >= 1.9
-        # prob += balustrades_leuningen >= 0.4
-        # prob += water_installaties  >= 2.3
-        # prob += elektrische_installaties >= 0.4
-        # prob += beveiliging >= 1.1
-        
-        # prob += buitenkozijnen <= 12.8
-        # prob += lift <= 1.4
-        # prob += binnenkozijnen <= 6.4
-        # prob += binnenwandafwerkingen <= 4.5
-        # prob += vloerafwerkingen <= 7.5
-        # prob += plafonds <= 1.5
-        # prob += sanitair <= 3.4
-        # prob += keuken <= 1.9
-        # prob += buitenwanden <= 9.8 
-        # prob += vloeren <= 1.5
-        # prob += daken <= 5.3
-        # prob += hoofddraagconstructie <= 0.8
-        # prob += na_isolatie <= 2.3
-        # prob += riolering_hwa <= 7.1 
-        # prob += terreininrichting <= 3.0
-        # prob += verwarming_koeling <= 4.5
-        # prob += luchtbehandeling <= 4.5
-        # prob += gebouwvoorzieningen <= 4.1
-        # prob += binnenwanden <= 3.8
-        # prob += trappen_hellingen <= 3.4
-        # prob += luiken_vensters <= 1.9
-        # prob += balustrades_leuningen <= 1.4
-        # prob += water_installaties  <= 3.4
-        # prob += elektrische_installaties <= 2.3
-        # prob += beveiliging <= 1.9
-        
         # Los het probleem op
         status = prob.solve()
         
@@ -379,42 +294,9 @@ with tab1:
         
         # Maak een DataFrame van de lijst
         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
+        st.dataframe(df)
         
-        # Toon de DataFrame
-        print(df)
-        
-        # Toon de resultaten
-        print("Optimale oplossing:")
-        
-        print(pl.LpStatus[status])
         st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
-        # print("buitenkozijnen = ", buitenkozijnen.varValue)
-        # print("lift = ", lift.varValue)
-        # print("binnenkozijnen = ", binnenkozijnen.varValue)
-        # print("binnenwandafwerkingen = ", binnenwandafwerkingen.varValue)
-        # print("vloerafwerkingen = ", vloerafwerkingen.varValue)
-        # print("plafonds = ", plafonds.varValue)
-        # print("sanitair = ", sanitair.varValue)
-        # print("keuken = ", keuken.varValue)
-        # print("buitenwanden = ", buitenwanden.varValue)
-        # print("daken = ", daken.varValue)
-        # print("vloeren = ", vloeren.varValue)
-        # print("hoofddraagconstructie = ", hoofddraagconstructie.varValue)
-        # print("na_isolatie = ", na_isolatie.varValue)
-        # print("riolering_hwa = ", riolering_hwa.varValue)
-        # print("terreininrichting = ", terreininrichting.varValue)
-        # print("verwarming_koeling = ", verwarming_koeling.varValue)
-        # print("luchtbehandeling = ", luchtbehandeling.varValue)
-        # print("gebouwvoorzieningen =", gebouwvoorzieningen.varValue)
-        # print("binnenwanden =", binnenwanden.varValue)
-        # print("trappen_hellingen =", trappen_hellingen.varValue)
-        # print("luiken_vensters =", luiken_vensters.varValue)
-        # print("balustrades_leuningen =", balustrades_leuningen.varValue)
-        # print("water_installaties =", water_installaties.varValue)
-        # print("elektrische_installaties =", elektrische_installaties.varValue)
-        # print("beveiliging =", beveiliging.varValue)
-        
-        print("Maximale waarde van de doelfunctie:", prob.objective.value())
         st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
 
 
