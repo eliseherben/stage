@@ -32,15 +32,13 @@ with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
       
     **SPOUWWANDEN: baksteen met mortel** 
     
-    Steen:
-    - duurzaam alternatief: Wienerberger Ecobrick of gelijkwaardig;
+    Steen: - duurzaam alternatief: Wienerberger Ecobrick of gelijkwaardig;
     - dichtheid HD. 
     - maattolerantie categorie T2. 
     - maatspreiding categorie R1. 
     - actieve oplosbare zouten categorie S2.- vorst- en dooiweerstand categorie F2.  
     
-    Mortel:
-    - prefab doorstrijkmortel volgens NEN-EN 998-2-10. 
+    Mortel: - prefab doorstrijkmortel volgens NEN-EN 998-2-10. 
     - mortel naar toepassing (klasse): G. 
     - morteldruksterkte (klasse): M 10. 
     - bindmiddel: cement CEM I en bouwkalk (NEN-EN 459-1-10). 
@@ -49,8 +47,7 @@ with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
         
     **SPOUWWANDEN: isolatie (Isovlas)**
     
-    Kalkzandsteen lijmblok/-elementen:
-    - kalkzandsteen elementen met recyclaat (zoals bijvoorbeeld Caldubo);
+    Kalkzandsteen lijmblok/-elementen: - kalkzandsteen elementen met recyclaat (zoals bijvoorbeeld Caldubo);
     - druksterkte: volgens opgave constructeur
     - Oppervlaktegroep overeenkomstig STABU Standaard, hfst. 22, bijlage A: groep 2;
     - lijmmortel: - volgens advies fabrikant/leverancier van de blokken.  
