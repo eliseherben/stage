@@ -14,3 +14,9 @@ st.title("Advies")
 st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown(f"* het projectbestand met de naam {st.session_state.name}")
 
+
+# In[ ]:
+
+
+st.page_link("simplex.py", label="Homepagina")
+

@@ -63,6 +63,7 @@ st.write("#")
 st.title("Optimalisatie")
 tab1, tab2 = st.tabs(["Optimalisatie", "Aanpassingen"])
 st.page_link("pages/advies.py", label="Naar advies")
+st.page_link("simplex.py", label="Homepagina")
 
 
 # In[ ]:
