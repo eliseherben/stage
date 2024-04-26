@@ -19,13 +19,13 @@ st.markdown(f"* het projectbestand met de naam {st.session_state.name}")
 with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     st.markdown('''**Impact op circulair**
     \n Isolatie, isovlas of houtvezel: 
-    - indien mogelijk Isovlas of houtvezel isolatie (zoals Gutex Thermoflex of gelijkwaardig) toepassen in buitenwanden.
+    -indien mogelijk Isovlas of houtvezel isolatie (zoals Gutex Thermoflex of gelijkwaardig) toepassen in buitenwanden.
         
     \n Kalkzandsteen lijmblok/-elementen:
-    - kalkzandsteen elementen met recyclaat (zoals bijvoorbeeld Caldubo);
-    - druksterkte: volgens opgave constructeur
-    - Oppervlaktegroep overeenkomstig STABU Standaard, hfst. 22, bijlage A: groep 2;
-    - lijmmortel: - volgens advies fabrikant/leverancier van de blokken. 
+    -kalkzandsteen elementen met recyclaat (zoals bijvoorbeeld Caldubo);
+    -druksterkte: volgens opgave constructeur
+    -Oppervlaktegroep overeenkomstig STABU Standaard, hfst. 22, bijlage A: groep 2;
+    -lijmmortel: - volgens advies fabrikant/leverancier van de blokken. 
     \n\t Toebehoren:  - kimblokken. - lijmspouwankers, van roestvast staal, kwaliteit AISI 304, ø 4 mm. - veer-/stripankers van geperforeerd roestvast staal, kwaliteit AISI 304. ''')
 
 
