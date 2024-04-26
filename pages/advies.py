@@ -17,11 +17,7 @@ st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown(f"* het projectbestand met de naam {st.session_state.name}")
 
 with st.expander("See explanation"):
-    st.write(\"\"\"
-        The chart above shows some numbers I picked for you.
-        I rolled actual dice for these, so they're *guaranteed* to
-        be random.
-    \"\"\")
+    st.write("be random.")
 
 
 # In[ ]:
