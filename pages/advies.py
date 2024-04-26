@@ -16,18 +16,8 @@ st.title("Advies")
 st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown(f"* het projectbestand met de naam {st.session_state.name}")
 
-st.markdown("""
-<style>
-.big-font {
-    font-size:300px !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
-st.markdown('<p class="big-font">Hello World !!</p>', unsafe_allow_html=True)
-
-with st.expander("<p class='big-font'>'+' opties voor productgroep 21. Buitenwanden !!</p>"):
-    st.write('''**Kalkzandsteen lijmblok/-elementen:** 
+with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
+    st.write('''*Kalkzandsteen lijmblok/-elementen:* 
 - kalkzandsteen elementen met recyclaat (zoals bijvoorbeeld Caldubo);
 - druksterkte: volgens opgave constructeur
 - Oppervlaktegroep overeenkomstig STABU Standaard, hfst. 22, bijlage A: groep 2;
