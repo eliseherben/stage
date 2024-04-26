@@ -16,8 +16,13 @@ st.title("Advies")
 st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown(f"* het projectbestand met de naam {st.session_state.name}")
 
-with st.expander("See explanation"):
-    st.write("be random.")
+with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
+    st.write('''Kalkzandsteen lijmblok/-elementen: 
+- kalkzandsteen elementen met recyclaat (zoals bijvoorbeeld Caldubo);
+- druksterkte: volgens opgave constructeur
+- Oppervlaktegroep overeenkomstig STABU Standaard, hfst. 22, bijlage A: groep 2;
+- lijmmortel: - volgens advies fabrikant/leverancier van de blokken. 
+Toebehoren:  - kimblokken. - lijmspouwankers, van roestvast staal, kwaliteit AISI 304, ø 4 mm. - veer-/stripankers van geperforeerd roestvast staal, kwaliteit AISI 304. ''')
 
 
 # In[ ]:
