@@ -28,7 +28,7 @@ st.markdown('''De ranking van de thema's op de volgende manier:
 st.markdown("**'+' opties**")
 st.markdown("Hieronder zijn de '+' opties weergegeven van de productgroepen waarbij het aandeel in het project het grootst is. ")
 
-with st.expander("## '+' opties voor productgroep 21. Buitenwanden"):
+with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     st.markdown('''
     ##### Impact op circulair 
     
@@ -69,9 +69,9 @@ with st.expander("## '+' opties voor productgroep 21. Buitenwanden"):
     Toebehoren:  - kimblokken. - lijmspouwankers, van roestvast staal, kwaliteit AISI 304, ø 4 mm. - veer-/stripankers van geperforeerd roestvast staal, kwaliteit AISI 304. ''')
     
 
-with st.expander("### '+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deuren en -puien"):
+with st.expander('<h2 style="font-size: 24px;">"+" opties voor productgroep 31. Buitenkozijnen, -ramen, -deuren en -puien</h2>'):
     st.markdown('''
-    #### Impact op circulair
+    ##### Impact op circulair
     
     **ALGEMEEN: beglazing**
     
@@ -83,7 +83,7 @@ with st.expander("### '+' opties voor productgroep 31. Buitenkozijnen, -ramen, -
     
     Schilderwerk: Fabrikant: Sigma, Sikkens of gelijkwaardig. 
     
-    #### Impact op budget
+    ##### Impact op budget
     
     **ALGEMEEN: natuursteen buitendorpel met neut**
     
@@ -97,7 +97,7 @@ with st.expander("### '+' opties voor productgroep 31. Buitenkozijnen, -ramen, -
     Natuursteen vensterbank van marmercomposiet:   
     - van marmercomposiet (96% natuursteen, 4% kunsthars) - dikte 20 mm.  - zichtzijden fijn gezoet. 
     
-    #### Impact op kwaliteit
+    ##### Impact op kwaliteit
     
     **ALGEMEEN: natuursteen buitendorpel met neut**
     
