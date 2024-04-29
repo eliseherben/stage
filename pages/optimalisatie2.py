@@ -136,8 +136,6 @@ with tab1:
                 }
                 
         df = pd.DataFrame(data)
-        st.markdown("dataframe impact?")
-        st.dataframe(df)
         
         onderhoud = df[['productgroep', 'impact onderhoud']]
         onderhoud = onderhoud.sort_values(by='impact onderhoud', ascending=False)
@@ -230,8 +228,6 @@ with tab1:
         prob = pl.LpProblem("Eigen Haard", pl.LpMaximize)
 
         variabelen = {}
-        st.markdown("df")
-        st.dataframe(df)
         for index, row in df.iterrows():
             variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
         
@@ -239,8 +235,6 @@ with tab1:
         for key, value in variabelen.items():
             st.markdown(f"{key} = {value}")
             lp_variabelen.append((key, value))
-
-        st.markdown(lp_variabelen)
         
         #Impact themas op productgroepen
         impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
@@ -296,7 +290,6 @@ with tab1:
         
         # Maak een DataFrame van de lijst
         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
-        st.dataframe(df)
         
         st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
