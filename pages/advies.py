@@ -11,6 +11,14 @@ import pandas as pd
 # In[ ]:
 
 
+df = st.session_state.dataframe
+df = df[df["norm / \n'+' optie"] == " '+' optie"]
+st.markdown(df.columns)
+
+
+# In[ ]:
+
+
 st.write("#")
 st.write("#")
 st.title("Advies")
