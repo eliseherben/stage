@@ -70,7 +70,7 @@ if not onderhoud.empty:
     # Loop door elke productgroep en maak een expander voor elke productgroep
     for productgroep in productgroepen:
         productgroep_data = df[df['productgroep'] == productgroep]
-        with st.expander(f"'+' opties voor productgroep {productgroep}"):
+        with st.expander(f"'+' opties voor productgroep {productgroep}", expanded=True):
             # Print alle elementen en specificaties binnen de expander
             for index, row in productgroep_data.iterrows():
                 element = row['element'].strip()
@@ -94,7 +94,7 @@ if not circulair.empty:
     # Loop door elke productgroep en maak een expander voor elke productgroep
     for productgroep in productgroepen:
         productgroep_data = df[df['productgroep'] == productgroep]
-        with st.expander(f"'+' opties voor productgroep {productgroep}"):
+        with st.expander(f"'+' opties voor productgroep {productgroep}", expanded=True):
             # Print alle elementen en specificaties binnen de expander
             for index, row in productgroep_data.iterrows():
                 element = row['element'].strip()
@@ -118,7 +118,7 @@ if not kwaliteit.empty:
     # Loop door elke productgroep en maak een expander voor elke productgroep
     for productgroep in productgroepen:
         productgroep_data = df[df['productgroep'] == productgroep]
-        with st.expander(f"'+' opties voor productgroep {productgroep}"):
+        with st.expander(f"'+' opties voor productgroep {productgroep}", expanded=True):
             # Print alle elementen en specificaties binnen de expander
             for index, row in productgroep_data.iterrows():
                 element = row['element'].strip()
@@ -142,7 +142,7 @@ if not budget.empty:
     # Loop door elke productgroep en maak een expander voor elke productgroep
     for productgroep in productgroepen:
         productgroep_data = df[df['productgroep'] == productgroep]
-        with st.expander(f"'+' opties voor productgroep {productgroep}"):
+        with st.expander(f"'+' opties voor productgroep {productgroep}", expanded=True):
             # Print alle elementen en specificaties binnen de expander
             for index, row in productgroep_data.iterrows():
                 element = row['element'].strip()
@@ -166,7 +166,7 @@ if not woonbeleving.empty:
     # Loop door elke productgroep en maak een expander voor elke productgroep
     for productgroep in productgroepen:
         productgroep_data = df[df['productgroep'] == productgroep]
-        with st.expander(f"'+' opties voor productgroep {productgroep}"):
+        with st.expander(f"'+' opties voor productgroep {productgroep}", expanded=True):
             # Print alle elementen en specificaties binnen de expander
             for index, row in productgroep_data.iterrows():
                 element = row['element'].strip()
