@@ -54,7 +54,8 @@ for productgroep in productgroepen:
     with st.expander(f"'+' opties voor productgroep {productgroep}"):
         # Print alle elementen en specificaties binnen de expander
         for index, row in productgroep_data.iterrows():
-            st.write(f"element: {row['element']}, specificatie: {row['specificatie']}")
+            st.markdown(f"**{row['element']}**")
+            st.markdown(f"{row['specificatie']}")
 
 
 # In[ ]:
