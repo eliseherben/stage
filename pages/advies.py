@@ -134,21 +134,21 @@ if not budget.empty:
 woonbeleving = df[df['impact woonbeleving'] == 'W']
 
 if not woonbeleving.empty:
-st.markdown("**woonbeleving '+' opties**")
-st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op woonbeleving, 
-            gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie. ''')
+    st.markdown("**woonbeleving '+' opties**")
+    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op woonbeleving, 
+                gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie. ''')
 
-productgroepen = woonbeleving['productgroep'].unique()
+    productgroepen = woonbeleving['productgroep'].unique()
 
-# Loop door elke productgroep en maak een expander voor elke productgroep
-for productgroep in productgroepen:
-    productgroep_data = df[df['productgroep'] == productgroep]
-    with st.expander(f"'+' opties voor productgroep {productgroep}"):
-        # Print alle elementen en specificaties binnen de expander
-        for index, row in productgroep_data.iterrows():
-            element = row['element'].strip()
-            st.markdown(f"**{element}**")
-            st.markdown(f"{row['specificatie']}")
+    # Loop door elke productgroep en maak een expander voor elke productgroep
+    for productgroep in productgroepen:
+        productgroep_data = df[df['productgroep'] == productgroep]
+        with st.expander(f"'+' opties voor productgroep {productgroep}"):
+            # Print alle elementen en specificaties binnen de expander
+            for index, row in productgroep_data.iterrows():
+                element = row['element'].strip()
+                st.markdown(f"**{element}**")
+                st.markdown(f"{row['specificatie']}")
 
 
 # In[ ]:
