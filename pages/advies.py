@@ -19,13 +19,13 @@ st.markdown("**Projectbestand**")
 st.markdown(f"Het projectbestand met de naam {st.session_state.name}")
 st.dataframe(st.session_state.dataframe)
 st.markdown('''De ranking van de thema's op de volgende manier:
-    1. Woonbeleving
-    2. Onderhoud
-    3. Budget
-    4. Kwaliteit
-    5. Woonbeleving''')
+1. Woonbeleving
+2. Onderhoud
+3. Budget
+4. Kwaliteit
+5. Woonbeleving''')
 
-st.markdown("** '+' opties")
+st.markdown("** '+' opties**")
 st.markdown("Hieronder zijn de '+' opties weergegeven van de productgroepen waarbij het aandeel in het project het grootst is. ")
 
 with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
@@ -67,6 +67,51 @@ with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     - Oppervlaktegroep overeenkomstig STABU Standaard, hfst. 22, bijlage A: groep 2;
     - lijmmortel: - volgens advies fabrikant/leverancier van de blokken.  
     Toebehoren:  - kimblokken. - lijmspouwankers, van roestvast staal, kwaliteit AISI 304, ø 4 mm. - veer-/stripankers van geperforeerd roestvast staal, kwaliteit AISI 304. ''')
+    
+
+with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deuren en -puien"):
+    st.markdown('''
+    **Impact op circulair**  
+    
+    **ALGEMEEN: beglazing**
+    
+    Beglazing:
+    - circulaire beglazing (minimun van 50%, waar mogelijk meer);
+    - Meerbladig isolerende beglazing, volgens NEN 2608+a01, minimaal HR++ glas. 
+        
+    **BUITENWANDOPENINGEN, HOUT: schilderwerk**
+    
+    Schilderwerk: Fabrikant: Sigma, Sikkens of gelijkwaardig. 
+    
+    **Impact op budget**
+    
+    **ALGEMEEN: natuursteen buitendorpel met neut**
+    
+    Natuursteen buitendorpel met neut: 
+    - van hardsteen. 
+    - geprofileerd met ingelijmde neuten en aan bovenzijde hoeken met facetkant.
+    - onder de buitendeurkozijnen van de algemene ruimten op de begane grond. 
+    
+    **ALGEMEEN:  Natuursteen vensterbank van marmercomposiet:**
+    
+    Natuursteen vensterbank van marmercomposiet:   
+    - van marmercomposiet (96% natuursteen, 4% kunsthars) - dikte 20 mm.  - zichtzijden fijn gezoet. 
+    
+    **Impact op kwaliteit**
+    
+    **ALGEMEEN: natuursteen buitendorpel met neut**
+    
+    Natuursteen buitendorpel met neut: 
+    - van hardsteen. 
+    - geprofileerd met ingelijmde neuten en aan bovenzijde hoeken met facetkant.
+    - onder de buitendeurkozijnen van de algemene ruimten op de begane grond. 
+    
+    **ALGEMEEN:  Natuursteen vensterbank van marmercomposiet:**
+    
+    Natuursteen vensterbank van marmercomposiet:   
+    - van marmercomposiet (96% natuursteen, 4% kunsthars) - dikte 20 mm.  - zichtzijden fijn gezoet.
+    
+    ''')
 
 
 # In[ ]:
