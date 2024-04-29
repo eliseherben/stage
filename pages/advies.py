@@ -13,7 +13,8 @@ import pandas as pd
 
 df = st.session_state.dataframe
 df = df[df["norm / \n'+' optie"] == " '+' optie"]
-df = df[['productgroep', 'element', 'specificatie', "norm / \n'+' optie"]]
+df = df[['productgroep', 'element', 'specificatie', "norm / \n'+' optie", 
+         "impact onderhoud", "impact circulair", "impact kwaliteit", "impact budget", "impact woonbeleving"]]
 df = df.reset_index(drop=True)
 st.dataframe(df)
 
@@ -43,7 +44,7 @@ st.markdown("advies test")
 st.markdown("impact op circulair")
 circulair = df[['impact circulair'] == 'CD']
 grouped = circulair.groupby('productgroep')
-st.dataframe(circulair)
+st.dataframe(grouped)
 
 
 # In[ ]:
