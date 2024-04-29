@@ -238,7 +238,7 @@ with tab1:
         lp_variabelen = []
         for key, value in variabelen.items():
             st.markdown(f"{key} = {value}")
-            lp_variabelen.append(value)
+            lp_variabelen.append((key, value))
 
         st.markdown(lp_variabelen)
         
