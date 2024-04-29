@@ -119,9 +119,8 @@ if uploaded_file is not None:
     st.dataframe(dataframe, hide_index = True)
     
     dataframe_plus = dataframe[dataframe["norm / \n'+' optie"] == " '+' optie"]
-    st.dataframe(dataframe_plus)
+#     st.dataframe(dataframe_plus)
 
-    st.markdown(f"{dataframe.columns}")
     dataframe['impact O'] = dataframe.groupby(['productgroep'])['impact onderhoud'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
     dataframe['impact CD'] = dataframe.groupby(['productgroep'])['impact circulair'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
     dataframe['impact K'] = dataframe.groupby(['productgroep'])['impact kwaliteit'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
@@ -153,8 +152,8 @@ if uploaded_file is not None:
     
     st.session_state.file = impact
 
-st.markdown("**Budget**")
-st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
+# st.markdown("**Budget**")
+# st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
 
 if uploaded_file is not None:
     st.page_link("pages/optimalisatie2.py", label="Naar optimalisatie")
