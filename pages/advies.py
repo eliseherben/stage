@@ -76,11 +76,14 @@ if not onderhoud.empty:
     for productgroep in productgroepen:
         productgroep_data = df[df['productgroep'] == productgroep]
         with st.expander(f"'+' opties voor productgroep {productgroep}", expanded=True):
+            expander_content = []
             # Print alle elementen en specificaties binnen de expander
             for index, row in productgroep_data.iterrows():
                 element = row['element'].strip()
                 st.markdown(f"**{element}**")
                 st.markdown(f"{row['specificatie']}")
+                expander_content.append(f"**{element}**")
+                expander_content.append(f"{row['specificatie']}")
             
             # Bereken de lengte van de inhoud binnen de expander
             expander_length = calculate_expander_content_length(expander_content)
@@ -106,11 +109,14 @@ if not circulair.empty:
     for productgroep in productgroepen:
         productgroep_data = df[df['productgroep'] == productgroep]
         with st.expander(f"'+' opties voor productgroep {productgroep}", expanded=True):
+            expander_content = []
             # Print alle elementen en specificaties binnen de expander
             for index, row in productgroep_data.iterrows():
                 element = row['element'].strip()
                 st.markdown(f"**{element}**")
                 st.markdown(f"{row['specificatie']}")
+                expander_content.append(f"**{element}**")
+                expander_content.append(f"{row['specificatie']}")
             
             # Bereken de lengte van de inhoud binnen de expander
             expander_length = calculate_expander_content_length(expander_content)
@@ -136,11 +142,14 @@ if not kwaliteit.empty:
     for productgroep in productgroepen:
         productgroep_data = df[df['productgroep'] == productgroep]
         with st.expander(f"'+' opties voor productgroep {productgroep}", expanded=True):
+            expander_content = []
             # Print alle elementen en specificaties binnen de expander
             for index, row in productgroep_data.iterrows():
                 element = row['element'].strip()
                 st.markdown(f"**{element}**")
                 st.markdown(f"{row['specificatie']}")
+                expander_content.append(f"**{element}**")
+                expander_content.append(f"{row['specificatie']}")
                 
             # Bereken de lengte van de inhoud binnen de expander
             expander_length = calculate_expander_content_length(expander_content)
@@ -166,11 +175,14 @@ if not budget.empty:
     for productgroep in productgroepen:
         productgroep_data = df[df['productgroep'] == productgroep]
         with st.expander(f"'+' opties voor productgroep {productgroep}", expanded=True):
+            expander_content = []
             # Print alle elementen en specificaties binnen de expander
             for index, row in productgroep_data.iterrows():
                 element = row['element'].strip()
                 st.markdown(f"**{element}**")
                 st.markdown(f"{row['specificatie']}")
+                expander_content.append(f"**{element}**")
+                expander_content.append(f"{row['specificatie']}")
                 
             # Bereken de lengte van de inhoud binnen de expander
             expander_length = calculate_expander_content_length(expander_content)
@@ -196,11 +208,14 @@ if not woonbeleving.empty:
     for productgroep in productgroepen:
         productgroep_data = df[df['productgroep'] == productgroep]
         with st.expander(f"'+' opties voor productgroep {productgroep}", expanded=True):
+            expander_content = []
             # Print alle elementen en specificaties binnen de expander
             for index, row in productgroep_data.iterrows():
                 element = row['element'].strip()
                 st.markdown(f"**{element}**")
                 st.markdown(f"{row['specificatie']}")
+                expander_content.append(f"**{element}**")
+                expander_content.append(f"{row['specificatie']}")
                 
             # Bereken de lengte van de inhoud binnen de expander
             expander_length = calculate_expander_content_length(expander_content)
