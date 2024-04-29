@@ -17,7 +17,7 @@ st.title("Advies")
 st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown("**Projectbestand**")
 st.markdown(f"* Het projectbestand met de naam {st.session_state.name}")
-st.dataframe(st.session_state.projectbestand)
+st.dataframe(st.session_state.dataframe)
 st.markdown('''* de ranking van de thema's op de volgende manier:
 1. Woonbeleving
 2. Onderhoud
