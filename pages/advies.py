@@ -15,6 +15,12 @@ st.write("#")
 st.title("Advies")
 st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown(f"* het projectbestand met de naam {st.session_state.name}")
+st.markdown('''de ranking van de thema's op de volgende manier:
+            1. Woonbeleving
+            2. Onderhoud
+            3. Budget
+            4. Kwaliteit
+            5. Woonbeleving''')
 
 with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     st.markdown('''
@@ -50,7 +56,7 @@ with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     **SPOUWWANDEN: isolatie (Isovlas)**
     
     Kalkzandsteen lijmblok/-elementen:
-    -kalkzandsteen elementen met recyclaat (zoals bijvoorbeeld Caldubo);
+    - kalkzandsteen elementen met recyclaat (zoals bijvoorbeeld Caldubo);
     - druksterkte: volgens opgave constructeur
     - Oppervlaktegroep overeenkomstig STABU Standaard, hfst. 22, bijlage A: groep 2;
     - lijmmortel: - volgens advies fabrikant/leverancier van de blokken.  
