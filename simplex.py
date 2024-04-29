@@ -131,7 +131,7 @@ if uploaded_file is not None:
     st.markdown("Dataframe met alleen plus opties:")
     st.dataframe(dataframe_plus)
 
-    impact = dataframe
+    impact = dataframe.copy()
     st.dataframe(dataframe)
     
     impact['impact O'] = impact.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
