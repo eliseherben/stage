@@ -230,6 +230,7 @@ with tab1:
         prob = pl.LpProblem("Eigen Haard", pl.LpMaximize)
 
         variabelen = {}
+        st.dataframe(df)
         for index, row in df.iterrows():
             variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
         
@@ -316,6 +317,8 @@ with tab1:
         
         st.plotly_chart(fig1)
 
+
+# #### Aanpassingen
 
 # In[ ]:
 
