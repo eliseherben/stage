@@ -22,7 +22,7 @@ if "projectbestand" not in st.session_state:
 st.session_state._projectbestand = st.session_state.projectbestand
 
 def set_projectbestand():
-    st.session_state.projectbestand = "tets"
+    st.session_state.projectbestand = st.session_state._projectbestand
 
 if 'file' not in st.session_state:
     st.session_state.file = None
