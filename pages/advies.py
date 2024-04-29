@@ -24,22 +24,15 @@ df = df.reset_index(drop=True)
 st.markdown(
     """
     <style type="text/css" media="print">
-      .page-break {
+      hr
+      {
         page-break-after: always;
-      }
-      .center-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+        page-break-inside: avoid;
       }
     </style>
-    """,
+""",
     unsafe_allow_html=True,
 )
-
-
-
 
 
 # In[ ]:
@@ -47,10 +40,10 @@ st.markdown(
 
 st.write("#")
 st.write("#")
-st.title('"<div class="center-content">Advies</div>', unsafe_allow_html=True)
+st.title("Advies")
 st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown("**Projectbestand**")
-st.markdown(f'Het projectbestand met de naam "{st.session_state.name}"')
+st.markdown(f'Het projectbestand met de naam "{st.session_state.name}"'')
 st.dataframe(st.session_state.dataframe)
 st.markdown("**Rank**")
 st.markdown('''De ranking van de thema's op de volgende manier:
