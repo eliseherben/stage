@@ -42,7 +42,7 @@ st.markdown('''De ranking van de thema's op de volgende manier:
 
 st.markdown("advies test")
 st.markdown("impact op circulair")
-circulair = df[['impact circulair'] == 'CD']
+circulair = df[df['impact circulair'] == 'CD']
 grouped = circulair.groupby('productgroep')
 st.dataframe(grouped)
 
