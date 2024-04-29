@@ -37,16 +37,16 @@ st.markdown(
 def detect_page_break(content):
     # Bepaal hier je criteria voor het invoegen van een pagina-einde
     # Bijvoorbeeld, voeg een pagina-einde in na elke 5000 tekens
-    if content > 500:
+    if content > 50:
         return True
     else:
         return False
 
 
 def calculate_expander_content_length(expander_content):
-    # Bereken de lengte van alle inhoud binnen de expander
-    total_length = sum(len(section) for section in expander_content)
-    return total_length
+    # Bereken het aantal regels in de inhoud binnen de expander
+    total_lines = sum(1 for line in expander_content.split('\n'))
+    return total_lines
 
 
 # In[ ]:
