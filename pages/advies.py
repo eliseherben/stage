@@ -13,7 +13,8 @@ import pandas as pd
 
 df = st.session_state.dataframe
 df = df[df["norm / \n'+' optie"] == " '+' optie"]
-st.markdown(df.columns)
+df = df[['productgroep', 'element', 'specificatie', "norm / \n'+' optie"]]
+st.dataframe(df)
 
 
 # In[ ]:
