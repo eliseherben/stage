@@ -132,7 +132,6 @@ if uploaded_file is not None:
     st.dataframe(dataframe_plus)
 
     impact = dataframe.copy()
-    st.dataframe(dataframe)
     
     impact['impact O'] = impact.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
     impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
@@ -143,9 +142,7 @@ if uploaded_file is not None:
     impact = impact[['productgroep', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
     impact = impact.groupby('productgroep')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
     impact = impact.reset_index()
-    
-    st.dataframe(dataframe)
-    
+        
     productgroepen = pd.DataFrame({
     "productgroep": ['21. Buitenwanden', '22. Binnenwanden', '23. Vloeren', '24. Trappen en hellingen', '27. Daken', '28. Hoofddraag- constructie', 
                      '31. Buitenkozijnen, -ramen, -deuren en -puien.', '32. Binnenkozijnen en - deuren', '33. Luiken en vensters', 
