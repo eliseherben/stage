@@ -282,11 +282,9 @@ st.page_link("simplex.py", label="Homepagina")
 # Voeg aangepaste CSS toe voor printmedia
 st.markdown("""
     <style>
-    @media print {
-        .stApp {
-            width: 100%;
-            margin: 0;
-        }
+    @page {
+        size: auto;   /* Stelt de paginagrootte in op automatisch */
+        margin: 0mm;  /* Stelt de marges in op 0 */
     }
     </style>
 """, unsafe_allow_html=True)
