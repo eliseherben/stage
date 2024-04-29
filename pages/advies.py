@@ -24,13 +24,15 @@ df = df.reset_index(drop=True)
 st.markdown(
     """
     <style type="text/css" media="print">
-      hr
-      {
+      .page-break {
         page-break-after: always;
-        page-break-inside: avoid;
+      }
+      .center {
+        text-align: center;
+        margin: auto;
       }
     </style>
-""",
+    """,
     unsafe_allow_html=True,
 )
 
