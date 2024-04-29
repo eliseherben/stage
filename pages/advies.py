@@ -14,6 +14,7 @@ import pandas as pd
 df = st.session_state.dataframe
 df = df[df["norm / \n'+' optie"] == " '+' optie"]
 df = df[['productgroep', 'element', 'specificatie', "norm / \n'+' optie"]]
+df = df.reset_index(drop=True)
 st.dataframe(df)
 
 
@@ -33,6 +34,20 @@ st.markdown('''De ranking van de thema's op de volgende manier:
 3. Budget
 4. Kwaliteit
 5. Woonbeleving''')
+
+
+# In[ ]:
+
+
+st.markdown("advies test")
+st.markdown("impact op circulair")
+circulair = df[['impact circulair'] == 'CD']
+grouped = circulair.groupby('productgroep')
+st.dataframe(grouped)
+
+
+# In[ ]:
+
 
 st.markdown("**'+' opties**")
 st.markdown("Hieronder zijn de '+' opties weergegeven van de productgroepen waarbij het aandeel in het project het grootst is. ")
