@@ -26,9 +26,9 @@ st.write("#")
 st.title("Advies")
 st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown("**Projectbestand**")
-st.markdown(f"Het projectbestand met de naam {st.session_state.name}")
+st.markdown(f"Het projectbestand met de naam "{st.session_state.name}"")
 st.dataframe(st.session_state.dataframe)
-st.markdown("**rank**")
+st.markdown("**Rank**")
 st.markdown('''De ranking van de thema's op de volgende manier:
 1. Woonbeleving
 2. Onderhoud
@@ -43,7 +43,7 @@ st.markdown('''De ranking van de thema's op de volgende manier:
 onderhoud = df[df['impact onderhoud'] == 'O']
 
 if not onderhoud.empty:
-    st.markdown("##### onderhoud '+' opties")
+    st.markdown("**Onderhoud '+' opties**")
     st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op onderhoud, 
                 gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie. ''')
 
@@ -66,7 +66,7 @@ if not onderhoud.empty:
 circulair = df[df['impact circulair'] == 'CD']
 
 if not circulair.empty:
-    st.markdown("##### circulaire '+' opties")
+    st.markdown("**Circulaire '+' opties**")
     st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op circulair, 
                 gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie ''')
 
@@ -89,7 +89,7 @@ if not circulair.empty:
 kwaliteit = df[df['impact kwaliteit'] == 'K']
 
 if not kwaliteit.empty:
-    st.markdown("##### kwaliteit '+' opties")
+    st.markdown("**Kwaliteit '+' opties**")
     st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op kwaliteit, 
                 gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie. ''')
 
@@ -112,7 +112,7 @@ if not kwaliteit.empty:
 budget = df[df['impact budget'] == 'B']
 
 if not budget.empty:
-    st.markdown("##### budget '+' opties")
+    st.markdown("**Budget '+' opties**")
     st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op budget, 
                 gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie. ''')
 
@@ -135,7 +135,7 @@ if not budget.empty:
 woonbeleving = df[df['impact woonbeleving'] == 'W']
 
 if not woonbeleving.empty:
-    st.markdown("##### woonbeleving '+' opties")
+    st.markdown("**Woonbeleving '+' opties**")
     st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op woonbeleving, 
                 gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie. ''')
 
