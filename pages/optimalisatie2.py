@@ -81,7 +81,7 @@ with tab1:
         
         # Plot met Plotly Express
         fig = px.bar(df_fig, x='productgroep', y='impact', color='Optie',
-             barmode='group', title="Impact thema's op productgroepen", textinfo='percent+label')
+             barmode='group', title="Impact thema's op productgroepen")
         st.plotly_chart(fig)
         
         st.write("#")
