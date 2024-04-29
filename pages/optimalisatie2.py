@@ -244,19 +244,19 @@ with tab1:
         
         #Impact themas op productgroepen
         impact_onderhoud = [impact.iloc[a, 1] for a in range(len(impact))]
-        onderhoud = pl.lpSum(lp_variabelen[i] * impact_onderhoud[i] for i in range(25))
+        onderhoud = pl.lpSum(lp_variabelen[i][1] * impact_onderhoud[i] for i in range(25))
         
         impact_circulair = [impact.iloc[a, 2] for a in range(len(impact))]
-        circulair = pl.lpSum(lp_variabelen[i] * impact_circulair[i] for i in range(25))
+        circulair = pl.lpSum(lp_variabelen[i][1] * impact_circulair[i] for i in range(25))
         
         impact_kwaliteit = [impact.iloc[a, 3] for a in range(len(impact))]
-        kwaliteit = pl.lpSum(lp_variabelen[i] * impact_kwaliteit[i] for i in range(25))
+        kwaliteit = pl.lpSum(lp_variabelen[i][1] * impact_kwaliteit[i] for i in range(25))
         
         impact_budget = [impact.iloc[a, 4] for a in range(len(impact))]
-        budget = pl.lpSum(lp_variabelen[i] * impact_budget[i] for i in range(25))
+        budget = pl.lpSum(lp_variabelen[i][1] * impact_budget[i] for i in range(25))
         
         impact_woonbeleving = [impact.iloc[a, 5] for a in range(len(impact))]
-        woonbeleving = pl.lpSum(lp_variabelen[i] * impact_woonbeleving[i] for i in range(25))
+        woonbeleving = pl.lpSum(lp_variabelen[i][1] * impact_woonbeleving[i] for i in range(25))
         
         prob += rs_circulariteit * circulair - rs_budget * budget + rs_woonbeleving * woonbeleving + rs_kwaliteit * kwaliteit + rs_onderhoud * onderhoud
         
