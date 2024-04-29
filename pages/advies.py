@@ -16,14 +16,17 @@ st.write("#")
 st.title("Advies")
 st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown("**Projectbestand**")
-st.markdown(f"* Het projectbestand met de naam {st.session_state.name}")
+st.markdown(f"Het projectbestand met de naam {st.session_state.name}")
 st.dataframe(st.session_state.dataframe)
-st.markdown('''* de ranking van de thema's op de volgende manier:
-1. Woonbeleving
-2. Onderhoud
-3. Budget
-4. Kwaliteit
-5. Woonbeleving''')
+st.markdown('''De ranking van de thema's op de volgende manier:
+    1. Woonbeleving
+    2. Onderhoud
+    3. Budget
+    4. Kwaliteit
+    5. Woonbeleving''')
+
+st.markdown("** '+' opties")
+st.markdown("Hieronder zijn de '+' opties weergegeven van de productgroepen waarbij het aandeel in het project het grootst is. ")
 
 with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     st.markdown('''
