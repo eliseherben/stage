@@ -132,6 +132,7 @@ if uploaded_file is not None:
     st.dataframe(dataframe_plus)
 
     impact = dataframe
+    st.dataframe(dataframe)
     
     impact['impact O'] = impact.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
     impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
