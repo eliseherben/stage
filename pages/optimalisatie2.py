@@ -81,7 +81,7 @@ with tab1:
         
         # Plot met Plotly Express
         fig = px.bar(df_fig, x='productgroep', y='impact', color='Optie',
-             barmode='group', title="Impact thema's op productgroepen")
+             barmode='group', title="Impact thema's op productgroepen", textinfo='percent+label')
         st.plotly_chart(fig)
         
         st.write("#")
@@ -94,6 +94,7 @@ with tab1:
         
         df = pd.DataFrame(data)
         ranking_df = st.data_editor(df, disabled = ["thema"], width = 500, hide_index = True)
+        
         ranking_df = ranking_df.sort_values(by = ['rank'])
         ranking_df = ranking_df.reset_index(drop=True)
         
