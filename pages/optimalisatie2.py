@@ -291,8 +291,8 @@ with tab1:
         variabelen_waarden = []
         
         # Voeg de variabelen en hun waarden toe aan de lijst
-        for var in lp_variabelen:
-            variabelen_waarden.append((var.name, var.varValue))
+        for key, var in lp_variabelen:
+            variabelen_waarden.append((key, var.varValue))
         
         # Maak een DataFrame van de lijst
         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
