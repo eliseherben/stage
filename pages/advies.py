@@ -46,6 +46,16 @@ circulair = df[df['impact circulair'] == 'CD']
 grouped = circulair.groupby('productgroep')
 st.dataframe(grouped)
 
+productgroepen = circulair['productgroep'].unique()
+
+# Loop door elke productgroep en maak een expander voor elke productgroep
+for productgroep in productgroepen:
+    productgroep_data = df[df['productgroep'] == productgroep]
+    with st.expander(f"'+' opties voor productgroep {productgroep}"):
+        # Print alle elementen en specificaties binnen de expander
+        for index, row in productgroep_data.iterrows():
+            st.write(f"element: {row['element']}, specificatie: {row['specificatie']}")
+
 
 # In[ ]:
 
