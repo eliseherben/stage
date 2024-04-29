@@ -261,7 +261,7 @@ with tab1:
         prob += rs_circulariteit * circulair - rs_budget * budget + rs_woonbeleving * woonbeleving + rs_kwaliteit * kwaliteit + rs_onderhoud * onderhoud
         
         # Voeg beperkingen toe (voorbeeldbeperkingen)
-        prob += sum(lp_variabelen) == 100
+        prob += sum(lp_variabelen[1]) == 100
         
         data_restricties = {
             "productgroep": ["21 Buitenwanden", "22 Binnenwanden", "23 Vloeren", "24 Trappen en hellingen", "27 Daken", 
