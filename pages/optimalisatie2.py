@@ -230,6 +230,7 @@ with tab1:
         prob = pl.LpProblem("Eigen Haard", pl.LpMaximize)
 
         variabelen = {}
+        st.markdown("df")
         st.dataframe(df)
         for index, row in df.iterrows():
             variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
