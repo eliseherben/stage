@@ -261,7 +261,7 @@ with tab1:
         prob += rs_circulariteit * circulair - rs_budget * budget + rs_woonbeleving * woonbeleving + rs_kwaliteit * kwaliteit + rs_onderhoud * onderhoud
         
         # Voeg beperkingen toe (voorbeeldbeperkingen)
-        prob += sum(lp_variabelen[1]) == 100
+        prob += sum(t[0] for t in lp_variabelen) == 100
         
         data_restricties = {
             "productgroep": ["21 Buitenwanden", "22 Binnenwanden", "23 Vloeren", "24 Trappen en hellingen", "27 Daken", 
@@ -281,8 +281,8 @@ with tab1:
         maximale = [35.0, 4.4, 21.6, 2.3, 6.1, 8.4, 18.0, 6.1, 0.2, 3.6, 3.5, 3.2, 2.5, 0, 5.6, 0, 5.6, 5.6, 9.0, 0.4, 0, 0, 1.8, 2.0, 0.1]
         
         for i in range(len(lp_variabelen)):
-            prob += lp_variabelen[i] >= minimale[i]
-            prob += lp_variabelen[i] <= maximale[i]
+            prob += lp_variabelen[i][1] >= minimale[i]
+            prob += lp_variabelen[i][1] <= maximale[i]
 
         # Los het probleem op
         status = prob.solve()
