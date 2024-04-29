@@ -131,13 +131,15 @@ if uploaded_file is not None:
     st.markdown("Dataframe met alleen plus opties:")
     st.dataframe(dataframe_plus)
 
-    dataframe['impact O'] = dataframe.groupby(['productgroep'])['impact onderhoud'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
-    dataframe['impact CD'] = dataframe.groupby(['productgroep'])['impact circulair'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
-    dataframe['impact K'] = dataframe.groupby(['productgroep'])['impact kwaliteit'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
-    dataframe['impact B'] = dataframe.groupby(['productgroep'])['impact budget'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
-    dataframe['impact W'] = dataframe.groupby(['productgroep'])['impact woonbeleving'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
+    impact = dataframe
     
-    impact = dataframe[['productgroep', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
+    impact['impact O'] = impact.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
+    impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
+    impact['impact K'] = impact.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
+    impact['impact B'] = impact.groupby(['productgroep'])['impact budget'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
+    impact['impact W'] = impact.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
+    
+    impact = impact[['productgroep', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
     impact = impact.groupby('productgroep')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
     impact = impact.reset_index()
     
