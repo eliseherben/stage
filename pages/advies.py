@@ -46,7 +46,7 @@ st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op ond
 
 onderhoud = df[df['impact onderhoud'] == 'O']
 
-productgroepen = circulair['productgroep'].unique()
+productgroepen = onderhoud['productgroep'].unique()
 
 # Loop door elke productgroep en maak een expander voor elke productgroep
 for productgroep in productgroepen:
@@ -90,7 +90,7 @@ st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op kwa
 
 kwaliteit = df[df['impact kwaliteit'] == 'K']
 
-productgroepen = circulair['productgroep'].unique()
+productgroepen = kwaliteit['productgroep'].unique()
 
 # Loop door elke productgroep en maak een expander voor elke productgroep
 for productgroep in productgroepen:
@@ -112,7 +112,7 @@ st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op bud
 
 budget = df[df['impact budget'] == 'B']
 
-productgroepen = circulair['productgroep'].unique()
+productgroepen = budget['productgroep'].unique()
 
 # Loop door elke productgroep en maak een expander voor elke productgroep
 for productgroep in productgroepen:
@@ -134,7 +134,7 @@ st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op woo
 
 woonbeleving = df[df['impact woonbeleving'] == 'W']
 
-productgroepen = circulair['productgroep'].unique()
+productgroepen = woonbeleving['productgroep'].unique()
 
 # Loop door elke productgroep en maak een expander voor elke productgroep
 for productgroep in productgroepen:
