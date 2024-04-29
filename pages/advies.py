@@ -30,7 +30,7 @@ st.markdown("Hieronder zijn de '+' opties weergegeven van de productgroepen waar
 
 with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     st.markdown('''
-    ###### Impact op circulair 
+    **__Impact op circulair__**
     
     **ALGEMEEN: isolatie (Isovlas of houtvezel)**
     
