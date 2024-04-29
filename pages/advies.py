@@ -47,7 +47,7 @@ st.markdown(
 
 st.write("#")
 st.write("#")
-st.title("Advies")
+st.title('"<div class="center-content">Advies</div>', unsafe_allow_html=True)
 st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown("**Projectbestand**")
 st.markdown(f'Het projectbestand met de naam "{st.session_state.name}"')
@@ -274,18 +274,4 @@ if not woonbeleving.empty:
 
 
 st.page_link("simplex.py", label="Homepagina")
-
-
-# In[ ]:
-
-
-# Voeg aangepaste CSS toe voor printmedia
-st.markdown("""
-    <style>
-    @page {
-        size: auto;   /* Stelt de paginagrootte in op automatisch */
-        margin: 0mm;  /* Stelt de marges in op 0 */
-    }
-    </style>
-""", unsafe_allow_html=True)
 
