@@ -128,7 +128,8 @@ if uploaded_file is not None:
     st.session_state.dataframe = dataframe
     
     dataframe_plus = dataframe[dataframe["norm / \n'+' optie"] == " '+' optie"]
-#     st.dataframe(dataframe_plus)
+    st.markdown("Dataframe met alleen plus opties:")
+    st.dataframe(dataframe_plus)
 
     dataframe['impact O'] = dataframe.groupby(['productgroep'])['impact onderhoud'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
     dataframe['impact CD'] = dataframe.groupby(['productgroep'])['impact circulair'].transform('count')/dataframe.groupby(['productgroep'])['productgroep'].transform('count')
