@@ -37,7 +37,7 @@ st.markdown(
 def detect_page_break(content):
     # Bepaal hier je criteria voor het invoegen van een pagina-einde
     # Bijvoorbeeld, voeg een pagina-einde in na elke 5000 tekens
-    if len(content) > 5000:
+    if content > 5000:
         return True
     else:
         return False
