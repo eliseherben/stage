@@ -69,7 +69,7 @@ with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     Toebehoren:  - kimblokken. - lijmspouwankers, van roestvast staal, kwaliteit AISI 304, ø 4 mm. - veer-/stripankers van geperforeerd roestvast staal, kwaliteit AISI 304. ''')
     
 
-with st.expander('<h2 style="font-size: 24px;">"+" opties voor productgroep 31. Buitenkozijnen, -ramen, -deuren en -puien</h2>'):
+with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deuren en -puien"):
     st.markdown('''
     ##### Impact op circulair
     
