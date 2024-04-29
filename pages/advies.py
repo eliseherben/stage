@@ -71,7 +71,7 @@ with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
 
 with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deuren en -puien"):
     st.markdown('''
-    ###Impact op circulair###
+    ### Impact op circulair
     
     **ALGEMEEN: beglazing**
     
@@ -83,7 +83,7 @@ with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deur
     
     Schilderwerk: Fabrikant: Sigma, Sikkens of gelijkwaardig. 
     
-    ##Impact op budget##
+    ## Impact op budget
     
     **ALGEMEEN: natuursteen buitendorpel met neut**
     
