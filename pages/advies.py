@@ -27,9 +27,11 @@ st.markdown(
       .page-break {
         page-break-after: always;
       }
-      .center {
-        text-align: center;
-        margin: auto;
+      .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
       }
     </style>
     """,
