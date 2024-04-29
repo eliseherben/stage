@@ -71,7 +71,7 @@ with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
 
 with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deuren en -puien"):
     st.markdown('''
-    ##### Impact op circulair
+    <u><strong>Impact op circulair</strong></u>
     
     **ALGEMEEN: beglazing**
     
@@ -83,7 +83,7 @@ with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deur
     
     Schilderwerk: Fabrikant: Sigma, Sikkens of gelijkwaardig. 
     
-    ##### Impact op budget
+    <u><strong>Impact op budget</strong></u>
     
     **ALGEMEEN: natuursteen buitendorpel met neut**
     
@@ -97,7 +97,7 @@ with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deur
     Natuursteen vensterbank van marmercomposiet:   
     - van marmercomposiet (96% natuursteen, 4% kunsthars) - dikte 20 mm.  - zichtzijden fijn gezoet. 
     
-    ##### Impact op kwaliteit
+    <u><strong>Impact op kwaliteit</strong></u>
     
     **ALGEMEEN: natuursteen buitendorpel met neut**
     
@@ -111,7 +111,7 @@ with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deur
     Natuursteen vensterbank van marmercomposiet:   
     - van marmercomposiet (96% natuursteen, 4% kunsthars) - dikte 20 mm.  - zichtzijden fijn gezoet.
     
-    ''')
+    ''', unsafe_allow_html=True)
 
 
 # In[ ]:
