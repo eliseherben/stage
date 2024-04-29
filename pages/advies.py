@@ -43,8 +43,6 @@ st.markdown('''De ranking van de thema's op de volgende manier:
 st.markdown("advies test")
 st.markdown("impact op circulair")
 circulair = df[df['impact circulair'] == 'CD']
-grouped = circulair.groupby('productgroep')
-st.dataframe(grouped)
 
 productgroepen = circulair['productgroep'].unique()
 
@@ -54,7 +52,8 @@ for productgroep in productgroepen:
     with st.expander(f"'+' opties voor productgroep {productgroep}"):
         # Print alle elementen en specificaties binnen de expander
         for index, row in productgroep_data.iterrows():
-            st.markdown(f"**{row['element']}**")
+            element = row['Element'].strip()
+            st.markdown(f"**{element}**")
             st.markdown(f"{row['specificatie']}")
 
 
