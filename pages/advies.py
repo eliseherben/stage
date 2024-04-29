@@ -38,6 +38,21 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+import streamlit as st
+
+# Voeg CSS toe voor printmedia
+st.markdown("""
+<style>
+@media print {
+    body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
+
 
 # In[ ]:
 
