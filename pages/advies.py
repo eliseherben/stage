@@ -25,7 +25,7 @@ st.markdown('''De ranking van de thema's op de volgende manier:
 4. Kwaliteit
 5. Woonbeleving''')
 
-st.markdown("** '+' opties**")
+st.markdown("**'+' opties**")
 st.markdown("Hieronder zijn de '+' opties weergegeven van de productgroepen waarbij het aandeel in het project het grootst is. ")
 
 with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
@@ -71,7 +71,7 @@ with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
 
 with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deuren en -puien"):
     st.markdown('''
-    **Impact op circulair**  
+    ###Impact op circulair
     
     **ALGEMEEN: beglazing**
     
@@ -83,7 +83,7 @@ with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deur
     
     Schilderwerk: Fabrikant: Sigma, Sikkens of gelijkwaardig. 
     
-    **Impact op budget**
+    ##Impact op budget
     
     **ALGEMEEN: natuursteen buitendorpel met neut**
     
