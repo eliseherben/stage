@@ -24,6 +24,14 @@ st.session_state._projectbestand = st.session_state.projectbestand
 def set_projectbestand():
     st.session_state.projectbestand = st.session_state._projectbestand
 
+if "dataframe" not in st.session_state:
+    st.session_state.dataframe = None
+    
+st.session_state._dataframe = st.session_state.dataframe
+
+def set_dataframe():
+    st.session_state.dataframe = st.session_state._dataframe
+    
 if 'file' not in st.session_state:
     st.session_state.file = None
 
