@@ -30,7 +30,7 @@ st.markdown("Hieronder zijn de '+' opties weergegeven van de productgroepen waar
 
 with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     st.markdown('''
-    **__Impact op circulair__**
+    <u><strong>Impact op circulair</strong></u>
     
     **ALGEMEEN: isolatie (Isovlas of houtvezel)**
     
@@ -66,7 +66,7 @@ with st.expander("'+' opties voor productgroep 21. Buitenwanden"):
     - druksterkte: volgens opgave constructeur
     - Oppervlaktegroep overeenkomstig STABU Standaard, hfst. 22, bijlage A: groep 2;
     - lijmmortel: - volgens advies fabrikant/leverancier van de blokken.  
-    Toebehoren:  - kimblokken. - lijmspouwankers, van roestvast staal, kwaliteit AISI 304, ø 4 mm. - veer-/stripankers van geperforeerd roestvast staal, kwaliteit AISI 304. ''')
+    Toebehoren:  - kimblokken. - lijmspouwankers, van roestvast staal, kwaliteit AISI 304, ø 4 mm. - veer-/stripankers van geperforeerd roestvast staal, kwaliteit AISI 304. ''', unsafe_allow_html=True)
     
 
 with st.expander("'+' opties voor productgroep 31. Buitenkozijnen, -ramen, -deuren en -puien"):
