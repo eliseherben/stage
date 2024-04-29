@@ -34,6 +34,11 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+def calculate_expander_content_length(expander_content):
+    # Bereken de lengte van alle inhoud binnen de expander
+    total_length = sum(len(section) for section in expander_content)
+    return total_length
+
 
 # In[ ]:
 
@@ -76,6 +81,12 @@ if not onderhoud.empty:
                 element = row['element'].strip()
                 st.markdown(f"**{element}**")
                 st.markdown(f"{row['specificatie']}")
+            
+            # Bereken de lengte van de inhoud binnen de expander
+            expander_length = calculate_expander_content_length(expander_content)
+            # Voer de detectie van pagina-einde uit op basis van de lengte van de expander
+            if detect_page_break(expander_length):
+                st.markdown("---")
 
 
 # In[ ]:
@@ -100,6 +111,12 @@ if not circulair.empty:
                 element = row['element'].strip()
                 st.markdown(f"**{element}**")
                 st.markdown(f"{row['specificatie']}")
+            
+            # Bereken de lengte van de inhoud binnen de expander
+            expander_length = calculate_expander_content_length(expander_content)
+            # Voer de detectie van pagina-einde uit op basis van de lengte van de expander
+            if detect_page_break(expander_length):
+                st.markdown("---")
 
 
 # In[ ]:
@@ -124,6 +141,12 @@ if not kwaliteit.empty:
                 element = row['element'].strip()
                 st.markdown(f"**{element}**")
                 st.markdown(f"{row['specificatie']}")
+                
+            # Bereken de lengte van de inhoud binnen de expander
+            expander_length = calculate_expander_content_length(expander_content)
+            # Voer de detectie van pagina-einde uit op basis van de lengte van de expander
+            if detect_page_break(expander_length):
+                st.markdown("---")
 
 
 # In[ ]:
@@ -148,6 +171,12 @@ if not budget.empty:
                 element = row['element'].strip()
                 st.markdown(f"**{element}**")
                 st.markdown(f"{row['specificatie']}")
+                
+            # Bereken de lengte van de inhoud binnen de expander
+            expander_length = calculate_expander_content_length(expander_content)
+            # Voer de detectie van pagina-einde uit op basis van de lengte van de expander
+            if detect_page_break(expander_length):
+                st.markdown("---")
 
 
 # In[ ]:
@@ -172,6 +201,12 @@ if not woonbeleving.empty:
                 element = row['element'].strip()
                 st.markdown(f"**{element}**")
                 st.markdown(f"{row['specificatie']}")
+                
+            # Bereken de lengte van de inhoud binnen de expander
+            expander_length = calculate_expander_content_length(expander_content)
+            # Voer de detectie van pagina-einde uit op basis van de lengte van de expander
+            if detect_page_break(expander_length):
+                st.markdown("---")
 
 
 # In[ ]:
