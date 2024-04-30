@@ -131,7 +131,7 @@ if uploaded_file is not None:
     st.markdown("Dataframe met alleen plus opties:")
     st.dataframe(dataframe_plus)
 
-    st.markdown(data['impact circulair'].value_counts()['CD'])
+    st.markdown(dataframe['impact circulair'].value_counts()['CD'])
     
     impact = dataframe.copy()
     
