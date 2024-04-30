@@ -151,6 +151,7 @@ if uploaded_file is not None:
     impact2['impact W'] = impact2.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
 
     value_counts_series = impact['impact onderhoud'].value_counts()
+    st.markdown(value_counts_series)
     
     if 'O' in value_counts_series.index:
         count_O = value_counts_series['O']
