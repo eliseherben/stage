@@ -159,22 +159,22 @@ if uploaded_file is not None:
         impact['impact O'] = 0
         
     if 'CD' in impact['impact circulair'].value_counts().index:
-         impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact['impact circulair'].value_counts()['O']
+         impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact['impact circulair'].value_counts()['CD']
     else:
         impact['impact CD'] = 0
     
     if 'K' in impact['impact kwaliteit'].value_counts().index:
-         impact['impact K'] = impact.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact['impact kwaliteit'].value_counts()['O']
+         impact['impact K'] = impact.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact['impact kwaliteit'].value_counts()['K']
     else:
         impact['impact K'] = 0
         
     if 'B' in impact['impact budget'].value_counts().index:
-         impact['impact B'] = impact.groupby(['productgroep'])['impact budget'].transform('count')/impact['impact budget'].value_counts()['O']
+         impact['impact B'] = impact.groupby(['productgroep'])['impact budget'].transform('count')/impact['impact budget'].value_counts()['B']
     else:
         impact['impact B'] = 0
         
     if 'W' in impact['impact woonbeleving'].value_counts().index:
-         impact['impact W'] = impact.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact['impact woonbeleving'].value_counts()['O']
+         impact['impact W'] = impact.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact['impact woonbeleving'].value_counts()['W']
     else:
         impact['impact W'] = 0
     
