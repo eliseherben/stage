@@ -84,6 +84,17 @@ with tab1:
              barmode='group', title="Impact thema's op productgroepen")
         st.plotly_chart(fig)
         
+        #barplot
+#         st.dataframe(st.session_state.file, hide_index = True)
+        df_fig2 = pd.melt(st.session_state.file2, id_vars=['productgroep'], var_name='Optie', value_name='impact')
+
+        df_fig2 = df_fig2[df_fig2['impact'] != 0]
+        
+        # Plot met Plotly Express
+        fig2 = px.bar(df_fig2, x='productgroep', y='impact', color='Optie',
+             barmode='group', title="Impact thema's op productgroepen 2")
+        st.plotly_chart(fig2)
+        
         st.write("#")
         
         st.markdown("**Rank**")
