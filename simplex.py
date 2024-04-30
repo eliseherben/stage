@@ -39,6 +39,14 @@ st.session_state._file = st.session_state.file
 
 def set_file():
     st.session_state.file = st.session_state._file
+    
+if 'file2' not in st.session_state:
+    st.session_state.file2 = None
+
+st.session_state._file2 = st.session_state.file2
+
+def set_file2():
+    st.session_state.file2 = st.session_state._file2
 
 if 'afdeling' not in st.session_state:
     st.session_state.afdeling = None
@@ -134,12 +142,13 @@ if uploaded_file is not None:
 #     st.markdown(dataframe['impact circulair'].value_counts()['CD'])
     
     impact = dataframe.copy()
+    impact2 = dataframe.copy()
     
-#     impact['impact O'] = impact.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
-#     impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
-#     impact['impact K'] = impact.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
-#     impact['impact B'] = impact.groupby(['productgroep'])['impact budget'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
-#     impact['impact W'] = impact.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact.groupby(['productgroep'])['productgroep'].transform('count')
+    impact2['impact O 2'] = impact2.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
+    impact2['impact CD 2'] = impact2.groupby(['productgroep'])['impact circulair'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
+    impact2['impact K 2'] = impact2.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
+    impact2['impact B 2'] = impact2.groupby(['productgroep'])['impact budget'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
+    impact2['impact W 2'] = impact2.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
     
     impact['impact O'] = 0
     impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact['impact circulair'].value_counts()['CD']
@@ -151,6 +160,10 @@ if uploaded_file is not None:
     impact = impact[['productgroep', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
     impact = impact.groupby('productgroep')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
     impact = impact.reset_index()
+    
+    impact2 = impact2[['productgroep', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
+    impact2 = impact2.groupby('productgroep')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
+    impact2 = impact2.reset_index()
         
     productgroepen = pd.DataFrame({
     "productgroep": ['21. Buitenwanden', '22. Binnenwanden', '23. Vloeren', '24. Trappen en hellingen', '27. Daken', '28. Hoofddraag- constructie', 
@@ -171,7 +184,16 @@ if uploaded_file is not None:
     impact = impact.sort_values(by='productgroep', ascending=True)
     impact = impact.reset_index(drop=True)
     
+    
+    for i, row in productgroepen.iterrows():
+        if row['productgroep'] not in impact['productgroep'].values:
+            impact2 = pd.concat([impact, row.to_frame().T], ignore_index=True)
+    impact2 = impact2.sort_values(by='productgroep', ascending=True)
+    impact2 = impact2.reset_index(drop=True)
+    
     st.session_state.file = impact
+    st.session_state.file2 = impact2
+
 
 # st.markdown("**Budget**")
 # st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
