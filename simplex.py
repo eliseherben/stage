@@ -153,18 +153,37 @@ if uploaded_file is not None:
     value_counts_series = impact['impact onderhoud'].value_counts()
     st.markdown(value_counts_series)
     
-    if 'O' in value_counts_series.index:
-        count_O = value_counts_series['O']
-        st.markdown(count_O)
+    if 'O' in impact['impact onderhoud'].value_counts().index:
+         impact['impact O'] = impact.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact['impact onderhoud'].value_counts()['O']
     else:
-        st.markdown("De waarde 'O' komt niet voor in de kolom 'impact onderhoud'.")
+        impact['impact O'] = 0
+        
+    if 'CD' in impact['impact circulair'].value_counts().index:
+         impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact['impact circulair'].value_counts()['O']
+    else:
+        impact['impact CD'] = 0
+    
+    if 'K' in impact['impact kwaliteit'].value_counts().index:
+         impact['impact K'] = impact.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact['impact kwaliteit'].value_counts()['O']
+    else:
+        impact['impact K'] = 0
+        
+    if 'B' in impact['impact budget'].value_counts().index:
+         impact['impact B'] = impact.groupby(['productgroep'])['impact budget'].transform('count')/impact['impact budget'].value_counts()['O']
+    else:
+        impact['impact B'] = 0
+        
+    if 'W' in impact['impact woonbeleving'].value_counts().index:
+         impact['impact W'] = impact.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact['impact woonbeleving'].value_counts()['O']
+    else:
+        impact['impact W'] = 0
     
 #     if impact['impact circulair'].value_counts()['CD'] >  
-    impact['impact O'] = 0
-    impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact['impact circulair'].value_counts()['CD']
-    impact['impact K'] = impact.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact['impact kwaliteit'].value_counts()['K']
-    impact['impact B'] = impact.groupby(['productgroep'])['impact budget'].transform('count')/impact['impact budget'].value_counts()['B']
-    impact['impact W'] = impact.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact['impact woonbeleving'].value_counts()['W']
+#     impact['impact O'] = 0
+#     impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact['impact circulair'].value_counts()['CD']
+#     impact['impact K'] = impact.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact['impact kwaliteit'].value_counts()['K']
+#     impact['impact B'] = impact.groupby(['productgroep'])['impact budget'].transform('count')/impact['impact budget'].value_counts()['B']
+#     impact['impact W'] = impact.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact['impact woonbeleving'].value_counts()['W']
  
     
     impact = impact[['productgroep', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
