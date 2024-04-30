@@ -74,7 +74,7 @@ with tab1:
         st.markdown("upload een bestand")
     else: 
         #barplot
-        st.dataframe(st.session_state.file, hide_index = True)
+#         st.dataframe(st.session_state.file, hide_index = True)
         df_fig = pd.melt(st.session_state.file, id_vars=['productgroep'], var_name='Optie', value_name='impact')
 
         df_fig = df_fig[df_fig['impact'] != 0]
@@ -105,8 +105,8 @@ with tab1:
 
         weights_df = ranking_df.sort_values(by = ['thema'])
         weights_df = weights_df.reset_index(drop=True)
-        st.dataframe(ranking_df)
-        st.dataframe(weights_df)
+#         st.dataframe(ranking_df)
+#         st.dataframe(weights_df)
 
         rs_budget = weights_df['rank sum (RS)'].iloc[0]
         rs_circulariteit = weights_df['rank sum (RS)'].iloc[1]
@@ -115,7 +115,7 @@ with tab1:
         rs_woonbeleving = weights_df['rank sum (RS)'].iloc[4]
         
         impact = st.session_state.file
-        st.dataframe(impact)
+#         st.dataframe(impact)
         
         data = {
                 "productgroep": ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', '28 Hoofddraagconstructie', 
@@ -229,7 +229,7 @@ with tab1:
         
         lp_variabelen = []
         for key, value in variabelen.items():
-            st.markdown(f"{key} = {value}")
+#             st.markdown(f"{key} = {value}")
             lp_variabelen.append((key, value))
         
         #Impact themas op productgroepen
