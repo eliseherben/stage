@@ -149,9 +149,6 @@ if uploaded_file is not None:
     impact2['impact K'] = impact2.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
     impact2['impact B'] = impact2.groupby(['productgroep'])['impact budget'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
     impact2['impact W'] = impact2.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
-
-    value_counts_series = impact['impact onderhoud'].value_counts()
-    st.markdown(value_counts_series)
     
     if 'O' in impact['impact onderhoud'].value_counts().index:
          impact['impact O'] = impact.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact['impact onderhoud'].value_counts()['O']
@@ -177,14 +174,6 @@ if uploaded_file is not None:
          impact['impact W'] = impact.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact['impact woonbeleving'].value_counts()['W']
     else:
         impact['impact W'] = 0
-    
-#     if impact['impact circulair'].value_counts()['CD'] >  
-#     impact['impact O'] = 0
-#     impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact['impact circulair'].value_counts()['CD']
-#     impact['impact K'] = impact.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact['impact kwaliteit'].value_counts()['K']
-#     impact['impact B'] = impact.groupby(['productgroep'])['impact budget'].transform('count')/impact['impact budget'].value_counts()['B']
-#     impact['impact W'] = impact.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact['impact woonbeleving'].value_counts()['W']
- 
     
     impact = impact[['productgroep', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
     impact = impact.groupby('productgroep')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
