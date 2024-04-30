@@ -144,11 +144,11 @@ if uploaded_file is not None:
     impact = dataframe.copy()
     impact2 = dataframe.copy()
     
-    impact2['impact O 2'] = impact2.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
-    impact2['impact CD 2'] = impact2.groupby(['productgroep'])['impact circulair'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
-    impact2['impact K 2'] = impact2.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
-    impact2['impact B 2'] = impact2.groupby(['productgroep'])['impact budget'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
-    impact2['impact W 2'] = impact2.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
+    impact2['impact O'] = impact2.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
+    impact2['impact CD'] = impact2.groupby(['productgroep'])['impact circulair'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
+    impact2['impact K'] = impact2.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
+    impact2['impact B'] = impact2.groupby(['productgroep'])['impact budget'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
+    impact2['impact W'] = impact2.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
     
     impact['impact O'] = 0
     impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact['impact circulair'].value_counts()['CD']
