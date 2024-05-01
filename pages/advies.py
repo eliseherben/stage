@@ -65,7 +65,7 @@ st.markdown('''De ranking van de thema's op de volgende manier:
 2. Onderhoud
 3. Budget
 4. Kwaliteit
-5. Woonbeleving''')
+5. Circulair''')
 
 
 # In[ ]:
