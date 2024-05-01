@@ -259,7 +259,7 @@ with tab1:
         impact_woonbeleving = [impact.iloc[a, 5] for a in range(len(impact))]
         woonbeleving = pl.lpSum(lp_variabelen[i][1] * impact_woonbeleving[i] for i in range(25))
         
-        prob += rs_circulariteit * circulair - rs_budget * budget + rs_woonbeleving * woonbeleving + rs_kwaliteit * kwaliteit + rs_onderhoud * onderhoud
+        prob += rs_circulariteit * circulair - rs_budget * budget + rs_woonbeleving * woonbeleving + rs_kwaliteit * kwaliteit - rs_onderhoud * onderhoud
         
         # Voeg beperkingen toe (voorbeeldbeperkingen)
         prob += sum(t[1] for t in lp_variabelen) == 100
