@@ -59,8 +59,8 @@ st.markdown("Dit advies is gebasseerd op de volgende gegevens:")
 st.markdown("**Projectbestand**")
 st.markdown(f'Het projectbestand met de naam "{st.session_state.name}"')
 st.dataframe(st.session_state.dataframe)
-st.markdown("**Rank**")
-st.markdown('''De ranking van de thema's op de volgende manier:
+st.markdown("**Rangschikken**")
+st.markdown('''De thema's zijn op de volgende manier gerangschikt:
 1. Woonbeleving
 2. Onderhoud
 3. Budget
