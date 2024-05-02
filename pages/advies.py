@@ -76,7 +76,7 @@ onderhoud = df[df['impact onderhoud'] == 'O']
 if not onderhoud.empty:
     st.markdown("---")
     st.markdown("**Onderhoud '+' opties**")
-    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op onderhoud, 
+    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op het thema onderhoud, 
                 gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie. ''')
 
     productgroepen = onderhoud['productgroep'].unique()
@@ -109,7 +109,7 @@ circulair = df[df['impact circulair'] == 'CD']
 if not circulair.empty:
     st.markdown("---")
     st.markdown("**Circulaire '+' opties**")
-    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op circulair, 
+    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op het thema circulair, 
                 gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie ''')
 
     productgroepen = circulair['productgroep'].unique()
@@ -142,7 +142,7 @@ kwaliteit = df[df['impact kwaliteit'] == 'K']
 if not kwaliteit.empty:
     st.markdown("---")
     st.markdown("**Kwaliteit '+' opties**")
-    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op kwaliteit, 
+    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op het thema kwaliteit, 
                 gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie. ''')
 
     productgroepen = kwaliteit['productgroep'].unique()
@@ -175,7 +175,7 @@ budget = df[df['impact budget'] == 'B']
 if not budget.empty:
     st.markdown("---")
     st.markdown("**Budget '+' opties**")
-    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op budget, 
+    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op het thema budget, 
                 gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie. ''')
 
     productgroepen = budget['productgroep'].unique()
@@ -208,7 +208,7 @@ woonbeleving = df[df['impact woonbeleving'] == 'W']
 if not woonbeleving.empty:
     st.markdown("---")
     st.markdown("**Woonbeleving '+' opties**")
-    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op woonbeleving, 
+    st.markdown('''Hieronder zijn de '+' opties weergegeven die impact hebben op het thema woonbeleving, 
                 gesorteerd op de productgroepen die het meeste aandeel hebben binnen het project op basis van de optimalisatie. ''')
 
     productgroepen = woonbeleving['productgroep'].unique()
