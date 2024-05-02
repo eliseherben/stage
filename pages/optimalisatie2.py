@@ -313,6 +313,7 @@ with tab1:
             st.markdown(f"- De productgroep {row['Productgroep']} is {row['Waarde']}% van het totale project")
         
         fig1 = px.pie(values=df['Waarde'], names=df['Productgroep'], color_discrete_sequence=px.colors.sequential.RdBu)
+        fig1.update_traces(textposition='inside', textinfo='percent+label')
         
         st.plotly_chart(fig1)
 
