@@ -79,12 +79,10 @@ with tab1:
 
         df_fig = df_fig[df_fig['impact'] != 0]
         
-        # Plot met Plotly Express
         fig = px.bar(df_fig, x='productgroep', y='impact', color='Optie',
              barmode='group', title="Impact thema's op productgroepen")
-        st.plotly_chart(fig)
+#         st.plotly_chart(fig)
         
-        # Plot met Plotly Express
         with st.expander("oude impact cijfers"):
     #         st.dataframe(st.session_state.file, hide_index = True)
             df_fig2 = pd.melt(st.session_state.file2, id_vars=['productgroep'], var_name='Optie', value_name='impact')
@@ -93,11 +91,11 @@ with tab1:
         
             fig2 = px.bar(df_fig2, x='productgroep', y='impact', color='Optie',
                  barmode='group', title="Impact thema's op productgroepen 2")
-            st.plotly_chart(fig2)
+#             st.plotly_chart(fig2)
 
         st.write("#")
         
-        st.markdown("**Rank**")
+        st.markdown("**Rangschikken**")
         data = {
           "thema": ['onderhoud', 'budget', 'kwaliteit', 'woonbeleving', 'circulariteit'],
           "rank": [1, 2, 3, 4, 5]
