@@ -99,6 +99,7 @@ st.selectbox(
 st.markdown("**Projectbestand**")
 uploaded_file = st.file_uploader("Choose a file", help='Upload hier het projectbestand, op basis van dit bestand wordt de optimalisatie uitgevoerd. ')
 st.session_state.projectbestand = uploaded_file
+
 if uploaded_file is not None:
     st.session_state.name = uploaded_file.name
     dataframe = pd.read_csv(uploaded_file)
@@ -212,10 +213,6 @@ if uploaded_file is not None:
     st.session_state.file = impact
     st.session_state.file2 = impact2
 
-
-# st.markdown("**Budget**")
-# st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
-
 if uploaded_file is not None:
     st.page_link("pages/optimalisatie2.py", label="Naar optimalisatie")
 
@@ -224,4 +221,15 @@ if uploaded_file is not None:
 # st.number_input("Het aandeel van de productgroep 'Keuken' in dit project", value=0, min_value = 0, max_value = 100)
 # st.number_input("Het aandeel van de productgroep 'Sanitair' in dit project", value=0, min_value = 0, max_value = 100)
 # st.number_input("Het aandeel van de productgroep 'Na-isolatie' in dit project", value=0, min_value = 0, max_value = 100)
+
+
+# In[ ]:
+
+
+with st.expander("Vul hier de huidige hoeveelheden per productgroep in:"):
+        st.number_input("Aantal m^2 aan Buitenwanden in het huidige project", value = None, placeholder = "aantal m^2")
+        
+
+st.markdown("**Budget**")
+st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
 
