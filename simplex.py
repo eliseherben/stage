@@ -227,9 +227,20 @@ if uploaded_file is not None:
 
 
 with st.expander("Vul hier de huidige hoeveelheden per productgroep in:"):
-        st.number_input("Aantal m^2 aan Buitenwanden in het huidige project", value = None, placeholder = "aantal m^2")
+        st.number_input("Aantal m2 aan buitenwanden in het huidige project", value = None, placeholder = "typ het aantal m2")
+        st.number_input("Aantal m2 aan binnenwanden in het huidige project", value = None, placeholder = "typ het aantal m2")
+        st.number_input("Aantal m2 aan vloeren in het huidige project", value = None, placeholder = "typ het aantal m2")
+        st.number_input("Aantal stuks aan trappen en hellingen in het huidige project", value = None, placeholder = "typ het aantal stuks")
+        st.number_input("Aantal m2 aan daken in het huidige project", value = None, placeholder = "typ het aantal m2")
+        st.number_input("Aantal m2 aan hoofddraagconstructie in het huidige project", value = None, placeholder = "typ het aantal m2")
+        st.number_input("Aantal m aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project", value = None, placeholder = "aantal m")
+        st.number_input("Aantal stuks aan binnenkozijnen en -deuren in het huidige project", value = None, placeholder = "typ het aantal stuks")
+        st.number_input("Aantal stuks aan luiken en vensters in het huidige project", value = None, placeholder = "typ het aantal stuks")
+        st.number_input("Aantal m aan balustrades en leuningen in het huidige project", value = None, placeholder = "typ het aantal m")
+        st.number_input("Aantal m2 aan binnenwandafwerkingen in het huidige project", value = None, placeholder = "typ het aantal m2")
+        st.number_input("Aantal m2 aan vloerafwerkingen in het huidige project", value = None, placeholder = "typ het aantal m2")
+        st.number_input("Aantal m2 aan plafonds in het huidige project", value = None, placeholder = "typ het aantal m2")
         
-
 st.markdown("**Budget**")
 st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
 
