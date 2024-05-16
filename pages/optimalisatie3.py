@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[2]:
 
 
 import streamlit as st
@@ -18,11 +18,15 @@ st.page_link("pages/advies.py", label="Naar advies")
 st.page_link("simplex.py", label="Homepagina")
 
 
-# In[ ]:
+# In[3]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
-data.head()
+missing_values = data.isna()
+
+print(missing_values)
+
+# data.head()
 
 
 # In[ ]:
@@ -82,7 +86,7 @@ else:
     prob += circulair + budget
 
     for i in range(len(lp_variabelen)):
-        if data.iloc[i, 2] and data.iloc[i, 3] is not "nan":
+        if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
             st.markdown(f"{lp_variabelen[i][1]} >= {data.iloc[i, 2]}")
             st.markdown(f"{lp_variabelen[i][1]} >= {data.iloc[i, 3]}")
     #         prob += lp_variabelen[i][1] >= data.iloc[i, 2]
