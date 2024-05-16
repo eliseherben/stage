@@ -83,7 +83,7 @@ else:
 
     impact_budget = [data.iloc[a, 4] for a in range(len(data))]
     budget = pl.lpSum(lp_variabelen[i][1] * impact_budget[i] for i in range(25))
-    st.markdown(circulair)
+    st.markdown(budget)
 
     
     prob += circulair + budget
