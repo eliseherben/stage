@@ -82,10 +82,11 @@ else:
     prob += circulair + budget
 
     for i in range(len(lp_variabelen)):
-        st.markdown(f"{lp_variabelen[i][1]} >= {data.iloc[i, 2]}")
-        st.markdown(f"{lp_variabelen[i][1]} >= {data.iloc[i, 3]}")
-#         prob += lp_variabelen[i][1] >= data.iloc[i, 2]
-#         prob += lp_variabelen[i][1] <= data.iloc[i, 3]
+        if data.iloc[i, 2] and data.iloc[i, 3] is not None:
+            st.markdown(f"{lp_variabelen[i][1]} >= {data.iloc[i, 2]}")
+            st.markdown(f"{lp_variabelen[i][1]} >= {data.iloc[i, 3]}")
+    #         prob += lp_variabelen[i][1] >= data.iloc[i, 2]
+    #         prob += lp_variabelen[i][1] <= data.iloc[i, 3]
 
     # Los het probleem op
     status = prob.solve()
