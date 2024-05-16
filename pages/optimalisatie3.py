@@ -101,7 +101,7 @@ else:
 #     for i in range(len(lp_variabelen)):
 #         if pd.isna(data.iloc[i, 2]) and pd.isna(data.iloc[i, 3]):
     
-    prob += circulair + budget
+    prob += 0.7 * circulair + 0.3 * budget
 
     for i in range(len(lp_variabelen)):
         if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
