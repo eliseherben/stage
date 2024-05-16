@@ -214,7 +214,7 @@ if uploaded_file is not None:
     st.session_state.file2 = impact2
 
 if uploaded_file is not None:
-    st.page_link("pages/optimalisatie2.py", label="Naar optimalisatie")
+    st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
 
 # st.markdown("**Productgroepen**")
 # st.markdown("Hierbij kan er aangegeven worden wat het aandeel van de productgroepen momenteel in het project is. Dit is uitgedrukt in percentages. ")
