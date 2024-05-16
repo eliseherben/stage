@@ -123,3 +123,20 @@ else:
     st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
     st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
 
+
+# In[ ]:
+
+
+f st.session_state.projectbestand is None:
+    st.markdown("upload een bestand")
+else: 
+    st.markdown("**In dit project, is het optimaal om het aandeel van de productgroepen als volgt in te delen:**")
+
+    for index, row in df.iterrows():
+        st.markdown(f"- De productgroep {row['Productgroep']} is {row['Waarde']}% van het totale project")
+
+    fig1 = px.pie(values=df['Waarde'], names=df['Productgroep'], color_discrete_sequence=px.colors.sequential.RdBu)
+#         fig1.update_traces(textposition='inside', textinfo='percent+label')
+
+    st.plotly_chart(fig1)
+
