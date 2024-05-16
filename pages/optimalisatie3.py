@@ -44,7 +44,7 @@ else:
     
     circulair = data.sort_values(by='circulair', ascending=False)
     
-     st.markdown(
+    st.markdown(
         f"""
         De productgroepen die het meeste impact maken op het thema 'budget':
         - {circulair['productgroep'].iloc[0]}
