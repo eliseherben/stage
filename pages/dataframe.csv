@@ -1,0 +1,26 @@
+﻿productgroep;eenheid;minimaal;maximaal;kosten;circulair
+21 Buitenwanden;m2;7,37;24,13;223,07;1,22
+22 Binnenwanden;m2;12,58;17,80;82,85;2,50
+23 Vloeren;m2;14,95;28,15;271,83;9,84
+24 Trappen en hellingen;st;0,05;0,10;5437,50;39,97
+27 Daken;m2;3,91;13,51;1359,22;1,06
+28 Hoofddraagconstructie;m2;4,51;13,11;158,24;2,91
+31 Buitenkozijnen, -ramen, -deuren en -puien;stuks;1,52;1,86;2486,31;1,46
+32 Binnenkozijnen en -deuren;stuks;0,56;2,56;830,05;2,47
+33 Luiken en vensters;stuks;0,06;0,17;2195,00;5,24
+34 Balustrades en leuningen;m1;1,67;2,64;290,39;
+42 Binnenwandafwerkingen;m2;11,02;30,78;26,54;1,15
+43 Vloerafwerkingen;m2;14,93;23,75;71,58;0,84
+45 Plafonds;m2;12,59;19,24;107,67;1,95
+48 Na-isolatie;;;;;0,82
+52 Riolering en HWA;;;;4529,66;0,85
+53 Warm- en koud water installaties;;;;80,30;43,87
+56 Verwarming en koeling;;;;5802,38;45,05
+57 Luchtbehandeling;;;;5919,05;
+61 Elektrische installaties;;;;2261,15;
+64 Vaste gebouwvoorziening;stuks;0,24;0,53;342,39;19,43
+65 Beveiliging;;;;2800,00;
+66 Liften;;;;11694,64;119,39
+73 Keuken;stuks;0,49;1,02;680,43;18,97
+74 Sanitair;;;;1169,44;8,60
+90 Terreininrichting;stuks;0,56;0,56;90,00;2,22
