@@ -80,17 +80,19 @@ else:
     variabelen_circulair = []
     impact_circulair = []
     for i in range(len(lp_variabelen)):
-        variabelen_circulair.append(lp_variabelen[i][1])
-        impact_circulair.append(data.iloc[i, 5])
-   
+        if not pd.isna(data.iloc[i, 5]):
+            variabelen_circulair.append(lp_variabelen[i][1])
+            impact_circulair.append(data.iloc[i, 5])
+
     circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
     st.markdown(circulair)
 
     variabelen_budget = []
     impact_budget = []
     for i in range(len(lp_variabelen)):
-        variabelen_budget.append(lp_variabelen[i][1])
-        impact_budget.append(data.iloc[i, 4])
+        if not pd.isna(data.iloc[i, 5]):
+            variabelen_budget.append(lp_variabelen[i][1])
+            impact_budget.append(data.iloc[i, 4])
     
     budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
     st.markdown(budget)
