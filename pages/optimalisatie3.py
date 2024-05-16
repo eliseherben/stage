@@ -21,7 +21,7 @@ st.page_link("simplex.py", label="Homepagina")
 # In[ ]:
 
 
-data = pd.read_csv("dataframe.csv", sep=';')
+data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
 data.head()
 
 
