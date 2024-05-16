@@ -90,7 +90,7 @@ else:
     variabelen_budget = []
     impact_budget = []
     for i in range(len(lp_variabelen)):
-        if not pd.isna(data.iloc[i, 5]):
+        if not pd.isna(data.iloc[i, 4]):
             variabelen_budget.append(lp_variabelen[i][1])
             impact_budget.append(data.iloc[i, 4])
     
