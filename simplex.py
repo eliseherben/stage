@@ -212,11 +212,7 @@ if uploaded_file is not None:
     
     st.session_state.file = impact
     st.session_state.file2 = impact2
-    
-    st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
 
-if uploaded_file is not None:
-    st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
 
 # st.markdown("**Productgroepen**")
 # st.markdown("Hierbij kan er aangegeven worden wat het aandeel van de productgroepen momenteel in het project is. Dit is uitgedrukt in percentages. ")
@@ -245,4 +241,7 @@ with st.expander("Vul hier de huidige hoeveelheden per productgroep in:"):
         
 st.markdown("**Budget**")
 st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
+
+if uploaded_file is not None:
+    st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
 
