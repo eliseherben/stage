@@ -37,8 +37,8 @@ else:
         f"""
         De productgroepen die het meeste impact maken op het thema 'budget':
         - {budget['productgroep'].iloc[0]}
-        - {budget['productgroep'].iloc[0]}
-        - {budget['productgroep'].iloc[0]}
+        - {budget['productgroep'].iloc[1]}
+        - {budget['productgroep'].iloc[2]}
         """
         )
     
@@ -48,8 +48,8 @@ else:
         f"""
         De productgroepen die het meeste impact maken op het thema 'budget':
         - {circulair['productgroep'].iloc[0]}
-        - {circulair['productgroep'].iloc[0]}
-        - {circulair['productgroep'].iloc[0]}
+        - {circulair['productgroep'].iloc[1]}
+        - {circulair['productgroep'].iloc[2]}
         """
         )
 
