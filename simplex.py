@@ -212,6 +212,8 @@ if uploaded_file is not None:
     
     st.session_state.file = impact
     st.session_state.file2 = impact2
+    
+    st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
 
 if uploaded_file is not None:
     st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
