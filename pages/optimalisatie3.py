@@ -32,6 +32,7 @@ if st.session_state.projectbestand is None:
     st.markdown("upload een bestand")
 else: 
     budget = data.sort_values(by='kosten', ascending=False)
+    st.dataframe(budget)
     
     st.markdown(
         f"""
@@ -43,7 +44,8 @@ else:
         )
     
     circulair = data.sort_values(by='circulair', ascending=False)
-    
+    st.dataframe(circulair)
+
     st.markdown(
         f"""
         De productgroepen die het meeste impact maken op het thema 'budget':
