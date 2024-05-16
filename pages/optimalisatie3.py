@@ -64,7 +64,7 @@ else:
     prob = pl.LpProblem("Eigen Haard", pl.LpMinimize)
 
     variabelen = {}
-    for index, row in df.iterrows():
+    for index, row in data.iterrows():
         variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
 
     lp_variabelen = []
