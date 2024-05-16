@@ -83,7 +83,7 @@ else:
         variabelen_circulair.append(lp_variabelen[i][1])
         impact_circulair.append(data.iloc[i, 5])
    
-    circulair = pl.lpSum(variabelen_circulair[i][1] * impact_circulair[i] for i in range(len(variabelen_circulair)))
+    circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
     st.markdown(circulair)
 
     variabelen_budget = []
@@ -92,7 +92,7 @@ else:
         variabelen_budget.append(lp_variabelen[i][1])
         impact_budget.append(data.iloc[i, 4])
     
-    budget = pl.lpSum(variabelen_budget[i][1] * impact_budget[i] for i in range(len(variabelen_budget)))
+    budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
     st.markdown(budget)
 
 #     for i in range(len(lp_variabelen)):
