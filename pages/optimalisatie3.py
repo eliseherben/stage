@@ -111,7 +111,7 @@ else:
             prob += lp_variabelen[i][1] >= data.iloc[i, 2]
             prob += lp_variabelen[i][1] <= data.iloc[i, 3]
             
-    prob +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) = 400000
+    prob +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == 400000
 
     # Los het probleem op
     status = prob.solve()
