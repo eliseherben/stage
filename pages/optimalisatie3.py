@@ -189,7 +189,7 @@ else:
                 prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
             
-        prob1.solve()
+        status = prob1.solve()
         
         Z1_opt = pl.value(prob1.objective)
         
