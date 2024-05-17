@@ -48,7 +48,7 @@ st.selectbox("Welke thema heeft prioriteit in dit project?",
             index = None, 
             placeholder='selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
 
-st.markdown("**Bruto vloeroppervlak")
+st.markdown("**Bruto vloeroppervlak**")
 st.number_input("Wat is het totale bvo in dit project?", value = 0, key = '_bvo', on_change=set_bvo)
 
 
