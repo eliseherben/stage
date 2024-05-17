@@ -71,6 +71,14 @@ st.session_state._appartementen = st.session_state.appartementen
 
 def set_appartementen():
     st.session_state.appartementen = st.session_state._appartementen
+    
+if "budget" not in st.session_state:
+    st.session_state.budget = None
+    
+st.session_state._budget = st.session_state.budget
+
+def set_budget():
+    st.session_state.budget = st.session_state._budget
 
     # menu()
 
@@ -255,7 +263,7 @@ with st.expander("Vul hier de huidige hoeveelheden per productgroep in:"):
         st.number_input("Aantal m2 aan plafonds in het huidige project", value = None, placeholder = "typ het aantal m2")
         
 st.markdown("**Budget**")
-st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag")
+st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag", key='_budget', on_change=set_budget)
 
 if uploaded_file and st.session_state.appartementen is not None:
     st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
