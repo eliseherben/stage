@@ -121,7 +121,7 @@ else:
         variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
         beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_budget[i] for i in range(len(variabelen_beginoplossing))) 
         
-        prob1 += circulair - beginoplossing
+        prob1 += (circulair - beginoplossing)**2
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -137,7 +137,7 @@ else:
         
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
         
-        prob2 += budget - beginoplossing
+        prob2 += (budget - beginoplossing)**2
         prob2 += pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))) <= Z1_opt
         
         for i in range(len(lp_variabelen)):
@@ -168,7 +168,7 @@ else:
         variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
         beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_budget[i] for i in range(len(variabelen_beginoplossing))) 
         
-        prob1 += budget - beginoplossing
+        prob1 += (budget - beginoplossing)**2
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -194,7 +194,7 @@ else:
         variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
         beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_circulair[i] for i in range(len(variabelen_beginoplossing))) 
 
-        prob2 += circulair - beginoplossing
+        prob2 += (circulair - beginoplossing)**2
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
