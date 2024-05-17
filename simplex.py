@@ -64,13 +64,7 @@ st.session_state._name = st.session_state.name
 def set_name():
     st.session_state.name = st.session_state._name
     
-if "appartementen" not in st.session_state:
-    st.session_state.appartementen = None
-    
-st.session_state._appartementen = st.session_state.appartementen
 
-def set_appartementen():
-    st.session_state.appartementen = st.session_state._appartementen
     
 if "budget" not in st.session_state:
     st.session_state.budget = None
@@ -235,13 +229,6 @@ if uploaded_file is not None:
 # st.number_input("Het aandeel van de productgroep 'Keuken' in dit project", value=0, min_value = 0, max_value = 100)
 # st.number_input("Het aandeel van de productgroep 'Sanitair' in dit project", value=0, min_value = 0, max_value = 100)
 # st.number_input("Het aandeel van de productgroep 'Na-isolatie' in dit project", value=0, min_value = 0, max_value = 100)
-
-
-# In[ ]:
-
-
-st.markdown("**Aantal appartementen**")
-st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', on_change=set_appartementen)
 
 
 # In[ ]:
