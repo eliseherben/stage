@@ -19,6 +19,28 @@ st.page_link("pages/advies.py", label="Naar advies")
 st.page_link("simplex.py", label="Homepagina")
 
 
+# In[ ]:
+
+
+if "doelstelling" not in st.session_state:
+    st.session_state.doelstelling = None
+    
+st.session_state._doelstelling = st.session_state.doelstelling
+
+def set_doelstelling():
+    st.session_state.doelstelling = st.session_state._doelstelling
+
+
+# In[ ]:
+
+
+st.markdown("**Primair thema**")
+st.selectbox("Welke thema heeft prioriteit in dit project?", 
+            ("Circulair", "Budget"), 
+            index = None, 
+            placeholder='selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
+
+
 # In[3]:
 
 
