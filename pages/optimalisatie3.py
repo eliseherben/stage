@@ -194,7 +194,7 @@ else:
         Z1_opt = pl.value(prob1.objective)
         
         st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
+        st.markdown(f"Waarde van de doelfunctie: {prob1.objective.value()}")
         
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
             
@@ -239,7 +239,7 @@ else:
         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
 
         st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
+        st.markdown(f"Waarde van de doelfunctie: {prob2.objective.value()}")
         
     
     if st.session_state.doelstelling == 'Budget':
@@ -308,7 +308,7 @@ else:
         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
 
         st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
+        st.markdown(f"Waarde van de doelfunctie: {prob2.objective.value()}")
 
 
 # In[ ]:
