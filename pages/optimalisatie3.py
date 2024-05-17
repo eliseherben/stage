@@ -155,166 +155,245 @@ else:
 # In[ ]:
 
 
-if st.session_state.projectbestand is None:
-    st.markdown("upload een bestand")
-else: 
-# Creëer een LP probleem
-    prob1 = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
+# if st.session_state.projectbestand is None:
+#     st.markdown("upload een bestand")
+# else: 
+# # Creëer een LP probleem
+#     prob1 = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
 
-    variabelen = {}
-    for index, row in data.iterrows():
-        variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
+#     variabelen = {}
+#     for index, row in data.iterrows():
+#         variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
 
-    lp_variabelen = []
-    for key, value in variabelen.items():
-#             st.markdown(f"{key} = {value}")
-        lp_variabelen.append((key, value))
+#     lp_variabelen = []
+#     for key, value in variabelen.items():
+# #             st.markdown(f"{key} = {value}")
+#         lp_variabelen.append((key, value))
 
-    #Impact themas op productgroepen
-    if st.session_state.doelstelling == 'Circulair':
-        variabelen_circulair = []
-        impact_circulair = []
-        for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
-                variabelen_circulair.append(lp_variabelen[i][1])
-                impact_circulair.append(data.iloc[i, 5])
+#     #Impact themas op productgroepen
+#     if st.session_state.doelstelling == 'Circulair':
+#         variabelen_circulair = []
+#         impact_circulair = []
+#         for i in range(len(lp_variabelen)):
+#             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
+#                 variabelen_circulair.append(lp_variabelen[i][1])
+#                 impact_circulair.append(data.iloc[i, 5])
 
-        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
-        st.markdown(circulair)
+#         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
+#         st.markdown(circulair)
         
-        prob1 += circulair
+#         prob1 += circulair
         
-        for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
+#         for i in range(len(lp_variabelen)):
+#             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
+#                 prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
+#                 prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
             
-        status = prob1.solve()
+#         status = prob1.solve()
         
-        Z1_opt = pl.value(prob1.objective)
+#         Z1_opt = pl.value(prob1.objective)
         
-        st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie: {prob1.objective.value()}")
+#         st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
+#         st.markdown(f"Waarde van de doelfunctie: {prob1.objective.value()}")
         
-        prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
+#         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
             
-        variabelen = {}
-        for index, row in data.iterrows():
-            variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
+#         variabelen = {}
+#         for index, row in data.iterrows():
+#             variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
 
-        lp_variabelen = []
-        for key, value in variabelen.items():
-    #             st.markdown(f"{key} = {value}")
-            lp_variabelen.append((key, value))
+#         lp_variabelen = []
+#         for key, value in variabelen.items():
+#     #             st.markdown(f"{key} = {value}")
+#             lp_variabelen.append((key, value))
         
-        variabelen_budget = []
-        impact_budget = []
-        for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
-                variabelen_budget.append(lp_variabelen[i][1])
-                impact_budget.append(data.iloc[i, 4])
+#         variabelen_budget = []
+#         impact_budget = []
+#         for i in range(len(lp_variabelen)):
+#             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
+#                 variabelen_budget.append(lp_variabelen[i][1])
+#                 impact_budget.append(data.iloc[i, 4])
 
-        budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
-        st.markdown(budget)
+#         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
+#         st.markdown(budget)
 
-        prob2 += budget
+#         prob2 += budget
         
-        prob2 += pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))) <= Z1_opt
-        st.markdown(pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))))
-        st.markdown(Z1_opt)
+#         prob2 += pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))) <= Z1_opt
+#         st.markdown(pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))))
+#         st.markdown(Z1_opt)
         
-        for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                st.markdown(lp_variabelen[i][1])
-                st.markdown(data.iloc[i, 2])
-                st.markdown(data.iloc[i, 3])
-                prob2 += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob2 += lp_variabelen[i][1] <= data.iloc[i, 3]
+#         for i in range(len(lp_variabelen)):
+#             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
+#                 st.markdown(lp_variabelen[i][1])
+#                 st.markdown(data.iloc[i, 2])
+#                 st.markdown(data.iloc[i, 3])
+#                 prob2 += lp_variabelen[i][1] >= data.iloc[i, 2]
+#                 prob2 += lp_variabelen[i][1] <= data.iloc[i, 3]
         
-            # Los het probleem op
-        status = prob2.solve()
+#             # Los het probleem op
+#         status = prob2.solve()
 
-        # Maak een lege lijst om de variabelen en hun waarden op te slaan
-        variabelen_waarden = []
+#         # Maak een lege lijst om de variabelen en hun waarden op te slaan
+#         variabelen_waarden = []
 
-        # Voeg de variabelen en hun waarden toe aan de lijst
-        for key, var in lp_variabelen:
-            variabelen_waarden.append((key, var.varValue))
+#         # Voeg de variabelen en hun waarden toe aan de lijst
+#         for key, var in lp_variabelen:
+#             variabelen_waarden.append((key, var.varValue))
 
-        # Maak een DataFrame van de lijst
-        df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
+#         # Maak een DataFrame van de lijst
+#         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
 
-        st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie: {prob2.objective.value()}")
+#         st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
+#         st.markdown(f"Waarde van de doelfunctie: {prob2.objective.value()}")
         
     
-    if st.session_state.doelstelling == 'Budget':
-        variabelen_budget = []
-        impact_budget = []
-        for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
-                variabelen_budget.append(lp_variabelen[i][1])
-                impact_budget.append(data.iloc[i, 4])
+#     if st.session_state.doelstelling == 'Budget':
+#         variabelen_budget = []
+#         impact_budget = []
+#         for i in range(len(lp_variabelen)):
+#             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
+#                 variabelen_budget.append(lp_variabelen[i][1])
+#                 impact_budget.append(data.iloc[i, 4])
+
+#         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
+#         st.markdown(budget)
+        
+#         prob1 += budget
+        
+#         for i in range(len(lp_variabelen)):
+#             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
+#                 prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
+#                 prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
+            
+#         prob1.solve()
+        
+#         Z1_opt = pl.value(prob1.objective)
+        
+#         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
+            
+#         variabelen = {}
+#         for index, row in data.iterrows():
+#             variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
+
+#         lp_variabelen = []
+#         for key, value in variabelen.items():
+#     #             st.markdown(f"{key} = {value}")
+#             lp_variabelen.append((key, value))
+        
+#         variabelen_circulair = []
+#         impact_circulair = []
+#         for i in range(len(lp_variabelen)):
+#             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
+#                 variabelen_circulair.append(lp_variabelen[i][1])
+#                 impact_circulair.append(data.iloc[i, 5])
+
+#         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
+#         st.markdown(circulair)
+        
+#         prob2 += circulair
+        
+#         prob2 += pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) <= Z1_opt
+        
+#         for i in range(len(lp_variabelen)):
+#             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
+#                 prob2 += lp_variabelen[i][1] >= data.iloc[i, 2]
+#                 prob2 += lp_variabelen[i][1] <= data.iloc[i, 3]
+        
+#             # Los het probleem op
+#         status = prob2.solve()
+
+#         # Maak een lege lijst om de variabelen en hun waarden op te slaan
+#         variabelen_waarden = []
+
+#         # Voeg de variabelen en hun waarden toe aan de lijst
+#         for key, var in lp_variabelen:
+#             variabelen_waarden.append((key, var.varValue))
+
+#         # Maak een DataFrame van de lijst
+#         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
+
+#         st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
+#         st.markdown(f"Waarde van de doelfunctie: {prob2.objective.value()}")
+
+
+# In[ ]:
+
+
+import streamlit as st
+import pulp as pl
+import pandas as pd
+
+# Controleer of het projectbestand is geüpload
+if st.session_state.projectbestand is None:
+    st.markdown("Upload een bestand")
+else:
+    # Lees het bestand in
+    data = st.session_state.projectbestand
+
+    # Definieer de LP variabelen
+    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
+
+    # Maak de variabelenlijst
+    lp_variabelen = [(key, value) for key, value in variabelen.items()]
+
+    # Functie om het eerste doelstellingprobleem op te lossen
+    def solve_primary_objective():
+        prob1 = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
+        
+        # Impact themas op productgroepen
+        if st.session_state.doelstelling == 'Circulair':
+            variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 5])]
+            impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 5])]
+
+            circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
+            st.markdown(f"Circulair doelstelling: {circulair}")
+            
+            prob1 += circulair
+            
+            for i in range(len(lp_variabelen)):
+                if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
+                    prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
+                    prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
+
+            status = prob1.solve()
+            st.markdown(f"Status van de oplossing (Primary): {pl.LpStatus[status]}")
+            st.markdown(f"Waarde van de doelfunctie (Primary): {prob1.objective.value()}")
+            
+            return prob1, variabelen_circulair, impact_circulair, pl.value(prob1.objective)
+        return None, None, None, None
+
+    # Functie om het tweede doelstellingprobleem op te lossen
+    def solve_secondary_objective(variabelen_circulair, impact_circulair, Z1_opt):
+        prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
+        
+        variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 4])]
+        impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 4])]
 
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
-        st.markdown(budget)
-        
-        prob1 += budget
-        
-        for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
-            
-        prob1.solve()
-        
-        Z1_opt = pl.value(prob1.objective)
-        
-        prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
-            
-        variabelen = {}
-        for index, row in data.iterrows():
-            variabelen[row["productgroep"]] = pl.LpVariable(row["productgroep"], lowBound = 0)
+        st.markdown(f"Budget doelstelling: {budget}")
 
-        lp_variabelen = []
-        for key, value in variabelen.items():
-    #             st.markdown(f"{key} = {value}")
-            lp_variabelen.append((key, value))
-        
-        variabelen_circulair = []
-        impact_circulair = []
-        for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
-                variabelen_circulair.append(lp_variabelen[i][1])
-                impact_circulair.append(data.iloc[i, 5])
-
-        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
-        st.markdown(circulair)
-        
-        prob2 += circulair
-        
-        prob2 += pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) <= Z1_opt
+        prob2 += budget
+        prob2 += pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))) <= Z1_opt
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
                 prob2 += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob2 += lp_variabelen[i][1] <= data.iloc[i, 3]
-        
-            # Los het probleem op
+
         status = prob2.solve()
+        st.markdown(f"Status van de oplossing (Secondary): {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie (Secondary): {prob2.objective.value()}")
 
-        # Maak een lege lijst om de variabelen en hun waarden op te slaan
-        variabelen_waarden = []
-
-        # Voeg de variabelen en hun waarden toe aan de lijst
-        for key, var in lp_variabelen:
-            variabelen_waarden.append((key, var.varValue))
-
-        # Maak een DataFrame van de lijst
+        # Maak een DataFrame van de variabelen en hun waarden
+        variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
+        st.dataframe(df)
 
-        st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie: {prob2.objective.value()}")
+    # Voer de stappen van de lexicografische methode uit
+    prob1, variabelen_circulair, impact_circulair, Z1_opt = solve_primary_objective()
+    if prob1 is not None:
+        solve_secondary_objective(variabelen_circulair, impact_circulair, Z1_opt)
 
 
 # In[ ]:
