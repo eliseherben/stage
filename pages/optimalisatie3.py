@@ -328,9 +328,6 @@ import pandas as pd
 if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
 else:
-    # Lees het bestand in
-    data = st.session_state.projectbestand
-
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
 
