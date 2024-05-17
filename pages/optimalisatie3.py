@@ -37,10 +37,21 @@ st.session_state._bvo = st.session_state.bvo
 
 def set_bvo():
     st.session_state.bvo = st.session_state._bvo
+    
+if "appartementen" not in st.session_state:
+    st.session_state.appartementen = None
+    
+st.session_state._appartementen = st.session_state.appartementen
+
+def set_appartementen():
+    st.session_state.appartementen = st.session_state._appartementen
 
 
 # In[ ]:
 
+
+st.markdown("**Aantal appartementen**")
+st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', on_change=set_appartementen)
 
 st.markdown("**Primair thema**")
 st.selectbox("Welke thema heeft prioriteit in dit project?", 
