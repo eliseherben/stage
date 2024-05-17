@@ -320,6 +320,84 @@ else:
 # In[ ]:
 
 
+# import streamlit as st
+# import pulp as pl
+# import pandas as pd
+
+# # Controleer of het projectbestand is geüpload
+# if st.session_state.projectbestand is None:
+#     st.markdown("Upload een bestand")
+# else:
+#     # Definieer de LP variabelen
+#     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
+
+#     # Maak de variabelenlijst
+#     lp_variabelen = [(key, value) for key, value in variabelen.items()]
+
+#     # Functie om het eerste doelstellingprobleem op te lossen
+#     def solve_primary_objective():
+#         prob1 = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
+        
+#         # Impact themas op productgroepen
+#         if st.session_state.doelstelling == 'Circulair':
+#             variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
+#             impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 5])]
+
+#             circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
+#             st.markdown(f"Circulair doelstelling: {circulair}")
+            
+#             prob1 += circulair
+            
+#             for i in range(len(lp_variabelen)):
+#                 if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
+#                     prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
+#                     prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
+
+#             status = prob1.solve()
+#             st.markdown(f"Status van de oplossing (Primary): {pl.LpStatus[status]}")
+#             st.markdown(f"Waarde van de doelfunctie (Primary): {prob1.objective.value()}")
+            
+#             return prob1, variabelen_circulair, impact_circulair, pl.value(prob1.objective)
+#         return None, None, None, None
+
+#     # Functie om het tweede doelstellingprobleem op te lossen
+#     def solve_secondary_objective(variabelen_circulair, impact_circulair, Z1_opt):
+#         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
+        
+#         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
+#         impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 4])]
+
+#         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
+#         st.markdown(f"Budget doelstelling: {budget}")
+
+#         prob2 += budget
+#         prob2 += pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))) <= Z1_opt
+        
+#         for i in range(len(lp_variabelen)):
+#             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
+#                 prob2 += lp_variabelen[i][1] >= data.iloc[i, 2]
+#                 prob2 += lp_variabelen[i][1] <= data.iloc[i, 3]
+
+# #         prob2 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
+
+#         status = prob2.solve()
+#         st.markdown(f"Status van de oplossing (Secondary): {pl.LpStatus[status]}")
+#         st.markdown(f"Waarde van de doelfunctie (Secondary): {prob2.objective.value()}")
+
+#         # Maak een DataFrame van de variabelen en hun waarden
+#         variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
+#         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
+#         st.dataframe(df)
+
+#     # Voer de stappen van de lexicografische methode uit
+#     prob1, variabelen_circulair, impact_circulair, Z1_opt = solve_primary_objective()
+#     if prob1 is not None:
+#         solve_secondary_objective(variabelen_circulair, impact_circulair, Z1_opt)
+
+
+# In[ ]:
+
+
 import streamlit as st
 import pulp as pl
 import pandas as pd
@@ -334,65 +412,75 @@ else:
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
 
-    # Functie om het eerste doelstellingprobleem op te lossen
-    def solve_primary_objective():
-        prob1 = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
-        
-        # Impact themas op productgroepen
-        if st.session_state.doelstelling == 'Circulair':
-            variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-            impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 5])]
-
-            circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
-            st.markdown(f"Circulair doelstelling: {circulair}")
-            
-            prob1 += circulair
-            
-            for i in range(len(lp_variabelen)):
-                if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                    prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
-                    prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
-
-            status = prob1.solve()
-            st.markdown(f"Status van de oplossing (Primary): {pl.LpStatus[status]}")
-            st.markdown(f"Waarde van de doelfunctie (Primary): {prob1.objective.value()}")
-            
-            return prob1, variabelen_circulair, impact_circulair, pl.value(prob1.objective)
-        return None, None, None, None
-
-    # Functie om het tweede doelstellingprobleem op te lossen
-    def solve_secondary_objective(variabelen_circulair, impact_circulair, Z1_opt):
-        prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
+    # Functie om de budget doelstelling op te lossen
+    def solve_budget_objective():
+        prob = pl.LpProblem("Budget doelstelling", pl.LpMinimize)
         
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 4])]
+        impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
 
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         st.markdown(f"Budget doelstelling: {budget}")
-
-        prob2 += budget
-        prob2 += pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))) <= Z1_opt
         
+        prob += budget
+
+        # Beperkingen toevoegen
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob2 += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob2 += lp_variabelen[i][1] <= data.iloc[i, 3]
+                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
+                prob += lp_variabelen[i][1] <= data.iloc[i, 3]
 
-#         prob2 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
+        # Los het probleem op
+        status = prob.solve()
+        st.markdown(f"Status van de oplossing (Budget): {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie (Budget): {prob.objective.value()}")
+        
+        return prob, pl.value(prob.objective)
 
-        status = prob2.solve()
-        st.markdown(f"Status van de oplossing (Secondary): {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie (Secondary): {prob2.objective.value()}")
+    # Functie om de circulaire doelstelling op te lossen
+    def solve_circular_objective(Z1_opt=None):
+        prob = pl.LpProblem("Circulaire doelstelling", pl.LpMinimize)
+        
+        variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
+        impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
+
+        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
+        st.markdown(f"Circulair doelstelling: {circulair}")
+
+        prob += circulair
+
+        if Z1_opt is not None:
+            prob += pl.lpSum(lp_variabelen[i][1] * data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 4])) <= Z1_opt
+
+        # Beperkingen toevoegen
+        for i in range(len(lp_variabelen)):
+            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
+                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
+                prob += lp_variabelen[i][1] <= data.iloc[i, 3]
+
+        # Los het probleem op
+        status = prob.solve()
+        st.markdown(f"Status van de oplossing (Circulair): {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie (Circulair): {prob.objective.value()}")
 
         # Maak een DataFrame van de variabelen en hun waarden
         variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
         df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
         st.dataframe(df)
+        return prob
+
+    # Optie voor de gebruiker om de primaire doelstelling te kiezen
+    primaire_doelstelling = st.selectbox("Selecteer de primaire doelstelling:", ("Budget", "Circulair"))
 
     # Voer de stappen van de lexicografische methode uit
-    prob1, variabelen_circulair, impact_circulair, Z1_opt = solve_primary_objective()
-    if prob1 is not None:
-        solve_secondary_objective(variabelen_circulair, impact_circulair, Z1_opt)
+    if primaire_doelstelling == "Budget":
+        prob1, Z1_opt = solve_budget_objective()
+        if prob1 is not None:
+            solve_circular_objective(Z1_opt)
+    elif primaire_doelstelling == "Circulair":
+        prob1, Z1_opt = solve_circular_objective()
+        if prob1 is not None:
+            solve_budget_objective()
 
 
 # In[ ]:
