@@ -118,7 +118,10 @@ else:
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         st.markdown(f"Budget doelstelling: {budget}")
         
-        prob1 += circulair
+        variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
+        beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_budget[i] for i in range(len(variabelen_beginoplossing))) 
+        
+        prob1 += circulair - beginoplossing
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -134,7 +137,7 @@ else:
         
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
         
-        prob2 += budget
+        prob2 += budget - beginoplossing
         prob2 += pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))) <= Z1_opt
         
         for i in range(len(lp_variabelen)):
@@ -161,8 +164,11 @@ else:
 
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         st.markdown(f"Budget doelstelling: {budget}")
-
-        prob1 += budget
+         
+        variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
+        beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_budget[i] for i in range(len(variabelen_beginoplossing))) 
+        
+        prob1 += budget - beginoplossing
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -182,10 +188,13 @@ else:
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
 
-        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
+        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))) 
         st.markdown(f"Circulair doelstelling: {circulair}")
+        
+        variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
+        beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_circulair[i] for i in range(len(variabelen_beginoplossing))) 
 
-        prob2 += circulair
+        prob2 += circulair - beginoplossing
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
