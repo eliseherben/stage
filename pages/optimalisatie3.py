@@ -353,8 +353,8 @@ else:
                 prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
 
         status = prob1.solve()
-        st.markdown(f"Status van de oplossing (Primary): {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie (Primary): {prob1.objective.value()}")
+        st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie (circulair): {prob1.objective.value()}")
         Z1_opt = pl.value(prob1.objective)
         
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
@@ -376,8 +376,8 @@ else:
 #         prob2 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
 
         status = prob2.solve()
-        st.markdown(f"Status van de oplossing (Secondary): {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie (Secondary): {prob2.objective.value()}")
+        st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie (budget): {prob2.objective.value()}")
 
         # Maak een DataFrame van de variabelen en hun waarden
         variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
@@ -401,8 +401,8 @@ else:
                 prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
                 
         status = prob1.solve()
-        st.markdown(f"Status van de oplossing (Primary): {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie (Primary): {prob1.objective.value()}")
+        st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie (budget): {prob1.objective.value()}")
         Z1_opt = pl.value(prob1.objective)
         
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
@@ -423,8 +423,8 @@ else:
                 prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
         
         status = prob2.solve()
-        st.markdown(f"Status van de oplossing (Secondary): {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie (Secondary): {prob2.objective.value()}")
+        st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie (circulair): {prob2.objective.value()}")
 
         # Maak een DataFrame van de variabelen en hun waarden
         variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
