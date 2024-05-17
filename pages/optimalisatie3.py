@@ -193,6 +193,9 @@ else:
         
         Z1_opt = pl.value(prob1.objective)
         
+        st.markdown(f"Status van de oplossing: {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie: {prob.objective.value()}")
+        
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
             
         variabelen = {}
