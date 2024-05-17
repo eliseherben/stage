@@ -175,7 +175,7 @@ else:
         variabelen_circulair = []
         impact_circulair = []
         for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 5]):
+            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
                 variabelen_circulair.append(lp_variabelen[i][1])
                 impact_circulair.append(data.iloc[i, 5])
 
@@ -210,7 +210,7 @@ else:
         variabelen_budget = []
         impact_budget = []
         for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]):
+            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
                 variabelen_budget.append(lp_variabelen[i][1])
                 impact_budget.append(data.iloc[i, 4])
 
@@ -247,7 +247,7 @@ else:
         variabelen_budget = []
         impact_budget = []
         for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]):
+            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
                 variabelen_budget.append(lp_variabelen[i][1])
                 impact_budget.append(data.iloc[i, 4])
 
@@ -279,7 +279,7 @@ else:
         variabelen_circulair = []
         impact_circulair = []
         for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 5]):
+            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5]):
                 variabelen_circulair.append(lp_variabelen[i][1])
                 impact_circulair.append(data.iloc[i, 5])
 
