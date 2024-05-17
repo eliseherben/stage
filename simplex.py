@@ -232,7 +232,7 @@ if uploaded_file is not None:
 # In[ ]:
 
 
-st.markdown("**Aantal appartementen**")_
+st.markdown("**Aantal appartementen**")
 st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', on_change=set_appartementen)
 
 
