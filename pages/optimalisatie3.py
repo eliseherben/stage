@@ -23,6 +23,9 @@ st.page_link("simplex.py", label="Homepagina")
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
+data['minimaal'] = data['minimaal'] * st.session_state.appartementen
+data['maximaal'] = data['maximaal'] * st.session_state.appartementen
+
 missing_values = data.isna()
 
 print(missing_values)
@@ -36,22 +39,22 @@ print(missing_values)
 if st.session_state.projectbestand is None:
     st.markdown("upload een bestand")
 else: 
-    budget = data.sort_values(by='kosten', ascending=False)
+    budget = data.sort_values(by='kosten')
     
     st.markdown(
         f"""
-        De productgroepen die het meeste impact maken op het thema 'budget':
+        De productgroepen die het minste kosten per eenheid:
         - {budget['productgroep'].iloc[0]}
         - {budget['productgroep'].iloc[1]}
         - {budget['productgroep'].iloc[2]}
         """
         )
     
-    circulair = data.sort_values(by='circulair', ascending=False)
+    circulair = data.sort_values(by='circulair')
 
     st.markdown(
         f"""
-        De productgroepen die het meeste impact maken op het thema 'circulair':
+        De productgroepen die de laagste mki per eenheid hebben:
         - {circulair['productgroep'].iloc[0]}
         - {circulair['productgroep'].iloc[1]}
         - {circulair['productgroep'].iloc[2]}
