@@ -119,7 +119,7 @@ else:
                 prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
                 
-        prob2 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
+        prob1 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
 
         status = prob1.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
@@ -169,7 +169,7 @@ else:
                 prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
                 
-        prob2 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
+        prob1 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
 
         status = prob1.solve()
         st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
