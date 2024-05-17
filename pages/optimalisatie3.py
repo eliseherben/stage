@@ -215,6 +215,7 @@ else:
                 impact_budget.append(data.iloc[i, 4])
 
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
+        st.markdown(budget)
 
         prob2 += budget
         
