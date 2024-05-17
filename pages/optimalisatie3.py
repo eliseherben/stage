@@ -121,7 +121,7 @@ else:
         variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
         beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_budget[i] for i in range(len(variabelen_beginoplossing))) 
         
-        doelfunctie = (circulair - beginoplossing)**2
+        doelfunctie = (circulair - beginoplossing)*(circulair - beginoplossing)
         
         prob1 += doelfunctie
 
@@ -139,7 +139,7 @@ else:
         
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
         
-        doelfunctie = (budget - beginoplossing)**2
+        doelfunctie = (budget - beginoplossing) * (budget - beginoplossing)
         
         prob2 += doelfunctie
         
@@ -173,7 +173,7 @@ else:
         variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
         beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_budget[i] for i in range(len(variabelen_beginoplossing))) 
         
-        doelfunctie = (budget - beginoplossing)**2
+        doelfunctie = (budget - beginoplossing) * (budget - beginoplossing)
         
         prob1 += doelfunctie
         
@@ -201,7 +201,7 @@ else:
         variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
         beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_circulair[i] for i in range(len(variabelen_beginoplossing))) 
 
-        doelfunctie = (circulair - beginoplossing)**2
+        doelfunctie = (circulair - beginoplossing) * (circulair - beginoplossing)
         
         prob2 += doelfunctie
         
