@@ -121,9 +121,7 @@ else:
         variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
         beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_budget[i] for i in range(len(variabelen_beginoplossing))) 
         
-        doelfunctie = (circulair - beginoplossing)*(circulair - beginoplossing)
-        
-        prob1 += doelfunctie
+        prob1 += pl.lpSum((circulair - beginoplossing)**2)
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -139,9 +137,7 @@ else:
         
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
         
-        doelfunctie = (budget - beginoplossing) * (budget - beginoplossing)
-        
-        prob2 += doelfunctie
+        prob2 += pl.lpSum((budget - beginoplossing)**2)
         
         prob2 += pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair))) <= Z1_opt
         
@@ -173,9 +169,7 @@ else:
         variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
         beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_budget[i] for i in range(len(variabelen_beginoplossing))) 
         
-        doelfunctie = (budget - beginoplossing) * (budget - beginoplossing)
-        
-        prob1 += doelfunctie
+        prob1 += pl.lpSum((budget - beginoplossing)**2)
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -200,10 +194,8 @@ else:
         
         variabelen_beginoplossing = [1500, 945, 1400, 5, 250, 800, 93, 157, 5, 1900, 1500, 900, 23, 61, 35]
         beginoplossing = pl.lpSum(variabelen_beginoplossing[i] * impact_circulair[i] for i in range(len(variabelen_beginoplossing))) 
-
-        doelfunctie = (circulair - beginoplossing) * (circulair - beginoplossing)
         
-        prob2 += doelfunctie
+        prob2 += pl.lpSum((circulair - beginoplossing)**2)
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
