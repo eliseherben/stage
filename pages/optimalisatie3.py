@@ -355,7 +355,8 @@ else:
         status = prob1.solve()
         st.markdown(f"Status van de oplossing (Primary): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie (Primary): {prob1.objective.value()}")
-
+        Z1_opt = pl.value(prob1.objective)
+        
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
         
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
@@ -402,6 +403,7 @@ else:
         status = prob1.solve()
         st.markdown(f"Status van de oplossing (Primary): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie (Primary): {prob1.objective.value()}")
+        Z1_opt = pl.value(prob1.objective)
         
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
         
