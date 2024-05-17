@@ -252,6 +252,6 @@ with st.expander("Vul hier de huidige hoeveelheden per productgroep in:"):
 st.markdown("**Budget**")
 st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag", key='_budget', on_change=set_budget)
 
-if uploaded_file and st.session_state.appartementen is not None:
+if uploaded_file is not None:
     st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
 
