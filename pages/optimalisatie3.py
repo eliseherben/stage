@@ -419,8 +419,8 @@ else:
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
+                prob2 += lp_variabelen[i][1] >= data.iloc[i, 2]
+                prob2 += lp_variabelen[i][1] <= data.iloc[i, 3]
         
         status = prob2.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
