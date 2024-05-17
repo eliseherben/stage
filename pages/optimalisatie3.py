@@ -191,7 +191,7 @@ else:
             
         prob1.solve()
         
-        Z1_opt = pulp.value(prob1.objective)
+        Z1_opt = pl.value(prob1.objective)
         
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
             
@@ -259,7 +259,7 @@ else:
             
         prob1.solve()
         
-        Z1_opt = pulp.value(prob1.objective)
+        Z1_opt = pl.value(prob1.objective)
         
         prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
             
