@@ -226,7 +226,7 @@ else:
 # In[ ]:
 
 
-if st.session_state.projectbestand is None:
+if st.session_state.projectbestand and st.session_state.doelstelling is None:
     st.markdown("upload een bestand")
 else: 
     st.markdown("**In dit project, is het optimaal om het aandeel van de productgroepen als volgt in te delen:**")
