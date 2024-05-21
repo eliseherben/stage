@@ -103,6 +103,21 @@ st.plotly_chart(fig)
 # In[ ]:
 
 
+fig = px.scatter(data, x='circulair', y = ['']*len(data), color='productgroep', text = 'productgroep')
+fig.update_traces(marker_size=10, textposition = 'top center')
+# Bepaal de minimum- en maximumwaarden voor de x-as
+x_min = 0
+x_max = max(data['circulair']) + 50
+
+# Vastzetten van de x-as range
+fig.update_xaxes(range=[x_min, x_max])
+
+st.plotly_chart(fig)
+
+
+# In[ ]:
+
+
 if st.session_state.projectbestand is None:
     st.markdown("upload een bestand")
 else: 
