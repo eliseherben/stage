@@ -57,10 +57,22 @@ st.number_input("Wat is het totale bvo in dit project?", value = 0, key = '_bvo'
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
+
+
+# In[ ]:
+
+
 data['minimaal'] = data['minimaal'] * st.session_state.appartementen
 data['maximaal'] = data['maximaal'] * st.session_state.appartementen
+data.head()
 
-# data.head()
+
+# In[9]:
+
+
+fig = px.scatter(data, x='kosten', y = ['']*len(data), color='productgroep')
+fig.update_traces(marker_size=10, textposition = 'top center')
+st.plotly_chart(fig)
 
 
 # In[ ]:
