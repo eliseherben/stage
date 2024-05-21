@@ -90,7 +90,7 @@ data.head()
 
 fig = px.scatter(data, x='kosten', y = ['']*len(data), color='productgroep', text = 'productgroep')
 fig.update_traces(marker_size=10, textposition = 'top center')
-fig.update_xaxes(rangemode=True)
+fig.update_xaxes(rangemode='fixed')
 
 st.plotly_chart(fig)
 
