@@ -94,8 +94,8 @@ productgroepen = filtered['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
 filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
-fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep', text = 'productgroep')
-fig_kosten.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
+fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep')
+fig_kosten.update_traces(marker_size=10)
 
 fig_kosten.update_yaxes(visible=False)
 
@@ -112,8 +112,8 @@ st.plotly_chart(fig_kosten)
 # In[ ]:
 
 
-fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep', text = 'productgroep')
-fig_circulair.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
+fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep')
+fig_circulair.update_traces(marker_size=10)
 
 fig_circulair.update_yaxes(visible=False)
 
