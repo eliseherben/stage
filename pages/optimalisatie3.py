@@ -88,37 +88,41 @@ data.head()
 # In[9]:
 
 
-fig = px.scatter(data, x='kosten', y = ['constant'], color='productgroep', text = 'productgroep')
-fig.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
+productgroepen = data['productgroep'].unique()
+selected_productgroep = st.selectbox("Selecteer een productgroep", productgroepen)
+filtered_data = data[data['productgroep'] == selected_productgroep]
 
-fig.update_yaxes(visible=False)
+fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep', text = 'productgroep')
+fig_kosten.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
+
+fig_kosten.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
 x_min = min(data['kosten']) - 100
 x_max = max(data['kosten']) + 100
 
 # Vastzetten van de x-as range
-fig.update_xaxes(range=[x_min, x_max])
+fig_kosten.update_xaxes(range=[x_min, x_max])
 
-st.plotly_chart(fig)
+st.plotly_chart(fig_kosten)
 
 
 # In[ ]:
 
 
-fig = px.scatter(data, x='circulair', y = ['']*len(data), color='productgroep', text = 'productgroep')
-fig.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
+fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep', text = 'productgroep')
+fig_circulair.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
 
-fig.update_yaxes(visible=False)
+fig_circulair.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
 x_min = min(data['circulair']) -10
 x_max = max(data['circulair']) +10
 
 # Vastzetten van de x-as range
-fig.update_xaxes(range=[x_min, x_max])
+fig_circulair.update_xaxes(range=[x_min, x_max])
 
-st.plotly_chart(fig)
+st.plotly_chart(fig_circulair)
 
 
 # In[ ]:
