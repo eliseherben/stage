@@ -89,7 +89,7 @@ data.head()
 
 
 productgroepen = data['productgroep'].unique()
-selected_productgroep = st.selectbox("Selecteer een productgroep", productgroepen)
+selected_productgroep = st.multiselect("Selecteer een productgroep", productgroepen)
 filtered_data = data[data['productgroep'] == selected_productgroep]
 
 fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep', text = 'productgroep')
