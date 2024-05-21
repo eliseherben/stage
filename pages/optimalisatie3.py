@@ -70,8 +70,8 @@ data.head()
 # In[9]:
 
 
-fig = px.scatter(data, x='kosten', y = ['']*len(data), color='productgroep')
-fig.update_traces(marker_size=10, textposition = 'top center')
+fig = px.scatter(data, x='kosten', y = ['']*len(data), color='productgroep', text = 'productgroep')
+fig.update_traces(marker_size=10, textposition = 'top center', showlegend=False)
 st.plotly_chart(fig)
 
 
