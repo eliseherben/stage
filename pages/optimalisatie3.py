@@ -89,21 +89,8 @@ data.head()
 
 
 fig = px.scatter(data, x='kosten', y = ['constant'], color='productgroep', text = 'productgroep')
-fig.update_traces(marker_size=10)
+fig.update_traces(marker_size=10, textposition = 'top left')
 
-# Add annotations for vertical text
-for i, row in data.iterrows():
-    fig.add_annotation(
-        x=row['kosten'],
-        y=row['constant'],
-        text=row['productgroep'],
-        showarrow=False,
-        textangle=-90,  # Rotate text vertically
-        xanchor='center',
-        yanchor='bottom'
-    )
-
-# Remove y-axis
 fig.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
@@ -120,7 +107,7 @@ st.plotly_chart(fig)
 
 
 fig = px.scatter(data, x='circulair', y = ['']*len(data), color='productgroep', text = 'productgroep')
-fig.update_traces(marker_size=10)
+fig.update_traces(marker_size=10, textposition = 'top left')
 
 # Add annotations for vertical text
 for i, row in data.iterrows():
