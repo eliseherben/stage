@@ -64,8 +64,6 @@ st.session_state._name = st.session_state.name
 def set_name():
     st.session_state.name = st.session_state._name
     
-
-    
 if "budget" not in st.session_state:
     st.session_state.budget = None
     
@@ -73,6 +71,14 @@ st.session_state._budget = st.session_state.budget
 
 def set_budget():
     st.session_state.budget = st.session_state._budget
+    
+if "appartementen" not in st.session_state:
+    st.session_state.appartementen = None
+    
+st.session_state._appartementen = st.session_state.appartementen
+
+def set_appartementen():
+    st.session_state.appartementen = st.session_state._appartementen
 
     # menu()
 
