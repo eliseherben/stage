@@ -100,8 +100,8 @@ fig_kosten.update_traces(marker_size=10, textposition = 'top right', showlegend=
 fig_kosten.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min = min(data['kosten']) - 100
-x_max = max(data['kosten']) + 100
+x_min = min(filtered_data['kosten']) - 100
+x_max = max(filtered_data['kosten']) + 100
 
 # Vastzetten van de x-as range
 fig_kosten.update_xaxes(range=[x_min, x_max])
@@ -118,8 +118,8 @@ fig_circulair.update_traces(marker_size=10, textposition = 'top right', showlege
 fig_circulair.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min = min(data['circulair']) -10
-x_max = max(data['circulair']) +10
+x_min = min(filtered_data['circulair']) -10
+x_max = max(filtered_data['circulair']) +10
 
 # Vastzetten van de x-as range
 fig_circulair.update_xaxes(range=[x_min, x_max])
