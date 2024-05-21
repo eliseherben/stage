@@ -232,6 +232,7 @@ else:
     if st.session_state.doelstelling is not None:
         st.markdown("**In dit project, is het optimaal om het aandeel van de productgroepen als volgt in te delen:**")
 
+        st.dataframe(df)
         for index, row in df.iterrows():
             st.markdown(f"- Binnen de productgroep {row['Productgroep']} moet er {row['Waarde']} eenheid besteed worden")
 
