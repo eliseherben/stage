@@ -87,6 +87,35 @@ data['constant'] = ['']*len(data)
 data.head()
 
 
+# In[ ]:
+
+
+filtered = data.dropna(subset=['minimaal', 'maximaal'])
+
+productgroepen = filtered['productgroep'].unique()
+selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
+filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
+
+fig = make_subplots(rows=2, cols=1)
+
+fig.append_trace(go.Scatter(filtered_data, x='kosten', y='constant', color='productgroep'), row=1, col=1)
+fig.append_trace(go.Scatter(filtered_data, x='circulair', y='constant', color='productgroep'), row=2, col=1)
+
+fig.update_yaxes(visible=False)
+
+x_min_kosten = min(filtered['kosten']) - 100
+x_max_kosten = max(filtered['kosten']) + 100
+
+fig.update_xaxes(range=[x_min_kosten, x_max_kosten], row=1, col=1)
+
+x_min_circulair = min(filtered['circulair']) - 10
+x_max_circulair = max(filtered['circulair']) + 10
+
+fig.update_xaxes(range=[x_min_circulair, x_max_circulair], row=2, col=1)
+
+st.plotly_chart(fig_kosten)
+
+
 # In[9]:
 
 
