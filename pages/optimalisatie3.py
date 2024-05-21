@@ -273,7 +273,7 @@ else:
 
     # Functie om het eerste doelstellingprobleem op te lossen
     if st.session_state.doelstelling == 'Circulair':
-        prob1 = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
+        prob1 = pl.LpProblem("Eerste doelstelling", pl.LpMaximize)
         
         # Impact themas op productgroepen
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
@@ -351,7 +351,7 @@ else:
         st.markdown(f"Waarde van de doelfunctie (budget): {prob1.objective.value()}")
         Z1_opt = pl.value(prob1.objective)
         
-        prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMinimize)
+        prob2 = pl.LpProblem("Tweede doelstelling", pl.LpMaximize)
         
         # Impact themas op productgroepen
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
