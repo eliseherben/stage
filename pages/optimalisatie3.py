@@ -319,10 +319,10 @@ else:
         st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie (budget): {prob.objective.value()}")
 
-        # Maak een DataFrame van de variabelen en hun waarden
-        variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
-        df = pd.DataFrame(variabelen_waarden, columns=['productgroep', 'waarde'])
-        st.dataframe(df)
+    # Maak een DataFrame van de variabelen en hun waarden
+    variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
+    df = pd.DataFrame(variabelen_waarden, columns=['productgroep', 'waarde'])
+    st.dataframe(df)
 
 
 # In[ ]:
