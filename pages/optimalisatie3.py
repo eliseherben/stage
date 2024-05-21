@@ -89,8 +89,8 @@ data.head()
 
 
 productgroepen = data['productgroep'].unique()
-selected_productgroep = st.multiselect("Selecteer een productgroep", productgroepen)
-filtered_data = data[data['productgroep'] == selected_productgroep]
+selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
+filtered_data = data[data['productgroep'].isin(selected_productgroepen)]
 
 fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep', text = 'productgroep')
 fig_kosten.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
