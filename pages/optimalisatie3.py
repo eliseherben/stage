@@ -60,10 +60,6 @@ data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
 data['minimaal'] = data['minimaal'] * st.session_state.appartementen
 data['maximaal'] = data['maximaal'] * st.session_state.appartementen
 
-missing_values = data.isna()
-
-print(missing_values)
-
 # data.head()
 
 
@@ -219,7 +215,7 @@ else:
 
         # Maak een DataFrame van de variabelen en hun waarden
         variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
-        df = pd.DataFrame(variabelen_waarden, columns=['Productgroep', 'Waarde'])
+        df = pd.DataFrame(variabelen_waarden, columns=['productgroep', 'waarde'])
         st.dataframe(df)
 
 
@@ -232,7 +228,8 @@ else:
     if st.session_state.doelstelling is not None:
         st.markdown("**In dit project, is het optimaal om het aandeel van de productgroepen als volgt in te delen:**")
 
-        st.dataframe(df)
+        df = pd.merge(df, data[['productgroep', 'eenheid']], on='productgroep')
+        
         for index, row in df.iterrows():
-            st.markdown(f"- Binnen de productgroep {row['Productgroep']} moet er {row['Waarde']} eenheid besteed worden")
+            st.markdown(f"- Binnen de productgroep {row['productgroep']} moet er {row['waarde']} {row['eenheid']} besteed worden")
 
