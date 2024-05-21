@@ -90,7 +90,12 @@ data.head()
 
 fig = px.scatter(data, x='kosten', y = ['']*len(data), color='productgroep', text = 'productgroep')
 fig.update_traces(marker_size=10, textposition = 'top center')
-fig.update_xaxes(rangemode='fixed')
+# Bepaal de minimum- en maximumwaarden voor de x-as
+x_min = min(data['kosten'])
+x_max = max(data['kosten'])
+
+# Vastzetten van de x-as range
+fig.update_xaxes(range=[x_min, x_max])
 
 st.plotly_chart(fig)
 
