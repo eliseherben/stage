@@ -64,20 +64,21 @@ data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
 
 data['minimaal'] = data['minimaal'] * st.session_state.appartementen
 data['maximaal'] = data['maximaal'] * st.session_state.appartementen
+data['constant'] = ['']*len(data)
 data.head()
 
 
 # In[9]:
 
 
-fig = px.scatter(data, x='kosten', y=['']*len(data), color='productgroep')
+fig = px.scatter(data, x='kosten', y='constant', color='productgroep')
 fig.update_traces(marker_size=10, showlegend=False)
 
 # Add annotations for vertical text
 for i, row in data.iterrows():
     fig.add_annotation(
         x=row['kosten'],
-        y=row['']*len(data),
+        y=row['constant'],
         text=row['productgroep'],
         showarrow=False,
         textangle=90,  # Rotate text vertically
