@@ -96,36 +96,37 @@ productgroepen = filtered['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
 filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
-fig = make_subplots(rows=2, cols=1, shared_xaxes=False, subplot_titles=("Kosten", "Circulair"))
+fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep', text = 'productgroep')
+fig_kosten.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
 
-fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep', showlegend=False)
-for trace in fig_kosten['data']:
-    fig.add_trace(trace, row=1, col=1)
-    
-fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep', showlegend=False)
-for trace in fig_circulair['data']:
-    fig.add_trace(trace, row=2, col=1)
-    
-fig.update_traces(marker_size=10)
-
-fig.update_yaxes(visible=False)
+fig_kosten.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min_kosten = min(filtered['kosten']) - 100
-x_max_kosten = max(filtered['kosten']) + 100
+x_min = min(filtered['kosten']) - 100
+x_max = max(filtered['kosten']) + 100
 
 # Vastzetten van de x-as range
-fig.update_xaxes(range=[x_min_kosten, x_max_kosten], row=1, col=1)
+fig_kosten.update_xaxes(range=[x_min, x_max])
+
+st.plotly_chart(fig_kosten)
+
+
+# In[ ]:
+
+
+fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep')
+fig_circulair.update_traces(marker_size=10, showlegend=False)
+
+fig_circulair.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min_circulair = min(filtered['circulair']) -10
-x_max_circulair = max(filtered['circulair']) +10
+x_min = min(filtered['circulair']) - 10
+x_max = max(filtered['circulair']) + 10
 
 # Vastzetten van de x-as range
-fig.update_xaxes(range=[x_min_circulair, x_max_circulair], row=2, col=1)
+fig_circulair.update_xaxes(range=[x_min, x_max])
 
-fig.update_layout(showlegend=True)
-st.plotly_chart(fig)
+st.plotly_chart(fig_kosten)
 
 
 # In[ ]:
