@@ -113,7 +113,7 @@ x_max_circulair = max(filtered['circulair']) + 10
 
 fig.update_xaxes(range=[x_min_circulair, x_max_circulair], row=2, col=1)
 
-st.plotly_chart(fig_kosten)
+st.plotly_chart(fig)
 
 
 # In[9]:
