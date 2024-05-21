@@ -91,8 +91,8 @@ data.head()
 fig = px.scatter(data, x='kosten', y = ['']*len(data), color='productgroep', text = 'productgroep')
 fig.update_traces(marker_size=10, textposition = 'top center')
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min = min(data['kosten'])
-x_max = max(data['kosten'])
+x_min = min(data['kosten']) - 1000
+x_max = max(data['kosten']) + 1000
 
 # Vastzetten van de x-as range
 fig.update_xaxes(range=[x_min, x_max])
