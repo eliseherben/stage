@@ -98,8 +98,8 @@ filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
 fig = make_subplots(rows=2, cols=1)
 
-fig.append_trace(go.Scatter(x=filtered_data['kosten'], y=filtered_data['constant'], color='productgroep'), row=1, col=1)
-fig.append_trace(go.Scatter(x=filtered_data['circulair'], y=filtered_data['constant'], color='productgroep'), row=2, col=1)
+fig.append_trace(go.Scatter(x=filtered_data['kosten'], y=filtered_data['constant']), row=1, col=1)
+fig.append_trace(go.Scatter(x=filtered_data['circulair'], y=filtered_data['constant']), row=2, col=1)
 
 fig.update_yaxes(visible=False)
 
