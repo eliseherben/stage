@@ -50,9 +50,6 @@ def set_appartementen():
 # In[ ]:
 
 
-st.markdown("**Aantal appartementen**")
-st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', on_change=set_appartementen)
-
 st.markdown("**Primair thema**")
 st.selectbox("Welke thema heeft prioriteit in dit project?", 
             ("Circulair", "Budget"), 
