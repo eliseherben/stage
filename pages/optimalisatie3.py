@@ -89,7 +89,7 @@ data.head()
 
 
 fig = px.scatter(data, x='kosten', y = ['constant'], color='productgroep', text = 'productgroep')
-fig.update_traces(marker_size=10, textposition = 'top left')
+fig.update_traces(marker_size=10, textposition = 'top right')
 
 fig.update_yaxes(visible=False)
 
@@ -107,7 +107,7 @@ st.plotly_chart(fig)
 
 
 fig = px.scatter(data, x='circulair', y = ['']*len(data), color='productgroep', text = 'productgroep')
-fig.update_traces(marker_size=10, textposition = 'top left')
+fig.update_traces(marker_size=10, textposition = 'top right')
 
 fig.update_yaxes(visible=False)
 
