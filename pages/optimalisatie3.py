@@ -94,8 +94,8 @@ fig.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
 fig.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min = min(data['kosten']) - 1500
-x_max = max(data['kosten']) + 1000
+x_min = min(data['kosten'])
+x_max = max(data['kosten'])
 
 # Vastzetten van de x-as range
 fig.update_xaxes(range=[x_min, x_max])
@@ -112,8 +112,8 @@ fig.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
 fig.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min = min(data['kosten']) - 100
-x_max = max(data['circulair']) + 50
+x_min = min(data['kosten']) 
+x_max = max(data['circulair'])
 
 # Vastzetten van de x-as range
 fig.update_xaxes(range=[x_min, x_max])
