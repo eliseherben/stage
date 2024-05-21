@@ -38,13 +38,6 @@ st.session_state._bvo = st.session_state.bvo
 def set_bvo():
     st.session_state.bvo = st.session_state._bvo
     
-if "appartementen" not in st.session_state:
-    st.session_state.appartementen = None
-    
-st.session_state._appartementen = st.session_state.appartementen
-
-def set_appartementen():
-    st.session_state.appartementen = st.session_state._appartementen
 
 
 # In[ ]:
