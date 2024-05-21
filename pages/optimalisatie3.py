@@ -124,6 +124,7 @@ x_max_circulair = max(filtered['circulair']) +10
 # Vastzetten van de x-as range
 fig.update_xaxes(range=[x_min_circulair, x_max_circulair], row=2, col=1)
 
+fig.update_layout(showlegend=True)
 st.plotly_chart(fig)
 
 
