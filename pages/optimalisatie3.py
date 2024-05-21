@@ -88,11 +88,11 @@ data.head()
 # In[9]:
 
 
-filtered_data = data.dropna(subset=['minimaal', 'maximaal'])
+filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
-productgroepen = filtered_data['productgroep'].unique()
+productgroepen = filtered['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
-filtered_data = filtered_data[filtered_data['productgroep'].isin(selected_productgroepen)]
+filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
 fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep', text = 'productgroep')
 fig_kosten.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
@@ -100,8 +100,8 @@ fig_kosten.update_traces(marker_size=10, textposition = 'top right', showlegend=
 fig_kosten.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min = min(filtered_data['kosten']) - 100
-x_max = max(filtered_data['kosten']) + 100
+x_min = min(filtered['kosten']) - 100
+x_max = max(filtered['kosten']) + 100
 
 # Vastzetten van de x-as range
 fig_kosten.update_xaxes(range=[x_min, x_max])
@@ -118,8 +118,8 @@ fig_circulair.update_traces(marker_size=10, textposition = 'top right', showlege
 fig_circulair.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min = min(filtered_data['circulair']) -10
-x_max = max(filtered_data['circulair']) +10
+x_min = min(filtered['circulair']) -10
+x_max = max(filtered['circulair']) +10
 
 # Vastzetten van de x-as range
 fig_circulair.update_xaxes(range=[x_min, x_max])
