@@ -98,11 +98,11 @@ filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
 fig = make_subplots(rows=2, cols=1, shared_xaxes=False, subplot_titles=("Kosten", "Circulair"))
 
-fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep')
+fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep', showlegend=False)
 for trace in fig_kosten['data']:
     fig.add_trace(trace, row=1, col=1)
     
-fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep')
+fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep', showlegend=False)
 for trace in fig_circulair['data']:
     fig.add_trace(trace, row=2, col=1)
     
