@@ -88,9 +88,11 @@ data.head()
 # In[9]:
 
 
-productgroepen = data['productgroep'].unique()
+filtered_data = data.dropna(subset=['minimaal', 'maximaal'])
+
+productgroepen = filtered_data['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
-filtered_data = data[data['productgroep'].isin(selected_productgroepen)]
+filtered_data = filtered_data[filtered_data['productgroep'].isin(selected_productgroepen)]
 
 fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep', text = 'productgroep')
 fig_kosten.update_traces(marker_size=10, textposition = 'top right', showlegend=False)
