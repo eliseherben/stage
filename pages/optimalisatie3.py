@@ -53,16 +53,18 @@ st.markdown("**Bruto vloeroppervlak**")
 st.number_input("Wat is het totale bvo in dit project?", value = 0, key = '_bvo', on_change=set_bvo)
 
 
-# In[3]:
+# In[20]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
+data
 
 
-# In[ ]:
+# In[21]:
 
 
 data2 = pd.read_csv("dataframe2.csv", sep=';', decimal = ',')
+data2
 
 
 # In[ ]:
@@ -163,7 +165,7 @@ else:
                 prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
         
-        prob1 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data.iloc[i, 1] == "m2"]) == st.session_state.bvo
+#         prob1 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data.iloc[i, 1] == "m2"]) == st.session_state.bvo
 #         prob1 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) <= st.session_state.budget
             
         status = prob1.solve()
@@ -182,7 +184,7 @@ else:
                 prob2 += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob2 += lp_variabelen[i][1] <= data.iloc[i, 3]
         
-        prob2 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data.iloc[i, 1] == "m2"]) == st.session_state.bvo
+#         prob2 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data.iloc[i, 1] == "m2"]) == st.session_state.bvo
 #         prob2 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) <= st.session_state.budget
 
         status = prob2.solve()
@@ -210,7 +212,7 @@ else:
                 prob1 += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob1 += lp_variabelen[i][1] <= data.iloc[i, 3]
         
-        prob1 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data.iloc[i, 1] == "m2"]) == st.session_state.bvo
+#         prob1 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data.iloc[i, 1] == "m2"]) == st.session_state.bvo
                 
 #         prob1 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
 
@@ -235,7 +237,7 @@ else:
                 prob2 += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob2 += lp_variabelen[i][1] <= data.iloc[i, 3]
         
-        prob2 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data.iloc[i, 1] == "m2"]) == st.session_state.bvo
+#         prob2 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data.iloc[i, 1] == "m2"]) == st.session_state.bvo
 
 #         prob2 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
 
@@ -293,7 +295,7 @@ else:
                 prob1 += lp_variabelen[i][1] >= data2.iloc[i, 2]
                 prob1 += lp_variabelen[i][1] <= data2.iloc[i, 3]
         
-        prob1 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data2.iloc[i, 1] == "m2"]) == st.session_state.bvo
+#         prob1 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data2.iloc[i, 1] == "m2"]) == st.session_state.bvo
 #         prob1 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) <= st.session_state.budget
             
         status = prob1.solve()
@@ -312,7 +314,7 @@ else:
                 prob2 += lp_variabelen[i][1] >= data2.iloc[i, 2]
                 prob2 += lp_variabelen[i][1] <= data2.iloc[i, 3]
         
-        prob2 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data2.iloc[i, 1] == "m2"]) == st.session_state.bvo
+#         prob2 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data2.iloc[i, 1] == "m2"]) == st.session_state.bvo
 #         prob2 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) <= st.session_state.budget
 
         status = prob2.solve()
@@ -340,7 +342,7 @@ else:
                 prob1 += lp_variabelen[i][1] >= data2.iloc[i, 2]
                 prob1 += lp_variabelen[i][1] <= data2.iloc[i, 3]
         
-        prob1 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data2.iloc[i, 1] == "m2"]) == st.session_state.bvo
+#         prob1 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data2.iloc[i, 1] == "m2"]) == st.session_state.bvo
                 
 #         prob1 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
 
@@ -365,7 +367,7 @@ else:
                 prob2 += lp_variabelen[i][1] >= data2.iloc[i, 2]
                 prob2 += lp_variabelen[i][1] <= data2.iloc[i, 3]
         
-        prob2 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data2.iloc[i, 1] == "m2"]) == st.session_state.bvo
+#         prob2 += sum([lp_variabelen[i][1] for i in range(len(lp_variabelen)) if data2.iloc[i, 1] == "m2"]) == st.session_state.bvo
 
 #         prob2 +=  pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget))) == st.session_state.budget
 
