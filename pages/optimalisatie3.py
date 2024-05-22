@@ -325,7 +325,7 @@ import pandas as pd
 if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
 else:
-    st.markdown("levensduur")
+    st.markdown("milieukosten")
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
 
