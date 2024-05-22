@@ -75,7 +75,6 @@ data2
 data2['minimaal'] = data2['minimaal'] * st.session_state.appartementen
 data2['maximaal'] = data2['maximaal'] * st.session_state.appartementen
 data2['constant'] = ['']*len(data2)
-data.head()
 
 
 # In[ ]:
@@ -84,7 +83,6 @@ data.head()
 data['minimaal'] = data['minimaal'] * st.session_state.appartementen
 data['maximaal'] = data['maximaal'] * st.session_state.appartementen
 data['constant'] = ['']*len(data)
-data.head()
 
 
 # In[ ]:
