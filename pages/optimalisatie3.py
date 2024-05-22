@@ -59,14 +59,12 @@ st.number_input("Wat is het totale bvo in dit project?", value = 0, key = '_bvo'
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
-data
 
 
 # In[21]:
 
 
 data2 = pd.read_csv("dataframe2.csv", sep=';', decimal = ',')
-data2
 
 
 # In[ ]:
