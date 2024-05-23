@@ -472,7 +472,7 @@ for productgroep in df['Productgroep']:
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['Productgroep'] == productgroep]
 
-    df_prouctgroep['length'] = df_productgroep['max_waarden'] - df_productgroep['min_waarden']
+    df_productgroep['length'] = df_productgroep['max_waarden'] - df_productgroep['min_waarden']
     
     fig = px.bar(df_productgroep, x='length', y='code', base = 'min_waarden', 
                  color_discrete_sequence=['rgba(58, 71, 80, 0.6)'], title=f'{productgroep} ')
