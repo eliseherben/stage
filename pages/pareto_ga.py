@@ -467,6 +467,10 @@ df = pd.DataFrame(data)
 
 st.dataframe(df)
 
+fig = px.bar(df, x='max_waarden', y='Productgroep', base = 'min_waarden')
+
+st.plotly_chart(fig)
+
 
 # In[ ]:
 
