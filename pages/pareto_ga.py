@@ -480,13 +480,13 @@ for productgroep in df['Productgroep']:
     
     # Maak de bar plot met Plotly Express
     fig = px.bar(df_productgroep, 
-                 x=['min_point', 'length'],  # Beginpunt en lengte van de balken
+                 x=['length'],  # Beginpunt en lengte van de balken
                  y='Productgroep',
-                 color_discrete_sequence=['rgba(0,0,0,0)', 'rgba(58, 71, 80, 0.6)'],  # Kleur van de balken
+                 color_discrete_sequence=[ 'rgba(58, 71, 80, 0.6)'],  # Kleur van de balken
                  orientation='h',
                  title=f'{productgroep} ',
-                 labels={'x': '', 'y': ''}
-                )
+                 labels={'x': '', 'y': ''}, 
+                base = 'min_point')
     
     # Voeg de optimale waarden toe
     fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=15, labels={'x': ''}).data[0])
