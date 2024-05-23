@@ -14,6 +14,7 @@ import plotly.express as px
 
 
 st.markdown("**Pareto oplossingen**")
+st.page_link("simplex.py", label="Homepagina")
 
 
 # In[122]:
