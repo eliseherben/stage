@@ -476,8 +476,9 @@ for productgroep in df['Productgroep']:
                  color_discrete_sequence=['rgba(58, 71, 80, 0.6)'], title=f'{productgroep} ')
     
     fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='code', 
-                             color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size=100, labels={'x': ''}).data[0])
+                             color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], labels={'x': ''}).data[0])
 
+    fig.update_traces(marker_size=10)
     fig.update_layout(height=250)
 
     fig.update_yaxes(visible=False, showticklabels=False)
