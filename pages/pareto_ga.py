@@ -479,7 +479,7 @@ for productgroep in df['Productgroep']:
     
     fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='code', 
                              color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], labels={'x': ''}, 
-                             size=[10], symbol = 'line-ns').data[0])
+                             size=[10], symbol = ['line-ns']).data[0])
 
     fig.update_layout(height=250)
 
