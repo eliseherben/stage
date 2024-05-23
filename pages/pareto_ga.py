@@ -495,7 +495,7 @@ for productgroep in df['Productgroep']:
     # Pas de hoogte van de grafiek aan
     fig.update_layout(height=250)
 
-    fig.update_layout(xaxis=dict(range=[df_productgroep['min_waarden'].min(), df_productgroep['max_waarden'].max()]))  # Stel de range in van 1 tot 5
+    fig.update_layout(xaxis(range=[df_productgroep['min_waarden'].min(), df_productgroep['max_waarden'].max()]))  # Stel de range in van 1 tot 5
     
     # Voeg witruimte toe aan beide kanten van de x-as
 #     min_value = df_productgroep['min_waarden'].min()
