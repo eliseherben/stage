@@ -19,6 +19,7 @@ st.write("#")
 st.title("Optimalisatie")
 st.page_link("pages/advies.py", label="Naar advies")
 st.page_link("simplex.py", label="Homepagina")
+st.page_link("pages/pareto_ga.py", label="Pareto oplossingen")
 
 
 # In[ ]:
