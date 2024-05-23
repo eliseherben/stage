@@ -485,7 +485,7 @@ for productgroep in df['Productgroep']:
     fig = px.bar(df_productgroep, 
                  x=['length'],  # Beginpunt en lengte van de balken
                  y='Productgroep',
-                 color_discrete_sequence=[ 'rgba(58, 71, 80, 0.6)'],  # Kleur van de balken
+                 color_discrete_sequence=['rgba(58, 71, 80, 0.6)'],  # Kleur van de balken
                  orientation='h',
                  title=f'{productgroep} ',
                  labels={'x': '', 'y': ''}, 
@@ -497,10 +497,12 @@ for productgroep in df['Productgroep']:
     # Pas de hoogte van de grafiek aan
     fig.update_layout(height=250)
 
+    fig.update_layout(xaxis=dict(range=[df_productgroep['min_waarden'].min(), df_productgroep['max_waarden'].max()]))  # Stel de range in van 1 tot 5
+    
     # Voeg witruimte toe aan beide kanten van de x-as
-    min_value = df_productgroep['min_waarden'].min()
-    max_value = df_productgroep['max_waarden'].max()
-    fig.update_xaxes(tickvals=[min_value, max_value], ticktext=[min_value, max_value])
+#     min_value = df_productgroep['min_waarden'].min()
+#     max_value = df_productgroep['max_waarden'].max()
+#     fig.update_xaxes(tickvals=[min_value, max_value], ticktext=[min_value, max_value])
 
     fig.update_yaxes(visible=False, showticklabels=False)
     
