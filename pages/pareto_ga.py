@@ -496,9 +496,10 @@ for productgroep in df['Productgroep']:
 
     # Voeg witruimte toe aan beide kanten van de x-as
     max_waarde = df_productgroep['max_waarden'].max()
-    fig.update_xaxes(range=[-max_waarde * 0.1, max_waarde * 1.1])
+    fig.update_xaxes(range=[df_productgroep['min_waarden'] * 0.1, df_productgroep['max_waarden'] * 1.1])
 
     fig.update_yaxes(visible=False, showticklabels=False)
+    fig.update_xaxes(visible=False, showticklabels=False)
     
     # Verwijder de legenda
     fig.update_layout(showlegend=False)
