@@ -462,6 +462,7 @@ data = {
     'optimaal_waarden': [optimaal[0], optimaal[1], optimaal[2], optimaal[3], optimaal[4], optimaal[5], 
                          optimaal[6], optimaal[7], optimaal[8], optimaal[9], optimaal[10], optimaal[11], 
                         optimaal[12], optimaal[19], optimaal[22], optimaal[24]]
+    'huidige_waarden': [500, 900, 1200, 4, 600, 450, 110, 70, 5, 110, 800, 1100, 850, 30, 34, 33]
 }
 
 df = pd.DataFrame(data)
@@ -479,8 +480,12 @@ for productgroep in df['Productgroep']:
     
     fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='code', 
                              color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], labels={'x': ''}, 
-                             size=[10], symbol = ['line-ns']).data[0])
+                             size=[10], symbol = ['optimaal']).data[0])
 
+    fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
+                             color_discrete_sequence=['rgba(223, 48, 120, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = ['huidig']).data[0])
+        
     fig.update_layout(height=250)
 
     fig.update_yaxes(visible=False, showticklabels=False)
