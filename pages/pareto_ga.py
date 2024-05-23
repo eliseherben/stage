@@ -461,7 +461,7 @@ data = {
     'max_waarden': [1448, 1067, 1689, 6, 810, 787, 112, 154, 11, 159, 1847, 1425, 1155, 32, 61, 34],
     'optimaal_waarden': [optimaal[0], optimaal[1], optimaal[2], optimaal[3], optimaal[4], optimaal[5], 
                          optimaal[6], optimaal[7], optimaal[8], optimaal[9], optimaal[10], optimaal[11], 
-                        optimaal[12], optimaal[19], optimaal[22], optimaal[24]]
+                        optimaal[12], optimaal[19], optimaal[22], optimaal[24]],
     'huidige_waarden': [500, 900, 1200, 4, 600, 450, 110, 70, 5, 110, 800, 1100, 850, 30, 34, 33]
 }
 
