@@ -471,8 +471,6 @@ df = pd.DataFrame(data)
 
 # Loop over elke productgroep
 for productgroep in df['Productgroep']:
-    st.markdown(df_productgroep['min_waarden'].min())
-    st.markdown(df_productgroep['max_waarden'].min())
 
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['Productgroep'] == productgroep]
