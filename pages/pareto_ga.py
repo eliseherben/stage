@@ -10,6 +10,12 @@ import pandas as pd
 import plotly.express as px
 
 
+# In[ ]:
+
+
+st.markdown("**Pareto oplossingen**")
+
+
 # In[122]:
 
 
@@ -133,10 +139,10 @@ def kinderen_maken(ouders):
 
 
 startoplossing = startoplossing()
-print(f"Startoplossing: {startoplossing}\n")
+# print(f"Startoplossing: {startoplossing}\n")
 
 startpopulatie = startpopulatie(startoplossing)
-print(f"Startpopulatie: {startpopulatie}\n")
+# print(f"Startpopulatie: {startpopulatie}\n")
 
 
 # In[130]:
@@ -165,7 +171,7 @@ def optimalisatie(startpopulatie):
 
 
 populatie = optimalisatie(startpopulatie)
-print(f"Populatie: {populatie}")
+# print(f"Populatie: {populatie}")
 
 
 # In[132]:
@@ -195,7 +201,7 @@ def pareto_populatie(populatie):
 
 
 populatie_pareto = pareto_populatie(populatie)
-print(f"Pareto {populatie_pareto}")
+# print(f"Pareto {populatie_pareto}")
 
 
 # In[134]:
@@ -222,7 +228,7 @@ nieuwe_rij = {'Oplossing': (442.50, 754.76, 896.78, 3.18, 234.85, 270.62, 90.92,
 # Toevoegen van de nieuwe rij
 df = df._append(nieuwe_rij, ignore_index=True)
 
-df.head()
+# df.head()
 
 
 # In[135]:
@@ -230,7 +236,7 @@ df.head()
 
 fig = px.scatter(df, x='Milieukosten', y='Kosten', color = 'Pareto', color_discrete_map={'ja': 'blue', 'nee': 'green', 'optimaal': 'red'}, hover_data={"Oplossing": True})
 
-fig.show()
+st.plotly_chart(fig)
 
 
 # In[ ]:
