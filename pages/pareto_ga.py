@@ -456,6 +456,7 @@ data = {
                       '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', '34 Balustrades en leuningen', 
                       '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '64 Vaste gebouwvoorziening',
                       '73 Keuken', '90 Terreininrichting'],
+    'code': ['21', '22', '23', '24', '27', '28', '31', '32', '33', '34', '42', '43', '45', '64','73', '90'],
     'min_waarden': [442, 754, 896, 3, 234, 270, 90, 33, 3, 100, 661, 895, 755, 14, 29, 33],
     'max_waarden': [1448, 1067, 1689, 6, 810, 787, 112, 154, 11, 159, 1847, 1425, 1155, 32, 61, 34],
     'optimaal_waarden': [optimaal[0], optimaal[1], optimaal[2], optimaal[3], optimaal[4], optimaal[5], 
@@ -471,9 +472,9 @@ for productgroep in df['Productgroep']:
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['Productgroep'] == productgroep]
 
-    fig = px.bar(df_productgroep, x='max_waarden', y='Productgroep', base = 'min_waarden', color_discrete_sequence=['rgba(58, 71, 80, 0.6)'])
+    fig = px.bar(df_productgroep, x='max_waarden', y='code', base = 'min_waarden', color_discrete_sequence=['rgba(58, 71, 80, 0.6)'])
     
-    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=15, labels={'x': ''}).data[0])
+    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='code', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=15, labels={'x': ''}).data[0])
 
     fig.update_layout(height=200)
 
