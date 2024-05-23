@@ -205,7 +205,7 @@ populatie_pareto = pareto_populatie(populatie)
 # print(f"Pareto {populatie_pareto}")
 
 
-# In[134]:
+# In[164]:
 
 
 f1_kosten = []
@@ -230,6 +230,13 @@ nieuwe_rij = {'Oplossing': (442.50, 754.76, 896.78, 3.18, 234.85, 270.62, 90.92,
 df = df._append(nieuwe_rij, ignore_index=True)
 
 # df.head()
+optimaal = nieuwe_rij.get("Oplossing")
+
+
+# In[ ]:
+
+
+st.markdown("**Optimale oplossing**")
 
 
 # In[135]:
@@ -253,34 +260,240 @@ if st.button('Herlaad pagina'):
 
 
 
+# In[151]:
+
+
+# import plotly.express as px
+# import plotly.graph_objects as go
+# import pandas as pd
+
+# # Voorbeeld data
+# data = {
+#     'productgroepen': ['Product A', 'Product B', 'Product C'],
+#     'min_waarden': [10, 15, 20],
+#     'max_waarden': [30, 25, 35],
+#     'optimaal_waarden': [20, 20, 30]
+# }
+
+# df = pd.DataFrame(data)
+
+# # Maak de min-max balken met Plotly Express
+# fig = px.bar(
+#     df,
+#     x=df['max_waarden'] - df['min_waarden'],
+#     y='productgroepen',
+#     orientation='h',
+#     range_x=[0, max(df['max_waarden'])+10],
+#     labels={'x': 'Waarden', 'y': 'Productgroepen'},
+#     title='Productgroepen met Min-Max en Optimaal waarden'
+# )
+
+# # Voeg de optimale waarden toe met Plotly Express
+# optimal_fig = px.scatter(
+#     df,
+#     x='optimaal_waarden',
+#     y='productgroepen',
+#     color_discrete_sequence=['rgba(246, 78, 139, 1.0)'],
+#     size=[10]*len(df),
+#     labels={'x': 'Waarden', 'y': 'Productgroepen'}
+# )
+
+# # Voeg de scatter plot toe aan de bar plot
+# for trace in optimal_fig.data:
+#     fig.add_trace(trace)
+
+
+# # Toon de figuur
+# fig.show()
+
+
+# In[154]:
+
+
+# import plotly.express as px
+# import pandas as pd
+
+# # Voorbeeld data
+# data = {
+#     {'Productgroep': ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', 
+#                       '28 Hoofddraagconstructie', '31 Buitenkozijnen, -ramen, -deuren, en -puien', 
+#                       '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', '34 Balustrades en leuningen', 
+#                       '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '64 Vaste gebouwvoorziening',
+#                       '73 Keuken', '90 Terreininrichting'],
+#     'min_waarden': [442, 754, 896, 3, 234, 270, 90, 33, 3, 100, 661, 895, 755, 14, 29, 33],
+#     'max_waarden': [1448, 1067, 1689, 6, 810, 787, 112, 154, 11, 159, 1847, 1425, 1155, 32, 61, 34],
+#     'optimaal_waarden': [optimaal[0], optimaal[1], optimaal[2], optimaal[3], optimaal[4], optimaal[5], 
+#                          optimaal[6], optimaal[7], optimaal[8], optimaal[9], optimaal[10], optimaal[11], 
+#                         optimaal[12], optimaal[19], optimaal[22], optimaal[24]]
+# }
+
+# df = pd.DataFrame(data)
+
+# # Maak de data voor de bar plot
+# df['length'] = df['max_waarden'] - df['min_waarden']
+# df['min_point'] = df['min_waarden']
+
+# # Maak de bar plot met Plotly Express
+# fig = px.bar(df, 
+#              x=['min_point', 'length'],  # Beginpunt en lengte van de balken
+#              y='productgroepen',
+#              color_discrete_sequence=['rgba(58, 71, 80, 0.6)', 'rgba(58, 71, 80, 0.6)'],  # Kleur van de balken
+#              orientation='h',
+#              title='Productgroepen met Min-Max en Optimaal waarden',
+#              labels={'x': 'Waarden', 'y': 'Productgroepen'},
+#              category_orders={"productgroepen": list(df["productgroepen"])}
+#             )
+
+# # Voeg de optimale waarden toe
+# fig.add_trace(px.scatter(df, x='optimaal_waarden', y='productgroepen', color_discrete_sequence=['rgba(246, 78, 139, 1.0)']).data[0])
+
+# # Toon de figuur
+# fig.show()
+
+
+# In[168]:
+
+
+# import plotly.express as px
+# import pandas as pd
+
+# # Voorbeeld data
+# data = {
+#     'Productgroep': ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', 
+#                       '28 Hoofddraagconstructie', '31 Buitenkozijnen, -ramen, -deuren, en -puien', 
+#                       '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', '34 Balustrades en leuningen', 
+#                       '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '64 Vaste gebouwvoorziening',
+#                       '73 Keuken', '90 Terreininrichting'],
+#     'min_waarden': [442, 754, 896, 3, 234, 270, 90, 33, 3, 100, 661, 895, 755, 14, 29, 33],
+#     'max_waarden': [1448, 1067, 1689, 6, 810, 787, 112, 154, 11, 159, 1847, 1425, 1155, 32, 61, 34],
+#     'optimaal_waarden': [optimaal[0], optimaal[1], optimaal[2], optimaal[3], optimaal[4], optimaal[5], 
+#                          optimaal[6], optimaal[7], optimaal[8], optimaal[9], optimaal[10], optimaal[11], 
+#                         optimaal[12], optimaal[19], optimaal[22], optimaal[24]]
+# }
+
+
+# df1 = pd.DataFrame(data)
+
+# # Maak de data voor de bar plot
+# df1['length'] = df1['max_waarden'] - df1['min_waarden']
+# df1['min_point'] = df1['min_waarden']
+
+# # Maak de bar plot met Plotly Express
+# fig = px.bar(df1, 
+#              x=['min_point', 'length'],  # Beginpunt en lengte van de balken
+#              y='Productgroep',
+#              color_discrete_sequence=['rgba(0,0,0,0)', 'rgba(58, 71, 80, 0.6)'],  # Kleur van de balken
+#              orientation='h',
+#              title='Productgroepen met Min-Max en Optimaal waarden',
+#              labels={'x': 'Waarden', 'y': 'Productgroepen'},
+#              category_orders={"Productgroep": list(df1["Productgroep"])}
+#             )
+
+# # Voeg de optimale waarden toe
+# fig.add_trace(px.scatter(df1, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)']).data[0])
+
+# # Toon de figuur
+# fig.show()
+
+
+# In[170]:
+
+
+# import plotly.express as px
+# import pandas as pd
+
+# # Voorbeeld data
+# data = {
+#     'Productgroep': ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', 
+#                       '28 Hoofddraagconstructie', '31 Buitenkozijnen, -ramen, -deuren, en -puien', 
+#                       '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', '34 Balustrades en leuningen', 
+#                       '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '64 Vaste gebouwvoorziening',
+#                       '73 Keuken', '90 Terreininrichting'],
+#     'min_waarden': [442, 754, 896, 3, 234, 270, 90, 33, 3, 100, 661, 895, 755, 14, 29, 33],
+#     'max_waarden': [1448, 1067, 1689, 6, 810, 787, 112, 154, 11, 159, 1847, 1425, 1155, 32, 61, 34],
+#     'optimaal_waarden': [optimaal[0], optimaal[1], optimaal[2], optimaal[3], optimaal[4], optimaal[5], 
+#                          optimaal[6], optimaal[7], optimaal[8], optimaal[9], optimaal[10], optimaal[11], 
+#                         optimaal[12], optimaal[19], optimaal[22], optimaal[24]]
+# }
+
+# df1 = pd.DataFrame(data)
+
+# # Selecteer alleen de eerste productgroep
+# df1_first = df1.head(1)
+
+# # Maak de data voor de bar plot
+# df1_first['length'] = df1_first['max_waarden'] - df1_first['min_waarden']
+# df1_first['min_point'] = df1_first['min_waarden']
+
+# # Maak de bar plot met Plotly Express
+# fig = px.bar(df1_first, 
+#              x=['min_point', 'length'],  # Beginpunt en lengte van de balken
+#              y='Productgroep',
+#              color_discrete_sequence=['rgba(0,0,0,0)', 'rgba(58, 71, 80, 0.6)'],  # Kleur van de balken
+#              orientation='h',
+#              title='Productgroepen met Min-Max en Optimaal waarden',
+#              labels={'x': 'Waarden', 'y': 'Productgroepen'},
+#              category_orders={"Productgroep": list(df1_first["Productgroep"])}
+#             )
+
+# # Voeg de optimale waarden toe
+# fig.add_trace(px.scatter(df1_first, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)']).data[0])
+
+# # Pas de hoogte van de grafiek aan
+# fig.update_layout(height=300)
+
+# # Toon de figuur
+# fig.show()
+
+
 # In[ ]:
 
 
+import plotly.express as px
+import pandas as pd
+import streamlit as st
 
+# Voorbeeld data
+data = {
+    'Productgroep': ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', 
+                      '28 Hoofddraagconstructie', '31 Buitenkozijnen, -ramen, -deuren, en -puien', 
+                      '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', '34 Balustrades en leuningen', 
+                      '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '64 Vaste gebouwvoorziening',
+                      '73 Keuken', '90 Terreininrichting'],
+    'min_waarden': [442, 754, 896, 3, 234, 270, 90, 33, 3, 100, 661, 895, 755, 14, 29, 33],
+    'max_waarden': [1448, 1067, 1689, 6, 810, 787, 112, 154, 11, 159, 1847, 1425, 1155, 32, 61, 34],
+    'optimaal_waarden': [optimaal[0], optimaal[1], optimaal[2], optimaal[3], optimaal[4], optimaal[5], 
+                         optimaal[6], optimaal[7], optimaal[8], optimaal[9], optimaal[10], optimaal[11], 
+                        optimaal[12], optimaal[19], optimaal[22], optimaal[24]]
+}
 
+df = pd.DataFrame(data)
 
-# In[ ]:
+# Loop over elke productgroep
+for productgroep in df['Productgroep']:
+    # Selecteer de data voor de huidige productgroep
+    df_productgroep = df[df['Productgroep'] == productgroep]
+    
+    # Maak de data voor de bar plot
+    df_productgroep['length'] = df_productgroep['max_waarden'] - df_productgroep['min_waarden']
+    df_productgroep['min_point'] = df_productgroep['min_waarden']
+    
+    # Maak de bar plot met Plotly Express
+    fig = px.bar(df_productgroep, 
+                 x=['min_point', 'length'],  # Beginpunt en lengte van de balken
+                 y='Productgroep',
+                 color_discrete_sequence=['rgba(0,0,0,0)', 'rgba(58, 71, 80, 0.6)'],  # Kleur van de balken
+                 orientation='h',
+                 title=f'{productgroep} met Min-Max en Optimaal waarden',
+                 labels={'x': 'Waarden', 'y': 'Productgroepen'},
+                 category_orders={"Productgroep": list(df_productgroep["Productgroep"])}
+                )
+    
+    # Voeg de optimale waarden toe
+    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)']).data[0])
 
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
+    # Toon de figuur met Streamlit
+    st.plotly_chart(fig)
 
 
 # In[ ]:
