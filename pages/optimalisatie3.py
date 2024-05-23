@@ -32,15 +32,6 @@ st.session_state._doelstelling = st.session_state.doelstelling
 
 def set_doelstelling():
     st.session_state.doelstelling = st.session_state._doelstelling
-    
-if "bvo" not in st.session_state:
-    st.session_state.bvo = None
-    
-st.session_state._bvo = st.session_state.bvo
-
-def set_bvo():
-    st.session_state.bvo = st.session_state._bvo
-    
 
 
 # In[ ]:
@@ -51,9 +42,6 @@ st.selectbox("Welke thema heeft prioriteit in dit project?",
             ("Circulair", "Budget"), 
             index = None, 
             placeholder='selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
-
-st.markdown("**Bruto vloeroppervlak**")
-st.number_input("Wat is het totale bvo in dit project?", value = 0, key = '_bvo', on_change=set_bvo)
 
 
 # In[20]:
@@ -346,7 +334,7 @@ else:
         impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         
-        prob += 2 * circulair + budget 
+        prob += 2/3 * circulair + 1/3 * budget 
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -368,7 +356,7 @@ else:
         impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
-        prob += 2 * budget + circulair
+        prob += 2/3 * budget + 1/3 * circulair
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -418,7 +406,7 @@ else:
         impact_budget = [data2.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         
-        prob += 2 * circulair - budget 
+        prob += 2/3 * circulair - 1/3 * budget 
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]):
@@ -440,7 +428,7 @@ else:
         impact_circulair = [data2.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
-        prob += 2 * budget - circulair
+        prob += 2/3 * budget - 1/3 * circulair
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]):
