@@ -495,8 +495,9 @@ for productgroep in df['Productgroep']:
     fig.update_layout(height=250)
 
     # Voeg witruimte toe aan beide kanten van de x-as
-    max_waarde = df_productgroep['max_waarden'].max()
-    fig.update_xaxes(range=[df_productgroep['min_waarden'] * 0.1, df_productgroep['max_waarden'] * 1.1])
+    min_value = df_productgroep['min_waarden'].min()
+    max_value = df_productgroep['max_waarden'].max()
+    fig.update_xaxes(tickvals=[min_value, max_value], ticktext=[min_value, max_value])
 
     fig.update_yaxes(visible=False, showticklabels=False)
     
