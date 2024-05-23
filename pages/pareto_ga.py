@@ -478,8 +478,6 @@ for productgroep in df['Productgroep']:
 
     fig.update_layout(height=200)
 
-    fig.update_yaxes(visible=False)
-
     st.plotly_chart(fig)
 
 
