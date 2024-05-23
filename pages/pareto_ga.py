@@ -465,7 +465,7 @@ data = {
 
 df = pd.DataFrame(data)
 
-streamlit.dataframe(df)
+st.dataframe(df)
 
 
 # In[ ]:
