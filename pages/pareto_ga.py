@@ -230,7 +230,7 @@ nieuwe_rij = {'Oplossing': (442.50, 754.76, 896.78, 3.18, 234.85, 270.62, 90.92,
 df = df._append(nieuwe_rij, ignore_index=True)
 
 # df.head()
-optimaal = nieuwe_rij.get("Oplossing")
+optimaal = list(nieuwe_rij.get("Oplossing"))
 
 
 # In[ ]:
