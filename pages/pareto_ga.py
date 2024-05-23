@@ -490,13 +490,14 @@ for productgroep in df['Productgroep']:
                 )
     
     # Voeg de optimale waarden toe
-    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=10).data[0])
+    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=15).data[0])
 
     # Pas de hoogte van de grafiek aan
     fig.update_layout(height=250)
 
-    # Voeg wat witruimte toe aan de x-as
-    fig.update_xaxes(range=[0, df_productgroep['max_waarden'].max() * 1.1])
+    # Voeg witruimte toe aan beide kanten van de x-as
+    max_waarde = df_productgroep['max_waarden'].max()
+    fig.update_xaxes(range=[-max_waarde * 0.1, max_waarde * 1.1])
 
     # Verwijder de legenda
     fig.update_layout(showlegend=False)
