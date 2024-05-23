@@ -38,6 +38,7 @@ def set_doelstelling():
 
 
 st.markdown("**Primair thema**")
+st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
 st.selectbox("Welke thema heeft prioriteit in dit project?", 
             ("Circulair", "Budget"), 
             index = None, 
@@ -121,6 +122,16 @@ x_max = max(filtered['kosten']) + 100
 
 # Vastzetten van de x-as range
 fig_kosten.update_xaxes(range=[x_min, x_max])
+
+fig_kosten.update_layout(
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    )
+)
 
 st.plotly_chart(fig_kosten)
 
