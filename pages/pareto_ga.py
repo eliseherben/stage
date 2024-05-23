@@ -475,9 +475,9 @@ for productgroep in df['Productgroep']:
     
     fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=15, labels={'x': ''}).data[0])
 
-    fig.update_layout(height=150)
+    fig.update_layout(height=200)
 
-    fig.update_yaxes(visible=False, showticklabels=False)
+    fig.update_yaxes(visible=False)
 
     st.plotly_chart(fig)
 
