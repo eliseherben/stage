@@ -492,6 +492,8 @@ for productgroep in df['Productgroep']:
     # Voeg de optimale waarden toe
     fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)']).data[0])
 
+    fig.update_layout(height=300)
+
     # Toon de figuur met Streamlit
     st.plotly_chart(fig)
 
