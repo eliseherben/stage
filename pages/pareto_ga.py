@@ -489,13 +489,15 @@ for productgroep in df['Productgroep']:
                  labels={'x': '', 'y': ''}, 
                 base = 'min_point')
     
+    fig.update_xaxis(range=[df_productgroep['min_waarden'].min(), df_productgroep['max_waarden'].max()])  # Stel de range in van 1 tot 5
+
+    
     # Voeg de optimale waarden toe
     fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=15, labels={'x': ''}).data[0])
 
     # Pas de hoogte van de grafiek aan
     fig.update_layout(height=250)
 
-    fig.update_xaxis(range=[df_productgroep['min_waarden'].min(), df_productgroep['max_waarden'].max()])  # Stel de range in van 1 tot 5
     
     # Voeg witruimte toe aan beide kanten van de x-as
 #     min_value = df_productgroep['min_waarden'].min()
