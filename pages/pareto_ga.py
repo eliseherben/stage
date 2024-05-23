@@ -489,7 +489,7 @@ for productgroep in df['Productgroep']:
                 )
     
     # Voeg de optimale waarden toe
-    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=30).data[0])
+    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y=' ', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=30).data[0])
 
     # Pas de hoogte van de grafiek aan
     fig.update_layout(height=250)
