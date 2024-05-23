@@ -478,7 +478,8 @@ for productgroep in df['Productgroep']:
                  color_discrete_sequence=['rgba(58, 71, 80, 0.6)'], title=f'{productgroep} ')
     
     fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='code', 
-                             color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], labels={'x': ''}, size=[10]).data[0])
+                             color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = 'line-ns').data[0])
 
     fig.update_layout(height=250)
 
