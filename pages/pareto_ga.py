@@ -231,10 +231,6 @@ nieuwe_rij = {'Oplossing': (442.50, 754.76, 896.78, 3.18, 234.85, 270.62, 90.92,
 df = df._append(nieuwe_rij, ignore_index=True)
 
 # df.head()
-
-nieuwe_rij['Oplossing'] = [td.total_seconds() if isinstance(td, timedelta) else td for td in nieuwe_rij['Oplossing']]
-
-# Haal de oplossing uit nieuwe_rij
 optimaal = nieuwe_rij.get("Oplossing")
 
 
@@ -454,11 +450,6 @@ if st.button('Herlaad pagina'):
 # In[ ]:
 
 
-import plotly.express as px
-import pandas as pd
-import streamlit as st
-
-# Voorbeeld data
 data = {
     'Productgroep': ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', 
                       '28 Hoofddraagconstructie', '31 Buitenkozijnen, -ramen, -deuren, en -puien', 
@@ -474,32 +465,7 @@ data = {
 
 df = pd.DataFrame(data)
 
-# Loop over elke productgroep
-for productgroep in df['Productgroep']:
-
-    # Selecteer de data voor de huidige productgroep
-    df_productgroep = df[df['Productgroep'] == productgroep]
-    
-    # Maak de data voor de bar plot
-    df_productgroep['length'] = df_productgroep['max_waarden'] - df_productgroep['min_waarden']
-    df_productgroep['min_point'] = df_productgroep['min_waarden']
-    
-    # Maak de bar plot met Plotly Express
-    fig = px.timeline(df, x_start="min_waarden", x_end="max_waarden", y="Productgroep")
-    
-    # Voeg de optimale waarden toe
-    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=15, labels={'x': ''}).data[0])
-
-    # Pas de hoogte van de grafiek aan
-    fig.update_layout(height=250)
-
-    fig.update_yaxes(visible=False, showticklabels=False)
-    
-    # Verwijder de legenda
-    fig.update_layout(showlegend=False)
-
-    # Toon de figuur met Streamlit
-    st.plotly_chart(fig)
+streamlit.dataframe(df)
 
 
 # In[ ]:
