@@ -242,7 +242,8 @@ st.plotly_chart(fig)
 # In[ ]:
 
 
-
+if st.button('Herlaad pagina'):
+    st.experimental_rerun()
 
 
 # In[ ]:
