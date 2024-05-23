@@ -485,14 +485,21 @@ for productgroep in df['Productgroep']:
                  color_discrete_sequence=['rgba(0,0,0,0)', 'rgba(58, 71, 80, 0.6)'],  # Kleur van de balken
                  orientation='h',
                  title=f'{productgroep} met Min-Max en Optimaal waarden',
-                 labels={'x': 'Waarden', 'y': 'Productgroepen'},
+                 labels={'x': '', 'y': ''},  # Verwijder y-as en x-as labels
                  category_orders={"Productgroep": list(df_productgroep["Productgroep"])}
                 )
     
     # Voeg de optimale waarden toe
-    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)']).data[0])
+    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=10).data[0])
 
-    fig.update_layout(height=300)
+    # Pas de hoogte van de grafiek aan
+    fig.update_layout(height=250)
+
+    # Voeg wat witruimte toe aan de x-as
+    fig.update_xaxes(range=[0, df_productgroep['max_waarden'].max() * 1.1])
+
+    # Verwijder de legenda
+    fig.update_layout(showlegend=False)
 
     # Toon de figuur met Streamlit
     st.plotly_chart(fig)
