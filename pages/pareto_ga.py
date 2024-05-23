@@ -498,7 +498,7 @@ for productgroep in df['Productgroep']:
     max_waarde = df_productgroep['max_waarden'].max()
     fig.update_xaxes(range=[-max_waarde * 0.1, max_waarde * 1.1])
 
-    fig.update_yaxes(showline=False)
+    fig.update_yaxes(visible=False, showticklabels=False)
     
     # Verwijder de legenda
     fig.update_layout(showlegend=False)
