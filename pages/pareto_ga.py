@@ -471,7 +471,12 @@ for productgroep in df['Productgroep']:
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['Productgroep'] == productgroep]
 
-    fig = px.bar(df_productgroep, x='max_waarden', y='Productgroep', base = 'min_waarden')
+    fig = px.bar(df_productgroep, x='max_waarden', y='Productgroep', base = 'min_waarden', color_discrete_sequence=['rgba(58, 71, 80, 0.6)'])
+    
+    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='Productgroep', color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], size_max=15, labels={'x': ''}).data[0])
+
+    fig.update_layout(height=250)
+
 
     st.plotly_chart(fig)
 
