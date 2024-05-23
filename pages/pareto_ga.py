@@ -465,11 +465,15 @@ data = {
 
 df = pd.DataFrame(data)
 
-st.dataframe(df)
 
-fig = px.bar(df, x='max_waarden', y='Productgroep', base = 'min_waarden')
+for productgroep in df['Productgroep']:
 
-st.plotly_chart(fig)
+    # Selecteer de data voor de huidige productgroep
+    df_productgroep = df[df['Productgroep'] == productgroep]
+
+    fig = px.bar(df_productgroep, x='max_waarden', y='Productgroep', base = 'min_waarden')
+
+    st.plotly_chart(fig)
 
 
 # In[ ]:
