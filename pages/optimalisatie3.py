@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[4]:
 
 
 import streamlit as st
@@ -57,10 +57,11 @@ data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
 data2 = pd.read_csv("dataframe2.csv", sep=';', decimal = ',')
 
 
-# In[ ]:
+# In[5]:
 
 
 data3 = pd.read_csv("dataframe3.csv", sep=';', decimal = ',')
+data3
 
 
 # In[ ]:
@@ -501,6 +502,8 @@ else:
 
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data3.iloc[i, 2]) and pd.notna(data3.iloc[i, 3]) and pd.notna(data3.iloc[i, 4]) and pd.notna(data3.iloc[i, 5])]
         impact_budget = [data3.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data3.iloc[i, 2]) and pd.notna(data3.iloc[i, 3]) and pd.notna(data3.iloc[i, 4]) and pd.notna(data3.iloc[i, 5])]
+        st.markdown(variabelen_budget)
+        st.markdown(impact_budget)
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         
         prob += 2/3 * circulair - 1/3 * budget 
