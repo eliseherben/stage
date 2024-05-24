@@ -1,28 +1,26 @@
-﻿productgroep;eenheid;minimaal;maximaal;kosten;circulair;;;;;;;;;
-21 Buitenwanden;m2;7,37;24,13; € 223,07 ;0,99665;;;;;442,4980615;1447,573068;;442,2;
-22 Binnenwanden;m2;12,58;17,80; € 82,85 ;0,98583;;;;;754,7631148;1067,714665;;754,8;
-23 Vloeren;m2;14,95;28,15; € 271,83 ;0,92393;;;;;896,7811475;1689,011364;;897;
-24 Trappen en hellingen;stuks;0,05;0,10; € 5.437,50 ;0,66982;;;;;3,181818182;5,901639344;;3;
-27 Daken;m2;3,91;13,51; € 1.359,22 ;0,99798;;;;;234,8508197;810,7381818;;793,8;
-28 Hoofddraagconstructie;m2;4,51;13,11; € 158,24 ;0,98237;;;;;270,6160109;786,8327971;;270,6;
-31 Buitenkozijnen, -ramen, -deuren en -puien;stuks;1,52;1,86; € 2.486,31 ;0,99460;;;;;90,92032072;111,4060799;;91,2;
-32 Binnenkozijnen en -deuren;stuks;0,56;2,56; € 830,05 ;0,98608;;;;;33,69442145;153,7704918;;33,6;
-33 Luiken en vensters;stuks;0,06;0,17; € 2.195,00 ;0,96272;;;;;3,442622951;10,45454545;;3,6;
-34 Balustrades en leuningen;m1;1,67;2,64; € 290,39 ;;;;;;100,1996357;158,6885246;;;
-42 Binnenwandafwerkingen;m2;11,02;30,78; € 26,54 ;0,99722;;;;;661,4338798;1846,97377;;661,2;
-43 Vloerafwerkingen;m2;14,93;23,75; € 71,58 ;0,99985;;;;;895,7831382;1424,97377;;1425;
-45 Plafonds;m2;12,59;19,24; € 107,67 ;0,99047;;;;;755,5254098;1154,204545;;755,4;
-48 Na-isolatie;;;;;1,00000;14;;;;0;0;;;
-52 Riolering en HWA;;;; € 4.529,66 ;0,99979;;;;;0;0;;;
-53 Warm- en koud water installaties;;;; € 80,30 ;0,63692;;;;;0;0;;;
-56 Verwarming en koeling;;;; € 5.802,38 ;0,62701;;;;;0;0;;;
-57 Luchtbehandeling;;;; € 5.919,05 ;0,00000;;;;;0;0;;;
-61 Elektrische installaties;;;; € 2.261,15 ;;19;;;;0;0;;;
-64 Vaste gebouwvoorziening;stuks;0,24;0,53; € 342,39 ;0,84305;;;;;14,16393443;31,81818182;;14,4;
-65 Beveiliging;;;; € 2.800,00 ;;;;;;0;0;;;
-66 Liften;;;; € 11.694,64 ;0,00000;;;;;0;0;;;
-73 Keuken;stuks;0,49;1,02; € 680,43 ;0,84693;;;;;29,50819672;60,90909091;;29,4;
-74 Sanitair;;;; € 1.169,44 ;0,93440;;;;;0;0;;;
-90 Terreininrichting;stuks;0,56;0,56; € 90,00 ;0,98819;;;;;33,56557377;33,56557377;;33,6;
-;;;;;;;;;;;;; € 2.034.472,27 ;6103,517801
-;;;;;;;;;;4912,251582;10228,02216;;;
+﻿productgroep;eenheid;minimaal;maximaal;kosten;circulair
+21 Buitenwanden;m2;7,37;24,13; € 223,07 ;0,99665
+22 Binnenwanden;m2;12,58;17,80; € 82,85 ;0,98583
+23 Vloeren;m2;14,95;28,15; € 271,83 ;0,92393
+24 Trappen en hellingen;stuks;0,05;0,10; € 5.437,50 ;0,66982
+27 Daken;m2;3,91;13,51; € 1.359,22 ;0,99798
+28 Hoofddraagconstructie;m2;4,51;13,11; € 158,24 ;0,98237
+31 Buitenkozijnen, -ramen, -deuren en -puien;stuks;1,52;1,86; € 2.486,31 ;0,99460
+32 Binnenkozijnen en -deuren;stuks;0,56;2,56; € 830,05 ;0,98608
+33 Luiken en vensters;stuks;0,06;0,17; € 2.195,00 ;0,96272
+34 Balustrades en leuningen;m1;1,67;2,64; € 290,39 ;
+42 Binnenwandafwerkingen;m2;11,02;30,78; € 26,54 ;0,99722
+43 Vloerafwerkingen;m2;14,93;23,75; € 71,58 ;0,99985
+45 Plafonds;m2;12,59;19,24; € 107,67 ;0,99047
+48 Na-isolatie;;;;;1,00000
+52 Riolering en HWA;;;; € 4.529,66 ;0,99979
+53 Warm- en koud water installaties;;;; € 80,30 ;0,63692
+56 Verwarming en koeling;;;; € 5.802,38 ;0,62701
+57 Luchtbehandeling;;;; € 5.919,05 ;0,00000
+61 Elektrische installaties;;;; € 2.261,15 ;
+64 Vaste gebouwvoorziening;stuks;0,24;0,53; € 342,39 ;0,84305
+65 Beveiliging;;;; € 2.800,00 ;
+66 Liften;;;; € 11.694,64 ;0,00000
+73 Keuken;stuks;0,49;1,02; € 680,43 ;0,84693
+74 Sanitair;;;; € 1.169,44 ;0,93440
+90 Terreininrichting;stuks;0,56;0,56; € 90,00 ;0,98819
