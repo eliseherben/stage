@@ -735,7 +735,7 @@ else:
         
         afwijkingen = pl.lpSum(afwijkingen_list)
         
-        prob +=  1/3 * circulair + 2/3 * budget + 3 * afwijkingen
+        prob +=  1/3 * circulair + 2/3 * budget + 10000 * afwijkingen
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
