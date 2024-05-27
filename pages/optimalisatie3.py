@@ -471,6 +471,88 @@ else:
     st.dataframe(df)
 
 
+# In[ ]:
+
+
+import streamlit as st
+import pulp as pl
+import pandas as pd
+
+# Controleer of het projectbestand is geüpload
+if st.session_state.projectbestand is None:
+    st.markdown("Upload een bestand")
+else:
+    st.markdown("levensduur max min")
+    # Definieer de LP variabelen
+    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data2.iterrows()}
+
+    # Maak de variabelenlijst
+    lp_variabelen = [(key, value) for key, value in variabelen.items()]
+
+    # Functie om het eerste doelstellingprobleem op te lossen
+    if st.session_state.doelstelling == 'Circulair':
+        prob = pl.LpProblem("Eerste doelstelling", pl.LpMaximize)
+        
+        # Impact themas op productgroepen
+        variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
+        impact_circulair = [data2.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
+        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
+        max_circulair = max(impact_circulair)
+        min_circulair = min(impact_circulair)
+        circulair_genormaliseerd = (circulair - min_circulair) / (max_circulair - min_circulair)
+        
+        variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
+        impact_budget = [data2.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
+        budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
+        max_budget = max(impact_budget)
+        min_budget = min(impact_budget)
+        budget_genormaliseerd = (budget - min_budget) / (max_budget - min_budget)
+        
+        prob += 2/3 * circulair_genormaliseerd - 1/3 * budget_genormaliseerd 
+
+        for i in range(len(lp_variabelen)):
+            if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]):
+                prob += lp_variabelen[i][1] >= data2.iloc[i, 2]
+                prob += lp_variabelen[i][1] <= data2.iloc[i, 3]
+        
+        status = prob.solve()
+        st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie (circulair): {prob.objective.value()}")
+        
+    if st.session_state.doelstelling == 'Budget':
+        prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
+        
+        variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
+        impact_budget = [data2.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
+        budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
+        max_budget = max(impact_budget)
+        min_budget = min(impact_budget)
+        budget_genormaliseerd = (budget - min_budget) / (max_budget - min_budget)
+        
+        variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
+        impact_circulair = [data2.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]) and pd.notna(data2.iloc[i, 4]) and pd.notna(data2.iloc[i, 5])]
+        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
+        max_circulair = max(impact_circulair)
+        min_circulair = min(impact_circulair)
+        circulair_genormaliseerd = (circulair - min_circulair) / (max_circulair - min_circulair)
+        
+        prob += 2/3 * budget_genormaliseerd - 1/3 * circulair_genormaliseerd
+        
+        for i in range(len(lp_variabelen)):
+            if pd.notna(data2.iloc[i, 2]) and pd.notna(data2.iloc[i, 3]):
+                prob += lp_variabelen[i][1] >= data2.iloc[i, 2]
+                prob += lp_variabelen[i][1] <= data2.iloc[i, 3]
+        
+        status = prob.solve()
+        st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie (budget): {prob.objective.value()}")
+
+    # Maak een DataFrame van de variabelen en hun waarden
+    variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
+    df = pd.DataFrame(variabelen_waarden, columns=['productgroep', 'waarde'])
+    st.dataframe(df)
+
+
 # **duurzaamheidsscore**
 
 # In[ ]:
