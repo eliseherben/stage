@@ -562,7 +562,7 @@ else:
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
     
-    start_variabelen = {f"start_{row['productgroep']}" for row in data.interrows()}
+#     start_variabelen = {f"start_{row['productgroep']}" for row in data.iterrows()}
 
 # # Huidige waarden
 # for index, row in data.interrows():
