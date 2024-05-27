@@ -607,10 +607,11 @@ else:
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob += lp_variabelen[i][1] <= data.iloc[i, 3]
-                prob += afwijkingen_list[i] <= lp_variabelen[i][1] - startwaardes[i]
-                prob += afwijkingen_list[i] <= startwaardes[i] - lp_variabelen[i][1]
+                for a in range(len(afwijkingen_list)):
+                    prob += lp_variabelen[i][1] >= data.iloc[i, 2]
+                    prob += lp_variabelen[i][1] <= data.iloc[i, 3]
+                    prob += afwijkingen_list[i] <= lp_variabelen[i][1] - startwaardes[i]
+                    prob += afwijkingen_list[i] <= startwaardes[i] - lp_variabelen[i][1]
                 
         status = prob.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
@@ -636,10 +637,11 @@ else:
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob += lp_variabelen[i][1] <= data.iloc[i, 3]
-                prob += afwijkingen_list[i] <= lp_variabelen[i][1] - startwaardes[i]
-                prob += afwijkingen_list[i] <= startwaardes[i] - lp_variabelen[i][1]
+                for a in range(len(afwijkingen_list)):
+                    prob += lp_variabelen[i][1] >= data.iloc[i, 2]
+                    prob += lp_variabelen[i][1] <= data.iloc[i, 3]
+                    prob += afwijkingen_list[a] <= lp_variabelen[i][1] - startwaardes[i]
+                    prob += afwijkingen_list[a] <= startwaardes[i] - lp_variabelen[i][1]
 
         
         status = prob.solve()
