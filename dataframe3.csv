@@ -1,26 +1,26 @@
 ﻿productgroep;eenheid;minimaal;maximaal;kosten;circulair
-21 Buitenwanden;m2;7,37;24,13; € 223,07 ;0,99665
-22 Binnenwanden;m2;12,58;17,80; € 82,85 ;0,98583
-23 Vloeren;m2;14,95;28,15; € 271,83 ;0,92393
-24 Trappen en hellingen;stuks;0,05;0,10; € 5.437,50 ;0,66982
-27 Daken;m2;3,91;13,51; € 1.359,22 ;0,99798
-28 Hoofddraagconstructie;m2;4,51;13,11; € 158,24 ;0,98237
-31 Buitenkozijnen, -ramen, -deuren en -puien;stuks;1,52;1,86; € 2.486,31 ;0,99460
-32 Binnenkozijnen en -deuren;stuks;0,56;2,56; € 830,05 ;0,98608
-33 Luiken en vensters;stuks;0,06;0,17; € 2.195,00 ;0,96272
-34 Balustrades en leuningen;m1;1,67;2,64; € 290,39 ;
-42 Binnenwandafwerkingen;m2;11,02;30,78; € 26,54 ;0,99722
-43 Vloerafwerkingen;m2;14,93;23,75; € 71,58 ;0,99985
-45 Plafonds;m2;12,59;19,24; € 107,67 ;0,99047
+21 Buitenwanden;m2;7,37;24,13;223,07;0,99665
+22 Binnenwanden;m2;12,58;17,80;82,85;0,98583
+23 Vloeren;m2;14,95;28,15;271,83;0,92393
+24 Trappen en hellingen;stuks;0,05;0,10;5437,50;0,66982
+27 Daken;m2;3,91;13,51;1359,22;0,99798
+28 Hoofddraagconstructie;m2;4,51;13,11;158,24;0,98237
+31 Buitenkozijnen, -ramen, -deuren en -puien;stuks;1,52;1,86;2486,31;0,99460
+32 Binnenkozijnen en -deuren;stuks;0,56;2,56;830,05;0,98608
+33 Luiken en vensters;stuks;0,06;0,17;2195,00;0,96272
+34 Balustrades en leuningen;m1;1,67;2,64;290,39;
+42 Binnenwandafwerkingen;m2;11,02;30,78;26,54;0,99722
+43 Vloerafwerkingen;m2;14,93;23,75;71,58;0,99985
+45 Plafonds;m2;12,59;19,24;107,67;0,99047
 48 Na-isolatie;;;;;1,00000
-52 Riolering en HWA;;;; € 4.529,66 ;0,99979
-53 Warm- en koud water installaties;;;; € 80,30 ;0,63692
-56 Verwarming en koeling;;;; € 5.802,38 ;0,62701
-57 Luchtbehandeling;;;; € 5.919,05 ;0,00000
-61 Elektrische installaties;;;; € 2.261,15 ;
-64 Vaste gebouwvoorziening;stuks;0,24;0,53; € 342,39 ;0,84305
-65 Beveiliging;;;; € 2.800,00 ;
-66 Liften;;;; € 11.694,64 ;0,00000
-73 Keuken;stuks;0,49;1,02; € 680,43 ;0,84693
-74 Sanitair;;;; € 1.169,44 ;0,93440
-90 Terreininrichting;stuks;0,56;0,56; € 90,00 ;0,98819
+52 Riolering en HWA;;;;4529,66;0,99979
+53 Warm- en koud water installaties;;;;80,30;0,63692
+56 Verwarming en koeling;;;;5802,38;0,62701
+57 Luchtbehandeling;;;;5919,05;0,00000
+61 Elektrische installaties;;;;2261,15;
+64 Vaste gebouwvoorziening;stuks;0,24;0,53;342,39;0,84305
+65 Beveiliging;;;;2800,00;
+66 Liften;;;;11694,64;0,00000
+73 Keuken;stuks;0,49;1,02;680,43;0,84693
+74 Sanitair;;;;1169,44;0,93440
+90 Terreininrichting;stuks;0,56;0,56;90,00;0,98819
