@@ -574,8 +574,12 @@ dynamic_vars = {}
 
 for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
     if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-        var_name = var.name[3:] + '_start'
-        dynamic_vars[var_name] = st.session_state[var.name[3:]]
+        if var.name == "31_Buitenkozijnen,__ramen,__deuren_en__puien":
+            var_name = var.name.split("_")[1] + '_start'
+            dynamic_vars[var_name] = st.session_state[var.name.split("_")[1]]
+        else:
+            var_name = var.name[3:] + '_start'
+            dynamic_vars[var_name] = st.session_state[var.name[3:]]
     
 st.markdown(dynamic_vars)
 
