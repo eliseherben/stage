@@ -581,11 +581,12 @@ else:
                 afwijkingen_var = pl.LpVariable('d_' + var.name[3:], lowBound = 0) 
                 afwijkingen_list.append(afwijkingen_var)
                 
-    st.markdown(dynamic_vars)    
+    st.markdown(dynamic_vars) 
+    startwaardes = list(dynamic_vars.values())
     st.markdown(afwijkingen_list)
 
     if st.session_state.doelstelling == 'Circulair':
-        prob = pl.LpProblem("Eerste doelstelling", pl.LpMaximize)
+        prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
             
          # Impact themas op productgroepen
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
@@ -602,16 +603,21 @@ else:
         afwijkingen = pl.lpSum(afwijkingen_list)
         st.markdown(afwijkingen)
         
-        prob += 2/3 * circulair - 1/3 * budget + afwijkingen
+        prob += 2/3 * circulair + 1/3 * budget + afwijkingen
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
                 prob += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob += lp_variabelen[i][1] <= data.iloc[i, 3]
-        
+                prob += afwijkingen[i] <= lp_variabelen[i][1] - startwaardes[i]
+                prob += afwijkingen[i] <= startwaardes[i] - lp_variabelen[i][1]
+                
         status = prob.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie (circulair): {prob.objective.value()}")
+        st.markdown("\nRestricties met ingevulde waarden:")
+        for name, constraint in prob.constraints.items():
+            st.markdown(f"{name}: {constraint} = {constraint.value()}")
         
     if st.session_state.doelstelling == 'Budget':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
@@ -624,16 +630,24 @@ else:
         impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
-        prob += 2/3 * budget - 1/3 * circulair
+        afwijkingen = pl.lpSum(afwijkingen_list)
+        
+        prob += 2/3 * budget + 1/3 * circulair + afwijkingen
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
                 prob += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob += lp_variabelen[i][1] <= data.iloc[i, 3]
+                prob += afwijkingen[i] <= lp_variabelen[i][1] - startwaardes[i]
+                prob += afwijkingen[i] <= startwaardes[i] - lp_variabelen[i][1]
+
         
         status = prob.solve()
         st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie (budget): {prob.objective.value()}")
+        st.markdown("\nRestricties met ingevulde waarden:")
+        for name, constraint in prob.constraints.items():
+            st.markdown(f"{name}: {constraint} = {constraint.value()}")
 
     # Maak een DataFrame van de variabelen en hun waarden
     variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
@@ -641,32 +655,6 @@ else:
     st.dataframe(df)
 
         
-# mki_start = 280
-# woonbeleving_start = 36
-
-# # Gewichten voor de doelstellingen
-# w1 = 1  # Gewicht voor budget (bijv. minimaliseren van afwijking van het budget)
-# w2 = 1  # Gewicht voor MKI (bijv. minimaliseren van MKI)
-# w3 = 1  # Gewicht voor woonbeleving (bijv. maximaliseren van woonbeleving)
-
-# # Definieer het probleem
-# model = LpProblem("Optimizing_Housing_Project", LpMinimize)
-
-# # Definieer de variabelen
-# x1 = LpVariable("x1", lowBound=0)
-# x2 = LpVariable("x2", lowBound=0)
-# d1_plus = LpVariable("d1_plus", lowBound=0)
-# d2_plus = LpVariable("d2_plus", lowBound=0)
-# d3_minus = LpVariable("d3_minus", lowBound=0)
-# d_x1 = LpVariable("d_x1", lowBound=0)
-# d_x2 = LpVariable("d_x2", lowBound=0)
-
-# # Doelfunctie
-# model += d_x1 + d_x2 + w1 * d1_plus + w2 * d2_plus - w3 * d3_minus
-
-# # Beperkingen
-# model += 50000 * x1 + 30000 * x2 + d1_plus == budget_target
-
 # # Afwijking in x1 en x2
 # model += d_x1 >= x1 - x1_start
 # model += d_x1 >= x1_start - x1
