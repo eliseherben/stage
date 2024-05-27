@@ -585,7 +585,7 @@ else:
         st.markdown(impact_circulair)
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
 
-            max_circulair = max(impact_circulair)
+        max_circulair = max(impact_circulair)
         min_circulair = min(impact_circulair)
         circulair_genormaliseerd = (circulair - min_circulair) / (max_circulair - min_circulair)
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data3.iloc[i, 2]) and pd.notna(data3.iloc[i, 3]) and pd.notna(data3.iloc[i, 4]) and pd.notna(data3.iloc[i, 5])]
