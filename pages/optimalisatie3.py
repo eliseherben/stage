@@ -549,7 +549,81 @@ else:
 # In[ ]:
 
 
+from pulp import LpMinimize, LpProblem, LpVariable, lpSum
 
+# Controleer of het projectbestand is geüpload
+if st.session_state.projectbestand is None:
+    st.markdown("Upload een bestand")
+else:
+    st.markdown("minimale afwijking")
+    # Definieer de LP variabelen
+    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
+
+    # Maak de variabelenlijst
+    lp_variabelen = [(key, value) for key, value in variabelen.items()]
+    
+    start_variabelen = {f"start_{row['productgroep']}" for row in data.interrows()}
+
+# Huidige waarden
+for index, row in data.interrows():
+    row['productgroep']_start = st.session_state.row['productgroep']
+    
+    
+dynamic_vars = {}
+
+for index, row in data.iterrows():
+    var_name = row['productgroep'] + '_start'
+    dynamic_vars[var_name] = st.session_state[row['productgroep']]
+    
+st.markdown(dynamic_vars)
+
+# buitenwanden_start = st.session_state.buitenwanden
+# x2_start = 6
+# budget_target = 2500000
+# mki_start = 280
+# woonbeleving_start = 36
+
+# # Gewichten voor de doelstellingen
+# w1 = 1  # Gewicht voor budget (bijv. minimaliseren van afwijking van het budget)
+# w2 = 1  # Gewicht voor MKI (bijv. minimaliseren van MKI)
+# w3 = 1  # Gewicht voor woonbeleving (bijv. maximaliseren van woonbeleving)
+
+# # Definieer het probleem
+# model = LpProblem("Optimizing_Housing_Project", LpMinimize)
+
+# # Definieer de variabelen
+# x1 = LpVariable("x1", lowBound=0)
+# x2 = LpVariable("x2", lowBound=0)
+# d1_plus = LpVariable("d1_plus", lowBound=0)
+# d2_plus = LpVariable("d2_plus", lowBound=0)
+# d3_minus = LpVariable("d3_minus", lowBound=0)
+# d_x1 = LpVariable("d_x1", lowBound=0)
+# d_x2 = LpVariable("d_x2", lowBound=0)
+
+# # Doelfunctie
+# model += d_x1 + d_x2 + w1 * d1_plus + w2 * d2_plus - w3 * d3_minus
+
+# # Beperkingen
+# model += 50000 * x1 + 30000 * x2 + d1_plus == budget_target
+
+# # Afwijking in x1 en x2
+# model += d_x1 >= x1 - x1_start
+# model += d_x1 >= x1_start - x1
+# model += d_x2 >= x2 - x2_start
+# model += d_x2 >= x2_start - x2
+
+# # Oplossen van het model
+# model.solve()
+
+# # Resultaten afdrukken
+# print(f"x1: {x1.varValue}")
+# print(f"x2: {x2.varValue}")
+# print(f"d1_plus: {d1_plus.varValue}")
+# print(f"d2_plus: {d2_plus.varValue}")
+# print(f"d3_minus: {d3_minus.varValue}")
+# print(f"d_x1: {d_x1.varValue}")
+# print(f"d_x2: {d_x2.varValue}")
+# print(f"Objective: {model.objective.value()}")
 
 
 # In[ ]:
