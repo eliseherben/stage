@@ -561,6 +561,7 @@ else:
 
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
+    st.markdown(lp_variabelen)
     
 #     start_variabelen = {f"start_{row['productgroep']}" for row in data.iterrows()}
 
