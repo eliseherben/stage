@@ -607,11 +607,12 @@ else:
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                for a in range(len(afwijkingen_list)):
-                    prob += lp_variabelen[i][1] >= data.iloc[i, 2]
-                    prob += lp_variabelen[i][1] <= data.iloc[i, 3]
-                    prob += afwijkingen_list[a] >= lp_variabelen[i][1] - startwaardes[a]
-                    prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[i][1]
+                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
+                prob += lp_variabelen[i][1] <= data.iloc[i, 3]
+        
+        for a, i in zip(range(len(afwijkingen_list)), range(len(lp_variabelen))):
+            prob += afwijkingen_list[a] >= lp_variabelen[i][1] - startwaardes[a]
+            prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[i][1]
                 
         status = prob.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
@@ -637,12 +638,12 @@ else:
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                for a in range(len(afwijkingen_list)):
-                    prob += lp_variabelen[i][1] >= data.iloc[i, 2]
-                    prob += lp_variabelen[i][1] <= data.iloc[i, 3]
-                    prob += afwijkingen_list[a] >= lp_variabelen[i][1] - startwaardes[a]
-                    prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[i][1]
+                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
+                prob += lp_variabelen[i][1] <= data.iloc[i, 3]
 
+        for a, i in zip(range(len(afwijkingen_list)), range(len(lp_variabelen))):
+            prob += afwijkingen_list[a] >= lp_variabelen[i][1] - startwaardes[a]
+            prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[i][1]
         
         status = prob.solve()
         st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
