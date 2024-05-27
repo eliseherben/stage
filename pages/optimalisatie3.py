@@ -572,8 +572,8 @@ else:
     
 dynamic_vars = {}
 
-for key, var, index, row in zip(lp_variabelen, data.iterrows()):
-    if pd.notna(data3.iloc[i, 2]) and pd.notna(data3.iloc[i, 3]):
+for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
+    if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
         var_name = var[3:] + '_start'
         dynamic_vars[var_name] = st.session_state[var[3:]]
     
