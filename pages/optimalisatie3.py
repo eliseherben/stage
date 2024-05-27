@@ -572,14 +572,14 @@ else:
                 var_name = (var.name.split("_")[1])[:-1] + '_start'
                 dynamic_vars[var_name] = st.session_state[(var.name.split("_")[1])[:-1]]
                 
-                afwijkingen_name = 'd_' + (var.name.split("_")[1])[:-1] 
-                afwijkingen_list.append(afwijkingen_name)
+                afwijkingen_var = lp.LpVariable('d_' + (var.name.split("_")[1])[:-1], lowbound = 0)
+                afwijkingen_list.append(afwijkingen_var)
             else:
                 var_name = var.name[3:] + '_start'
                 dynamic_vars[var_name] = st.session_state[var.name[3:]]
 
-                afwijkingen_name = 'd_' + var.name[3:] 
-                afwijkingen_list.append(afwijkingen_name)
+                afwijkingen_var = lp.LpVariable('d_' + var.name[3:], lowbound = 0) 
+                afwijkingen_list.append(afwijkingen_var)
                 
     st.markdown(dynamic_vars)    
     st.markdown(afwijkingen_list)
@@ -599,7 +599,7 @@ else:
         st.markdown(impact_budget)
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         
-        afwijkingen = pl.lpSum(i for i in afwijkingen_list)
+        afwijkingen = pl.lpSum(afwijkingen_list)
         st.markdown(afwijkingen)
         
         prob += 2/3 * circulair - 1/3 * budget + afwijkingen
