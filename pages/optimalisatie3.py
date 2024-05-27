@@ -564,9 +564,9 @@ else:
     
     start_variabelen = {f"start_{row['productgroep']}" for row in data.interrows()}
 
-# Huidige waarden
-for index, row in data.interrows():
-    row['productgroep']_start = st.session_state.row['productgroep']
+# # Huidige waarden
+# for index, row in data.interrows():
+#     row['productgroep']_start = st.session_state.row['productgroep']
     
     
 dynamic_vars = {}
