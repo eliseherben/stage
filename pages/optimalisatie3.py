@@ -742,10 +742,12 @@ else:
                 prob += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob += lp_variabelen[i][1] <= data.iloc[i, 3]
 
-        for a, i in zip(range(len(afwijkingen_list)), range(len(lp_variabelen))):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob += afwijkingen_list[a] >= lp_variabelen[i][1] - startwaardes[a]
-                prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[i][1]
+        lp_variabelen2 = [i[1] for i in lp_variabelen if pd.notna(data.iloc[i[0], 2]) and pd.notna(data.iloc[i[0], 3])]
+        st.markdown(lp_variabelen2)
+        
+        for a in range(afwijkingen_list):
+            prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
+            prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
         
         status = prob.solve()
         st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
