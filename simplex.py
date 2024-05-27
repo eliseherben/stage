@@ -86,133 +86,133 @@ def set_appartementen():
 # In[ ]:
 
 
-if "buitenwanden" not in st.session_state:
-    st.session_state.buitenwanden = None
+if "Buitenwanden" not in st.session_state:
+    st.session_state.Buitenwanden = None
     
-st.session_state._buitenwanden = st.session_state.buitenwanden
+st.session_state._Buitenwanden = st.session_state.Buitenwanden
 
-def set_buitenwanden():
-    st.session_state.buitenwanden = st.session_state._buitenwanden
+def set_Buitenwanden():
+    st.session_state.Buitenwanden = st.session_state._Buitenwanden
     
-if "binnenwanden" not in st.session_state:
-    st.session_state.binnenwanden = None
+if "Binnenwanden" not in st.session_state:
+    st.session_state.Binnenwanden = None
     
-st.session_state._binnenwanden = st.session_state.binnenwanden
+st.session_state._Binnenwanden = st.session_state.Binnenwanden
 
-def set_binnenwanden():
-    st.session_state.binnenwanden = st.session_state._binnenwanden
+def set_Binnenwanden():
+    st.session_state.Binnenwanden = st.session_state._Binnenwanden
     
-if "vloeren" not in st.session_state:
-    st.session_state.vloeren = None
+if "Vloeren" not in st.session_state:
+    st.session_state.Vloeren = None
     
-st.session_state._vloeren = st.session_state.vloeren
+st.session_state._Vloeren = st.session_state.Vloeren
 
-def set_vloeren():
-    st.session_state.vloeren = st.session_state._vloeren
+def set_Vloeren():
+    st.session_state.Vloeren = st.session_state._Vloeren
     
-if "trappen_en_hellingen" not in st.session_state:
-    st.session_state.trappen_en_hellingen = None
+if "Trappen_en_hellingen" not in st.session_state:
+    st.session_state.Trappen_en_hellingen = None
     
-st.session_state._trappen_en_hellingen = st.session_state.trappen_en_hellingen
+st.session_state._Trappen_en_hellingen = st.session_state.Trappen_en_hellingen
 
-def set_trappen_en_hellingen():
-    st.session_state.trappen_en_hellingen = st.session_state._trappen_en_hellingen
+def set_Trappen_en_hellingen():
+    st.session_state.Trappen_en_hellingen = st.session_state._Trappen_en_hellingen
     
-if "daken" not in st.session_state:
-    st.session_state.daken = None
+if "Daken" not in st.session_state:
+    st.session_state.Daken = None
     
-st.session_state._daken = st.session_state.daken
+st.session_state._Daken = st.session_state.Daken
 
-def set_daken():
-    st.session_state.daken = st.session_state._daken
+def set_Daken():
+    st.session_state.Daken = st.session_state._Daken
     
-if "hoofddraagconstructie" not in st.session_state:
-    st.session_state.hoofddraagconstructie = None
+if "Hoofddraagconstructie" not in st.session_state:
+    st.session_state.Hoofddraagconstructie = None
     
-st.session_state._hoofddraagconstructie = st.session_state.hoofddraagconstructie
+st.session_state._Hoofddraagconstructie = st.session_state.Hoofddraagconstructie
 
-def set_hoofddraagconstructie():
-    st.session_state.hoofddraagconstructie = st.session_state._hoofddraagconstructie
+def set_Hoofddraagconstructie():
+    st.session_state.Hoofddraagconstructie = st.session_state._Hoofddraagconstructie
     
-if "buitenkozijnen" not in st.session_state:
-    st.session_state.buitenkozijnen = None
+if "Buitenkozijnen,__ramen,__deuren_en__puien" not in st.session_state:
+    st.session_state.Buitenkozijnen,__ramen,__deuren_en__puien = None
     
-st.session_state._buitenkozijnen = st.session_state.buitenkozijnen
+st.session_state._Buitenkozijnen,__ramen,__deuren_en__puien = st.session_state.Buitenkozijnen,__ramen,__deuren_en__puien
 
-def set_buitenkozijnen():
-    st.session_state.buitenkozijnen = st.session_state._buitenkozijnen
+def set_Buitenkozijnen,__ramen,__deuren_en__puien():
+    st.session_state.Buitenkozijnen,__ramen,__deuren_en__puien = st.session_state._Buitenkozijnen,__ramen,__deuren_en__puien
     
-if "binnenkozijnen" not in st.session_state:
-    st.session_state.binnenkozijnen = None
+if "Binnenkozijnen_en__deuren" not in st.session_state:
+    st.session_state.Binnenkozijnen_en__deuren = None
     
-st.session_state._binnenkozijnen = st.session_state.binnenkozijnen
+st.session_state._Binnenkozijnen_en__deuren = st.session_state.Binnenkozijnen_en__deuren
 
-def set_binnenkozijnen():
-    st.session_state.binnenkozijnen = st.session_state._binnenkozijnen
+def set_Binnenkozijnen_en__deuren():
+    st.session_state.Binnenkozijnen_en__deuren = st.session_state._Binnenkozijnen_en__deuren
     
-if "luiken_en_vensters" not in st.session_state:
-    st.session_state.luiken_en_vensters = None
+if "Luiken_en_vensters" not in st.session_state:
+    st.session_state.Luiken_en_vensters = None
     
-st.session_state._luiken_en_vensters = st.session_state.luiken_en_vensters
+st.session_state._Luiken_en_vensters = st.session_state.Luiken_en_vensters
 
-def set_luiken_en_vensters():
-    st.session_state.luiken_en_vensters = st.session_state._luiken_en_vensters
+def set_Luiken_en_vensters():
+    st.session_state.Luiken_en_vensters = st.session_state._Luiken_en_vensters
     
-if "balustrades_en_leuningen" not in st.session_state:
-    st.session_state.balustrades_en_leuningen = None
+if "Balustrades_en_leuningen" not in st.session_state:
+    st.session_state.Balustrades_en_leuningen = None
     
-st.session_state._balustrades_en_leuningen = st.session_state.balustrades_en_leuningen
+st.session_state._Balustrades_en_leuningen = st.session_state.Balustrades_en_leuningen
 
-def set_balustrades_en_leuningen():
-    st.session_state.balustrades_en_leuningen = st.session_state._balustrades_en_leuningen
+def set_Balustrades_en_leuningen():
+    st.session_state.Balustrades_en_leuningen = st.session_state._Balustrades_en_leuningen
     
-if "binnenwandafwerkingen" not in st.session_state:
-    st.session_state.binnenwandafwerkingen = None
+if "Binnenwandafwerkingen" not in st.session_state:
+    st.session_state.Binnenwandafwerkingen = None
     
-st.session_state._binnenwandafwerkingen = st.session_state.binnenwandafwerkingen
+st.session_state._Binnenwandafwerkingen = st.session_state.Binnenwandafwerkingen
 
-def set_binnenwandafwerkingen():
-    st.session_state.binnenwandafwerkingen = st.session_state._binnenwandafwerkingen
+def set_Binnenwandafwerkingen():
+    st.session_state.Binnenwandafwerkingen = st.session_state._Binnenwandafwerkingen
     
-if "vloerafwerkingen" not in st.session_state:
-    st.session_state.vloerafwerkingen = None
+if "Vloerafwerkingen" not in st.session_state:
+    st.session_state.Vloerafwerkingen = None
     
-st.session_state._vloerafwerkingen = st.session_state.vloerafwerkingen
+st.session_state._Vloerafwerkingen = st.session_state.Vloerafwerkingen
 
-def set_vloerafwerkingen():
-    st.session_state.vloerafwerkingen = st.session_state._vloerafwerkingen
+def set_Vloerafwerkingen():
+    st.session_state.Vloerafwerkingen = st.session_state._Vloerafwerkingen
     
-if "plafonds" not in st.session_state:
-    st.session_state.plafonds = None
+if "Plafonds" not in st.session_state:
+    st.session_state.Plafonds = None
     
-st.session_state._plafonds = st.session_state.plafonds
+st.session_state._Plafonds = st.session_state.Plafonds
 
-def set_plafonds():
-    st.session_state.plafonds = st.session_state._plafonds
+def set_Plafonds():
+    st.session_state.Plafonds = st.session_state._Plafonds
     
-if "vaste_gebouwvoorziening" not in st.session_state:
-    st.session_state.vaste_gebouwvoorziening = None
+if "Vaste_gebouwvoorziening" not in st.session_state:
+    st.session_state.Vaste_gebouwvoorziening = None
     
-st.session_state._vaste_gebouwvoorziening = st.session_state.vaste_gebouwvoorziening
+st.session_state._Vaste_gebouwvoorziening = st.session_state.Vaste_gebouwvoorziening
 
-def set_vaste_gebouwvoorziening():
-    st.session_state.vaste_gebouwvoorziening = st.session_state._vaste_gebouwvoorziening
+def set_Vaste_gebouwvoorziening():
+    st.session_state.Vaste_gebouwvoorziening = st.session_state._Vaste_gebouwvoorziening
     
-if "keuken" not in st.session_state:
-    st.session_state.keuken = None
+if "Keuken" not in st.session_state:
+    st.session_state.Keuken = None
     
-st.session_state._keuken = st.session_state.keuken
+st.session_state._Keuken = st.session_state.Keuken
 
-def set_keuken():
-    st.session_state.keuken = st.session_state._keuken
+def set_Keuken():
+    st.session_state.Keuken = st.session_state._Keuken
     
-if "terreininrichting" not in st.session_state:
-    st.session_state.terreininrichting = None
+if "Terreininrichting" not in st.session_state:
+    st.session_state.Terreininrichting = None
     
-st.session_state._terreininrichting = st.session_state.terreininrichting
+st.session_state._Terreininrichting = st.session_state.Terreininrichting
 
-def set_terreininrichting():
-    st.session_state.terreininrichting = st.session_state._terreininrichting
+def set_Terreininrichting():
+    st.session_state.Terreininrichting = st.session_state._Terreininrichting
 
 
 # In[ ]:
