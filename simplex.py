@@ -134,13 +134,13 @@ st.session_state._Hoofddraagconstructie = st.session_state.Hoofddraagconstructie
 def set_Hoofddraagconstructie():
     st.session_state.Hoofddraagconstructie = st.session_state._Hoofddraagconstructie
     
-if "Buitenkozijnen,__ramen,__deuren_en__puien" not in st.session_state:
-    st.session_state.Buitenkozijnen,__ramen,__deuren_en__puien = None
+if "Buitenkozijnen" not in st.session_state:
+    st.session_state.Buitenkozijnen = None
     
-st.session_state._Buitenkozijnen,__ramen,__deuren_en__puien = st.session_state.Buitenkozijnen,__ramen,__deuren_en__puien
+st.session_state._Buitenkozijnen = st.session_state.Buitenkozijnen
 
-def set_Buitenkozijnen,__ramen,__deuren_en__puien():
-    st.session_state.Buitenkozijnen,__ramen,__deuren_en__puien = st.session_state._Buitenkozijnen,__ramen,__deuren_en__puien
+def set_Buitenkozijnen():
+    st.session_state.Buitenkozijnen = st.session_state._Buitenkozijnen
     
 if "Binnenkozijnen_en__deuren" not in st.session_state:
     st.session_state.Binnenkozijnen_en__deuren = None
