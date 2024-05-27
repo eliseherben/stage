@@ -86,6 +86,138 @@ def set_appartementen():
 # In[ ]:
 
 
+if "buitenwanden" not in st.session_state:
+    st.session_state.buitenwanden = None
+    
+st.session_state._buitenwanden = st.session_state.buitenwanden
+
+def set_buitenwanden():
+    st.session_state.buitenwanden = st.session_state._buitenwanden
+    
+if "binnenwanden" not in st.session_state:
+    st.session_state.binnenwanden = None
+    
+st.session_state._binnenwanden = st.session_state.binnenwanden
+
+def set_binnenwanden():
+    st.session_state.binnenwanden = st.session_state._binnenwanden
+    
+if "vloeren" not in st.session_state:
+    st.session_state.vloeren = None
+    
+st.session_state._vloeren = st.session_state.vloeren
+
+def set_vloeren():
+    st.session_state.vloeren = st.session_state._vloeren
+    
+if "trappen_en_hellingen" not in st.session_state:
+    st.session_state.trappen_en_hellingen = None
+    
+st.session_state._trappen_en_hellingen = st.session_state.trappen_en_hellingen
+
+def set_trappen_en_hellingen():
+    st.session_state.trappen_en_hellingen = st.session_state._trappen_en_hellingen
+    
+if "daken" not in st.session_state:
+    st.session_state.daken = None
+    
+st.session_state._daken = st.session_state.daken
+
+def set_daken():
+    st.session_state.daken = st.session_state._daken
+    
+if "hoofddraagconstructie" not in st.session_state:
+    st.session_state.hoofddraagconstructie = None
+    
+st.session_state._hoofddraagconstructie = st.session_state.hoofddraagconstructie
+
+def set_hoofddraagconstructie():
+    st.session_state.hoofddraagconstructie = st.session_state._hoofddraagconstructie
+    
+if "buitenkozijnen" not in st.session_state:
+    st.session_state.buitenkozijnen = None
+    
+st.session_state._buitenkozijnen = st.session_state.buitenkozijnen
+
+def set_buitenkozijnen():
+    st.session_state.buitenkozijnen = st.session_state._buitenkozijnen
+    
+if "binnenkozijnen" not in st.session_state:
+    st.session_state.binnenkozijnen = None
+    
+st.session_state._binnenkozijnen = st.session_state.binnenkozijnen
+
+def set_binnenkozijnen():
+    st.session_state.binnenkozijnen = st.session_state._binnenkozijnen
+    
+if "luiken_en_vensters" not in st.session_state:
+    st.session_state.luiken_en_vensters = None
+    
+st.session_state._luiken_en_vensters = st.session_state.luiken_en_vensters
+
+def set_luiken_en_vensters():
+    st.session_state.luiken_en_vensters = st.session_state._luiken_en_vensters
+    
+if "balustrades_en_leuningen" not in st.session_state:
+    st.session_state.balustrades_en_leuningen = None
+    
+st.session_state._balustrades_en_leuningen = st.session_state.balustrades_en_leuningen
+
+def set_balustrades_en_leuningen():
+    st.session_state.balustrades_en_leuningen = st.session_state._balustrades_en_leuningen
+    
+if "binnenwandafwerkingen" not in st.session_state:
+    st.session_state.binnenwandafwerkingen = None
+    
+st.session_state._binnenwandafwerkingen = st.session_state.binnenwandafwerkingen
+
+def set_binnenwandafwerkingen():
+    st.session_state.binnenwandafwerkingen = st.session_state._binnenwandafwerkingen
+    
+if "vloerafwerkingen" not in st.session_state:
+    st.session_state.vloerafwerkingen = None
+    
+st.session_state._vloerafwerkingen = st.session_state.vloerafwerkingen
+
+def set_vloerafwerkingen():
+    st.session_state.vloerafwerkingen = st.session_state._vloerafwerkingen
+    
+if "plafonds" not in st.session_state:
+    st.session_state.plafonds = None
+    
+st.session_state._plafonds = st.session_state.plafonds
+
+def set_plafonds():
+    st.session_state.plafonds = st.session_state._plafonds
+    
+if "vaste_gebouwvoorziening" not in st.session_state:
+    st.session_state.vaste_gebouwvoorziening = None
+    
+st.session_state._vaste_gebouwvoorziening = st.session_state.vaste_gebouwvoorziening
+
+def set_vaste_gebouwvoorziening():
+    st.session_state.vaste_gebouwvoorziening = st.session_state._vaste_gebouwvoorziening
+    
+if "keuken" not in st.session_state:
+    st.session_state.keuken = None
+    
+st.session_state._keuken = st.session_state.keuken
+
+def set_keuken():
+    st.session_state.keuken = st.session_state._keuken
+    
+if "terreininrichting" not in st.session_state:
+    st.session_state.terreininrichting = None
+    
+st.session_state._terreininrichting = st.session_state.terreininrichting
+
+def set_terreininrichting():
+    st.session_state.terreininrichting = st.session_state._terreininrichting
+
+
+# In[ ]:
+
+
 st.title("Eigen Haard")
 
 
@@ -241,22 +373,22 @@ if uploaded_file is not None:
 
 
 with st.expander("Vul hier de huidige hoeveelheden per productgroep in:"):
-        st.number_input("Aantal m2 aan buitenwanden in het huidige project", value = None, placeholder = "vul het aantal m2 in")
-        st.number_input("Aantal m2 aan binnenwanden in het huidige project", value = None, placeholder = "vul het aantal m2 in")
-        st.number_input("Aantal m2 aan vloeren in het huidige project", value = None, placeholder = "vul het aantal m2 in")
-        st.number_input("Aantal stuks aan trappen en hellingen in het huidige project", value = None, placeholder = "vul het aantal stuks in")
-        st.number_input("Aantal m2 aan daken in het huidige project", value = None, placeholder = "vul het aantal m2 in")
-        st.number_input("Aantal m2 aan hoofddraagconstructie in het huidige project", value = None, placeholder = "vul het aantal m2 in")
-        st.number_input("Aantal m aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project", value = None, placeholder = "vul het aantal m in")
-        st.number_input("Aantal stuks aan binnenkozijnen en -deuren in het huidige project", value = None, placeholder = "vul het aantal stuks in")
-        st.number_input("Aantal stuks aan luiken en vensters in het huidige project", value = None, placeholder = "vul het aantal stuks in")
-        st.number_input("Aantal m aan balustrades en leuningen in het huidige project", value = None, placeholder = "vul het aantal m in")
-        st.number_input("Aantal m2 aan binnenwandafwerkingen in het huidige project", value = None, placeholder = "vul het aantal m2 in")
-        st.number_input("Aantal m2 aan vloerafwerkingen in het huidige project", value = None, placeholder = "vul het aantal m2 in")
-        st.number_input("Aantal m2 aan plafonds in het huidige project", value = None, placeholder = "vul het aantal m2 in")
-        st.number_input("Aantal stuks aan vaste gebouwvoorziening huidige project", value = None, placeholder = "vul het aantal stuks in")
-        st.number_input("Aantal stuks aan keuken in het huidige project", value = None, placeholder = "vul het aantal stuks in")
-        st.number_input("Aantal stuks aan terreinrichting in het huidige project", value = None, placeholder = "vul het aantal stuks in")
+        st.number_input("Aantal m2 aan buitenwanden in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_buitenwanden', on_change=set_buitenwanden)
+        st.number_input("Aantal m2 aan binnenwanden in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_binnenwanden', on_change=set_binnenwanden)
+        st.number_input("Aantal m2 aan vloeren in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_vloeren', on_change=set_vloeren)
+        st.number_input("Aantal stuks aan trappen en hellingen in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_trappen_en_hellingen', on_change=set_trappen_en_hellingen)
+        st.number_input("Aantal m2 aan daken in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_daken', on_change=set_daken)
+        st.number_input("Aantal m2 aan hoofddraagconstructie in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_hoofddraagconstructie', on_change=set_hoofddraagconstructie)
+        st.number_input("Aantal m aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project", value = None, placeholder = "vul het aantal m in", key='_buitenkozijnen', on_change=set_buitenkozijnen)
+        st.number_input("Aantal stuks aan binnenkozijnen en -deuren in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_binnenkozijnen', on_change=set_binnenkozijnen)
+        st.number_input("Aantal stuks aan luiken en vensters in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_luiken_en_vensters', on_change=set_luiken_en_vensters)
+        st.number_input("Aantal m aan balustrades en leuningen in het huidige project", value = None, placeholder = "vul het aantal m in", key='_balustrades_en_leuningen', on_change=set_balustrades_en_leuningen)
+        st.number_input("Aantal m2 aan binnenwandafwerkingen in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_binnenwandafwerkingen', on_change=set_binnenwandafwerkingen)
+        st.number_input("Aantal m2 aan vloerafwerkingen in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_vloerafwerkingen', on_change=set_vloerafwerkingen)
+        st.number_input("Aantal m2 aan plafonds in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_plafonds', on_change=set_plafonds)
+        st.number_input("Aantal stuks aan vaste gebouwvoorziening huidige project", value = None, placeholder = "vul het aantal stuks in", key='_vaste_gebouwvoorziening', on_change=set_vaste_gebouwvoorziening)
+        st.number_input("Aantal stuks aan keuken in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_keuken', on_change=set_keuken)
+        st.number_input("Aantal stuks aan terreinrichting in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_terreininrichting', on_change=set_terreininrichting)
                     
 st.markdown("**Budget**")
 st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag", key='_budget', on_change=set_budget)
