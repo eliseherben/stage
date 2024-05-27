@@ -742,7 +742,7 @@ else:
                 prob += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob += lp_variabelen[i][1] <= data.iloc[i, 3]
 
-        lp_variabelen2 = [var[1] for var in lp_variabelen if pd.notna(data.iloc[var[0], 2]) and pd.notna(data.iloc[var[0], 3])]
+        lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
         st.markdown(lp_variabelen2)
         
         for a in range(afwijkingen_list):
