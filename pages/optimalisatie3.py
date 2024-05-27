@@ -572,9 +572,10 @@ else:
     
 dynamic_vars = {}
 
-for index, row in data.iterrows():
-    var_name = row['productgroep'] + '_start'
-    dynamic_vars[var_name] = st.session_state[row['productgroep']]
+for key, var, index, row in zip(lp_variabelen, data.iterrows()):
+    if pd.notna(data3.iloc[i, 2]) and pd.notna(data3.iloc[i, 3]):
+        var_name = var[3:] + '_start'
+        dynamic_vars[var_name] = st.session_state[var[3:]]
     
 st.markdown(dynamic_vars)
 
