@@ -578,7 +578,7 @@ else:
                 var_name = var.name[3:] + '_start'
                 dynamic_vars[var_name] = st.session_state[var.name[3:]]
 
-                afwijkingen_name = 'd_' + var.name.[3:] 
+                afwijkingen_name = 'd_' + var.name[3:] 
                 afwijkingen.append(afwijkingen_name)
                 
     st.markdown(dynamic_vars)    
