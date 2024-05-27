@@ -695,7 +695,7 @@ else:
         afwijkingen = pl.lpSum(afwijkingen_list)
         st.markdown(afwijkingen)
         
-        prob += 2/3 * circulair + 1/3 * budget + afwijkingen
+        prob += 1/3 * circulair + 1/6 * budget + 1/2 afwijkingen
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -735,7 +735,7 @@ else:
         
         afwijkingen = pl.lpSum(afwijkingen_list)
         
-        prob += 2/3 * budget + 1/3 * circulair + afwijkingen
+        prob += 1/3 * budget + 1/6 * circulair + 1/2 * afwijkingen
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
