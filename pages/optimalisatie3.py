@@ -610,8 +610,8 @@ else:
                 for a in range(len(afwijkingen_list)):
                     prob += lp_variabelen[i][1] >= data.iloc[i, 2]
                     prob += lp_variabelen[i][1] <= data.iloc[i, 3]
-                    prob += afwijkingen_list[a] <= lp_variabelen[i][1] - startwaardes[i]
-                    prob += afwijkingen_list[a] <= startwaardes[i] - lp_variabelen[i][1]
+                    prob += afwijkingen_list[a] <= lp_variabelen[i][1] - startwaardes[a]
+                    prob += afwijkingen_list[a] <= startwaardes[a] - lp_variabelen[i][1]
                 
         status = prob.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
@@ -640,8 +640,8 @@ else:
                 for a in range(len(afwijkingen_list)):
                     prob += lp_variabelen[i][1] >= data.iloc[i, 2]
                     prob += lp_variabelen[i][1] <= data.iloc[i, 3]
-                    prob += afwijkingen_list[a] <= lp_variabelen[i][1] - startwaardes[i]
-                    prob += afwijkingen_list[a] <= startwaardes[i] - lp_variabelen[i][1]
+                    prob += afwijkingen_list[a] <= lp_variabelen[i][1] - startwaardes[a]
+                    prob += afwijkingen_list[a] <= startwaardes[a] - lp_variabelen[i][1]
 
         
         status = prob.solve()
