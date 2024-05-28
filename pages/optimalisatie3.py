@@ -732,10 +732,11 @@ else:
         st.markdown(impact_budget)
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         
-        max_budget = [data.iloc[i, 3] * data.iloc[i, 4] for i in range(len(lp_variabelen))]
+        max_b = [data.iloc[i, 3] * data.iloc[i, 4] for i in range(len(lp_variabelen))]
+        max_budget = sum(x for x in max_b if pd.notna(x))
         st.markdown(max_budget)
-        st.markdown(sum(x for x in max_budget if pd.notna(x)))
-        min_budget = [data.iloc[i, 2] * data.iloc[i, 4] for i in range(len(lp_variabelen))]
+        min_b = [data.iloc[i, 2] * data.iloc[i, 4] for i in range(len(lp_variabelen))]
+        min_budget = sum(x for x in min_b if pd.notna(x))
         st.markdown(min_budget)
         budget_genormaliseerd = (budget - min_budget) / (max_budget - min_budget)
         st.markdown(f"budget {budget_genormaliseerd}")
@@ -746,8 +747,10 @@ else:
         st.markdown(impact_circulair)
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
-        max_circulair = [data.iloc[i, 3] * data.iloc[i, 5] for i in range(len(lp_variabelen))]
-        min_circulair = [data.iloc[i, 2] * data.iloc[i, 5] for i in range(len(lp_variabelen))]
+        max_c = [data.iloc[i, 3] * data.iloc[i, 5] for i in range(len(lp_variabelen))]
+        max_circulair = sum(x for x in max_c if pd.notna(x))
+        min_c = [data.iloc[i, 2] * data.iloc[i, 5] for i in range(len(lp_variabelen))]
+        min_circulair = sum(x for x in min_c if pd.notna(x))
         circulair_genormaliseerd = (circulair - min_circulair) / (max_circulair - min_circulair)
         st.markdown(f"circulair {circulair_genormaliseerd}")
         
