@@ -718,14 +718,18 @@ else:
         
     if st.session_state.doelstelling == 'Budget':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
-        
+        st.markdown("OPTIESSSS")
         variabelen_woonbeleving = [data.iloc[i, 6] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 6])]
+        st.markdown(variabelen_woonbeleving)
         impact_woonbeleving = [data.iloc[i, 6] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 6])]
+        st.markdown(impact_woonbeleving)
         woonbeleving = pl.lpSum(variabelen_woonbeleving[i] * impact_woonbeleving[i] for i in range(len(variabelen_woonbeleving)))
         st.markdown(f"woonbeleving {woonbeleving}")
         
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
+        st.markdown(variabelen_budget)
         impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
+        st.markdown(impact_budget)
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         
         max_budget = sum([data.iloc[i, 3] * data.iloc[i, 4] for i in range(len(lp_variabelen))])
@@ -734,7 +738,9 @@ else:
         st.markdown(f"budget {budget_genormaliseerd}")
         
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
+        st.markdown(variabelen_circulair)
         impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
+        st.markdown(impact_circulair)
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
         max_circulair = sum([data.iloc[i, 3] * data.iloc[i, 5] for i in range(len(lp_variabelen))])
