@@ -766,9 +766,9 @@ else:
         lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
         st.markdown(lp_variabelen2)
         
-        for a in range(len(afwijkingen_list)):
-            prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
-            prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
+#         for a in range(len(afwijkingen_list)):
+#             prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
+#             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
         
         st.markdown(budget_genormaliseerd)
         st.markdown(circulair_genormaliseerd)
