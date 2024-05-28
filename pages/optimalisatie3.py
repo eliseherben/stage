@@ -734,7 +734,7 @@ else:
         
         max_budget = [data.iloc[i, 3] * data.iloc[i, 4] for i in range(len(lp_variabelen))]
         st.markdown(max_budget)
-        st.markdown(sum(max_budget))
+        st.markdown(sum(x for x in max_budget if not pd.isnan(x)))
         min_budget = [data.iloc[i, 2] * data.iloc[i, 4] for i in range(len(lp_variabelen))]
         st.markdown(min_budget)
         budget_genormaliseerd = (budget - min_budget) / (max_budget - min_budget)
