@@ -678,25 +678,22 @@ else:
          # Impact themas op productgroepen
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        st.markdown(impact_circulair)
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
 
         max_circulair = [data.iloc[1, 3] * data.iloc[i, 5] for i in range(len(lp_variabelen))]
-        st.markdown(max_circulair)
+        st.markdown(f"max C: {max_circulair}")
         min_circulair = [data.iloc[1, 2] * data.iloc[i, 5] for i in range(len(lp_variabelen))]
-        st.markdown(min_circulair)
+        st.markdown(f"min C: {min_circulair}")
         circulair_genormaliseerd = (circulair - min_circulair) / (max_circulair - min_circulair)
         
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        st.markdown(variabelen_budget)
-        st.markdown(impact_budget)
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         
         max_budget = [data.iloc[1, 3] * data.iloc[i, 4] for i in range(len(lp_variabelen))]
-        st.markdown(max_budget)
+        st.markdown(f"max B: {max_budget}")
         min_budget = [data.iloc[1, 2] * data.iloc[i, 4] for i in range(len(lp_variabelen))]
-        st.markdown(min_budget)
+        st.markdown(f"min B: {min_budget}")
         budget_genormaliseerd = (budget - min_budget) / (max_budget - min_budget)
         
         afwijkingen = pl.lpSum(afwijkingen_list)
