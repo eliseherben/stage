@@ -45,10 +45,11 @@ st.selectbox("Welke thema heeft prioriteit in dit project?",
             placeholder='selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
 
 
-# In[4]:
+# In[5]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
+data['woonbeleving'] = [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0]
 data
 
 
@@ -707,9 +708,7 @@ else:
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
                 prob += afwijkingen_list[a] >= lp_variabelen[i][1] - startwaardes[a]
                 prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[i][1]
-                
-        prob += budget == st.session_state.budget        
-        
+                        
         status = prob.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie (circulair): {prob.objective.value()}")
@@ -719,6 +718,10 @@ else:
         
     if st.session_state.doelstelling == 'Budget':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
+        
+        variabelen_woonbeleving = [data.iloc[i, 6] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 6])]
+        impact_woonbeleving = [data.iloc[i, 6] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 6])]
+        woonbeleving = pl.lpSum(variabelen_woonbeleving[i] * impact_woonbeleving[i] for i in range(len(variabelen_woonbeleving)))
         
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
@@ -738,7 +741,7 @@ else:
         
         afwijkingen = pl.lpSum(afwijkingen_list)
         
-        prob +=  1/3 * circulair + 2/3 * budget + 100 * afwijkingen
+        prob +=  1/3 * circulair + 1/2 * budget - 1/6 * woonbeleving
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
