@@ -719,7 +719,7 @@ else:
     if st.session_state.doelstelling == 'Budget':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
         st.markdown("OPTIESSSS")
-        variabelen_woonbeleving = [data.iloc[i, 6] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 6])]
+        variabelen_woonbeleving = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 6])]
         st.markdown(variabelen_woonbeleving)
         impact_woonbeleving = [data.iloc[i, 6] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 6])]
         st.markdown(impact_woonbeleving)
@@ -733,7 +733,9 @@ else:
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         
         max_budget = sum([data.iloc[i, 3] * data.iloc[i, 4] for i in range(len(lp_variabelen))])
+        st.markdown(max_budget)
         min_budget = sum([data.iloc[i, 2] * data.iloc[i, 4] for i in range(len(lp_variabelen))])
+        st.markdown(min_budget)
         budget_genormaliseerd = (budget - min_budget) / (max_budget - min_budget)
         st.markdown(f"budget {budget_genormaliseerd}")
         
