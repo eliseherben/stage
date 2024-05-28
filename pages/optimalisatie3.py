@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[2]:
 
 
 import streamlit as st
@@ -45,10 +45,11 @@ st.selectbox("Welke thema heeft prioriteit in dit project?",
             placeholder='selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
 
 
-# In[20]:
+# In[4]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
+data
 
 
 # In[21]:
@@ -679,7 +680,8 @@ else:
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
-
+        
+        st.markdown(data.iloc[i, 3] for i in range(len(lp_variabelen)))
         max_circulair = [data.iloc[i, 3] * data.iloc[i, 5] for i in range(len(lp_variabelen))]
         st.markdown(f"max C: {max_circulair}")
         min_circulair = [data.iloc[i, 2] * data.iloc[i, 5] for i in range(len(lp_variabelen))]
