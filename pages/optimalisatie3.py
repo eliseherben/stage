@@ -633,10 +633,10 @@ else:
     st.dataframe(df)
 
 
+# **minimale afwijking**
+
 # In[ ]:
 
-
-from pulp import LpMinimize, LpProblem, LpVariable, lpSum
 
 # Controleer of het projectbestand is geüpload
 if st.session_state.projectbestand is None:
@@ -681,8 +681,10 @@ else:
         st.markdown(impact_circulair)
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
 
-        max_circulair = max(impact_circulair)
-        min_circulair = min(impact_circulair)
+        max_circulair = [data.iloc[1, 3] * data.iloc[i, 5] for i in range(len(lp_variabelen))]
+        st.markdown(max_circulair)
+        min_circulair = [data.iloc[1, 2] * data.iloc[i, 5] for i in range(len(lp_variabelen))]
+        st.markdown(min_circulair)
         circulair_genormaliseerd = (circulair - min_circulair) / (max_circulair - min_circulair)
         
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
@@ -691,8 +693,10 @@ else:
         st.markdown(impact_budget)
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         
-        max_budget = max(impact_budget)
-        min_budget = min(impact_budget)
+        max_budget = [data.iloc[1, 3] * data.iloc[i, 4] for i in range(len(lp_variabelen))]
+        st.markdown(max_budget)
+        min_budget = [data.iloc[1, 2] * data.iloc[i, 4] for i in range(len(lp_variabelen))]
+        st.markdown(min_budget)
         budget_genormaliseerd = (budget - min_budget) / (max_budget - min_budget)
         
         afwijkingen = pl.lpSum(afwijkingen_list)
