@@ -671,17 +671,15 @@ else:
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         st.markdown(impact_circulair)
-        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
-        st.markdown(circulair)
-        
         max_circulair = max(impact_circulair)
         st.markdown(max_circulair)
         min_circulair = min(impact_circulair)
         impact_circulair1 = [i-min_circulair for i in impact_circulair]
         st.markdown(impact_circulair1)
         st.markdown(min_circulair)
-        circulair_genormaliseerd = (circulair - min_circulair) / (max_circulair - min_circulair)
-        st.markdown(circulair - min_circulair)
+        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair1[i] for i in range(len(variabelen_circulair)))
+        circulair_genormaliseerd = (circulair) / (max_circulair - min_circulair)
+        st.markdown(circulair)
         st.markdown(max_circulair - min_circulair)
         st.markdown(circulair_genormaliseerd)
         
