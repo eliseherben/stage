@@ -894,6 +894,12 @@ else:
         budget1 = pl.lpSum(variabelen_budget[i] * impact_budget1[i] for i in range(len(variabelen_budget)))
         budget_genormaliseerd = (budget1) / (max_budget - min_budget)
         
+        st.markdown(afwijkingen_list)
+        impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
+        st.markdown(impact_afwijkingen)
+        afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
+        st.markdown(afwijkingen)
+        
         afwijkingen = pl.lpSum(afwijkingen_list)
         
         prob += 1/3 * circulair_genormaliseerd + 1/2 * budget_genormaliseerd + 1/6 * afwijkingen
