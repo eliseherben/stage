@@ -377,7 +377,7 @@ with st.expander("Vul hier de huidige hoeveelheden per productgroep in:"):
         st.number_input("Aantal m2 aan binnenwanden in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Binnenwanden', on_change=set_Binnenwanden)
         st.number_input("Aantal m2 aan vloeren in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Vloeren', on_change=set_Vloeren)
         st.number_input("Aantal stuks aan trappen en hellingen in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_Trappen_en_hellingen', on_change=set_Trappen_en_hellingen)
-        st.number_input("Aantal m2 aan daken in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_daken', on_change=set_Daken)
+        st.number_input("Aantal m2 aan daken in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Daken', on_change=set_Daken)
         st.number_input("Aantal m2 aan hoofddraagconstructie in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Hoofddraagconstructie', on_change=set_Hoofddraagconstructie)
         st.number_input("Aantal m aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project", value = None, placeholder = "vul het aantal m in", key='_Buitenkozijnen', on_change=set_Buitenkozijnen)
         st.number_input("Aantal stuks aan binnenkozijnen en -deuren in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_Binnenkozijnen_en__deuren', on_change=set_Binnenkozijnen_en__deuren)
