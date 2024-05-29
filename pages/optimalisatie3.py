@@ -677,6 +677,8 @@ else:
         max_circulair = max(impact_circulair)
         st.markdown(max_circulair)
         min_circulair = min(impact_circulair)
+        impact_circulair1 = [i-min_circulair for i in impact_circulair]
+        st.markdown(impact_circulair1)
         st.markdown(min_circulair)
         circulair_genormaliseerd = (circulair - min_circulair) / (max_circulair - min_circulair)
         st.markdown(circulair - min_circulair)
