@@ -817,8 +817,6 @@ else:
                 afwijkingen_var = pl.LpVariable('d_' + var.name[3:], lowBound = 0) 
                 afwijkingen_list.append(afwijkingen_var)
                 
-                
-                
     startwaardes = list(dynamic_vars.values())
 
     if st.session_state.doelstelling == 'Circulair':
