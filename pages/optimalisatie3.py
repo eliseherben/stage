@@ -748,9 +748,9 @@ else:
         status = prob.solve()
         st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie (budget): {prob.objective.value()}")
-        st.markdown(f"budget doelstelling: {budget}")
-        st.markdown(f"circulair doelstelling: {circulair}")
-        st.markdown(f"afwijkingen doelstelling: {afwijkingen}")
+        st.markdown(f"budget doelstelling: {budget.value}")
+        st.markdown(f"circulair doelstelling: {circulair.value}")
+        st.markdown(f"afwijkingen doelstelling: {afwijkingen.value}")
         st.markdown("\nRestricties met ingevulde waarden:")
         for name, constraint in prob.constraints.items():
             st.markdown(f"{name}: {constraint} = {constraint.value()}")
