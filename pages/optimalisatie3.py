@@ -45,11 +45,12 @@ st.selectbox("Welke thema heeft prioriteit in dit project?",
             placeholder='selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
 
 
-# In[5]:
+# In[3]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
 data['woonbeleving'] = [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0]
+data.iloc[-1, 3] = data.iloc[-1, 3] + 1
 data
 
 
