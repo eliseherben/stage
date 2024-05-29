@@ -675,6 +675,7 @@ else:
         max_circulair = max(impact_circulair)
         min_circulair = min(impact_circulair)
         circulair_genormaliseerd = (circulair - min_circulair) / (max_circulair - min_circulair)
+        st.markdown(circulair_genormaliseerd)
         
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
@@ -683,6 +684,7 @@ else:
         max_budget = max(impact_budget)
         min_budget = min(impact_budget)
         budget_genormaliseerd = (budget - min_budget) / (max_budget - min_budget)
+        st.markdown(budget_genormaliseerd)
         
         afwijkingen = pl.lpSum(afwijkingen_list)
         
