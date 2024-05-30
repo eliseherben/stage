@@ -495,8 +495,15 @@ else:
         st.markdown("\nRestricties met ingevulde waarden:")
         for name, constraint in prob.constraints.items():
             st.markdown(f"{name}: {constraint} = {constraint.value()}")
+        
+        st.markdown("afwijking?")
         for i in afwijkingen_list:
             st.markdown(i.varValue)
+            
+        st.markdown("startwaardes")
+        for i in startwaardes:
+            st.markdown(i.varValue)
+            
         st.markdown(d_pos.value())
         st.markdown(afwijkingen.value())
 
