@@ -414,7 +414,6 @@ else:
         budget2 = 1 / 150000
         d_pos_n = pl.lpSum(d_pos * budget2)
 #         d_neg_n = pl.lpSum(d_neg * budget2)
-
         
         prob += 1/2 * circulair_genormaliseerd + 1/3 * d_pos_n + 1/6 * afwijkingen
 
@@ -493,8 +492,9 @@ else:
             st.markdown(f"{name}: {constraint} = {constraint.value()}")
 
         st.markdown(d_pos.value())
+        st.markdown(afwijkingen.value())
 
-    # Maak een DataFrame van de variabelen en hun waarden
+        # Maak een DataFrame van de variabelen en hun waarden
     variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
     df = pd.DataFrame(variabelen_waarden, columns=['productgroep', 'waarde'])
     st.dataframe(df)
