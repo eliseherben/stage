@@ -477,6 +477,8 @@ else:
 
         lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
         
+        st.markdown(afwijkingen_list)
+        
         for a in range(len(afwijkingen_list)):
             st.markdown(afwijkingen_list[a])
             st.markdown(lp_variabelen2[a])
