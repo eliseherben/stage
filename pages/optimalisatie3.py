@@ -468,20 +468,15 @@ else:
         st.markdown("\nRestricties met ingevulde waarden:")
         for name, constraint in prob.constraints.items():
             st.markdown(f"{name}: {constraint} = {constraint.value()}")
-        
-        st.markdown("afwijking?")
-        for i in afwijkingen_list:
-            st.markdown(i.varValue)
-            
-        st.markdown("startwaardes")
-        for i in startwaardes:
-            st.markdown(i)
-            
-        st.markdown("lp variabelen")
-        for i in lp_variabelen2:
-            st.markdown(i.varValue)
-            
         st.markdown(f"de afwijking tov het budget: {d_pos.value()}")
+        
+        afw = [i.varValue for i in afwijkingen_list]
+        sw = [i for i in startwaardes]
+        lp = [i.varValue for i in lp_variabelen2]
+
+        dict = {'startwaardes': sw, 'lp variabelen': lp, 'afwijking': afw}
+        df = pd.DataFrame(dict)
+        st.dataframe(df)
 
         # Maak een DataFrame van de variabelen en hun waarden
     variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
