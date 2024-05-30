@@ -366,7 +366,7 @@ else:
     dynamic_vars = {}
     afwijkingen_list = []
 
-    M = 1000
+    M = 100
         
     for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
         if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
