@@ -845,8 +845,9 @@ else:
 #         st.markdown(budget_genormaliseerd)
         
         afwijkingen = pl.lpSum(afwijkingen_list)
-        
-        kosten_afwijking = pl.lpSum(d / st.session_state.budget)
+    
+        budget2 = 1 / st.session_state.budget
+        kosten_afwijking = pl.lpSum(d * budget2)
         
         prob += 1/2 * circulair_genormaliseerd + 1/3 * kosten_afwijking + 1/6 * afwijkingen
 
@@ -895,7 +896,8 @@ else:
         
         afwijkingen = pl.lpSum(afwijkingen_list)
         
-        kosten_afwijking = pl.lpSum(d / st.session_state.budget)
+        budget2 = 1 / st.session_state.budget
+        kosten_afwijking = pl.lpSum(d * budget2)
 
         prob += 1/3 * circulair_genormaliseerd + 1/2 * kosten_afwijking + 1/6 * afwijkingen
         
