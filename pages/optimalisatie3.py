@@ -463,7 +463,9 @@ else:
 #         budget_genormaliseerd = (budget1) / (max_budget - min_budget)
         
         afwijkingen = pl.lpSum(afwijkingen_list)
-            
+        
+        afwijkingen = afwijkingen / 15
+    
         budget2 = 1 / 150000
         d_pos_n = pl.lpSum(d_pos * budget2)
 #         d_neg_n = pl.lpSum(d_neg * budget2)
