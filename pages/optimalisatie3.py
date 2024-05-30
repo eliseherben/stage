@@ -846,10 +846,10 @@ else:
         
         afwijkingen = pl.lpSum(afwijkingen_list)
     
-        budget2 = 1 / st.session_state.budget
-        kosten_afwijking = pl.lpSum(d * budget2)
+#         budget2 = 1 / st.session_state.budget
+#         kosten_afwijking = pl.lpSum(d * budget2)
         
-        prob += 1/2 * circulair_genormaliseerd + 1/3 * kosten_afwijking + 1/6 * afwijkingen
+        prob += 1/2 * circulair_genormaliseerd + 1/3 * d + 1/6 * afwijkingen
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -896,10 +896,10 @@ else:
         
         afwijkingen = pl.lpSum(afwijkingen_list)
         
-        budget2 = 1 / st.session_state.budget
-        kosten_afwijking = pl.lpSum(d * budget2)
+#         budget2 = 1 / st.session_state.budget
+#         kosten_afwijking = pl.lpSum(d * budget2)
 
-        prob += 1/3 * circulair_genormaliseerd + 1/2 * kosten_afwijking + 1/6 * afwijkingen
+        prob += 1/3 * circulair_genormaliseerd + 1/2 * d + 1/6 * afwijkingen
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
