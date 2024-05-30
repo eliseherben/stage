@@ -470,7 +470,7 @@ else:
         d_pos_n = pl.lpSum(d_pos * budget2)
 #         d_neg_n = pl.lpSum(d_neg * budget2)
 
-        prob += 1/3 * circulair_genormaliseerd + 1/2 * d_pos_n + 1/6 * afwijkingen2
+        prob += 1/3 * circulair_genormaliseerd + 1/2 * d_pos_n + 1/600 * afwijkingen2
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
