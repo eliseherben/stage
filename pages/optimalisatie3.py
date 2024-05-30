@@ -478,6 +478,9 @@ else:
         lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
         
         for a in range(len(afwijkingen_list)):
+            st.markdown(afwijkingen_list[a])
+            st.markdown(lp_variabelen2[a])
+            st.markdown(startwaardes[a])
             prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
                 
@@ -518,6 +521,39 @@ else:
 # print(f"d_x1: {d_x1.varValue}")
 # print(f"d_x2: {d_x2.varValue}")
 # print(f"Objective: {model.objective.value()}")
+
+
+# In[ ]:
+
+
+from pulp import LpProblem, LpMinimize, LpVariable, lpSum, LpBinary
+
+# Parameters
+x_start = [50, 60, 70]  # Huidige waarden
+M = 1000  # Grote constante (big M)
+
+# Create the problem
+prob = LpProblem("Minimize_Number_of_Deviations", LpMinimize)
+
+# Define variables
+x = [LpVariable(f"x_{i}", 0, 100) for i in range(len(x_start))]
+y = [LpVariable(f"y_{i}", cat=LpBinary) for i in range(len(x_start))]
+
+# Objective function
+prob += lpSum(y)
+
+# Constraints
+for i in range(len(x_start)):
+    prob += M * y[i] >= x[i] - x_start[i]
+    prob += M * y[i] >= x_start[i] - x[i]
+
+# Solve the problem
+prob.solve()
+
+# Results
+for i in range(len(x_start)):
+    print(f"Optimal value of x_{i}: {x[i].varValue}")
+    print(f"Deviation indicator y_{i}: {y[i].varValue}")
 
 
 # maak er 1 dataframe van om te kunnen vergelijken
