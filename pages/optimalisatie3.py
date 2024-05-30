@@ -379,7 +379,7 @@ else:
     afwijkingen_list = []
 
     d_pos = pl.LpVariable("d_pos", lowBound = 0)
-    d_neg = pl.LpVariable("d_neg", lowBound = 0)
+#     d_neg = pl.LpVariable("d_neg", lowBound = 0)
 
     for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
         if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -425,10 +425,10 @@ else:
     
         budget2 = 1 / 1000000
         d_pos_n = pl.lpSum(d_pos * budget2)
-        d_neg_n = pl.lpSum(d_neg * budget2)
+#         d_neg_n = pl.lpSum(d_neg * budget2)
 
         
-        prob += 1/2 * circulair_genormaliseerd + 1/3 * (d_pos_n + d_neg_n) + 1/6 * afwijkingen
+        prob += 1/2 * circulair_genormaliseerd + 1/3 * d_pos_n + 1/6 * afwijkingen
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -441,7 +441,8 @@ else:
             prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
             
-        prob += budget + d_pos - d_neg == st.session_state.budget
+        prob += d_pos >= st.session_state.budget - budget
+        prob += d_pos >+ budget - st.session_state.budget
         
         status = prob.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
@@ -478,9 +479,9 @@ else:
             
         budget2 = 1 / 1000000
         d_pos_n = pl.lpSum(d_pos * budget2)
-        d_neg_n = pl.lpSum(d_neg * budget2)
+#         d_neg_n = pl.lpSum(d_neg * budget2)
 
-        prob += 1/3 * circulair_genormaliseerd + 1/2 * (d_pos_n + d_neg_n) + 1/6 * afwijkingen
+        prob += 1/3 * circulair_genormaliseerd + 1/2 * d_pos_n + 1/6 * afwijkingen
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -493,7 +494,8 @@ else:
             prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
                 
-        prob += budget + d_pos - d_neg == st.session_state.budget
+        prob += d_pos >= st.session_state.budget - budget
+        prob += d_pos >+ budget - st.session_state.budget
         
         status = prob.solve()
         st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
