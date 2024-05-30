@@ -423,10 +423,12 @@ else:
         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
         afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
     
-#         budget2 = 1 / 1000
-#         kosten_afwijking = pl.lpSum(d * budget2)
+        budget2 = 1 / 1000000
+        d_pos_n = pl.lpSum(d_pos * budget2)
+        d_neg_n = pl.lpSum(d_neg * budget2)
+
         
-        prob += 1/2 * circulair_genormaliseerd + 1/3 * (d_pos + d_neg) + 1/6 * afwijkingen
+        prob += 1/2 * circulair_genormaliseerd + 1/3 * (d_pos_n + d_neg_n) + 1/6 * afwijkingen
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -474,10 +476,11 @@ else:
         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
         afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
             
-#         budget2 = 1 / 1000
-#         kosten_afwijking = pl.lpSum(d * budget2)
+        budget2 = 1 / 1000000
+        d_pos_n = pl.lpSum(d_pos * budget2)
+        d_neg_n = pl.lpSum(d_neg * budget2)
 
-        prob += 1/3 * circulair_genormaliseerd + 1/2 * (d_pos + d_neg) + 1/6 * afwijkingen
+        prob += 1/3 * circulair_genormaliseerd + 1/2 * (d_pos_n + d_neg_n) + 1/6 * afwijkingen
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
