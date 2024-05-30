@@ -843,7 +843,8 @@ else:
 #         budget1 = pl.lpSum(variabelen_budget[i] * impact_budget1[i] for i in range(len(variabelen_budget)))
 #         budget_genormaliseerd = (budget1) / (max_budget - min_budget)
 #         st.markdown(budget_genormaliseerd)
-        
+        impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
+    
         afwijkingen = pl.lpSum(afwijkingen_list)
     
 #         budget2 = 1 / st.session_state.budget
@@ -895,10 +896,9 @@ else:
 #         budget1 = pl.lpSum(variabelen_budget[i] * impact_budget1[i] for i in range(len(variabelen_budget)))
 #         budget_genormaliseerd = (budget1) / (max_budget - min_budget)
         
-        afwijkingen = pl.lpSum(afwijkingen_list)
-        st.markdown(afwijkingen)
-        st.markdown(d)
-        
+        impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
+        afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
+            
 #         budget2 = 1 / st.session_state.budget
 #         kosten_afwijking = pl.lpSum(d * budget2)
 
