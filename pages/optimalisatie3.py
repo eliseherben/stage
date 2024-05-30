@@ -423,7 +423,7 @@ else:
         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
         afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
     
-        budget2 = 1 / 10000
+        budget2 = 1 / 100000
         d_pos_n = pl.lpSum(d_pos * budget2)
 #         d_neg_n = pl.lpSum(d_neg * budget2)
 
@@ -448,10 +448,10 @@ else:
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie (circulair): {prob.objective.value()}")
         st.markdown("\nRestricties met ingevulde waarden:")
-        st.markdown(d_pos.value())
         for name, constraint in prob.constraints.items():
             st.markdown(f"{name}: {constraint} = {constraint.value()}")
-        
+        st.markdown(d_pos.value())
+
     if st.session_state.doelstelling == 'Budget':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
  
@@ -477,7 +477,7 @@ else:
         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
         afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
             
-        budget2 = 1 / 10000
+        budget2 = 1 / 100000
         d_pos_n = pl.lpSum(d_pos * budget2)
 #         d_neg_n = pl.lpSum(d_neg * budget2)
 
