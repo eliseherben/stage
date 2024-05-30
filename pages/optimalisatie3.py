@@ -419,8 +419,8 @@ else:
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob += lp_variabelen[i][1] <= data.iloc[i, 3]
+                prob += M * lp_variabelen[i][1] >= data.iloc[i, 2]
+                prob += M * lp_variabelen[i][1] <= data.iloc[i, 3]
         
         lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
         
@@ -478,8 +478,8 @@ else:
         lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
         
         for a in range(len(afwijkingen_list)):
-            prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
-            prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
+            prob += M * afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
+            prob += M * afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
                 
         prob += d_pos >= st.session_state.budget - budget
         prob += d_pos >= budget - st.session_state.budget
