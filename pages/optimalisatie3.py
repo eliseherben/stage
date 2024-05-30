@@ -502,6 +502,10 @@ else:
             
         st.markdown("startwaardes")
         for i in startwaardes:
+            st.markdown(i)
+            
+        st.markdown("lp variabelen")
+        for i in lp_variables2:
             st.markdown(i.varValue)
             
         st.markdown(d_pos.value())
