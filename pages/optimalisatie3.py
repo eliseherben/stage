@@ -802,7 +802,7 @@ else:
     dynamic_vars = {}
     afwijkingen_list = []
 
-    kosten_afwijking = pl.LpVariable("kosten_afwijking", lowBound = 0)
+    d = pl.LpVariable("d", lowBound = 0)
     
     for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
         if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -846,8 +846,9 @@ else:
         
         afwijkingen = pl.lpSum(afwijkingen_list)
         
+        kosten_afwijking = pl.lpSum(d / st.session_state.budget)
         
-        prob += 1/2 * circulair_genormaliseerd + 1/3 * (kosten_afwijking / st.session_state.budget) + 1/6 * afwijkingen
+        prob += 1/2 * circulair_genormaliseerd + 1/3 * kosten_afwijking + 1/6 * afwijkingen
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -894,7 +895,9 @@ else:
         
         afwijkingen = pl.lpSum(afwijkingen_list)
         
-        prob += 1/3 * circulair_genormaliseerd + 1/2 * (kosten_afwijking / st.session_state.budget) + 1/6 * afwijkingen
+        kosten_afwijking = pl.lpSum(d / st.session_state.budget)
+
+        prob += 1/3 * circulair_genormaliseerd + 1/2 * kosten_afwijking + 1/6 * afwijkingen
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
