@@ -862,8 +862,8 @@ else:
             prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
             
-        prob += kosten_afwijking >= budget - st.session_state.budget
-        prob += kosten_afwijking >= st.session_state.budget - budget
+        prob += d >= budget - st.session_state.budget
+        prob += d >= st.session_state.budget - budget
                                         
         status = prob.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
@@ -912,8 +912,8 @@ else:
             prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
                 
-        prob += kosten_afwijking >= budget - st.session_state.budget
-        prob += kosten_afwijking >= st.session_state.budget - budget  
+        prob += d >= budget - st.session_state.budget
+        prob += d >= st.session_state.budget - budget  
         
         status = prob.solve()
         st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
