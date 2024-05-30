@@ -884,6 +884,7 @@ else:
         impact_circulair1 = [i-min_circulair for i in impact_circulair]
         circulair1 = pl.lpSum(variabelen_circulair[i] * impact_circulair1[i] for i in range(len(variabelen_circulair)))
         circulair_genormaliseerd = (circulair1) / (max_circulair - min_circulair)
+        st.markdown(circulair_genormaliseerd)
         
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
@@ -895,6 +896,8 @@ else:
 #         budget_genormaliseerd = (budget1) / (max_budget - min_budget)
         
         afwijkingen = pl.lpSum(afwijkingen_list)
+        st.markdown(afwijkingen)
+        st.markdown(d)
         
 #         budget2 = 1 / st.session_state.budget
 #         kosten_afwijking = pl.lpSum(d * budget2)
