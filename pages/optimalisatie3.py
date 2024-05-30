@@ -422,7 +422,7 @@ else:
         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
         afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
     
-        budget2 = d / st.session_state.budget
+        budget2 = d / 1000
         kosten_afwijking = pl.lpSum(d * budget2)
         
         prob += 1/2 * circulair_genormaliseerd + 1/3 * kosten_afwijking + 1/6 * afwijkingen
