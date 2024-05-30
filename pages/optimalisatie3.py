@@ -378,8 +378,9 @@ else:
     dynamic_vars = {}
     afwijkingen_list = []
 
-    d = pl.LpVariable("d", lowBound = 0)
-    
+    d_pos = pl.LpVariable("d_pos", lowBound = 0)
+    d_neg = pl.LpVariable("d_neg", lowBound = 0)
+
     for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
         if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
             if var.name == "31_Buitenkozijnen,__ramen,__deuren_en__puien":
@@ -422,10 +423,10 @@ else:
         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
         afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
     
-        budget2 = 1 / 1000
-        kosten_afwijking = pl.lpSum(d * budget2)
+#         budget2 = 1 / 1000
+#         kosten_afwijking = pl.lpSum(d * budget2)
         
-        prob += 1/2 * circulair_genormaliseerd + 1/3 * kosten_afwijking + 1/6 * afwijkingen
+        prob += 1/2 * circulair_genormaliseerd + 1/3 * (d_pos + d_neg) + 1/6 * afwijkingen
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -438,9 +439,8 @@ else:
             prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
             
-        prob += kosten_afwijking >= budget - st.session_state.budget
-        prob += kosten_afwijking >= st.session_state.budget - budget
-                                        
+        prob += budget + d_pos - d_neg == st.session_state.budget
+        
         status = prob.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie (circulair): {prob.objective.value()}")
@@ -474,10 +474,10 @@ else:
         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
         afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
             
-        budget2 = 1 / 1000
-        kosten_afwijking = pl.lpSum(d * budget2)
+#         budget2 = 1 / 1000
+#         kosten_afwijking = pl.lpSum(d * budget2)
 
-        prob += 1/3 * circulair_genormaliseerd + 1/2 * kosten_afwijking + 1/6 * afwijkingen
+        prob += 1/3 * circulair_genormaliseerd + 1/2 * (d_pos + d_neg) + 1/6 * afwijkingen
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -490,8 +490,7 @@ else:
             prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
                 
-        prob += kosten_afwijking >= budget - st.session_state.budget
-        prob += kosten_afwijking >= st.session_state.budget - budget  
+        prob += budget + d_pos - d_neg == st.session_state.budget
         
         status = prob.solve()
         st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
