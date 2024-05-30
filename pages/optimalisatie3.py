@@ -366,7 +366,7 @@ else:
     dynamic_vars = {}
     afwijkingen_list = []
 
-    M = 100
+    M = 500
         
     for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
         if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -425,8 +425,8 @@ else:
         lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
         
         for a in range(len(afwijkingen_list)):
-            prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
-            prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
+            prob += M* afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
+            prob += M*afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
             
         prob += d_pos >= st.session_state.budget - budget
         prob += d_pos >= budget - st.session_state.budget
@@ -464,13 +464,13 @@ else:
         
         afwijkingen = pl.lpSum(afwijkingen_list)
         
-        afwijkingen2 = afwijkingen / 15
+#         afwijkingen2 = afwijkingen / 15
     
         budget2 = 1 / 150000
         d_pos_n = pl.lpSum(d_pos * budget2)
 #         d_neg_n = pl.lpSum(d_neg * budget2)
 
-        prob += 1/3 * circulair_genormaliseerd + 1/2 * d_pos_n + 1/600 * afwijkingen2
+        prob += 1/3 * circulair_genormaliseerd + 1/2 * d_pos_n + 1/6 * afwijkingen
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -485,8 +485,8 @@ else:
             st.markdown(afwijkingen_list[a])
             st.markdown(lp_variabelen2[a])
             st.markdown(startwaardes[a])
-            prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
-            prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
+            prob += M*afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
+            prob += M*afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
                 
         prob += d_pos >= st.session_state.budget - budget
         prob += d_pos >= budget - st.session_state.budget
