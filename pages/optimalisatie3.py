@@ -380,7 +380,7 @@ else:
                 var_name = var.name[3:] + '_start'
                 dynamic_vars[var_name] = st.session_state[var.name[3:]]
 
-                afwijkingen_var = pl.LpVariable('d_' + var.name[3:], lowBound = 0, cat = LpBinary) 
+                afwijkingen_var = pl.LpVariable('d_' + var.name[3:], lowBound = 0, cat = pl.LpBinary) 
                 afwijkingen_list.append(afwijkingen_var)
                 
     startwaardes = list(dynamic_vars.values())
