@@ -439,6 +439,7 @@ else:
         for name, constraint in prob.constraints.items():
             st.markdown(f"{name}: {constraint} = {constraint.value()}")
         st.markdown(d_pos.value())
+        st.markdown(afwijkingen.value())
 
     if st.session_state.doelstelling == 'Budget':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
