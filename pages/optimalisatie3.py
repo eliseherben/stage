@@ -420,7 +420,7 @@ else:
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob += lp_variabelen[i][1] >= data.iloc[i, 2]S
+                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
                 prob += lp_variabelen[i][1] <= data.iloc[i, 3]
         
         lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
