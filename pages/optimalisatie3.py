@@ -472,8 +472,8 @@ else:
     df.insert(0, 'productgroep', [key for key, var in lp_variabelen])
     data['code'] = data['productgroep'].str[:2]
     data_subset = data[['productgroep', 'code', 'minimaal', 'maximaal']]
-    df.dropna(subset=['minimaal'], inplace=True)
     df = df.merge(data_subset, on='productgroep', how='left')
+    df.dropna(subset=['minimaal'], inplace=True)   
         
     st.dataframe(df)
     st.session_state.oplossing = df
