@@ -121,11 +121,24 @@ data['maximaal'] = data['maximaal'] * st.session_state.appartementen
 data['constant'] = ['']*len(data)
 
 
-# In[6]:
+# In[8]:
 
 
-st.session_state.minimaal = list(data['minimaal'])
-st.session_state.maximaal = list(data['maximaal'])
+list(data['minimaal'] if pd.notna(data['minimaal']) and pd.notna(data['maximaal']) and pd.notna(data['kosten']) and pd.notna(data['circulair']))
+
+
+# In[10]:
+
+
+# Filter de rijen waar geen NaN-waarden zijn in de specifieke kolommen
+filtered_data = data.dropna(subset=['maximaal', 'kosten', 'circulair'])
+
+# Maak een lijst van de waarden in de kolom 'minimaal' uit de gefilterde data
+minimaal_list = filtered_data['minimaal'].tolist()
+maximaal_list = filtered_data['maximaal'].tolist()
+
+st.session_state.minimaal = minimaal_list
+st.session_state.maximaal = maximaal_list
 
 
 # In[9]:
