@@ -222,30 +222,6 @@ if uploaded_file is not None:
 # In[ ]:
 
 
-with st.expander("Vul hier de huidige hoeveelheden per productgroep in:"):
-        st.number_input("Aantal m2 aan buitenwanden in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Buitenwanden', on_change=set_Buitenwanden)
-        st.number_input("Aantal m2 aan binnenwanden in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Binnenwanden', on_change=set_Binnenwanden)
-        st.number_input("Aantal m2 aan vloeren in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Vloeren', on_change=set_Vloeren)
-        st.number_input("Aantal stuks aan trappen en hellingen in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_Trappen_en_hellingen', on_change=set_Trappen_en_hellingen)
-        st.number_input("Aantal m2 aan daken in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Daken', on_change=set_Daken)
-        st.number_input("Aantal m2 aan hoofddraagconstructie in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Hoofddraagconstructie', on_change=set_Hoofddraagconstructie)
-        st.number_input("Aantal m aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project", value = None, placeholder = "vul het aantal m in", key='_Buitenkozijnen', on_change=set_Buitenkozijnen)
-        st.number_input("Aantal stuks aan binnenkozijnen en -deuren in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_Binnenkozijnen_en__deuren', on_change=set_Binnenkozijnen_en__deuren)
-        st.number_input("Aantal stuks aan luiken en vensters in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_Luiken_en_vensters', on_change=set_Luiken_en_vensters)
-        st.number_input("Aantal m aan balustrades en leuningen in het huidige project", value = None, placeholder = "vul het aantal m in", key='_Balustrades_en_leuningen', on_change=set_Balustrades_en_leuningen)
-        st.number_input("Aantal m2 aan binnenwandafwerkingen in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Binnenwandafwerkingen', on_change=set_Binnenwandafwerkingen)
-        st.number_input("Aantal m2 aan vloerafwerkingen in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Vloerafwerkingen', on_change=set_Vloerafwerkingen)
-        st.number_input("Aantal m2 aan plafonds in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Plafonds', on_change=set_Plafonds)
-        st.number_input("Aantal stuks aan vaste gebouwvoorziening huidige project", value = None, placeholder = "vul het aantal stuks in", key='_Vaste_gebouwvoorziening', on_change=set_Vaste_gebouwvoorziening)
-        st.number_input("Aantal stuks aan keuken in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_Keuken', on_change=set_Keuken)
-        st.number_input("Aantal stuks aan terreinrichting in het huidige project", value = None, placeholder = "vul het aantal stuks in", key='_Terreininrichting', on_change=set_Terreininrichting)
-                    
-st.markdown("**Budget**")
-st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag", key='_budget', on_change=set_budget)
-
-st.markdown("**Aantal appartementen**")
-st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', on_change=set_appartementen)
-
 if uploaded_file is not None:
     st.page_link("pages/input.py", label="Naar input")
 
