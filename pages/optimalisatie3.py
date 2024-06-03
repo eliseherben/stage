@@ -48,6 +48,22 @@ st.session_state._lp_variabelen = st.session_state.lp_variabelen
 
 def set_lp_variabelen():
     st.session_state.lp_variabelen = st.session_state._lp_variabelen
+    
+if 'minimaal' not in st.session_state:
+    st.session_state.minimaal = None
+    
+st.session_state._minimaal = st.session_state.minimaal
+
+def set_minimaal():
+    st.session_state.minimaal = st.session_state._minimaal
+    
+if 'maximaal' not in st.session_state:
+    st.session_state.maximaal = None
+    
+st.session_state.set_maximaal = st.session_state.maximaal
+
+def set_maximaal():
+    st.session_state.maximaal = st.session_state.set_maximaal
 
 
 # In[ ]:
@@ -97,12 +113,19 @@ data2['maximaal'] = data2['maximaal'] * st.session_state.appartementen
 data2['constant'] = ['']*len(data2)
 
 
-# In[ ]:
+# In[4]:
 
 
 data['minimaal'] = data['minimaal'] * st.session_state.appartementen
 data['maximaal'] = data['maximaal'] * st.session_state.appartementen
 data['constant'] = ['']*len(data)
+
+
+# In[6]:
+
+
+st.session_state.minimaal = list(data['minimaal'])
+st.session_state.maximaal = list(data['maximaal'])
 
 
 # In[9]:
