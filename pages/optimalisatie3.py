@@ -60,10 +60,18 @@ def set_minimaal():
 if 'maximaal' not in st.session_state:
     st.session_state.maximaal = None
     
-st.session_state.set_maximaal = st.session_state.maximaal
+st.session_state._maximaal = st.session_state.maximaal
 
 def set_maximaal():
-    st.session_state.maximaal = st.session_state.set_maximaal
+    st.session_state.maximaal = st.session_state._maximaal
+    
+if 'oplossingen' not in st.session_state:
+    st.session_state.oplossingen = None
+    
+st.session_state._oplossingen = st.session_state.oplossingen
+
+def set_oplossingen():
+    st.session_state.oplossingen = st.session_state._oplossingen
 
 
 # In[ ]:
@@ -409,7 +417,7 @@ else:
     startwaardes = list(dynamic_vars.values())
     st.session_state.startwaardes = startwaardes
     
-    gewichten = [(0.7, 0.3), (0.6, 0.4), (0.8, 0.2)]  # Lijst van wegingen
+    gewichten = [(0.3, 0.7), (0.4, 0.6), (0.2, 0.8)]  # Lijst van wegingen
 
     oplossingen = {}
 
@@ -463,6 +471,7 @@ else:
     df = pd.DataFrame(oplossingen)
     df.insert(0, 'productgroep', [key for key, var in lp_variabelen])
     st.dataframe(df)
+    st.session_state.oplossing = df
 
 
 # maak er 1 dataframe van om te kunnen vergelijken
