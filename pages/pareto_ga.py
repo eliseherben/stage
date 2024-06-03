@@ -475,7 +475,7 @@ df = st.session_state.oplossingen
 for productgroep in df['productgroep']:
 
     # Selecteer de data voor de huidige productgroep
-    df_productgroep = df[df['Productgroep'] == productgroep]
+    df_productgroep = df[df['productgroep'] == productgroep]
 
     df_productgroep['length'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
     
