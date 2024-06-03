@@ -475,6 +475,8 @@ else:
     
     df = df.merge(data_subset, on='productgroep', how='left')
     
+    df['code'] = df['productgroep'].str[:2]
+    
     st.dataframe(df)
     st.session_state.oplossing = df
 
