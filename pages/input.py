@@ -43,7 +43,7 @@ def set_Buitenwanden():
     st.session_state.Buitenwanden = st.session_state._Buitenwanden
 
 if "Buitenwanden_on" not in st.session_state:
-    st.session_state.Buitenwanden_on = None
+    st.session_state.Buitenwanden_on = 0
     
 st.session_state._Buitenwanden_on = st.session_state.Buitenwanden_on
 
@@ -59,7 +59,7 @@ def set_Binnenwanden():
     st.session_state.Binnenwanden = st.session_state._Binnenwanden
 
 if "Binnenwanden_on" not in st.session_state:
-    st.session_state.Binnenwanden_on = None
+    st.session_state.Binnenwanden_on = 0
     
 st.session_state._Binnenwanden_on = st.session_state.Binnenwanden_on
 
@@ -75,7 +75,7 @@ def set_Vloeren():
     st.session_state.Vloeren = st.session_state._Vloeren
     
 if "Vloeren_on" not in st.session_state:
-    st.session_state.Vloeren_on = None
+    st.session_state.Vloeren_on = 0
     
 st.session_state._Vloeren_on = st.session_state.Vloeren_on
 
@@ -91,7 +91,7 @@ def set_Trappen_en_hellingen():
     st.session_state.Trappen_en_hellingen = st.session_state._Trappen_en_hellingen
     
 if "Trappen_en_hellingen_on" not in st.session_state:
-    st.session_state.Trappen_en_hellingen_on = None
+    st.session_state.Trappen_en_hellingen_on = 0
     
 st.session_state._Trappen_en_hellingen_on = st.session_state.Trappen_en_hellingen_on
 
@@ -107,7 +107,7 @@ def set_Daken():
     st.session_state.Daken = st.session_state._Daken
     
 if "Daken_on" not in st.session_state:
-    st.session_state.Daken_on = None
+    st.session_state.Daken_on = 0
     
 st.session_state._Daken_on = st.session_state.Daken_on
 
@@ -123,7 +123,7 @@ def set_Hoofddraagconstructie():
     st.session_state.Hoofddraagconstructie = st.session_state._Hoofddraagconstructie
     
 if "Hoofddraagconstructie_on" not in st.session_state:
-    st.session_state.Hoofddraagconstructie_on = None
+    st.session_state.Hoofddraagconstructie_on = 0
     
 st.session_state._Hoofddraagconstructie_on = st.session_state.Hoofddraagconstructie_on
 
@@ -139,7 +139,7 @@ def set_Buitenkozijnen():
     st.session_state.Buitenkozijnen = st.session_state._Buitenkozijnen
     
 if "Buitenkozijnen_on" not in st.session_state:
-    st.session_state.Buitenkozijnen_on = None
+    st.session_state.Buitenkozijnen_on = 0
     
 st.session_state._Buitenkozijnen_on = st.session_state.Buitenkozijnen_on
 
@@ -155,7 +155,7 @@ def set_Binnenkozijnen_en__deuren():
     st.session_state.Binnenkozijnen_en__deuren = st.session_state._Binnenkozijnen_en__deuren
     
 if "Binnenkozijnen_en__deuren_on" not in st.session_state:
-    st.session_state.Binnenkozijnen_en__deuren_on = None
+    st.session_state.Binnenkozijnen_en__deuren_on = 0
     
 st.session_state._Binnenkozijnen_en__deuren_on = st.session_state.Binnenkozijnen_en__deuren_on
 
@@ -171,7 +171,7 @@ def set_Luiken_en_vensters():
     st.session_state.Luiken_en_vensters = st.session_state._Luiken_en_vensters
     
 if "Luiken_en_vensters_on" not in st.session_state:
-    st.session_state.Luiken_en_vensters_on = None
+    st.session_state.Luiken_en_vensters_on = 0
     
 st.session_state._Luiken_en_vensters_on = st.session_state.Luiken_en_vensters_on
 
@@ -187,7 +187,7 @@ def set_Balustrades_en_leuningen():
     st.session_state.Balustrades_en_leuningen = st.session_state._Balustrades_en_leuningen
     
 if "Balustrades_en_leuningen_on" not in st.session_state:
-    st.session_state.Balustrades_en_leuningen_on = None
+    st.session_state.Balustrades_en_leuningen_on = 0
     
 st.session_state._Balustrades_en_leuningen_on = st.session_state.Balustrades_en_leuningen_on
 
@@ -203,7 +203,7 @@ def set_Binnenwandafwerkingen():
     st.session_state.Binnenwandafwerkingen = st.session_state._Binnenwandafwerkingen
     
 if "Binnenwandafwerkingen_on" not in st.session_state:
-    st.session_state.Binnenwandafwerkingen_on = None
+    st.session_state.Binnenwandafwerkingen_on = 0
     
 st.session_state._Binnenwandafwerkingen_on = st.session_state.Binnenwandafwerkingen_on
 
@@ -219,7 +219,7 @@ def set_Vloerafwerkingen():
     st.session_state.Vloerafwerkingen = st.session_state._Vloerafwerkingen
     
 if "Vloerafwerkingen_on" not in st.session_state:
-    st.session_state.Vloerafwerkingen_on = None
+    st.session_state.Vloerafwerkingen_on = 0
     
 st.session_state._Vloerafwerkingen_on = st.session_state.Vloerafwerkingen_on
 
@@ -235,7 +235,7 @@ def set_Plafonds():
     st.session_state.Plafonds = st.session_state._Plafonds
     
 if "Plafonds_on" not in st.session_state:
-    st.session_state.Plafonds_on = None
+    st.session_state.Plafonds_on = 0
     
 st.session_state._Plafonds_on = st.session_state.Plafonds_on
 
@@ -251,7 +251,7 @@ def set_Vaste_gebouwvoorziening():
     st.session_state.Vaste_gebouwvoorziening = st.session_state._Vaste_gebouwvoorziening
     
 if "Vaste_gebouwvoorziening_on" not in st.session_state:
-    st.session_state.Vaste_gebouwvoorziening_on = None
+    st.session_state.Vaste_gebouwvoorziening_on = 0
     
 st.session_state._Vaste_gebouwvoorziening_on = st.session_state.Vaste_gebouwvoorziening_on
 
@@ -267,7 +267,7 @@ def set_Keuken():
     st.session_state.Keuken = st.session_state._Keuken
     
 if "Keuken_on" not in st.session_state:
-    st.session_state.Keuken_on = None
+    st.session_state.Keuken_on = 0
     
 st.session_state._Keuken_on = st.session_state.Keuken_on
 
@@ -283,7 +283,7 @@ def set_Terreininrichting():
     st.session_state.Terreininrichting = st.session_state._Terreininrichting
     
 if "Terreininrichting_on" not in st.session_state:
-    st.session_state.Terreininrichting_on = None
+    st.session_state.Terreininrichting_on = 0
     
 st.session_state._Terreininrichting_on = st.session_state.Terreininrichting_on
 
