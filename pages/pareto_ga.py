@@ -450,18 +450,18 @@ if st.button('Herlaad pagina'):
 # In[ ]:
 
 
-data = {
-    'Productgroep': ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', 
-                      '28 Hoofddraagconstructie', '31 Buitenkozijnen, -ramen, -deuren, en -puien', 
-                      '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', '34 Balustrades en leuningen', 
-                      '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '64 Vaste gebouwvoorziening',
-                      '73 Keuken', '90 Terreininrichting'],
-    'code': ['21', '22', '23', '24', '27', '28', '31', '32', '33', '34', '42', '43', '45', '64','73', '90'],
-    'min_waarden': [i for i in st.session_state.minimaal if i is not None],
-    'max_waarden': [i for i in st.session_state.maximaal if i is not None],
-    'optimaal_waarden': [i for i in st.session_state.lp_variabelen if i is not None],
-    'huidige_waarden': [i for i in st.session_state.startwaardes]
-}
+# data = {
+#     'Productgroep': ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', 
+#                       '28 Hoofddraagconstructie', '31 Buitenkozijnen, -ramen, -deuren, en -puien', 
+#                       '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', '34 Balustrades en leuningen', 
+#                       '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '64 Vaste gebouwvoorziening',
+#                       '73 Keuken', '90 Terreininrichting'],
+#     'code': ['21', '22', '23', '24', '27', '28', '31', '32', '33', '34', '42', '43', '45', '64','73', '90'],
+#     'min_waarden': [i for i in st.session_state.minimaal if i is not None],
+#     'max_waarden': [i for i in st.session_state.maximaal if i is not None],
+#     'optimaal_waarden': [i for i in st.session_state.lp_variabelen if i is not None],
+#     'huidige_waarden': [i for i in st.session_state.startwaardes]
+# }
 
 st.markdown(f"{[i for i in st.session_state.minimaal if i is not None]} {len([i for i in st.session_state.minimaal if i is not None])}")
 st.markdown(f"{[i for i in st.session_state.maximaal if i is not None]} {len([i for i in st.session_state.maximaal if i is not None])}")
@@ -469,22 +469,30 @@ st.markdown(f"{[i for i in st.session_state.lp_variabelen]} {len([i for i in st.
 st.markdown(f"{[i for i in st.session_state.startwaardes]} {len([i for i in st.session_state.startwaardes])}")
 
 
-df = pd.DataFrame(data)
+df = st.session_state.oplossingen
 
 
-for productgroep in df['Productgroep']:
+for productgroep in df['productgroep']:
 
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['Productgroep'] == productgroep]
 
-    df_productgroep['length'] = df_productgroep['max_waarden'] - df_productgroep['min_waarden']
+    df_productgroep['length'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
     
     fig = px.bar(df_productgroep, x='length', y='code', base = 'min_waarden', 
                  color_discrete_sequence=['rgba(58, 71, 80, 0.1)'], title=f'{productgroep} ')
     
-    fig.add_trace(px.scatter(df_productgroep, x='optimaal_waarden', y='code', 
+    fig.add_trace(px.scatter(df_productgroep, x='circulair_0.4_afwijkingen_0.6', y='code', 
+                             color_discrete_sequence=['rgba(134, 24, 100, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 1']).data[0])
+    
+    fig.add_trace(px.scatter(df_productgroep, x='circulair_0.3_afwijkingen_0.7', y='code', 
                              color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], labels={'x': ''}, 
-                             size=[10], symbol = ['optimaal']).data[0])
+                             size=[10], symbol = ['oplossing 2']).data[0])
+    
+    fig.add_trace(px.scatter(df_productgroep, x='circulair_0.2_afwijkingen_0.8', y='code', 
+                             color_discrete_sequence=['rgba(98, 120, 70, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossin 3']).data[0])
 
     fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
                              color_discrete_sequence=['rgba(123, 48, 120, 1.0)'], labels={'x': ''}, 
