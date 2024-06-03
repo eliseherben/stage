@@ -470,7 +470,7 @@ st.markdown(f"{[i for i in st.session_state.startwaardes]} {len([i for i in st.s
 
 
 df = st.session_state.oplossingen
-
+st.markdown(df)
 
 for productgroep in df['productgroep']:
 
