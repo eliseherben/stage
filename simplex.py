@@ -3,13 +3,14 @@
 
 # https://discuss.streamlit.io/t/how-to-use-session-state-to-save-file-uploads-and-filters/36443
 
-# In[2]:
+# In[1]:
 
 
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import pulp as pl
+from io import BytesIO
 # from menu2 import menu
 
 
@@ -222,11 +223,19 @@ if uploaded_file is not None:
 # In[ ]:
 
 
-test = dataframe.to_csv()
+buffer = BytesIO()
+with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+    dataframe.to_excel(writer, index=False)
+
+# De buffer naar het begin van het bestand terugzetten
+buffer.seek(0)
+
+# Download button voor Excel-bestand
 st.download_button(
-    label="Download data as excel",
-    data=test,
-    file_name="test.csv",
+    label="Download data as Excel",
+    data=buffer,
+    file_name="test.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
 
 
