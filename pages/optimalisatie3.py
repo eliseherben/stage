@@ -446,9 +446,6 @@ else:
         status = prob.solve()
         st.markdown(f"Status van de oplossing met weging (circulair: {w_circulair}, afwijkingen: {w_afwijkingen}): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie met weging (circulair: {w_circulair}, afwijkingen: {w_afwijkingen}): {prob.objective.value()}")
-        st.markdown("\nRestricties met ingevulde waarden:")
-        for name, constraint in prob.constraints.items():
-            st.markdown(f"{name}: {constraint} = {constraint.value()}")
         st.markdown(f"milieukosten: {circulair.value()}")
         st.markdown("Afwijkingen")
         for var in afwijkingen_list:
