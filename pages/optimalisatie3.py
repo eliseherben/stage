@@ -409,7 +409,7 @@ else:
     startwaardes = list(dynamic_vars.values())
     st.session_state.startwaardes = startwaardes
     
-    gewichten = [(0.7, 0.3), (0.6, 0.4), (0.8, 0.2)]  # Lijst van wegingen
+    gewichten = [(0.7, 0.3), (0.6, 0.4), (0.8, 0.2), (0.3, 0.7), (0.4, 0.6), (0.2, 0.8)]  # Lijst van wegingen
 
     for w_circulair, w_afwijkingen in gewichten:
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
