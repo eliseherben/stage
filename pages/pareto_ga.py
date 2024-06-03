@@ -463,10 +463,11 @@ data = {
     'huidige_waarden': [i for i in st.session_state.startwaardes]
 }
 
-st.markdown([i for i in st.session_state.minimaal if i is not None])
-st.markdown([i for i in st.session_state.maximaal if i is not None])
-st.markdown([i for i in st.session_state.lp_variabelen])
-st.markdown([i for i in st.session_state.startwaardes])
+st.markdown(f"{[i for i in st.session_state.minimaal if i is not None]} {len([i for i in st.session_state.minimaal if i is not None])}")
+st.markdown(f"{[i for i in st.session_state.maximaal if i is not None]} {len([i for i in st.session_state.maximaal if i is not None])}")
+st.markdown(f"{[i for i in st.session_state.lp_variabelen]} {len([i for i in st.session_state.lp_variabelen])}")
+st.markdown(f"{[i for i in st.session_state.startwaardes]} {len([i for i in st.session_state.startwaardes])}")
+
 
 df = pd.DataFrame(data)
 
