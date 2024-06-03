@@ -379,7 +379,7 @@ else:
 if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
 else:
-    st.markdown("**meerdere oplossingen**")
+    st.markdown("**Minimale afwijking in productgroepen**")
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
 
@@ -409,7 +409,9 @@ else:
     startwaardes = list(dynamic_vars.values())
     st.session_state.startwaardes = startwaardes
     
-    gewichten = [(0.7, 0.3), (0.6, 0.4), (0.8, 0.2), (0.3, 0.7), (0.4, 0.6), (0.2, 0.8)]  # Lijst van wegingen
+    gewichten = [(0.7, 0.3), (0.6, 0.4), (0.8, 0.2)]  # Lijst van wegingen
+
+    oplossingen = {}
 
     for w_circulair, w_afwijkingen in gewichten:
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
@@ -446,17 +448,20 @@ else:
         status = prob.solve()
         st.markdown(f"Status van de oplossing met weging (circulair: {w_circulair}, afwijkingen: {w_afwijkingen}): {pl.LpStatus[status]}")
         st.markdown(f"Waarde van de doelfunctie met weging (circulair: {w_circulair}, afwijkingen: {w_afwijkingen}): {prob.objective.value()}")
+        st.markdown("\nRestricties met ingevulde waarden:")
+        for name, constraint in prob.constraints.items():
+            st.markdown(f"{name}: {constraint} = {constraint.value()}")
         st.markdown(f"milieukosten: {circulair.value()}")
         st.markdown("Afwijkingen")
         for var in afwijkingen_list:
             st.markdown(f"{var.name}: {pl.value(var)}")
 
+        # Sla de oplossing op in een dictionary
+        oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
+
     # Maak een DataFrame van de variabelen en hun waarden
-    variabelen = [var.varValue for key, var in lp_variabelen]
-    st.session_state.lp_variabelen = variabelen
-    
-    variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
-    df = pd.DataFrame(variabelen_waarden, columns=['productgroep', 'waarde'])
+    df = pd.DataFrame(oplossingen)
+    df.insert(0, 'productgroep', [key for key, var in lp_variabelen])
     st.dataframe(df)
 
 
