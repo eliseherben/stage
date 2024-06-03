@@ -210,7 +210,8 @@ else:
                 afwijkingen_list.append(afwijkingen_var)
                 
     startwaardes = list(dynamic_vars.values())
-
+    st.markdown(startwaardes)
+    
     if st.session_state.doelstelling == 'Minimale milieukosten indicator':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
             
