@@ -470,6 +470,11 @@ else:
     # Maak een DataFrame van de variabelen en hun waarden
     df = pd.DataFrame(oplossingen)
     df.insert(0, 'productgroep', [key for key, var in lp_variabelen])
+    
+    data_subset = data[['productgroep', 'minimaal', 'maximaal']]
+    
+    df = df.merge(data_subset, on='productgroep', how='left')
+    
     st.dataframe(df)
     st.session_state.oplossing = df
 
