@@ -40,6 +40,14 @@ st.session_state._startwaardes = st.session_state.startwaardes
 
 def set_startwaardes():
     st.session_state.startwaardes = st.session_state._startwaardes
+    
+if 'lp_variabelen' not in st.session_state:
+    st.session_state.lp_variabelen = None
+    
+st.session_state._lp_variabelen = st.session_state.lp_variabelen
+
+def set_lp_variabelen():
+    st.session_state.lp_variabelen = st.session_state._lp_variabelen
 
 
 # In[ ]:
@@ -326,6 +334,9 @@ else:
             st.markdown(f"{var.name}: {pl.value(var)}")
 
     # Maak een DataFrame van de variabelen en hun waarden
+    variabelen = [var.varValue for key, var in lp_variabelen]
+    st.session_state.lp_variabelen = variabelen
+    
     variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
     df = pd.DataFrame(variabelen_waarden, columns=['productgroep', 'waarde'])
     st.dataframe(df)
