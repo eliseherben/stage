@@ -121,11 +121,11 @@ data['maximaal'] = data['maximaal'] * st.session_state.appartementen
 data['constant'] = ['']*len(data)
 
 
-# In[10]:
+# In[11]:
 
 
 # Filter de rijen waar geen NaN-waarden zijn in de specifieke kolommen
-filtered_data = data.dropna(subset=['maximaal', 'kosten', 'circulair'])
+filtered_data = data.dropna(subset=['maximaal', 'kosten'])
 
 # Maak een lijst van de waarden in de kolom 'minimaal' uit de gefilterde data
 minimaal_list = filtered_data['minimaal'].tolist()
