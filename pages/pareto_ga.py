@@ -463,6 +463,9 @@ data = {
     'huidige_waarden': [i for i in st.session_state.startwaardes]
 }
 
+st.markdown([i for i in st.session_state.lp_variabelen])
+st.markdown([i for i in st.session_state.startwaardes])
+
 df = pd.DataFrame(data)
 
 
