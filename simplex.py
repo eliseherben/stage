@@ -222,11 +222,11 @@ if uploaded_file is not None:
 # In[ ]:
 
 
-test = dataframe.to_excel()
+test = dataframe.to_csv()
 st.download_button(
     label="Download data as excel",
     data=test,
-    file_name="test.xlsx",
+    file_name="test.csv",
 )
 
 
