@@ -121,12 +121,6 @@ data['maximaal'] = data['maximaal'] * st.session_state.appartementen
 data['constant'] = ['']*len(data)
 
 
-# In[8]:
-
-
-list(data['minimaal'] if pd.notna(data['minimaal']) and pd.notna(data['maximaal']) and pd.notna(data['kosten']) and pd.notna(data['circulair']))
-
-
 # In[10]:
 
 
