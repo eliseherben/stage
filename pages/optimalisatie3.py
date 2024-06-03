@@ -397,8 +397,6 @@ else:
     dynamic_vars = {}
     afwijkingen_list = []
 
-    d_pos = pl.LpVariable("d_pos", lowBound = 0)
-
     for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
         if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
             if var.name == "31_Buitenkozijnen,__ramen,__deuren_en__puien":
@@ -471,6 +469,7 @@ else:
     df = pd.DataFrame(oplossingen)
     df.insert(0, 'productgroep', [key for key, var in lp_variabelen])
     data['code'] = data['productgroep'].str[:2]
+    data['huidige_waarden'] = [i for i in startwaardes]
     data_subset = data[['productgroep', 'code', 'minimaal', 'maximaal']]
     df = df.merge(data_subset, on='productgroep', how='left')
     df.dropna(subset=['minimaal'], inplace=True)   
