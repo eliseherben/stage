@@ -476,7 +476,7 @@ else:
     df.dropna(subset=['minimaal'], inplace=True)   
         
     st.dataframe(df)
-    st.session_state.oplossing = df
+    st.session_state.oplossingen = df
 
 
 # maak er 1 dataframe van om te kunnen vergelijken
