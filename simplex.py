@@ -222,6 +222,17 @@ if uploaded_file is not None:
 # In[ ]:
 
 
+test = st.session_state.projectbestand.to_excel(test.xlsx)
+st.download_button(
+    label="Download data as excel",
+    data=test,
+    file_name="test.xlsx",
+)
+
+
+# In[ ]:
+
+
 if uploaded_file is not None:
     st.page_link("pages/input.py", label="Naar input")
 
