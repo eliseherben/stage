@@ -181,7 +181,7 @@ else:
 if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
 else:
-t.markdown("**Minimale afwijking in productgroepen**")
+    st.markdown("**Minimale afwijking in productgroepen**")
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
 
