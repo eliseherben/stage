@@ -65,13 +65,6 @@ st.session_state._Binnenwanden_on = st.session_state.Binnenwanden_on
 
 def set_Binnenwanden_on():
     st.session_state.Binnenwanden_on = st.session_state._Binnenwanden_on
-    if st.session_state.Binnenwanden_on:
-        label = 'Aanpassingen aan de hoeveelheid binnen de productgroep mogelijk'
-    else:
-        label = 'Aanpassingen aan de hoeveelheid binnen de productgroep NIET mogelijk'
-        
-    st.toggle(label, key='_Binnenwanden_on', on_change=set_Binnenwanden_on)
-
     
 if "Vloeren" not in st.session_state:
     st.session_state.Vloeren = None
@@ -307,7 +300,7 @@ st.toggle("Aanpassingen aan de hoeveelheid binnen de productgroep mogelijk", key
 
 st.markdown("**Binnenwanden**")
 st.number_input("Aantal m2 aan binnenwanden in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Binnenwanden', on_change=set_Binnenwanden)
-set_Binnenwanden_on()
+st.toggle("Aanpassingen aan de hoeveelheid binnen de productgroep mogelijk", key='_Binnenwanden_on', on_change=set_Binnenwanden_on)
 
 st.markdown("**Vloeren**")
 st.number_input("Aantal m2 aan vloeren in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Vloeren', on_change=set_Vloeren)
@@ -321,7 +314,7 @@ st.markdown("**Daken**")
 st.number_input("Aantal m2 aan daken in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Daken', on_change=set_Daken)
 st.toggle("Aanpassingen aan de hoeveelheid binnen de productgroep mogelijk", key='_Daken_on', on_change=set_Daken_on)
 
-st.markdown("**Hoofddroogconstructie**")
+st.markdown("**Hoofddraagconstructie**")
 st.number_input("Aantal m2 aan hoofddraagconstructie in het huidige project", value = None, placeholder = "vul het aantal m2 in", key='_Hoofddraagconstructie', on_change=set_Hoofddraagconstructie)
 st.toggle("Aanpassingen aan de hoeveelheid binnen de productgroep mogelijk", key='_Hoofddraagconstructie_on', on_change=set_Hoofddraagconstructie_on)
 
