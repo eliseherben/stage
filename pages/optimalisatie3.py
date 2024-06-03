@@ -39,8 +39,8 @@ def set_doelstelling():
 
 st.markdown("**Primair thema**")
 st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
-st.selectbox("Welke thema heeft prioriteit in dit project?", 
-            ("Circulair", "Budget"), 
+st.selectbox("Wat heeft meer prioriteit binnen dit project?", 
+            ("Minimale milieukosten indicator", "Minimale afwijkingen van de huidge aantallen"), 
             index = None, 
             placeholder='selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
 
@@ -181,7 +181,7 @@ else:
 if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
 else:
-    st.markdown("**minimale afwijking in productgroepen**")
+t.markdown("**Minimale afwijking in productgroepen**")
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
 
@@ -211,7 +211,7 @@ else:
                 
     startwaardes = list(dynamic_vars.values())
 
-    if st.session_state.doelstelling == 'Circulair':
+    if st.session_state.doelstelling == 'Minimale milieukosten indicator':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
             
          # Impact themas op productgroepen
@@ -234,14 +234,11 @@ else:
 #         budget_genormaliseerd = (budget1) / (max_budget - min_budget)
 #         st.markdown(budget_genormaliseerd)
         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
-        afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
-    
-        budget2 = 1 / 150000
-        d_pos_n = pl.lpSum(d_pos * budget2)
-#         d_neg_n = pl.lpSum(d_neg * budget2)
+        afwijkingen2 = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
 
+        afwijkingen = pl.lpSum(afwijkingen_list)
         
-        prob += 1/2 * circulair_genormaliseerd + 1/3 * d_pos_n + 1/6 * afwijkingen
+        prob += 2/3 * circulair + 1/3 * afwijkingen
 
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -254,8 +251,7 @@ else:
             prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
             
-        prob += d_pos >= st.session_state.budget - budget
-        prob += d_pos >= budget - st.session_state.budget
+        prob += budget == st.session_state.budget
         
         status = prob.solve()
         st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
@@ -263,9 +259,12 @@ else:
         st.markdown("\nRestricties met ingevulde waarden:")
         for name, constraint in prob.constraints.items():
             st.markdown(f"{name}: {constraint} = {constraint.value()}")
-        st.markdown(f"de afwijking tov het budget: {d_pos.value()}")
+        st.markdown(f"milieukosten: {circulair.value()}")
+        st.markdown("Afwijkingen")
+        for var in afwijkingen_list:
+            st.markdown(f"{var.name}: {pl.value(var)}")
 
-    if st.session_state.doelstelling == 'Budget':
+    if st.session_state.doelstelling == 'Minimale afwijkingen van de huidge aantallen':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
  
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
@@ -287,13 +286,11 @@ else:
 #         budget_genormaliseerd = (budget1) / (max_budget - min_budget)
         
         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
-        afwijkingen = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
+        afwijkingen2 = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
             
-        budget2 = 1 / 150000
-        d_pos_n = pl.lpSum(d_pos * budget2)
-#         d_neg_n = pl.lpSum(d_neg * budget2)
-
-        prob += 1/3 * circulair_genormaliseerd + 1/2 * d_pos_n + 1/6 * afwijkingen
+        afwijkingen = pl.lpSum(afwijkingen_list)
+            
+        prob += 1/3 * circulair + 2/3 * afwijkingen
         
         for i in range(len(lp_variabelen)):
             if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
@@ -306,179 +303,20 @@ else:
             prob += afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
                 
-        prob += d_pos >= st.session_state.budget - budget
-        prob += d_pos >= budget - st.session_state.budget
+        prob += budget == st.session_state.budget
         
         status = prob.solve()
-        st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie (budget): {prob.objective.value()}")
+        st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
+        st.markdown(f"Waarde van de doelfunctie (circulair): {prob.objective.value()}")
         st.markdown("\nRestricties met ingevulde waarden:")
         for name, constraint in prob.constraints.items():
             st.markdown(f"{name}: {constraint} = {constraint.value()}")
-
-        st.markdown(f"de afwijking tov het budget: {d_pos.value()}")
+        st.markdown(f"milieukosten: {circulair.value()}")
+        st.markdown("Afwijkingen")
+        for var in afwijkingen_list:
+            st.markdown(f"{var.name}: {pl.value(var)}")
 
     # Maak een DataFrame van de variabelen en hun waarden
-    variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
-    df = pd.DataFrame(variabelen_waarden, columns=['productgroep', 'waarde'])
-    st.dataframe(df)
-
-
-# In[ ]:
-
-
-# Controleer of het projectbestand is geüpload
-if st.session_state.projectbestand is None:
-    st.markdown("Upload een bestand")
-else:
-    st.markdown("**minimale aantal afwijkingen**")
-    # Definieer de LP variabelen
-    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
-
-    # Maak de variabelenlijst
-    lp_variabelen = [(key, value) for key, value in variabelen.items()]
-    st.markdown(lp_variabelen) 
-    
-    dynamic_vars = {}
-    afwijkingen_list = []
-
-    M = 1000
-        
-    for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
-        if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-            if var.name == "31_Buitenkozijnen,__ramen,__deuren_en__puien":
-                var_name = (var.name.split("_")[1])[:-1] + '_start'
-                dynamic_vars[var_name] = st.session_state[(var.name.split("_")[1])[:-1]]
-                
-                afwijkingen_var = pl.LpVariable('d_' + (var.name.split("_")[1])[:-1], lowBound = 0, cat = pl.LpBinary)
-                afwijkingen_list.append(afwijkingen_var)
-            else:
-                var_name = var.name[3:] + '_start'
-                dynamic_vars[var_name] = st.session_state[var.name[3:]]
-
-                afwijkingen_var = pl.LpVariable('d_' + var.name[3:], lowBound = 0, cat = pl.LpBinary) 
-                afwijkingen_list.append(afwijkingen_var)
-                
-    startwaardes = list(dynamic_vars.values())
-
-    if st.session_state.doelstelling == 'Circulair':
-        prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
-            
-         # Impact themas op productgroepen
-        variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
-        max_circulair = max(impact_circulair)
-        min_circulair = min(impact_circulair)
-        impact_circulair1 = [i-min_circulair for i in impact_circulair]
-        circulair1 = pl.lpSum(variabelen_circulair[i] * impact_circulair1[i] for i in range(len(variabelen_circulair)))
-        circulair_genormaliseerd = (circulair1) / (max_circulair - min_circulair)
-        
-        variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
-#         max_budget = max(impact_budget)
-#         min_budget = min(impact_budget)
-#         impact_budget1 = [i-min_budget for i in impact_budget]
-#         budget1 = pl.lpSum(variabelen_budget[i] * impact_budget1[i] for i in range(len(variabelen_budget)))
-#         budget_genormaliseerd = (budget1) / (max_budget - min_budget)
-#         st.markdown(budget_genormaliseerd)
-#         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
-        afwijkingen = pl.lpSum(afwijkingen_list)
-    
-        budget2 = 1 / 150000
-        d_pos_n = pl.lpSum(d_pos * budget2)
-#         d_neg_n = pl.lpSum(d_neg * budget2)
-        
-        prob += 1/2 * circulair_genormaliseerd + 1/3 * d_pos_n + 1/6 * afwijkingen
-
-        for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob += lp_variabelen[i][1] <= data.iloc[i, 3]
-        
-        lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
-        
-        for a in range(len(afwijkingen_list)):
-            prob += M* afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
-            prob += M*afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
-            
-        prob += d_pos >= st.session_state.budget - budget
-        prob += d_pos >= budget - st.session_state.budget
-        
-        status = prob.solve()
-        st.markdown(f"Status van de oplossing (circulair): {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie (circulair): {prob.objective.value()}")
-        st.markdown("\nRestricties met ingevulde waarden:")
-        for name, constraint in prob.constraints.items():
-            st.markdown(f"{name}: {constraint} = {constraint.value()}")
-        st.markdown(f"de afwijking tov het budget: {d_pos.value()}")
-
-    if st.session_state.doelstelling == 'Budget':
-        prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
- 
-        variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
-        max_circulair = max(impact_circulair)
-        min_circulair = min(impact_circulair)
-        impact_circulair1 = [i-min_circulair for i in impact_circulair]
-        circulair1 = pl.lpSum(variabelen_circulair[i] * impact_circulair1[i] for i in range(len(variabelen_circulair)))
-        circulair_genormaliseerd = (circulair1) / (max_circulair - min_circulair)
-        
-        variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
-#         max_budget = max(impact_budget)
-#         min_budget = min(impact_budget)
-#         impact_budget1 = [i-min_budget for i in impact_budget]
-#         budget1 = pl.lpSum(variabelen_budget[i] * impact_budget1[i] for i in range(len(variabelen_budget)))
-#         budget_genormaliseerd = (budget1) / (max_budget - min_budget)
-        
-        afwijkingen = pl.lpSum(afwijkingen_list)
-        
-#         afwijkingen2 = afwijkingen / 15
-    
-        budget2 = 1 / 150000
-        d_pos_n = pl.lpSum(d_pos * budget2)
-#         d_neg_n = pl.lpSum(d_neg * budget2)
-
-        prob += 1/3 * circulair_genormaliseerd + 1/2 * d_pos_n + 1/6 * afwijkingen
-        
-        for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob += lp_variabelen[i][1] <= data.iloc[i, 3]
-
-        lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
-                
-        for a in range(len(afwijkingen_list)):
-            st.markdown(afwijkingen_list[a])
-            st.markdown(lp_variabelen2[a])
-            st.markdown(startwaardes[a])
-            prob += M*afwijkingen_list[a] >= lp_variabelen2[a] - startwaardes[a]
-            prob += M*afwijkingen_list[a] >= startwaardes[a] - lp_variabelen2[a]
-                
-        prob += d_pos >= st.session_state.budget - budget
-        prob += d_pos >= budget - st.session_state.budget
-        
-        status = prob.solve()
-        st.markdown(f"Status van de oplossing (budget): {pl.LpStatus[status]}")
-        st.markdown(f"Waarde van de doelfunctie (budget): {prob.objective.value()}")
-        st.markdown("\nRestricties met ingevulde waarden:")
-        for name, constraint in prob.constraints.items():
-            st.markdown(f"{name}: {constraint} = {constraint.value()}")
-        st.markdown(f"de afwijking tov het budget: {d_pos.value()}")
-        
-        afw = [i.varValue for i in afwijkingen_list]
-        sw = [i for i in startwaardes]
-        lp = [i.varValue for i in lp_variabelen2]
-
-        dict = {'startwaardes': sw, 'lp variabelen': lp, 'afwijking': afw}
-        df = pd.DataFrame(dict)
-        st.dataframe(df)
-
-        # Maak een DataFrame van de variabelen en hun waarden
     variabelen_waarden = [(key, var.varValue) for key, var in lp_variabelen]
     df = pd.DataFrame(variabelen_waarden, columns=['productgroep', 'waarde'])
     st.dataframe(df)
