@@ -462,7 +462,7 @@ data = {
     'optimaal_waarden': [optimaal[0], optimaal[1], optimaal[2], optimaal[3], optimaal[4], optimaal[5], 
                          optimaal[6], optimaal[7], optimaal[8], optimaal[9], optimaal[10], optimaal[11], 
                         optimaal[12], optimaal[19], optimaal[22], optimaal[24]],
-    'huidige_waarden': [500, 900, 1200, 4, 600, 450, 110, 70, 5, 110, 800, 1100, 850, 30, 34, 33]
+    'huidige_waarden': [i for i in st.session_state.startwaardes]
 }
 
 df = pd.DataFrame(data)

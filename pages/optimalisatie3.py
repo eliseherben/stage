@@ -32,6 +32,14 @@ st.session_state._doelstelling = st.session_state.doelstelling
 
 def set_doelstelling():
     st.session_state.doelstelling = st.session_state._doelstelling
+    
+if 'startwaardes' not in st.session_state:
+    st.session_state.startwaardes = None
+    
+st.session_state._startwaardes = st.session_state.startwaardes
+
+def set_startwaardes():
+    st.session_state.startwaardes = st.session_state._startwaardes
 
 
 # In[ ]:
@@ -210,7 +218,7 @@ else:
                 afwijkingen_list.append(afwijkingen_var)
                 
     startwaardes = list(dynamic_vars.values())
-    st.markdown(startwaardes)
+    st.session_state.startwaardes = startwaardes
     
     if st.session_state.doelstelling == 'Minimale milieukosten indicator':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
