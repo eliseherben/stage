@@ -469,10 +469,11 @@ else:
     df = pd.DataFrame(oplossingen)
     df.insert(0, 'productgroep', [key for key, var in lp_variabelen])
     data['code'] = data['productgroep'].str[:2]
-    data['huidige_waarden'] = [i for i in startwaardes]
     data_subset = data[['productgroep', 'code', 'minimaal', 'maximaal']]
     df = df.merge(data_subset, on='productgroep', how='left')
-    df.dropna(subset=['minimaal'], inplace=True)   
+    df.dropna(subset=['minimaal'], inplace=True)
+    df['huidige_waarden'] = [i for i in startwaardes]
+
         
     st.dataframe(df)
     st.session_state.oplossingen = df
