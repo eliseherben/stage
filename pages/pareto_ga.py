@@ -492,7 +492,7 @@ for productgroep in df['productgroep']:
     
     fig.add_trace(px.scatter(df_productgroep, x='circulair_0.2_afwijkingen_0.8', y='code', 
                              color_discrete_sequence=['rgba(98, 120, 70, 1.0)'], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossin 3']).data[0])
+                             size=[10], symbol = ['oplossing 3']).data[0])
 
     fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
                              color_discrete_sequence=['rgba(123, 48, 120, 1.0)'], labels={'x': ''}, 
