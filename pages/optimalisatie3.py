@@ -223,7 +223,7 @@ fig_circulair.update_layout(
     )
 )
 
-fig_circulair.update_layout(height=250, width = 100)
+fig_circulair.update_layout(height=250, width = 250)
 
 st.plotly_chart(fig_circulair)
 
