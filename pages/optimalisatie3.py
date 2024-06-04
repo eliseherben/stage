@@ -211,7 +211,7 @@ x_min = min(filtered['circulair']) - 10
 x_max = max(filtered['circulair']) + 10
 
 # Vastzetten van de x-as range
-fig_circulair.update_xaxes(range=[0, 40])
+fig_circulair.update_xaxes(range=[0, 45])
 
 fig_circulair.update_layout(height=250)
 
