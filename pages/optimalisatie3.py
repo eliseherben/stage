@@ -185,7 +185,7 @@ fig_kosten.update_xaxes(range=[x_min, x_max])
 fig_kosten.update_layout(
     legend=dict(
         orientation="h",
-        yanchor="bottom",n
+        yanchor="bottom",
         y=1.02,
         xanchor="right",
         x=1
