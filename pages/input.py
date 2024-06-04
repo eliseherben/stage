@@ -397,7 +397,7 @@ st.number_input("Vul het budget in voor het huidige project", value=None, placeh
 st.markdown("**Aantal appartementen**")
 st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', 
                 on_change=set_appartementen)
-col1, col2 = st.columns([7, 3])
+col1, col2 = st.columns([2, 8])
 with col1:
     st.toggle("")
 with col2:
