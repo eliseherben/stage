@@ -131,7 +131,6 @@ if uploaded_file is not None:
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17]], axis = 1)
         dataframe = dataframe
 
-    st.markdown("dataframe") 
     st.dataframe(dataframe, hide_index = True)
     st.session_state.dataframe = dataframe
 
