@@ -305,10 +305,11 @@ st.number_input("Aantal m2 aan buitenwanden in het huidige project", value = Non
 col1, col2 = st.columns([0.5, 9.5])
 with col1:
     toggle_21 = st.toggle("", key='_Buitenwanden_on', on_change=set_Buitenwanden_on)
-if toggle_21:
-    st.markdown("Aanpassingen aan de hoeveelheid binnen buitenwanden mogelijk")
-else:
-    st.markdown("Aanpassingen aan de hoeveelheid binnen buitenwanden niet mogelijk")
+with col2: 
+    if toggle_21:
+        st.markdown("Aanpassingen aan de hoeveelheid binnen buitenwanden mogelijk")
+    else:
+        st.markdown("Aanpassingen aan de hoeveelheid binnen buitenwanden niet mogelijk")
     
 st.markdown("**22 Binnenwanden**")
 st.number_input("Aantal m2 aan binnenwanden in het huidige project", value = None, placeholder = "vul het aantal m2 in", 
