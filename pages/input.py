@@ -400,7 +400,7 @@ st.number_input("Het aantal appartementen dat gebouwd worden in dit project", va
 
 keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Daken', 'Hoofddraagconstructie', 'Buitenkozijnen', 
  'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
- 'Plafonds', 'Vaste_gebouwvoorziening', 'Keuken', 'Terreininrichting']
+ 'Plafonds', 'Vaste_gebouwvoorziening', 'Keuken', 'Terreininrichting', 'budget', 'appartementen']
 
 st.page_link("simplex.py", label = 'Homepagina')
 
