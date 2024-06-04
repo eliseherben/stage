@@ -141,6 +141,24 @@ st.session_state.minimaal = minimaal_list
 st.session_state.maximaal = maximaal_list
 
 
+# In[ ]:
+
+
+filtered = data.dropna(subset=['minimaal', 'maximaal'])
+
+productgroepen = filtered['productgroep'].unique()
+selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
+filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
+
+fig = px.bar(filtered_data, x='kosten', y=['constant'], 
+                 color_discrete_sequence=['rgba(58, 71, 80, 0.1)'], title=f'{productgroep} ')
+    
+fig.add_trace(px.scatter(filtered_data, x='kosten', y=['constant'], color='productgroep', 
+                         labels={'x': ''}, size=[10], symbol = ['productgroep']).data[0])
+
+st.plotly_chart(fig)
+
+
 # In[9]:
 
 
@@ -181,6 +199,8 @@ st.plotly_chart(fig_kosten)
 # In[ ]:
 
 
+fig = px.bar(df_productgroep, x='length', y='code', base = 'minimaal', 
+                 color_discrete_sequence=['rgba(58, 71, 80, 0.1)'], title=f'{productgroep} ')
 fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep')
 fig_circulair.update_traces(marker_size=10, showlegend=False)
 
