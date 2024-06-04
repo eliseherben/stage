@@ -151,7 +151,7 @@ selected_productgroepen = st.multiselect("Selecteer een productgroep", productgr
 filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
 fig = px.bar(filtered_data, x='kosten', y=['constant'], 
-                 color_discrete_sequence=['rgba(58, 71, 80, 0.1)'], title=f'{productgroep} ')
+                 color_discrete_sequence=['rgba(58, 71, 80, 0.1)'])
     
 fig.add_trace(px.scatter(filtered_data, x='kosten', y=['constant'], color='productgroep', 
                          labels={'x': ''}, size=[10], symbol = ['productgroep']).data[0])
