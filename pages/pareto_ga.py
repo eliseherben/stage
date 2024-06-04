@@ -450,10 +450,6 @@ if st.button('Herlaad pagina'):
 # In[ ]:
 
 
-oplossingen = df_productgroep[df_productgroep[]]
-selected_oplossingen = st.multiselect("Selecteer een productgroep", oplossingen)
-filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
-
 df = st.session_state.oplossingen
 st.markdown(df)
 
