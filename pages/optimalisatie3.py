@@ -185,7 +185,7 @@ fig_kosten.update_xaxes(range=[x_min, x_max])
 fig_kosten.update_layout(
     legend=dict(
         orientation="h",
-        yanchor="bottom",
+        yanchor="bottom",n
         y=1.02,
         xanchor="right",
         x=1
@@ -201,8 +201,6 @@ st.plotly_chart(fig_kosten)
 # In[ ]:
 
 
-fig = px.bar(df_productgroep, x='length', y='code', base = 'minimaal', 
-                 color_discrete_sequence=['rgba(58, 71, 80, 0.1)'], title=f'{productgroep} ')
 fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep')
 fig_circulair.update_traces(marker_size=10, showlegend=False)
 
