@@ -14,22 +14,20 @@ from datetime import timedelta
 # In[ ]:
 
 
-st.markdown("**Visualisatie oplossingen**")
 st.page_link("simplex.py", label="Homepagina")
 st.page_link("pages/optimalisatie3.py", label="Terug naar optimalisatie")
 st.page_link("pages/input.py", label="Terug naar input")
+st.title("**Visualisatie oplossingen**")
 
 
 # In[ ]:
 
 
 df = st.session_state.oplossingen
-st.markdown(df)
 
 kolommen_te_uitsluiten = ['productgroep', 'code', 'minimaal', 'maximaal']
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
 geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
-
 
 for productgroep in df['productgroep']:
     # Selecteer de data voor de huidige productgroep
