@@ -144,21 +144,21 @@ st.session_state.maximaal = maximaal_list
 # In[ ]:
 
 
-filtered = data.dropna(subset=['minimaal', 'maximaal'])
+# filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
-productgroepen = filtered['productgroep'].unique()
-selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
-filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
+# productgroepen = filtered['productgroep'].unique()
+# selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
+# filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
-fig = px.bar(filtered_data, x='kosten', y='constant', 
-                 color_discrete_sequence=['rgba(58, 71, 80, 0.1)'])
+# fig = px.bar(filtered_data, x='kosten', y='constant', 
+#                  color_discrete_sequence=['rgba(58, 71, 80, 0.1)'])
     
-fig.add_trace(px.scatter(filtered_data, x='kosten', y='constant', color='productgroep'))
+# fig.add_trace(px.scatter(filtered_data, x='kosten', y='constant', color='productgroep'))
 
-fig.update_yaxes(visible=False)
+# fig.update_yaxes(visible=False)
 
 
-st.plotly_chart(fig)
+# st.plotly_chart(fig)
 
 
 # In[9]:
