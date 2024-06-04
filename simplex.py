@@ -134,98 +134,28 @@ if uploaded_file is not None:
     st.markdown("dataframe") 
     st.dataframe(dataframe, hide_index = True)
     st.session_state.dataframe = dataframe
-    
-    dataframe_plus = dataframe[dataframe["norm / \n'+' optie"] == " '+' optie"]
-#     st.markdown("Dataframe met alleen plus opties:")
-#     st.dataframe(dataframe_plus)
-
-#     st.markdown(dataframe['impact circulair'].value_counts()['CD'])
-    
-    impact = dataframe.copy()
-    impact2 = dataframe.copy()
-    
-    impact2['impact O'] = impact2.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
-    impact2['impact CD'] = impact2.groupby(['productgroep'])['impact circulair'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
-    impact2['impact K'] = impact2.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
-    impact2['impact B'] = impact2.groupby(['productgroep'])['impact budget'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
-    impact2['impact W'] = impact2.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact2.groupby(['productgroep'])['productgroep'].transform('count')
-    
-    if 'O' in impact['impact onderhoud'].value_counts().index:
-         impact['impact O'] = impact.groupby(['productgroep'])['impact onderhoud'].transform('count')/impact['impact onderhoud'].value_counts()['O']
-    else:
-        impact['impact O'] = 0
-        
-    if 'CD' in impact['impact circulair'].value_counts().index:
-         impact['impact CD'] = impact.groupby(['productgroep'])['impact circulair'].transform('count')/impact['impact circulair'].value_counts()['CD']
-    else:
-        impact['impact CD'] = 0
-    
-    if 'K' in impact['impact kwaliteit'].value_counts().index:
-         impact['impact K'] = impact.groupby(['productgroep'])['impact kwaliteit'].transform('count')/impact['impact kwaliteit'].value_counts()['K']
-    else:
-        impact['impact K'] = 0
-        
-    if 'B' in impact['impact budget'].value_counts().index:
-         impact['impact B'] = impact.groupby(['productgroep'])['impact budget'].transform('count')/impact['impact budget'].value_counts()['B']
-    else:
-        impact['impact B'] = 0
-        
-    if 'W' in impact['impact woonbeleving'].value_counts().index:
-         impact['impact W'] = impact.groupby(['productgroep'])['impact woonbeleving'].transform('count')/impact['impact woonbeleving'].value_counts()['W']
-    else:
-        impact['impact W'] = 0
-    
-    impact = impact[['productgroep', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
-    impact = impact.groupby('productgroep')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
-    impact = impact.reset_index()
-    
-    impact2 = impact2[['productgroep', 'impact O', 'impact CD', 'impact K', 'impact B', 'impact W']]
-    impact2 = impact2.groupby('productgroep')[['impact O', 'impact CD', 'impact K', 'impact B', 'impact W']].first()
-    impact2 = impact2.reset_index()
-        
-    productgroepen = pd.DataFrame({
-    "productgroep": ['21. Buitenwanden', '22. Binnenwanden', '23. Vloeren', '24. Trappen en hellingen', '27. Daken', '28. Hoofddraag- constructie', 
-                     '31. Buitenkozijnen, -ramen, -deuren en -puien.', '32. Binnenkozijnen en - deuren', '33. Luiken en vensters', 
-                     '34. Balustrades en leuningen', '42. Binnenwand- afwerkingen', '43. Vloer- afwerkingen', '45 Plafonds', '48. Na-isolatie', 
-                     '52. Riolering en HWA', '53. Warm- en koud water installaties', '56. Verwarming en koeling', '57. Lucht- behandeling', 
-                     '61. Elektrische installaties', '64. Vaste gebouw- voorzieningen', '65. Beveiliging', '66. Liften', '73. Keuken', '74. Sanitair', 
-                     '90.Terrein'],
-    "impact O": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-    "impact CD": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-    "impact K": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-    "impact B": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-    "impact W": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
-    
-    for i, row in productgroepen.iterrows():
-        if row['productgroep'] not in impact['productgroep'].values:
-            impact = pd.concat([impact, row.to_frame().T], ignore_index=True)
-    impact = impact.sort_values(by='productgroep', ascending=True)
-    impact = impact.reset_index(drop=True)
-    
-    
-    for i, row in productgroepen.iterrows():
-        if row['productgroep'] not in impact['productgroep'].values:
-            impact2 = pd.concat([impact, row.to_frame().T], ignore_index=True)
-    impact2 = impact2.sort_values(by='productgroep', ascending=True)
-    impact2 = impact2.reset_index(drop=True)
-    
-    st.session_state.file = impact
-    st.session_state.file2 = impact2
-
-
-# st.markdown("**Productgroepen**")
-# st.markdown("Hierbij kan er aangegeven worden wat het aandeel van de productgroepen momenteel in het project is. Dit is uitgedrukt in percentages. ")
-# st.number_input("Het aandeel van de productgroep 'Keuken' in dit project", value=0, min_value = 0, max_value = 100)
-# st.number_input("Het aandeel van de productgroep 'Sanitair' in dit project", value=0, min_value = 0, max_value = 100)
-# st.number_input("Het aandeel van de productgroep 'Na-isolatie' in dit project", value=0, min_value = 0, max_value = 100)
 
 
 # In[ ]:
 
 
+# DataFrame omzetten naar Excel en opslaan in een BytesIO buffer
 buffer = BytesIO()
 with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-    dataframe.to_excel(writer, index=False)
+    dataframe.to_excel(writer, index=False, sheet_name='Sheet1')
+    
+    # Werkboek en werkblad ophalen
+    workbook = writer.book
+    worksheet = writer.sheets['Sheet1']
+    
+    # Opmaakopties instellen
+    format1 = workbook.add_format({'num_format': '#,##0.00', 'bold': True, 'font_color': 'red'})
+    format2 = workbook.add_format({'bg_color': '#FFFF00'})
+
+    # Pas de opmaak toe
+    worksheet.set_column('A:A', 20, format1)
+    worksheet.set_column('B:B', 20, format2)
+    worksheet.set_row(0, None, workbook.add_format({'bold': True}))
 
 # De buffer naar het begin van het bestand terugzetten
 buffer.seek(0)
@@ -244,4 +174,16 @@ st.download_button(
 
 if uploaded_file is not None:
     st.page_link("pages/input.py", label="Naar input")
+
+
+# In[2]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
