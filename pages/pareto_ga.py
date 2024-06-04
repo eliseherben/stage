@@ -480,22 +480,26 @@ for productgroep in df['productgroep']:
     df_productgroep['length'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
     
     fig = px.bar(df_productgroep, x='length', y='code', base = 'minimaal', 
-                 color_discrete_sequence=['rgba(58, 71, 80, 0.1)'], title=f'{productgroep} ')
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.05)'], title=f'{productgroep} ')
     
-    fig.add_trace(px.scatter(df_productgroep, x='circulair_0.4_afwijkingen_0.6', y='code', 
-                             color_discrete_sequence=['rgba(134, 24, 100, 1.0)'], labels={'x': ''}, 
+    fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[1], y='code', 
+                             color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 1']).data[0])
     
-    fig.add_trace(px.scatter(df_productgroep, x='circulair_0.3_afwijkingen_0.7', y='code', 
-                             color_discrete_sequence=['rgba(246, 78, 139, 1.0)'], labels={'x': ''}, 
+    fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[2], y='code', 
+                             color_discrete_sequence=['rgba(0, 158, 224, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 2']).data[0])
     
-    fig.add_trace(px.scatter(df_productgroep, x='circulair_0.2_afwijkingen_0.8', y='code', 
-                             color_discrete_sequence=['rgba(98, 120, 70, 1.0)'], labels={'x': ''}, 
+    fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[3], y='code', 
+                             color_discrete_sequence=['rgba(241, 142, 47, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 3']).data[0])
-
+    
+    fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[4], y='code', 
+                             color_discrete_sequence=['rgba(151, 191, 13, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 3']).data[0])
+    
     fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
-                             color_discrete_sequence=['rgba(123, 48, 120, 1.0)'], labels={'x': ''}, 
+                             color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['huidig']).data[0])
         
     fig.update_layout(height=250)
