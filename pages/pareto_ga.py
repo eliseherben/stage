@@ -450,24 +450,9 @@ if st.button('Herlaad pagina'):
 # In[ ]:
 
 
-# data = {
-#     'Productgroep': ['21 Buitenwanden', '22 Binnenwanden', '23 Vloeren', '24 Trappen en hellingen', '27 Daken', 
-#                       '28 Hoofddraagconstructie', '31 Buitenkozijnen, -ramen, -deuren, en -puien', 
-#                       '32 Binnenkozijnen en -deuren', '33 Luiken en vensters', '34 Balustrades en leuningen', 
-#                       '42 Binnenwandafwerkingen', '43 Vloerafwerkingen', '45 Plafonds', '64 Vaste gebouwvoorziening',
-#                       '73 Keuken', '90 Terreininrichting'],
-#     'code': ['21', '22', '23', '24', '27', '28', '31', '32', '33', '34', '42', '43', '45', '64','73', '90'],
-#     'min_waarden': [i for i in st.session_state.minimaal if i is not None],
-#     'max_waarden': [i for i in st.session_state.maximaal if i is not None],
-#     'optimaal_waarden': [i for i in st.session_state.lp_variabelen if i is not None],
-#     'huidige_waarden': [i for i in st.session_state.startwaardes]
-# }
-
-st.markdown(f"{[i for i in st.session_state.minimaal if i is not None]} {len([i for i in st.session_state.minimaal if i is not None])}")
-st.markdown(f"{[i for i in st.session_state.maximaal if i is not None]} {len([i for i in st.session_state.maximaal if i is not None])}")
-st.markdown(f"{[i for i in st.session_state.lp_variabelen]} {len([i for i in st.session_state.lp_variabelen])}")
-st.markdown(f"{[i for i in st.session_state.startwaardes]} {len([i for i in st.session_state.startwaardes])}")
-
+oplossingen = df_productgroep[df_productgroep[]]
+selected_oplossingen = st.multiselect("Selecteer een productgroep", oplossingen)
+filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
 df = st.session_state.oplossingen
 st.markdown(df)
@@ -476,29 +461,42 @@ for productgroep in df['productgroep']:
 
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['productgroep'] == productgroep]
+    
+    kolommen_te_uitsluiten = ['productgroep', 'code', 'minimaal', 'maximaal']
+    kolommen_te_selecteren = [kolom for kolom in df_productgroep.columns if kolom not in kolommen_te_uitsluiten]
+    geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
+
+    # Selecteer alle kolommen behalve de uitgesloten kolommen
+    df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
+
 
     df_productgroep['length'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
     
     fig = px.bar(df_productgroep, x='length', y='code', base = 'minimaal', 
-                 color_discrete_sequence=['rgba(119, 118, 121, 0.05)'], title=f'{productgroep} ')
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ')
     
-    fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[1], y='code', 
-                             color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossing 1']).data[0])
+    if df_productgroep.columns[1] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[1], y='code', 
+                                 color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 1']).data[0])
     
-    fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[2], y='code', 
+    if df_productgroep.columns[2] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[2], y='code', 
                              color_discrete_sequence=['rgba(0, 158, 224, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 2']).data[0])
     
-    fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[3], y='code', 
+    if df_productgroep.columns[3] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[3], y='code', 
                              color_discrete_sequence=['rgba(241, 142, 47, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 3']).data[0])
     
-    fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[4], y='code', 
+    if df_productgroep.columns[4] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[4], y='code', 
                              color_discrete_sequence=['rgba(151, 191, 13, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 4']).data[0])
     
-    fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
+    if df_productgroep.columns[-1] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
                              color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['huidig']).data[0])
         
