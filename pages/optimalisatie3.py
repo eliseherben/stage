@@ -202,7 +202,7 @@ st.plotly_chart(fig_kosten)
 
 
 fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep')
-fig_circulair.update_traces(marker_size=10, showlegend=False)
+fig_circulair.update_traces(marker_size=10)
 
 fig_circulair.update_yaxes(visible=False)
 
@@ -212,6 +212,16 @@ x_max = max(filtered['circulair']) + 10
 
 # Vastzetten van de x-as range
 fig_circulair.update_xaxes(range=[x_min, x_max])
+
+fig_kosten.update_layout(
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    )
+)
 
 fig_circulair.update_layout(height=250)
 
