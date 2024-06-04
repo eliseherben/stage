@@ -397,11 +397,14 @@ st.number_input("Vul het budget in voor het huidige project", value=None, placeh
 st.markdown("**Aantal appartementen**")
 st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', 
                 on_change=set_appartementen)
-col1, col2 = st.columns([2, 8])
+col1, col2 = st.columns([1, 9])
 with col1:
-    st.toggle("")
+    tog1 = st.toggle("")
 with col2:
-    st.markdown("test")
+    if tog1:
+        st.markdown("test")
+    else:
+        st.markdown("test2")
 
 keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Daken', 'Hoofddraagconstructie', 'Buitenkozijnen', 
  'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
