@@ -453,15 +453,16 @@ if st.button('Herlaad pagina'):
 df = st.session_state.oplossingen
 st.markdown(df)
 
+kolommen_te_uitsluiten = ['productgroep', 'code', 'minimaal', 'maximaal']
+kolommen_te_selecteren = [kolom for kolom in df_productgroep.columns if kolom not in kolommen_te_uitsluiten]
+geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
+
+
 for productgroep in df['productgroep']:
 
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['productgroep'] == productgroep]
     
-    kolommen_te_uitsluiten = ['productgroep', 'code', 'minimaal', 'maximaal']
-    kolommen_te_selecteren = [kolom for kolom in df_productgroep.columns if kolom not in kolommen_te_uitsluiten]
-    geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
-
     # Selecteer alle kolommen behalve de uitgesloten kolommen
     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
 
