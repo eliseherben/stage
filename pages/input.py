@@ -309,7 +309,7 @@ st.number_input("Aantal m2 aan binnenwanden in het huidige project", value = Non
                 key='_Binnenwanden', on_change=set_Binnenwanden)
 st.toggle("Aanpassingen aan de hoeveelheid binnen binnenwanden mogelijk", key='_Binnenwanden_on', on_change=set_Binnenwanden_on)
 
-st.markdown("*23 *Vloeren**")
+st.markdown("**23 Vloeren**")
 st.number_input("Aantal m2 aan vloeren in het huidige project", value = None, placeholder = "vul het aantal m2 in", 
                 key='_Vloeren', on_change=set_Vloeren)
 st.toggle("Aanpassingen aan de hoeveelheid binnen vloeren mogelijk", key='_Vloeren_on', on_change=set_Vloeren_on)
@@ -397,6 +397,11 @@ st.number_input("Vul het budget in voor het huidige project", value=None, placeh
 st.markdown("**Aantal appartementen**")
 st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', 
                 on_change=set_appartementen)
+col1, col2 = st.columns([7, 3])
+with col1:
+    st.toggle("")
+with col2:
+    st.markdown("test")
 
 keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Daken', 'Hoofddraagconstructie', 'Buitenkozijnen', 
  'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
