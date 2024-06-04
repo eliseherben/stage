@@ -396,6 +396,6 @@ keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Dake
  'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
  'Plafonds', 'Vaste_gebouwvoorziening', 'Keuken', 'Terreininrichting']
 
-if st.session_state[key] is not None for key in keys: 
+if all(st.session_state[key] is not None for key in keys): 
     st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
 
