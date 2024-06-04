@@ -17,9 +17,7 @@ from plotly.subplots import make_subplots
 
 st.write("#")
 st.title("Optimalisatie")
-st.page_link("pages/advies.py", label="Naar advies")
 st.page_link("simplex.py", label="Homepagina")
-st.page_link("pages/pareto_ga.py", label="Pareto oplossingen")
 
 
 # In[ ]:
@@ -80,9 +78,9 @@ def set_oplossingen():
 st.markdown("**Primair thema**")
 st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
 st.selectbox("Wat heeft meer prioriteit binnen dit project?", 
-            ("Minimale milieukosten indicator", "Minimale afwijkingen van de huidge aantallen"), 
+            ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen"), 
             index = None, 
-            placeholder='selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
+            placeholder='Selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
 
 
 # In[3]:
@@ -266,7 +264,7 @@ else:
     startwaardes = list(dynamic_vars.values())
     st.session_state.startwaardes = startwaardes
     
-    if st.session_state.doelstelling == 'Minimale milieukosten indicator':
+    if st.session_state.doelstelling == 'Minimale milieukosten':
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
             
          # Impact themas op productgroepen
@@ -474,9 +472,15 @@ else:
     df.dropna(subset=['minimaal'], inplace=True)
     df['huidige_waarden'] = [i for i in startwaardes]
 
-        
     st.dataframe(df)
     st.session_state.oplossingen = df
+
+
+# In[ ]:
+
+
+st.page_link("pages/advies.py", label="Naar advies")
+st.page_link("pages/pareto_ga.py", label="Pareto oplossingen")
 
 
 # maak er 1 dataframe van om te kunnen vergelijken
@@ -484,14 +488,14 @@ else:
 # In[ ]:
 
 
-if st.session_state.projectbestand is None:
-    st.markdown("upload een bestand")
-else: 
-    if st.session_state.doelstelling is not None:
-        st.markdown("**In dit project, is het optimaal om het aandeel van de productgroepen als volgt in te delen:**")
+# if st.session_state.projectbestand is None:
+#     st.markdown("upload een bestand")
+# else: 
+#     if st.session_state.doelstelling is not None:
+#         st.markdown("**In dit project, is het optimaal om het aandeel van de productgroepen als volgt in te delen:**")
 
-        df = pd.merge(df, data[['productgroep', 'eenheid']], on='productgroep')
+#         df = pd.merge(df, data[['productgroep', 'eenheid']], on='productgroep')
         
-        for index, row in df.iterrows():
-            st.markdown(f"- Binnen de productgroep {row['productgroep']} moet er {row['waarde']} {row['eenheid']} besteed worden")
+#         for index, row in df.iterrows():
+#             st.markdown(f"- Binnen de productgroep {row['productgroep']} moet er {row['waarde']} {row['eenheid']} besteed worden")
 
