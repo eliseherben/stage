@@ -139,51 +139,6 @@ if uploaded_file is not None:
 # In[ ]:
 
 
-# DataFrame omzetten naar Excel en opslaan in een BytesIO buffer
-buffer = BytesIO()
-with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-    dataframe.to_excel(writer, index=False, sheet_name='Sheet1')
-    
-    # Werkboek en werkblad ophalen
-    workbook = writer.book
-    worksheet = writer.sheets['Sheet1']
-    
-    # Opmaakopties instellen
-    format1 = workbook.add_format({'num_format': '#,##0.00', 'bold': True, 'font_color': 'red'})
-    format2 = workbook.add_format({'bg_color': '#FFFF00'})
-
-    # Pas de opmaak toe
-    worksheet.set_column('A:A', 20, format1)
-    worksheet.set_column('B:B', 20, format2)
-    worksheet.set_row(0, None, workbook.add_format({'bold': True}))
-
-# De buffer naar het begin van het bestand terugzetten
-buffer.seek(0)
-
-# Download button voor Excel-bestand
-st.download_button(
-    label="Download data as Excel",
-    data=buffer,
-    file_name="test.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-)
-
-
-# In[ ]:
-
-
 if uploaded_file is not None:
     st.page_link("pages/input.py", label="Naar input")
-
-
-# In[2]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
