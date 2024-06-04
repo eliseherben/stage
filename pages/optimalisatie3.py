@@ -207,8 +207,8 @@ fig_circulair.update_traces(marker_size=10)
 fig_circulair.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min = min(filtered['circulair']) - 10
-x_max = max(filtered['circulair']) + 10
+x_min = min(filtered['circulair']) 
+x_max = max(filtered['circulair']) 
 
 # Vastzetten van de x-as range
 fig_circulair.update_xaxes(range=[x_min, x_max])
@@ -223,7 +223,7 @@ fig_circulair.update_layout(
     )
 )
 
-fig_circulair.update_layout(height=250, width = 1000)
+fig_circulair.update_layout(height=250)
 
 st.plotly_chart(fig_circulair)
 
