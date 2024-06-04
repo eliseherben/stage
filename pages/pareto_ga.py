@@ -495,8 +495,14 @@ for productgroep in df['productgroep']:
         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[4], y='code', 
                              color_discrete_sequence=['rgba(151, 191, 13, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 4']).data[0])
+   
+    if df_productgroep.columns[5] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[5], y='code', 
+                             color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 4']).data[0])
     
-    if df_productgroep.columns[-1] in geselecteerde_kolommen:
+        
+    if df_productgroep.columns[-2] in geselecteerde_kolommen:
         fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
                              color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['huidig']).data[0])
