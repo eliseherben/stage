@@ -359,7 +359,7 @@ else:
 
 
 st.page_link("pages/advies.py", label="Naar advies")
-st.page_link("pages/pareto_ga.py", label="Pareto oplossingen")
+st.page_link("pages/visualisatie.py", label="Visualisatie oplossingen")
 
 
 # maak er 1 dataframe van om te kunnen vergelijken
