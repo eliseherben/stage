@@ -172,6 +172,9 @@ fig_kosten.update_layout(
     )
 )
 
+fig_kosten.update_layout(height=250)
+
+
 st.plotly_chart(fig_kosten)
 
 
@@ -189,6 +192,8 @@ x_max = max(filtered['circulair']) + 10
 
 # Vastzetten van de x-as range
 fig_circulair.update_xaxes(range=[x_min, x_max])
+
+fig_circulair.update_layout(height=250)
 
 st.plotly_chart(fig_circulair)
 
