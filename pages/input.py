@@ -293,6 +293,12 @@ def set_Terreininrichting_on():
 # In[ ]:
 
 
+st.title("Productgroepen")
+
+
+# In[ ]:
+
+
 st.markdown("**21 Buitenwanden**")
 st.number_input("Aantal m2 aan buitenwanden in het huidige project", value = None, 
                 placeholder = "vul het aantal m2 in", key='_Buitenwanden', on_change=set_Buitenwanden)
@@ -395,6 +401,8 @@ st.number_input("Het aantal appartementen dat gebouwd worden in dit project", va
 keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Daken', 'Hoofddraagconstructie', 'Buitenkozijnen', 
  'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
  'Plafonds', 'Vaste_gebouwvoorziening', 'Keuken', 'Terreininrichting']
+
+st.page_link("simplex.py", label = 'Homepagina')
 
 if all(st.session_state[key] is not None for key in keys): 
     st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
