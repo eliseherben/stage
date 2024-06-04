@@ -37,9 +37,9 @@ for productgroep in df['productgroep']:
     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
 
 
-    df_productgroep['length'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
+    df_productgroep['aantal'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
     
-    fig = px.bar(df_productgroep, x='length', y='code', base = 'minimaal', 
+    fig = px.bar(df_productgroep, x='aantal', y='code', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ')
     
     if df_productgroep.columns[1] in geselecteerde_kolommen:
