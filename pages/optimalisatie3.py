@@ -376,7 +376,7 @@ else:
     df.dropna(subset=['minimaal'], inplace=True)
     df['huidige_waarden'] = [i for i in startwaardes]
 
-    aangepaste_waarden = df.loc[df['optimalisatie'] == 'nee', 'productgroep']
+    aangepaste_waarden = data.loc[data['optimalisatie'] == 'nee', 'productgroep']
     st.markdown(aangepaste_waarden)
 
     # Spaties in de geselecteerde waarden vervangen door underscores en opslaan in een lijst
