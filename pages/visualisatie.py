@@ -25,7 +25,8 @@ st.title("**Visualisatie oplossingen**")
 
 df = st.session_state.oplossingen
 
-kolommen_te_uitsluiten = ['productgroep', 'code', 'minimaal', 'maximaal']
+kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'woonbeleving', 'optimalisatie', 
+                          'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
 geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
 
@@ -36,8 +37,8 @@ for productgroep in df['productgroep']:
     # Selecteer alle kolommen behalve de uitgesloten kolommen
     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
 
-
     df_productgroep['aantal'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
+    st.dataframe(df_productgroep)
     
     fig = px.bar(df_productgroep, x='aantal', y='code', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ')
