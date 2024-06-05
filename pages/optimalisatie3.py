@@ -373,8 +373,9 @@ else:
     data['code'] = data['productgroep'].str[:2]
     data_subset = data[['productgroep', 'code', 'minimaal', 'maximaal']]
     df = df.merge(data_subset, on='productgroep', how='left')
-    df.dropna(subset=['minimaal'], inplace=True)
-    df['huidige_waarden'] = [i for i in startwaardes]
+    st.dataframe(df)
+#     df.dropna(subset=['minimaal'], inplace=True)
+#     df['huidige_waarden'] = [i for i in startwaardes]
 
     aangepaste_waarden = data.loc[data['optimalisatie'] == 'nee', 'productgroep']
     st.markdown(aangepaste_waarden)
@@ -383,8 +384,8 @@ else:
     aangepaste_waarden_lijst = aangepaste_waarden.str.replace(' ', '_').str.replace('-', '_').tolist()
     st.markdown(aangepaste_waarden_lijst)
     
-#     niet_geoptimaliseerd = data[data['optimalisatie'] == 'nee']
-#     for index, row in niet_geoptimaliseerd.iterrows():
+#     for i in aangepaste_waarden_lijst:
+#         if st.session_state[i] is not None:
 #         row_data = {'productgroep': row['productgroep'], 'huidige_waarden': row['huidige_waarden']}
 #         for key in oplossingen.keys():
 #             row_data[key] = row['huidige_waarden']
