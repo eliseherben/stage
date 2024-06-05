@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 import streamlit as st
@@ -83,21 +83,29 @@ st.selectbox("Wat heeft meer prioriteit binnen dit project?",
             placeholder='Selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
 
 
-# In[3]:
+# In[4]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
 data['woonbeleving'] = [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0]
+data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
+
 data.iloc[-1, 3] = data.iloc[-1, 3] + 1
 
 
-# In[21]:
+# In[5]:
+
+
+# data
+
+
+# In[ ]:
 
 
 data2 = pd.read_csv("dataframe2.csv", sep=';', decimal = ',')
 
 
-# In[5]:
+# In[ ]:
 
 
 data3 = pd.read_csv("dataframe3.csv", sep=';', decimal = ',')
@@ -119,7 +127,7 @@ data2['maximaal'] = data2['maximaal'] * st.session_state.appartementen
 data2['constant'] = ['']*len(data2)
 
 
-# In[4]:
+# In[ ]:
 
 
 data['minimaal'] = data['minimaal'] * st.session_state.appartementen
@@ -127,7 +135,7 @@ data['maximaal'] = data['maximaal'] * st.session_state.appartementen
 data['constant'] = ['']*len(data)
 
 
-# In[11]:
+# In[ ]:
 
 
 # Filter de rijen waar geen NaN-waarden zijn in de specifieke kolommen
@@ -161,7 +169,7 @@ st.session_state.maximaal = maximaal_list
 # st.plotly_chart(fig)
 
 
-# In[9]:
+# In[ ]:
 
 
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
@@ -249,14 +257,6 @@ else:
 
 # **minimale afwijking**
 
-# minimale afwijking gewoon, genormaliseerd en genormaliseerd totaal
-
-# In[ ]:
-
-
-
-
-
 # In[ ]:
 
 
@@ -266,10 +266,12 @@ if st.session_state.projectbestand is None:
 else:
     st.markdown("**Minimale afwijking in productgroepen**")
     # Definieer de LP variabelen
-    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
+    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
 
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
+    
+    st.markdown(lp_variabelen)
     
     dynamic_vars = {}
     afwijkingen_list = []
@@ -311,8 +313,8 @@ else:
         impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
 
-        impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
-        afwijkingen2 = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
+#         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
+#         afwijkingen2 = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
         
         afwijkingen = pl.lpSum(afwijkingen_list)
         
