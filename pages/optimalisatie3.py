@@ -283,9 +283,9 @@ else:
     {"type": "64 Vaste gebouwvoorziening","key_toggle": "_Vaste_gebouwvoorziening_on"},
     {"type": "73 Keuken", "key_toggle": "_Keuken_on"},
     {"type": "90 Terreininrichting", "key_toggle": "_Terreininrichting_on"}
-]
+    ]
     for element in elements:
-        if not st.session_state.[element['key_toggle']]:
+        if not st.session_state[element['key_toggle']]:
             for index, row in data.iterrows():
                 if element['type'] in row['productgroep']:
                     row['optimalisatie'] = 'nee'
