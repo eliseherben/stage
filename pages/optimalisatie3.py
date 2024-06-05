@@ -285,7 +285,7 @@ else:
     {"type": "90 Terreininrichting", "key_toggle": "_Terreininrichting_on"}
     ]
     for element in elements:
-        if not st.session_state[element['key_toggle']]:
+        if not st.session_state[element['key_toggle']][1:]:
             for index, row in data.iterrows():
                 if element['type'] in row['productgroep']:
                     row['optimalisatie'] = 'nee'
