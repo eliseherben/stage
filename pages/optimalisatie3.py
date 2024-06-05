@@ -267,7 +267,9 @@ else:
     st.markdown("**Minimale afwijking in productgroepen**")
     
     if not st.session_state.Buitenwanden_on:
-        st.markdown("test")
+        for index, row in data.iterrows():
+            if 'Buitenwanden' in row['productgroep']:
+                st.markdown(row)
     
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
