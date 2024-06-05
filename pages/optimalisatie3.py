@@ -286,10 +286,8 @@ else:
     ]
     for element in elements:
         if not st.session_state[element['key_toggle']]:
-            st.markdown(element['type'])
             for index, row in data.iterrows():
                 if element['type'] == row['productgroep']:
-                    st.markdown(row['productgroep'])
                     data.at[index, 'optimalisatie'] = 'nee'
     st.dataframe(data)
     
@@ -378,6 +376,13 @@ else:
     df.dropna(subset=['minimaal'], inplace=True)
     df['huidige_waarden'] = [i for i in startwaardes]
 
+    niet_geoptimaliseerd = data[data['optimalisatie'] == 'nee']
+    for index, row in niet_geoptimaliseerd.iterrows():
+        row_data = {'productgroep': row['productgroep'], 'huidige_waarden': row['huidige_waarden']}
+        for key in oplossingen.keys():
+            row_data[key] = row['huidige_waarden']
+        df = df.append(row_data, ignore_index=True)
+    
     st.dataframe(df)
     st.session_state.oplossingen = df
 
