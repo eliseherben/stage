@@ -374,7 +374,7 @@ else:
         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
     st.markdown(oplossingen)
 
-    st.markdown(oplossingen[0][1])
+    st.markdown(oplossingen[0])
 #         oplossingen = {"oplossing_" + str(i+1): oplossing_vars[i] for i in range(len(oplossing_vars))}
 #         st.markdown(oplossingen)
 #         data = data.assign(**oplossingen)
