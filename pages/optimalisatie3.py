@@ -290,7 +290,7 @@ else:
             for index, row in data.iterrows():
                 if element['type'] == row['productgroep']:
                     st.markdown(row['productgroep'])
-                    row['optimalisatie'] = 'nee'
+                    data.at[index, 'optimalisatie'] = 'nee'
     st.dataframe(data)
     
     # Definieer de LP variabelen
