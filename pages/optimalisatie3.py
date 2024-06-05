@@ -277,19 +277,18 @@ else:
     afwijkingen_list = []
 
     for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
-        if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-            if var.name == "31_Buitenkozijnen,__ramen,__deuren_en__puien":
-                var_name = (var.name.split("_")[1])[:-1] + '_start'
-                dynamic_vars[var_name] = st.session_state[(var.name.split("_")[1])[:-1]]
-                
-                afwijkingen_var = pl.LpVariable('d_' + (var.name.split("_")[1])[:-1], lowBound = 0)
-                afwijkingen_list.append(afwijkingen_var)
-            else:
-                var_name = var.name[3:] + '_start'
-                dynamic_vars[var_name] = st.session_state[var.name[3:]]
+        if var.name == "31_Buitenkozijnen,__ramen,__deuren_en__puien":
+            var_name = (var.name.split("_")[1])[:-1] + '_start'
+            dynamic_vars[var_name] = st.session_state[(var.name.split("_")[1])[:-1]]
 
-                afwijkingen_var = pl.LpVariable('d_' + var.name[3:], lowBound = 0) 
-                afwijkingen_list.append(afwijkingen_var)
+            afwijkingen_var = pl.LpVariable('d_' + (var.name.split("_")[1])[:-1], lowBound = 0)
+            afwijkingen_list.append(afwijkingen_var)
+        else:
+            var_name = var.name[3:] + '_start'
+            dynamic_vars[var_name] = st.session_state[var.name[3:]]
+
+            afwijkingen_var = pl.LpVariable('d_' + var.name[3:], lowBound = 0) 
+            afwijkingen_list.append(afwijkingen_var)
                 
     startwaardes = list(dynamic_vars.values())
     st.markdown(startwaardes)
