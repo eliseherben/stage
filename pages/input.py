@@ -334,140 +334,14 @@ for element in elements:
                            on_change=element['on_change_toggle'])
     with col2:
         if toggle:
-            st.markdown(f"Aanpassingen aan de hoeveelheid binnen {element['type'].lower()} mogelijk")
+            st.markdown(f"Aanpassingen aan de hoeveelheid binnen {element['type'][2:].lower()} mogelijk")
         else:
-            st.markdown(f"Aanpassingen aan de hoeveelheid binnen {element['type'].lower()} niet mogelijk")
+            st.markdown(f"Aanpassingen aan de hoeveelheid binnen {element['type'][2:].lower()} niet mogelijk")
 
 
 # In[ ]:
 
 
-# st.markdown("**21 Buitenwanden**")
-# st.number_input("Aantal m2 aan buitenwanden in het huidige project", value = None, 
-#                 placeholder = "vul het aantal m2 in", key='_Buitenwanden', on_change=set_Buitenwanden)
-# col1, col2 = st.columns([0.5, 9.5])
-# with col1:
-#     toggle_21 = st.toggle("", key='_Buitenwanden_on', on_change=set_Buitenwanden_on)
-# with col2: 
-#     if toggle_21:
-#         st.markdown("Aanpassingen aan de hoeveelheid binnen buitenwanden mogelijk")
-#     else:
-#         st.markdown("Aanpassingen aan de hoeveelheid binnen buitenwanden niet mogelijk")
-    
-    
-# st.markdown("**22 Binnenwanden**")
-# st.number_input("Aantal m2 aan binnenwanden in het huidige project", value = None, placeholder = "vul het aantal m2 in", 
-#                 key='_Binnenwanden', on_change=set_Binnenwanden)
-# with col1:
-#     toggle_22 = st.toggle("", key='_Binnenwanden_on', on_change=set_Binnenwanden_on)
-# with col2: 
-#     if toggle_21:
-#         st.markdown("Aanpassingen aan de hoeveelheid binnen binnenwanden mogelijk")
-#     else:
-#         st.markdown("Aanpassingen aan de hoeveelheid binnen binnenwanden niet mogelijk")
-        
-        
-# st.markdown("**23 Vloeren**")
-# st.number_input("Aantal m2 aan vloeren in het huidige project", value = None, placeholder = "vul het aantal m2 in", 
-#                 key='_Vloeren', on_change=set_Vloeren)
-# with col1:
-#     toggle_23 = st.toggle("", key='_Vloeren_on', on_change=set_Vloeren_on)
-# with col2: 
-#     if toggle_23:
-#         st.markdown("Aanpassingen aan de hoeveelheid binnen vloeren mogelijk")
-#     else:
-#         st.markdown("Aanpassingen aan de hoeveelheid binnen vloeren niet mogelijk")
-
-        
-# st.markdown("**24 Trappen en hellingen**")
-# st.number_input("Aantal stuks aan trappen en hellingen in het huidige project", value = None, 
-#                 placeholder = "vul het aantal stuks in", key='_Trappen_en_hellingen', on_change=set_Trappen_en_hellingen)
-# with col1:
-#     toggle_24 = st.toggle("", key='_Trappen_en_hellingen_on', on_change=set_Trappen_en_hellingen_on)
-# with col2: 
-#     if toggle_24:
-#         st.markdown("Aanpassingen aan de hoeveelheid binnen trappen en hellingen mogelijk")
-#     else:
-#         st.markdown("Aanpassingen aan de hoeveelheid binnen trappen en hellingen niet mogelijk")
-        
-        
-# st.markdown("**27 Daken**")
-# st.number_input("Aantal m2 aan daken in het huidige project", value = None, placeholder = "vul het aantal m2 in", 
-#                 key='_Daken', on_change=set_Daken)
-# with col1:
-#     toggle_27 = st.toggle("", key='_Daken_on', on_change=set_Daken_on)
-# with col2: 
-#     if toggle_27:
-#         st.markdown("Aanpassingen aan de hoeveelheid binnen daken mogelijk")
-#     else:
-#         st.markdown("Aanpassingen aan de hoeveelheid binnen daken niet mogelijk")
-    
-    
-# st.markdown("**28 Hoofddraagconstructie**")
-# st.number_input("Aantal m2 aan hoofddraagconstructie in het huidige project", value = None, 
-#                 placeholder = "vul het aantal m2 in", key='_Hoofddraagconstructie', on_change=set_Hoofddraagconstructie)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen hoofddraagconstructie mogelijk", key='_Hoofddraagconstructie_on', 
-#           on_change=set_Hoofddraagconstructie_on)
-
-# st.markdown("**31 Buitenkozijnen, -ramen, -deuren en -puien**")
-# st.number_input("Aantal m aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project", value = None, 
-#                 placeholder = "vul het aantal m in", key='_Buitenkozijnen', on_change=set_Buitenkozijnen)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen buitenkozijnen, -ramen, -deuren en -puien mogelijk", 
-#           key='_Buitenkozijnen_on', on_change=set_Buitenkozijnen_on)
-
-# st.markdown("**32 Binnenkozijnen en -deuren**")
-# st.number_input("Aantal stuks aan binnenkozijnen en -deuren in het huidige project", value = None, 
-#                 placeholder = "vul het aantal stuks in", key='_Binnenkozijnen_en__deuren', 
-#                 on_change=set_Binnenkozijnen_en__deuren)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen binnenkozijnen en -deuren mogelijk", key='_Binnenkozijnen_en__deuren_on', 
-#           on_change=set_Binnenkozijnen_en__deuren_on)
-
-# st.markdown("**33 Luiken en vensters**")
-# st.number_input("Aantal stuks aan luiken en vensters in het huidige project", value = None, 
-#                 placeholder = "vul het aantal stuks in", key='_Luiken_en_vensters', on_change=set_Luiken_en_vensters)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen luiken en vensters mogelijk", key='_Luiken_en_vensters_on', 
-#           on_change=set_Luiken_en_vensters_on)
-
-# st.markdown("**34 Balustrades en leuningen**")
-# st.number_input("Aantal m aan balustrades en leuningen in het huidige project", value = None, 
-#                 placeholder = "vul het aantal m in", key='_Balustrades_en_leuningen', on_change=set_Balustrades_en_leuningen)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen balustrades en leuningen mogelijk", key='_Balustrades_en_leuningen_on', 
-#           on_change=set_Balustrades_en_leuningen_on)
-
-# st.markdown("**42 Binnenwandafwerkingen**")
-# st.number_input("Aantal m2 aan binnenwandafwerkingen in het huidige project", value = None, 
-#                 placeholder = "vul het aantal m2 in", key='_Binnenwandafwerkingen', on_change=set_Binnenwandafwerkingen)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen binnenwandafwerkingen mogelijk", key='_Binnenwandafwerkingen_on', 
-#           on_change=set_Binnenwandafwerkingen_on)
-
-# st.markdown("**43 Vloerafwerkingen**")
-# st.number_input("Aantal m2 aan vloerafwerkingen in het huidige project", value = None, placeholder = "vul het aantal m2 in", 
-#                 key='_Vloerafwerkingen', on_change=set_Vloerafwerkingen)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen vloerafwerkingen mogelijk", key='_Vloerafwerkingen_on', 
-#           on_change=set_Vloerafwerkingen_on)
-
-# st.markdown("**45 Plafonds**")
-# st.number_input("Aantal m2 aan plafonds in het huidige project", value = None, placeholder = "vul het aantal m2 in", 
-#                 key='_Plafonds', on_change=set_Plafonds)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen plafonds mogelijk", key='_Plafonds_on', on_change=set_Plafonds_on)
-
-# st.markdown("**64 Vaste gebouwvoorziening**")
-# st.number_input("Aantal stuks aan vaste gebouwvoorziening huidige project", value = None, 
-#                 placeholder = "vul het aantal stuks in", key='_Vaste_gebouwvoorziening', on_change=set_Vaste_gebouwvoorziening)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen vaste gebouwvoorziening mogelijk", key='_Vaste_gebouwvoorziening_on', 
-#           on_change=set_Vaste_gebouwvoorziening_on)
-
-# st.markdown("**73 Keuken**")
-# st.number_input("Aantal stuks aan keuken in het huidige project", value = None, placeholder = "vul het aantal stuks in", 
-#                 key='_Keuken', on_change=set_Keuken)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen keuken mogelijk", key='_Keuken_on', on_change=set_Keuken_on)
-
-# st.markdown("**90 Terreininrichting**")
-# st.number_input("Aantal stuks aan terreininrichting in het huidige project", value = None, 
-#                 placeholder = "vul het aantal stuks in", key='_Terreininrichting', on_change=set_Terreininrichting)
-# st.toggle("Aanpassingen aan de hoeveelheid binnen terreininrichting mogelijk", key='_Terreininrichting_on', 
-#           on_change=set_Terreininrichting_on)
-        
 st.markdown("**Budget**")
 st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag", 
                 key='_budget', on_change=set_budget)
@@ -475,14 +349,7 @@ st.number_input("Vul het budget in voor het huidige project", value=None, placeh
 st.markdown("**Aantal appartementen**")
 st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', 
                 on_change=set_appartementen)
-col1, col2 = st.columns([0.5, 9.5])
-with col1:
-    tog1 = st.toggle("")
-with col2:
-    if tog1:
-        st.markdown("test")
-    else:
-        st.markdown("test2")
+
 
 keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Daken', 'Hoofddraagconstructie', 'Buitenkozijnen', 
  'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
