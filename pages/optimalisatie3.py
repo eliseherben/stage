@@ -374,17 +374,21 @@ else:
         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
         oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
         st.markdown(oplossingswaarden)
+        
+        df[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
+        
+        index = 0
+        for i, row in data.iterrows():
+            if row['optimalisatie'] == 'ja':
+                if index < len(oplossingswaarden):
+                    data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = oplossingswaarden[index]
+                    index += 1
 #     eerste_oplossing = oplossingen[eerste_oplossing_key]
 
 #     st.markdown(eerste_oplossing)
 #     st.markdown(oplossingen)
     
-    index = 0
-    for i, row in data.iterrows():
-        if row['optimalisatie'] == 'ja':
-            if index < len(oplossingswaarden):
-                data.at[i, 'nieuwe_kolom'] = oplossingswaarden[index]
-                index += 1
+    
 #     st.markdown(oplossingen[0])
 #         oplossingen = {"oplossing_" + str(i+1): oplossing_vars[i] for i in range(len(oplossing_vars))}
 #         st.markdown(oplossingen)
