@@ -400,6 +400,7 @@ else:
                     data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = oplossingswaarden[index]
                     index += 1
     st.dataframe(data)
+    st.session_state.oplossingen = data
 
 
 # In[ ]:
