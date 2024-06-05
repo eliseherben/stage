@@ -323,6 +323,7 @@ else:
     
     variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if pd.notna(row["kosten"])}
     st.markdown(variabelen2)
+    st.markdown(len(variabelen2))
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
     lp_variabelen2 = [(key, value) for key, value in variabelen2.items()]
@@ -364,6 +365,8 @@ else:
         
         variabelen_budget = [lp_variabelen2[i][1] for i in range(len(lp_variabelen2))]
         impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen2)) if pd.notna(data.iloc[i, 4])]
+        st.markdown(impact_budget)
+        st.markdown(len(impact_budget))
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         st.markdown(budget)
 #         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
