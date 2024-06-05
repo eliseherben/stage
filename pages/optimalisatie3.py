@@ -342,6 +342,7 @@ else:
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen))]
         impact_budget = [data.iloc[i, 4] for i in range(len(data)) if data.iloc[i, 7] == 'ja']
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
+        st.markdown(budget)
 
 #         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
 #         afwijkingen2 = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
@@ -369,10 +370,12 @@ else:
 
         # Sla de oplossing op in een dictionary
 #         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
-        oplossing_vars = [var.varValue for key, var in lp_variabelen]
-        oplossingen = {"oplossing_" + str(i+1): oplossing_vars[i] for i in range(len(oplossing_vars))}
-        st.markdown(oplossingen)
-        data = data.assign(**oplossingen)
+#         oplossing_vars = [var.varValue for key, var in lp_variabelen]
+        oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
+    st.markdown(oplossingen)
+#         oplossingen = {"oplossing_" + str(i+1): oplossing_vars[i] for i in range(len(oplossing_vars))}
+#         st.markdown(oplossingen)
+#         data = data.assign(**oplossingen)
         
         
     # Maak een DataFrame van de variabelen en hun waarden
