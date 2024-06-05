@@ -334,9 +334,9 @@ for element in elements:
                            on_change=element['on_change_toggle'])
     with col2:
         if toggle:
-            st.markdown(f"Aanpassingen aan de hoeveelheid binnen {element['type'][2:].lower()} mogelijk")
+            st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} mogelijk")
         else:
-            st.markdown(f"Aanpassingen aan de hoeveelheid binnen {element['type'][2:].lower()} niet mogelijk")
+            st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} **niet** mogelijk")
 
 
 # In[ ]:
