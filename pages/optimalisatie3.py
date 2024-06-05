@@ -380,8 +380,7 @@ else:
     st.markdown(aangepaste_waarden)
 
     # Spaties in de geselecteerde waarden vervangen door underscores en opslaan in een lijst
-    aangepaste_waarden_lijst = aangepaste_waarden.str.replace(' ', '_').tolist()
-    aangepaste_waarden_lijst = aangepaste_waarden_lijst.str.replace('-', '_')
+    aangepaste_waarden_lijst = aangepaste_waarden.str.replace(r'[\s-]', '_').tolist()
     st.markdown(aangepaste_waarden_lijst)
     
 #     niet_geoptimaliseerd = data[data['optimalisatie'] == 'nee']
