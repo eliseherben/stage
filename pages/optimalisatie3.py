@@ -286,8 +286,9 @@ else:
     ]
     for element in elements:
         if not st.session_state[element['key_toggle']]:
+            st.markdown(element['type'])
             for index, row in data.iterrows():
-                if element['type'] in row['productgroep']:
+                if element['type'] == row['productgroep']:
                     row['optimalisatie'] = 'nee'
     st.dataframe(data)
     
