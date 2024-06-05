@@ -316,6 +316,8 @@ else:
             if huidige['type'] == row['productgroep']:
                 data.at[index, 'huidige_waarden'] = st.session_state[huidige['key_input']]
     
+    data['code'] = data['productgroep'].str[:2]
+    
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
     
