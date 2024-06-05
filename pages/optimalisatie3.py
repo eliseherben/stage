@@ -289,6 +289,7 @@ else:
             st.markdown(element['type'])
             for index, row in data.iterrows():
                 if element['type'] == row['productgroep']:
+                    st.markdown(row['productgroep'])
                     row['optimalisatie'] = 'nee'
     st.dataframe(data)
     
