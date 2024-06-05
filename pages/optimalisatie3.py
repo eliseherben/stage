@@ -370,10 +370,10 @@ else:
         
         prob += w_circulair * circulair + w_afwijkingen * afwijkingen
         
+        data2 = data[data['optimalisatie'] == 'ja']
         for i in range(len(lp_variabelen)):
-            if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]):
-                prob += lp_variabelen[i][1] >= data.iloc[i, 2]
-                prob += lp_variabelen[i][1] <= data.iloc[i, 3]
+            prob += lp_variabelen[i][1] >= data2.iloc[i, 2]
+            prob += lp_variabelen[i][1] <= data2.iloc[i, 3]
         
 #         lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
         
