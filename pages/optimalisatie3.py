@@ -321,12 +321,12 @@ else:
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
     
-    variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if pd.notna(row["kosten"])}
+    variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'nee'}
     st.markdown(variabelen2)
     st.markdown(len(variabelen2))
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
-    lp_variabelen2 = [(key, value) for key, value in variabelen2.items()]
+    lp_variabelen2 = lp_variabelen + [(key, value) for key, value in variabelen2.items()]
 
     dynamic_vars = {}
     afwijkingen_list = []
@@ -436,4 +436,16 @@ st.page_link("pages/visualisatie.py", label="Visualisatie oplossingen")
         
 #         for index, row in df.iterrows():
 #             st.markdown(f"- Binnen de productgroep {row['productgroep']} moet er {row['waarde']} {row['eenheid']} besteed worden")
+
+
+# In[6]:
+
+
+[1, 2, 3] + [4, 7]
+
+
+# In[ ]:
+
+
+
 
