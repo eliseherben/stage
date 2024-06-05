@@ -290,6 +290,32 @@ else:
                 if element['type'] == row['productgroep']:
                     data.at[index, 'optimalisatie'] = 'nee'
     
+    data['huidige_waarden'] = None
+    
+    huidigen = [
+    {"type": "21 Buitenwanden", "key_input": "Buitenwanden"},
+    {"type": "22 Binnenwanden", "key_input": "Binnenwanden"},
+    {"type": "23 Vloeren", "key_input": "Vloeren"},
+    {"type": "24 Trappen en hellingen", "key_input": "Trappen_en_hellingen"},
+    {"type": "27 Daken", "key_input": "Daken"},
+    {"type": "28 Hoofddraagconstructie", "key_input": "Hoofddraagconstructie"},
+    {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "key_input": "Buitenkozijnen"},
+    {"type": "32 Binnenkozijnen en -deuren", "key_input": "Binnenkozijnen_en__deuren"},
+    {"type": "33 Luiken en vensters", "key_input": "Luiken_en_vensters"},
+    {"type": "34 Balustrades en leuningen", "key_input": "Balustrades_en_leuningen"},
+    {"type": "42 Binnenwandafwerkingen", "key_input": "Binnenwandafwerkingen"},
+    {"type": "43 Vloerafwerkingen", "key_input": "Vloerafwerkingen"},
+    {"type": "45 Plafonds", "key_input": "Plafonds"},
+    {"type": "64 Vaste gebouwvoorziening","key_input": "Vaste_gebouwvoorziening"},
+    {"type": "73 Keuken", "key_input": "Keuken"},
+    {"type": "90 Terreininrichting", "key_input": "Terreininrichting"}
+    ]
+    
+    for huidige in huidigen:
+        for index, row in data.iterrows():
+            if huidige['type'] == row['productgroep']:
+                data.at[index, 'huidige_waarden'] = st.session_state[huidge['key_input']]
+    
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
     
