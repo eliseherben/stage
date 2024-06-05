@@ -266,10 +266,30 @@ if st.session_state.projectbestand is None:
 else:
     st.markdown("**Minimale afwijking in productgroepen**")
     
-    if not st.session_state.Buitenwanden_on:
-        for index, row in data.iterrows():
-            if 'Buitenwanden' in row['productgroep']:
-                st.markdown(row)
+    elements = [
+    {"type": "21 Buitenwanden", "key_toggle": "_Buitenwanden_on"},
+    {"type": "22 Binnenwanden", "key_toggle": "_Binnenwanden_on"},
+    {"type": "23 Vloeren", "key_toggle": "_Vloeren_on"},
+    {"type": "24 Trappen en hellingen", "key_toggle": "_Trappen_en_hellingen_on"},
+    {"type": "27 Daken", "key_toggle": "_Daken_on"},
+    {"type": "28 Hoofddraagconstructie", "key_toggle": "_Hoofddraagconstructie_on"},
+    {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "key_toggle": "_Buitenkozijnen_on"},
+    {"type": "32 Binnenkozijnen en -deuren", "key_toggle": "_Binnenkozijnen_en__deuren_on"},
+    {"type": "33 Luiken en vensters", "key_toggle": "_Luiken_en_vensters_on"},
+    {"type": "34 Balustrades en leuningen", "key_toggle": "_Balustrades_en_leuningen_on"},
+    {"type": "42 Binnenwandafwerkingen", "key_toggle": "_Binnenwandafwerkingen_on"},
+    {"type": "43 Vloerafwerkingen", "key_toggle": "_Vloerafwerkingen_on"},
+    {"type": "45 Plafonds", "key_toggle": "_Plafonds_on"},
+    {"type": "64 Vaste gebouwvoorziening","key_toggle": "_Vaste_gebouwvoorziening_on"},
+    {"type": "73 Keuken", "key_toggle": "_Keuken_on"},
+    {"type": "90 Terreininrichting", "key_toggle": "_Terreininrichting_on"}
+]
+    for element in elements:
+        if not st.session_state.element['key_toggle']:
+            for index, row in data.iterrows():
+                if element['type'] in row['productgroep']:
+                    row['optimalisatie'] = 'nee'
+    st.dataframe(data)
     
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
