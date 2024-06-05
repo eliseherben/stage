@@ -290,7 +290,7 @@ else:
                 if element['type'] == row['productgroep']:
                     data.at[index, 'optimalisatie'] = 'nee'
     
-    data['huidige_waarden'] = None
+    data['huidige_waarden'] = 0
     
     huidigen = [
     {"type": "21 Buitenwanden", "key_input": "Buitenwanden"},
