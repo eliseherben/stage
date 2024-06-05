@@ -328,6 +328,9 @@ else:
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
     lp_variabelen2 = lp_variabelen + [(key, value) for key, value in variabelen2.items()]
 
+    st.markdown(lp_variabelen2)
+    st.markdown(len(lp_variabelen2))
+    
     dynamic_vars = {}
     afwijkingen_list = []
 
