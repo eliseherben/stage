@@ -322,6 +322,7 @@ else:
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
     
     variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if pd.notna(row["kosten"])}
+    st.markdown(variabelen2)
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
     lp_variabelen2 = [(key, value) for key, value in variabelen2.items()]
