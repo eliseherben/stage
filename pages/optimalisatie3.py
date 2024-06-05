@@ -372,6 +372,10 @@ else:
 #         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
 #         oplossing_vars = [var.varValue for key, var in lp_variabelen]
         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
+    eerste_oplossing_key = list(oplossingen.keys())[0]
+    eerste_oplossing = oplossingen[eerste_oplossing_key]
+
+    st.markdown(eerste_oplossing)
     st.markdown(oplossingen)
 
     st.markdown(oplossingen[0])
