@@ -266,7 +266,8 @@ if st.session_state.projectbestand is None:
 else:
     st.markdown("**Minimale afwijking in productgroepen**")
     
-    st.markdown(st.session_state.Buitenwanden_on)
+    if not st.session_state.Buitenwanden_on:
+        st.markdown("test")
     
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
