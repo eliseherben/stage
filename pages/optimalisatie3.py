@@ -332,12 +332,12 @@ else:
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
         
         # Impact themas op productgroepen
-        variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
+        variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen))]
+        impact_circulair = [data.iloc[i, 5] for i in range(len(lp_variabelen))]
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
-        variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
-        impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4]) and pd.notna(data.iloc[i, 5])]
+        variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen))]
+        impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen))]
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
 
 #         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
@@ -365,15 +365,19 @@ else:
         st.markdown(f"milieukosten: {circulair.value()}")
 
         # Sla de oplossing op in een dictionary
-        oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
-
+#         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
+        oplossing_vars = [var.varValue for key, var in lp_variabelen]
+        oplossingen = {"oplossing_" + str(i+1): oplossing_vars[i] for i in range(len(oplossing_vars))}
+        data = data.assign(**oplossingen)
+        
+        
     # Maak een DataFrame van de variabelen en hun waarden
-    df = pd.DataFrame(oplossingen)
-    df.insert(0, 'productgroep', [key for key, var in lp_variabelen])
-    data['code'] = data['productgroep'].str[:2]
-    data_subset = data[['productgroep', 'code', 'minimaal', 'maximaal']]
-    df = df.merge(data_subset, on='productgroep', how='left')
-    st.dataframe(df)
+#     df = pd.DataFrame(oplossingen)
+#     df.insert(0, 'productgroep', [key for key, var in lp_variabelen])
+#     data['code'] = data['productgroep'].str[:2]
+#     data_subset = data[['productgroep', 'code', 'minimaal', 'maximaal']]
+#     df = df.merge(data_subset, on='productgroep', how='left')
+    st.dataframe(data)
 #     df.dropna(subset=['minimaal'], inplace=True)
 #     df['huidige_waarden'] = [i for i in startwaardes]
 
