@@ -329,8 +329,8 @@ else:
 #         lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
         
         for a in range(len(afwijkingen_list)):
-            prob += afwijkingen_list[a] >= lp_variabelen[a] - startwaardes[a]
-            prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[a]
+            prob += afwijkingen_list[a] >= lp_variabelen[a][1] - startwaardes[a]
+            prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[a][1]
         
         prob += budget == st.session_state.budget
         
