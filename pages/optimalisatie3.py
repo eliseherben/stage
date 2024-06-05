@@ -279,7 +279,7 @@ else:
     {"type": "34 Balustrades en leuningen", "key_toggle": "Balustrades_en_leuningen_on"},
     {"type": "42 Binnenwandafwerkingen", "key_toggle": "Binnenwandafwerkingen_on"},
     {"type": "43 Vloerafwerkingen", "key_toggle": "Vloerafwerkingen_on"},
-    {"type": "45 Plafonds", "key_toggle": "_Plafonds_on"},
+    {"type": "45 Plafonds", "key_toggle": "Plafonds_on"},
     {"type": "64 Vaste gebouwvoorziening","key_toggle": "Vaste_gebouwvoorziening_on"},
     {"type": "73 Keuken", "key_toggle": "Keuken_on"},
     {"type": "90 Terreininrichting", "key_toggle": "Terreininrichting_on"}
