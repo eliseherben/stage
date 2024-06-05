@@ -289,16 +289,13 @@ else:
             for index, row in data.iterrows():
                 if element['type'] == row['productgroep']:
                     data.at[index, 'optimalisatie'] = 'nee'
-    st.dataframe(data)
     
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
     
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
-    
-    st.markdown(lp_variabelen)
-    
+        
     dynamic_vars = {}
     afwijkingen_list = []
 
@@ -317,8 +314,6 @@ else:
             afwijkingen_list.append(afwijkingen_var)
                 
     startwaardes = list(dynamic_vars.values())
-    st.markdown(startwaardes)
-    st.markdown(afwijkingen_list)
     st.session_state.startwaardes = startwaardes
     
     if st.session_state.doelstelling == 'Minimale milieukosten':
@@ -333,16 +328,12 @@ else:
         
         # Impact themas op productgroepen
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen))]
-        st.markdown(variabelen_circulair)
         impact_circulair = [data.iloc[i, 5] for i in range(len(data)) if data.iloc[i, 7] == 'ja']
-        st.markdown(impact_circulair)
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
-        st.markdown(circulair)
         
         variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen))]
         impact_budget = [data.iloc[i, 4] for i in range(len(data)) if data.iloc[i, 7] == 'ja']
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
-        st.markdown(budget)
 
 #         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
 #         afwijkingen2 = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
@@ -373,7 +364,6 @@ else:
 #         oplossing_vars = [var.varValue for key, var in lp_variabelen]
         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
         oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
-        st.markdown(oplossingswaarden)
         
         data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
         
@@ -383,44 +373,7 @@ else:
                 if index < len(oplossingswaarden):
                     data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = oplossingswaarden[index]
                     index += 1
-#     eerste_oplossing = oplossingen[eerste_oplossing_key]
-
-#     st.markdown(eerste_oplossing)
-#     st.markdown(oplossingen)
-    
-    
-#     st.markdown(oplossingen[0])
-#         oplossingen = {"oplossing_" + str(i+1): oplossing_vars[i] for i in range(len(oplossing_vars))}
-#         st.markdown(oplossingen)
-#         data = data.assign(**oplossingen)
-        
-        
-    # Maak een DataFrame van de variabelen en hun waarden
-#     df = pd.DataFrame(oplossingen)
-#     df.insert(0, 'productgroep', [key for key, var in lp_variabelen])
-#     data['code'] = data['productgroep'].str[:2]
-#     data_subset = data[['productgroep', 'code', 'minimaal', 'maximaal']]
-#     df = df.merge(data_subset, on='productgroep', how='left')
     st.dataframe(data)
-#     df.dropna(subset=['minimaal'], inplace=True)
-#     df['huidige_waarden'] = [i for i in startwaardes]
-
-    aangepaste_waarden = data.loc[data['optimalisatie'] == 'nee', 'productgroep']
-    st.markdown(aangepaste_waarden)
-
-    # Spaties in de geselecteerde waarden vervangen door underscores en opslaan in een lijst
-    aangepaste_waarden_lijst = aangepaste_waarden.str.replace(' ', '_').str.replace('-', '_').tolist()
-    st.markdown(aangepaste_waarden_lijst)
-    
-#     for i in aangepaste_waarden_lijst:
-#         if st.session_state[i] is not None:
-#         row_data = {'productgroep': row['productgroep'], 'huidige_waarden': row['huidige_waarden']}
-#         for key in oplossingen.keys():
-#             row_data[key] = row['huidige_waarden']
-#         df = df.append(row_data, ignore_index=True)
-    
-    st.dataframe(df)
-    st.session_state.oplossingen = df
 
 
 # In[ ]:
