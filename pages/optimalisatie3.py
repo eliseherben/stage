@@ -393,6 +393,9 @@ else:
         st.markdown(f"Status van de oplossing met weging (circulair: {w_circulair}, afwijkingen: {w_afwijkingen}): {pl.LpStatus[status]}")
         st.markdown(f"milieukosten: {circulair.value()}")
 
+        for name, constraint in prob.constraints.items():
+            st.markdown(f"{name}: {constraint} = {constraint.value()}")
+            
         # Sla de oplossing op in een dictionary
 #         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
 #         oplossing_vars = [var.varValue for key, var in lp_variabelen]
