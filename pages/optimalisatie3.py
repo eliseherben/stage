@@ -321,9 +321,11 @@ else:
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
     
+    variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows()}
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
-        
+    lp_variabelen2 = [(key, value) for key, value in variabelen2.items()]
+
     dynamic_vars = {}
     afwijkingen_list = []
 
@@ -359,10 +361,10 @@ else:
         impact_circulair = [data.iloc[i, 5] for i in range(len(data)) if data.iloc[i, 7] == 'ja']
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
-        variabelen_budget = [lp_variabelen[i][1] for i in range(len(lp_variabelen))]
-        impact_budget = [data.iloc[i, 4] for i in range(len(data)) if data.iloc[i, 7] == 'ja']
+        variabelen_budget = [lp_variabelen2[i][1] for i in range(len(lp_variabelen2))]
+        impact_budget = [data.iloc[i, 4] for i in range(len(lp_variabelen2))]
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
-
+        st.markdown(budget)
 #         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
 #         afwijkingen2 = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
         
