@@ -292,6 +292,7 @@ else:
                 
     startwaardes = list(dynamic_vars.values())
     st.markdown(startwaardes)
+    st.markdown(afwijkingen_list)
     st.session_state.startwaardes = startwaardes
     
     if st.session_state.doelstelling == 'Minimale milieukosten':
