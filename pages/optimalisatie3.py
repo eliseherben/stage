@@ -293,7 +293,7 @@ else:
     
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
-
+    
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
     
@@ -376,12 +376,19 @@ else:
     df.dropna(subset=['minimaal'], inplace=True)
     df['huidige_waarden'] = [i for i in startwaardes]
 
-    niet_geoptimaliseerd = data[data['optimalisatie'] == 'nee']
-    for index, row in niet_geoptimaliseerd.iterrows():
-        row_data = {'productgroep': row['productgroep'], 'huidige_waarden': row['huidige_waarden']}
-        for key in oplossingen.keys():
-            row_data[key] = row['huidige_waarden']
-        df = df.append(row_data, ignore_index=True)
+    aangepaste_waarden = df.loc[df['optimalisatie'] == 'nee', 'productgroep']
+    st.markdown(aangepaste_waarden)
+
+    # Spaties in de geselecteerde waarden vervangen door underscores en opslaan in een lijst
+    aangepaste_waarden_lijst = aangepaste_waarden.str.replace(' ', '_').tolist()
+    st.markdown(aangepaste_waarden_lijst)
+    
+#     niet_geoptimaliseerd = data[data['optimalisatie'] == 'nee']
+#     for index, row in niet_geoptimaliseerd.iterrows():
+#         row_data = {'productgroep': row['productgroep'], 'huidige_waarden': row['huidige_waarden']}
+#         for key in oplossingen.keys():
+#             row_data[key] = row['huidige_waarden']
+#         df = df.append(row_data, ignore_index=True)
     
     st.dataframe(df)
     st.session_state.oplossingen = df
