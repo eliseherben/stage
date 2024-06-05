@@ -375,7 +375,7 @@ else:
         oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
         st.markdown(oplossingswaarden)
         
-        df[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
+        data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
         
         index = 0
         for i, row in data.iterrows():
