@@ -52,7 +52,7 @@ for staat_naam in sessie_staten:
 
     st.session_state[f"_{staat_naam}"] = st.session_state[staat_naam]
 
-    def set_staat():
+    def set_{staat_naam}():
         st.session_state[staat_naam] = st.session_state[f"_{staat_naam}"]
 
     if f"{staat_naam}_on" not in st.session_state:
@@ -60,7 +60,7 @@ for staat_naam in sessie_staten:
 
     st.session_state[f"_{staat_naam}_on"] = st.session_state[f"{staat_naam}_on"]
 
-    def set_staat_on():
+    def set_{staat_naam}_on():
         st.session_state[f"{staat_naam}_on"] = st.session_state[f"_{staat_naam}_on"]
 
 
