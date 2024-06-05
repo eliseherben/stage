@@ -337,8 +337,8 @@ else:
         status = prob.solve()
         st.markdown(f"Status van de oplossing met weging (circulair: {w_circulair}, afwijkingen: {w_afwijkingen}): {pl.LpStatus[status]}")
         st.markdown(f"milieukosten: {circulair.value()}")
-        for var in afwijkingen_list:
-            st.markdown(f"{var.name}: {pl.value(var)}")
+        for name, constraint in prob.constraints.items():
+            st.markdown(f"{name}: {constraint} = {constraint.value()}")
 
 
         # Sla de oplossing op in een dictionary
