@@ -88,7 +88,11 @@ for productgroep in df['productgroep']:
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
+df_long = pd.melt(df2, id_vars='oplossing', value_vars=['kosten', 'milieukosten'], 
+                  var_name='type', value_name='waarde')
+
 st.dataframe(df2)
+st.dataframe(df_long)
 
 fig = px.bar(df2, x='kosten', y='oplossing', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ')
