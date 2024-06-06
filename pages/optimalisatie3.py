@@ -457,7 +457,9 @@ else:
             else:
                 data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = data.at[i, 'huidige_waarden']
         
-        doelwaardes.append((f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}", budget.value(), milieukosten.value()))
+        doelwaardes.append((f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}", 
+                            (data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] * data['kosten']).sum(), 
+                            (data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] * data['circulair']).sum()))
 
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum()))
     doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum()))
