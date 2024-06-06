@@ -102,37 +102,37 @@ df_k['code'] = '23'
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 st.dataframe(df_k)
 
-fig = px.bar(df_k, x='aantal', y='code', base = 'minimaal', 
+fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 
-fig.add_trace(px.scatter(df_k, x=df_k.columns[0], y='code', 
+fig2.add_trace(px.scatter(df_k, x=df_k.columns[0], y='code', 
                                  color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 1']).data[0])
 
-fig.add_trace(px.scatter(df_k, x=df_k.columns[1], y='code', 
+fig2.add_trace(px.scatter(df_k, x=df_k.columns[1], y='code', 
                                  color_discrete_sequence=['rgba(0, 158, 224, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 2']).data[0])
 
-fig.add_trace(px.scatter(df_k, x=df_k.columns[2], y='code', 
+fig2.add_trace(px.scatter(df_k, x=df_k.columns[2], y='code', 
                                  color_discrete_sequence=['rgba(241, 142, 47, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 3']).data[0])
 
-fig.add_trace(px.scatter(df_k, x=df_k.columns[3], y='code', 
+fig2.add_trace(px.scatter(df_k, x=df_k.columns[3], y='code', 
                                  color_discrete_sequence=['rgba(151, 191, 13, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 4']).data[0])
 
-fig.add_trace(px.scatter(df_k, x=df_k.columns[4], y='code', 
+fig2.add_trace(px.scatter(df_k, x=df_k.columns[4], y='code', 
                                  color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 5']).data[0])
 
-fig.add_trace(px.scatter(df_k, x=df_k.columns[7], y='code', 
+fig2.add_trace(px.scatter(df_k, x=df_k.columns[7], y='code', 
                                  color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['huidige waarden']).data[0])
 
-fig.update_layout(height=250)
+fig2.update_layout(height=250)
 
-fig.update_yaxes(visible=False, showticklabels=False)
-st.plotly_chart(fig)
+fig2.update_yaxes(visible=False, showticklabels=False)
+st.plotly_chart(fig2)
 
 # Maak de bar plot voor kosten
 fig_kosten = px.bar(df2, x='oplossing', y='kosten', title='Kosten')
