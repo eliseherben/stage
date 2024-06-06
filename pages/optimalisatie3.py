@@ -454,6 +454,8 @@ else:
                 if index < len(oplossingswaarden):
                     data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = oplossingswaarden[index]
                     index += 1
+            else:
+                data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = data.iloc[i, 'huidige_waarden']
         
         doelwaardes.append((f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}", budget.value(), milieukosten.value()))
 
