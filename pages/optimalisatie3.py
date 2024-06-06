@@ -291,8 +291,8 @@ else:
     
     data['huidige_waarden'] = 0
     
-    data['huidige waarden'] = data.apply(
-    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige waarden'], axis=1
+    data['huidige_waarden'] = data.apply(
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige_waarden'], axis=1
     )
  
     huidigen = [
