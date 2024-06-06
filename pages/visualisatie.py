@@ -89,6 +89,7 @@ for productgroep in df['productgroep']:
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
 df_k = df2[['oplossing', 'kosten']]
+st.markdown(df_k)
 row_as_column = df_k.loc[5].to_frame().T
 
 new_data = pd.concat([df, row_as_column], axis=1)
