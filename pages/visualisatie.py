@@ -104,7 +104,7 @@ geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_sel
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 st.dataframe(df_k)
 
-fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal'
+fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 
 if df_k.columns[0] in geselecteerde_kolommen:
