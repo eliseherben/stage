@@ -90,16 +90,16 @@ df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten',
 
 df_k = df2[['oplossing', 'kosten']]
 st.dataframe(df_k)
-df_k[df_k.iloc[5, 0]] = df_k.iloc[5, 0]
+
+df_k = df_k.T
+st.datafra,e(df_k)
+# df_k[df_k.iloc[5, 0]] = df_k.iloc[5, 1]
+# df_k[df_k.iloc[6, 0]] = df_k.iloc[6, 1]
+# df_k[df_k.iloc[7, 0]] = df_k.iloc[7, 1]
+
 st.dataframe(df_k)
 
-st.dataframe(df2)
-# st.dataframe(df_t)
-
-df_t.columns = df_t.iloc[0]
-df_t = df_t[1:]
-
-df_t['aantal'] = df_t['maximaal'] - df_t['minimaal']
+df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 fig = px.bar(df_t, x='aantal', y='kosten', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 
