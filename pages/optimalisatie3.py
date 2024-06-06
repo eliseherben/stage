@@ -438,7 +438,7 @@ else:
 
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum()))
     doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum()))
-    doelwaardes.append(('huidig', (data['huidig'] * data['kosten']).sum(), (data['huidig'] * data['circulair']).sum()))
+    doelwaardes.append(('huidige_waarden', (data['huidige_waarden'] * data['kosten']).sum(), (data['huidige_waarden'] * data['circulair']).sum()))
 
     st.dataframe(data)
     st.session_state.oplossingen = data
