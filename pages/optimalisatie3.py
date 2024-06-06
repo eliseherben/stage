@@ -323,12 +323,14 @@ else:
     
     variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
                    if row["optimalisatie"] == 'nee' and row["productgroep"] != '48 Na-isolatie'}
+    
     st.markdown(variabelen2)
     st.markdown(len(variabelen2))
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
     lp_variabelen2 = lp_variabelen + [(key, value) for key, value in variabelen2.items()]
 
+    lp_variabelen2.sort()
     st.markdown(lp_variabelen2)
     st.markdown(len(lp_variabelen2))
     
