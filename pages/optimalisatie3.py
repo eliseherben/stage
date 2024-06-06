@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[3]:
 
 
 import streamlit as st
@@ -83,7 +83,7 @@ st.selectbox("Wat heeft meer prioriteit binnen dit project?",
             placeholder='Selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
 
 
-# In[4]:
+# In[6]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
@@ -92,10 +92,10 @@ data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 
 data.iloc[-1, 3] = data.iloc[-1, 3] + 1
 
 
-# In[5]:
+# In[7]:
 
 
-# data
+data
 
 
 # In[ ]:
@@ -288,7 +288,9 @@ else:
             for index, row in data.iterrows():
                 if element['type'] == row['productgroep']:
                     data.at[index, 'optimalisatie'] = 'nee'
-    
+
+    data['code'] = data['productgroep'].str[:2]
+
     data['huidige_waarden'] = 0
     
     data['huidige_waarden'] = data.apply(
@@ -318,8 +320,6 @@ else:
         for index, row in data.iterrows():
             if huidige['type'] == row['productgroep']:
                 data.at[index, 'huidige_waarden'] = st.session_state[huidige['key_input']]
-    
-    data['code'] = data['productgroep'].str[:2]
     
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
