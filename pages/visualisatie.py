@@ -88,10 +88,14 @@ for productgroep in df['productgroep']:
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
-df_t = df2.transpose()
+df_k = df2[['oplossing', 'kosten']]
+row_as_column = df_k.loc[5].to_frame().T
+
+new_data = pd.concat([df, row_as_column], axis=1)
+st.dataframe(new_data)
 
 st.dataframe(df2)
-st.dataframe(df_t)
+# st.dataframe(df_t)
 
 df_t.columns = df_t.iloc[0]
 df_t = df_t[1:]
