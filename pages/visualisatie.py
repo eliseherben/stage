@@ -98,7 +98,7 @@ df_k['code'] = '23'
 # df_k[df_k.iloc[6, 0]] = df_k.iloc[6, 1]
 # df_k[df_k.iloc[7, 0]] = df_k.iloc[7, 1]
 kolommen_te_uitsluiten = ['code', 'minimaal', 'maximaal']
-kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
+kolommen_te_selecteren = [kolom for kolom in df_k.columns if kolom not in kolommen_te_uitsluiten]
 geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
