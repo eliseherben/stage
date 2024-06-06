@@ -90,10 +90,8 @@ df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten',
 
 df_k = df2[['oplossing', 'kosten']]
 st.dataframe(df_k)
-row_as_column = df_k.loc[5].to_frame().T
-st.dataframe(row_as_column)
-new_data = pd.concat([df, row_as_column], axis=1)
-st.dataframe(new_data)
+df_k[df_k.iloc[5, 0]] = df_k.iloc[5, 0]
+st.dataframe(df_k)
 
 st.dataframe(df2)
 # st.dataframe(df_t)
