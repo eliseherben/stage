@@ -303,15 +303,18 @@ else:
     data['huidige_waarden'] = 0
     
     data['huidige_waarden'] = data.apply(
-    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige_waarden'], axis=1
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) and row['productgroep'] != '48 Na-isolatie' 
+        else row['huidige_waarden'], axis=1
     )
     
     data['minimaal'] = data.apply(
-    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['minimaal'], axis=1
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) and row['productgroep'] != '48 Na-isolatie' 
+        else row['minimaal'], axis=1
     )
     
     data['maximaal'] = data.apply(
-    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['maximaal'], axis=1
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) and row['productgroep'] != '48 Na-isolatie' 
+        else row['maximaal'], axis=1
     )
  
     huidigen = [
@@ -400,6 +403,13 @@ else:
         st.markdown(len(impact_budget))
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         st.markdown(budget)
+        
+        variabelen_milieukosten = [lp_variabelen2[i][1] for i in range(len(lp_variabelen2))]
+        impact_milieukosten = [data.iloc[i, 5] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
+        st.markdown(impact_milieukosten)
+        st.markdown(len(variabelen_milieukosten))
+        milieukosten = pl.lpSum(variabelen_milieukosten[i] * impact_milieukosten[i] for i in range(len(variabelen_milieukosten)))
+        
 #         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
 #         afwijkingen2 = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
         
