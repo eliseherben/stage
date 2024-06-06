@@ -93,8 +93,12 @@ df_t = df2.transpose()
 st.dataframe(df2)
 st.dataframe(df_t)
 
-fig = px.bar(df2, x='kosten', y='oplossing', base = 'minimaal', 
-                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ')
+df_t.columns = df_t.iloc[0]
+df_t = df_t[1:]
+
+df_t['aantal'] = df_t['maximaal'] - df_t['minimaal']
+fig = px.bar(df_t, x='aantal', y='kosten', base = 'minimaal', 
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 
 # Maak de bar plot voor kosten
 fig_kosten = px.bar(df2, x='oplossing', y='kosten', title='Kosten')
