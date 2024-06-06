@@ -92,12 +92,11 @@ df_k = df2[['oplossing', 'kosten']]
 st.dataframe(df_k)
 
 df_k = df_k.T
-st.datafra,e(df_k)
+st.dataframe(df_k)
 # df_k[df_k.iloc[5, 0]] = df_k.iloc[5, 1]
 # df_k[df_k.iloc[6, 0]] = df_k.iloc[6, 1]
 # df_k[df_k.iloc[7, 0]] = df_k.iloc[7, 1]
 
-st.dataframe(df_k)
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 fig = px.bar(df_t, x='aantal', y='kosten', base = 'minimaal', 
