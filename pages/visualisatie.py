@@ -82,10 +82,13 @@ for productgroep in df['productgroep']:
     st.plotly_chart(fig)
 
 st.dataframe(df2)
-df_long = pd.melt(df2, id_vars='oplossing', value_vars=['kosten', 'milieukosten'], 
-                  var_name='type', value_name='waarde')
+# Maak de bar plot voor kosten
+fig_kosten = px.bar(df2, x='oplossing', y='kosten', title='Kosten')
 
-# Maak de bar plot
-fig = px.bar(df_long, x='oplossing', y='waarde', color='type', barmode='group')
-st.plotly_chart(fig)
+# Maak de bar plot voor milieukosten
+fig_milieukosten = px.bar(df2, x='oplossing', y='milieukosten', title='Milieukosten')
+
+# Toon de grafieken
+fig_kosten.show()
+fig_milieukosten.show()
 
