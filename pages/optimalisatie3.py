@@ -96,7 +96,6 @@ st.selectbox("Wat heeft meer prioriteit binnen dit project?",
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
 data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
-
 data.iloc[-1, 3] = data.iloc[-1, 3] + 1
 
 
@@ -351,16 +350,12 @@ else:
     variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
                    if row["optimalisatie"] == 'nee' and row["productgroep"] != '48 Na-isolatie'}
     
-    st.markdown(variabelen2)
-    st.markdown(len(variabelen2))
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
     lp_variabelen2 = [(key, value) for key, value in variabelen2.items()]
     lp_variabelen3 = lp_variabelen + [(key, value) for key, value in variabelen2.items()]
 
     lp_variabelen3.sort()
-    st.markdown(lp_variabelen3)
-    st.markdown(len(lp_variabelen3))
     
     dynamic_vars = {}
     afwijkingen_list = []
@@ -396,22 +391,15 @@ else:
         
         # Impact themas op productgroepen
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen))]
-        st.markdown(f"{variabelen_circulair} {len(variabelen_circulair)}")
         impact_circulair = [data.iloc[i, 5] for i in range(len(data)) if data.iloc[i, 6] == 'ja']
-        st.markdown(f"{impact_circulair} {len(impact_circulair)}")
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
         variabelen_budget = [lp_variabelen3[i][1] for i in range(len(lp_variabelen3))]
         impact_budget = [data.iloc[i, 4] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
-        st.markdown(impact_budget)
-        st.markdown(len(impact_budget))
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
-        st.markdown(budget)
         
         variabelen_milieukosten = [lp_variabelen3[i][1] for i in range(len(lp_variabelen3))]
         impact_milieukosten = [data.iloc[i, 5] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
-        st.markdown(impact_milieukosten)
-        st.markdown(len(variabelen_milieukosten))
         milieukosten = pl.lpSum(variabelen_milieukosten[i] * impact_milieukosten[i] for i in range(len(variabelen_milieukosten)))
         
 #         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
@@ -447,9 +435,6 @@ else:
         status = prob.solve()
         st.markdown(f"Status van de oplossing met weging (circulair: {w_circulair}, afwijkingen: {w_afwijkingen}): {pl.LpStatus[status]}")
         st.markdown(f"milieukosten: {circulair.value()}")
-
-        for name, constraint in prob.constraints.items():
-            st.markdown(f"{name}: {constraint} = {constraint.value()}")
             
         # Sla de oplossing op in een dictionary
 #         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
@@ -510,12 +495,6 @@ st.page_link("pages/visualisatie.py", label="Visualisatie oplossingen")
         
 #         for index, row in df.iterrows():
 #             st.markdown(f"- Binnen de productgroep {row['productgroep']} moet er {row['waarde']} {row['eenheid']} besteed worden")
-
-
-# In[6]:
-
-
-[1, 2, 3] + [4, 7]
 
 
 # In[ ]:
