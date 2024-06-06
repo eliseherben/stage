@@ -24,9 +24,7 @@ st.title("**Visualisatie oplossingen**")
 
 
 df = st.session_state.oplossingen
-
 st.markdown(st.session_state.doelwaardes)
-df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
@@ -36,6 +34,8 @@ geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_sel
 for productgroep in df['productgroep']:
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['productgroep'] == productgroep]
+    
+    st.dataframe(df_productgroep)
     
     # Selecteer alle kolommen behalve de uitgesloten kolommen
     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
@@ -81,7 +81,18 @@ for productgroep in df['productgroep']:
 
     st.plotly_chart(fig)
 
+
+
+# In[ ]:
+
+
+df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
+
 st.dataframe(df2)
+
+fig = px.bar(df2, x='kosten', y='oplossing', base = 'minimaal', 
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ')
+
 # Maak de bar plot voor kosten
 fig_kosten = px.bar(df2, x='oplossing', y='kosten', title='Kosten')
 
