@@ -70,6 +70,14 @@ st.session_state._oplossingen = st.session_state.oplossingen
 
 def set_oplossingen():
     st.session_state.oplossingen = st.session_state._oplossingen
+    
+if "doelwaardes" not in st.session_state:
+    st.session_state.doelwaardes = None
+    
+st.session_state._doelwaardes = st.session_state.doelwaardes
+
+def set_doelwaardes():
+    st.session_state.doelwaardes = st.session_state._doelwaardes
 
 
 # In[ ]:
@@ -339,7 +347,8 @@ else:
     
     dynamic_vars = {}
     afwijkingen_list = []
-
+    doelwaardes = []
+    
     for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
         if var.name == "31_Buitenkozijnen,__ramen,__deuren_en__puien":
             var_name = (var.name.split("_")[1])[:-1] + '_start'
@@ -363,7 +372,8 @@ else:
         gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6)]  # Lijst van wegingen
 
     oplossingen = {}
-
+    doelwaardes = []
+    
     for w_circulair, w_afwijkingen in gewichten:
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
         
@@ -421,8 +431,12 @@ else:
                 if index < len(oplossingswaarden):
                     data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = oplossingswaarden[index]
                     index += 1
+        
+        doelwaardes.append((f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}", budget.value(), circulair.value()))
+
     st.dataframe(data)
     st.session_state.oplossingen = data
+    st.session_state.doelwaardes = doelwaardes
 
 
 # In[ ]:
