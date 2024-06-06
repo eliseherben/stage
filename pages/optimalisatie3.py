@@ -330,7 +330,8 @@ else:
                 data.at[index, 'huidige_waarden'] = st.session_state[huidige['key_input']]
     
     # Definieer de LP variabelen
-    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
+    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
+                  if row["optimalisatie"] == 'ja'}
     
     variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
                    if row["optimalisatie"] == 'nee' and row["productgroep"] != '48 Na-isolatie'}
@@ -437,6 +438,12 @@ else:
     st.dataframe(data)
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
+
+
+# In[ ]:
+
+
+st.markdown((data['minimaal'] * data['kosten']).sum())
 
 
 # In[ ]:
