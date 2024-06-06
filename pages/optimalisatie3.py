@@ -434,6 +434,7 @@ else:
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[a][1]
         
         data3 = data[data['optimalisatie'] == 'nee']
+        data3 = data3[data3['productgroep'] != '48 Na-isolatie']
         data3 = data3.reset_index(drop=True)
         st.dataframe(data3)
         st.markdown(data3.iloc[1, 9])
