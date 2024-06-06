@@ -88,8 +88,7 @@ for productgroep in df['productgroep']:
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
-df_long = pd.melt(df2, id_vars='oplossing', value_vars=['kosten', 'milieukosten'], 
-                  var_name='type', value_name='waarde')
+df_t = df2.transpose()
 
 st.dataframe(df2)
 st.dataframe(df_long)
