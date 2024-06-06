@@ -455,7 +455,7 @@ else:
                     data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = oplossingswaarden[index]
                     index += 1
         
-        doelwaardes.append((f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}", budget.value(), circulair.value()))
+        doelwaardes.append((f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}", budget.value(), milieukosten.value()))
 
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum()))
     doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum()))
