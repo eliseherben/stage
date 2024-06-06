@@ -91,7 +91,7 @@ df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten',
 df_k = df2[['oplossing', 'kosten']]
 st.dataframe(df_k)
 row_as_column = df_k.loc[5].to_frame().T
-st.markdown(row_as_column)
+st.dataframe(row_as_column)
 new_data = pd.concat([df, row_as_column], axis=1)
 st.dataframe(new_data)
 
