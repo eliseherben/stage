@@ -366,7 +366,7 @@ else:
         impact_circulair = [data.iloc[i, 5] for i in range(len(data)) if data.iloc[i, 7] == 'ja']
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
-        variabelen_budget = [lp_variabelen2[i][1] for i in range(len(lp_variabelen2))]
+        variabelen_budget = [lp_variabelen2[i][1] for i in range(len(lp_variabelen2)) if pd.notna(data.iloc[i, 4])]
         impact_budget = [data.iloc[i, 4] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
         st.markdown(impact_budget)
         st.markdown(len(impact_budget))
