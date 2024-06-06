@@ -92,6 +92,9 @@ df_k = df2[['oplossing', 'kosten']]
 st.dataframe(df_k)
 
 df_k = df_k.T
+df_k.columns = df_k.iloc[0]
+df_k = df_k[1:]
+
 st.dataframe(df_k)
 # df_k[df_k.iloc[5, 0]] = df_k.iloc[5, 1]
 # df_k[df_k.iloc[6, 0]] = df_k.iloc[6, 1]
