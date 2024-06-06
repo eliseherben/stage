@@ -87,22 +87,13 @@ for productgroep in df['productgroep']:
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
 df_k = df2[['oplossing', 'kosten']]
-st.dataframe(df_k)
 
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
 df_k['code'] = '23'
 
-# df_k[df_k.iloc[5, 0]] = df_k.iloc[5, 1]
-# df_k[df_k.iloc[6, 0]] = df_k.iloc[6, 1]
-# df_k[df_k.iloc[7, 0]] = df_k.iloc[7, 1]
-kolommen_te_uitsluiten = ['code', 'minimaal', 'maximaal']
-kolommen_te_selecteren = [kolom for kolom in df_k.columns if kolom not in kolommen_te_uitsluiten]
-geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
-
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
-st.dataframe(df_k)
 
 fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
@@ -141,14 +132,4 @@ fig2.update_layout(height=250)
 
 fig2.update_yaxes(visible=False, showticklabels=False)
 st.plotly_chart(fig2)
-
-# Maak de bar plot voor kosten
-fig_kosten = px.bar(df2, x='oplossing', y='kosten', title='Kosten')
-
-# Maak de bar plot voor milieukosten
-fig_milieukosten = px.bar(df2, x='oplossing', y='milieukosten', title='Milieukosten')
-
-# Toon de grafieken
-st.plotly_chart(fig_kosten)
-st.plotly_chart(fig_milieukosten)
 
