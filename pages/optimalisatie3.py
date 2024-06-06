@@ -355,11 +355,12 @@ else:
     st.markdown(len(variabelen2))
     # Maak de variabelenlijst
     lp_variabelen = [(key, value) for key, value in variabelen.items()]
-    lp_variabelen2 = lp_variabelen + [(key, value) for key, value in variabelen2.items()]
+    lp_variabelen2 = [(key, value) for key, value in variabelen2.items()]
+    lp_variabelen3 = lp_variabelen + [(key, value) for key, value in variabelen2.items()]
 
-    lp_variabelen2.sort()
-    st.markdown(lp_variabelen2)
-    st.markdown(len(lp_variabelen2))
+    lp_variabelen3.sort()
+    st.markdown(lp_variabelen3)
+    st.markdown(len(lp_variabelen3))
     
     dynamic_vars = {}
     afwijkingen_list = []
@@ -400,14 +401,14 @@ else:
         st.markdown(f"{impact_circulair} {len(impact_circulair)}")
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
-        variabelen_budget = [lp_variabelen2[i][1] for i in range(len(lp_variabelen2))]
+        variabelen_budget = [lp_variabelen3[i][1] for i in range(len(lp_variabelen3))]
         impact_budget = [data.iloc[i, 4] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
         st.markdown(impact_budget)
         st.markdown(len(impact_budget))
         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
         st.markdown(budget)
         
-        variabelen_milieukosten = [lp_variabelen2[i][1] for i in range(len(lp_variabelen2))]
+        variabelen_milieukosten = [lp_variabelen3[i][1] for i in range(len(lp_variabelen3))]
         impact_milieukosten = [data.iloc[i, 5] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
         st.markdown(impact_milieukosten)
         st.markdown(len(variabelen_milieukosten))
@@ -437,7 +438,7 @@ else:
         st.dataframe(data3)
         st.markdown(data3.iloc[1, 9])
         for i in range(len(lp_variabelen2)):
-            st.markdown(lp_variabelen[i][1])
+            st.markdown(lp_variabelen2[i][1])
             prob += lp_variabelen2[i][1] == data3.iloc[i, 9]
         
         prob += budget == st.session_state.budget
