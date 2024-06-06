@@ -92,7 +92,7 @@ st.dataframe(df_k)
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
-df_k['code'] = 'kosten hoogte test 1223'
+df_k['code'] = '23'
 
 # df_k[df_k.iloc[5, 0]] = df_k.iloc[5, 1]
 # df_k[df_k.iloc[6, 0]] = df_k.iloc[6, 1]
