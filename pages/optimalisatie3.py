@@ -291,6 +291,7 @@ else:
     {"type": "73 Keuken", "key_toggle": "Keuken_on"},
     {"type": "90 Terreininrichting", "key_toggle": "Terreininrichting_on"}
     ]
+    
     for element in elements:
         if not st.session_state[element['key_toggle']]:
             for index, row in data.iterrows():
@@ -435,15 +436,20 @@ else:
         
         doelwaardes.append((f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}", budget.value(), circulair.value()))
 
+    doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum()))
+    doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum()))
+    doelwaardes.append(('huidig', (data['huidig'] * data['kosten']).sum(), (data['huidig'] * data['circulair']).sum()))
+
     st.dataframe(data)
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
+    
 
 
 # In[ ]:
 
 
-st.markdown((data['minimaal'] * data['kosten']).sum())
+
 
 
 # In[ ]:
