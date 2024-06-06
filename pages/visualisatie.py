@@ -91,7 +91,7 @@ df_k = df2[['oplossing', 'kosten']]
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
-df_k['code'] = 'test'
+df_k['code'] = 'minimaal'
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 
