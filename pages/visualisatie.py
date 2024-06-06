@@ -91,7 +91,7 @@ df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten',
 df_t = df2.transpose()
 
 st.dataframe(df2)
-st.dataframe(df_long)
+st.dataframe(df_t)
 
 fig = px.bar(df2, x='kosten', y='oplossing', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ')
