@@ -68,7 +68,7 @@ for productgroep in df['productgroep']:
     if df_productgroep.columns[15] in geselecteerde_kolommen:
         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[15], y='code', 
                              color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossing 4']).data[0])
+                             size=[10], symbol = ['oplossing 5']).data[0])
         
     if df_productgroep.columns[9] in geselecteerde_kolommen:
         fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
@@ -109,6 +109,30 @@ fig = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
 fig.add_trace(px.scatter(df_k, x=df_k.columns[0], y='code', 
                                  color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 1']).data[0])
+
+fig.add_trace(px.scatter(df_k, x=df_k.columns[1], y='code', 
+                                 color_discrete_sequence=['rgba(0, 158, 224, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 2']).data[0])
+
+fig.add_trace(px.scatter(df_k, x=df_k.columns[2], y='code', 
+                                 color_discrete_sequence=['rgba(241, 142, 47, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 3']).data[0])
+
+fig.add_trace(px.scatter(df_k, x=df_k.columns[3], y='code', 
+                                 color_discrete_sequence=['rgba(151, 191, 13, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 4']).data[0])
+
+fig.add_trace(px.scatter(df_k, x=df_k.columns[4], y='code', 
+                                 color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 5']).data[0])
+
+fig.add_trace(px.scatter(df_k, x=df_k.columns[7], y='code', 
+                                 color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['huidige waarden']).data[0])
+
+fig.update_layout(height=250)
+
+fig.update_yaxes(visible=False, showticklabels=False)
 st.plotly_chart(fig)
 
 # Maak de bar plot voor kosten
