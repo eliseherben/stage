@@ -94,6 +94,7 @@ st.dataframe(df_k)
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
+df_k['code'] = 'kosten'
 
 st.dataframe(df_k)
 # df_k[df_k.iloc[5, 0]] = df_k.iloc[5, 1]
@@ -102,7 +103,7 @@ st.dataframe(df_k)
 
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
-fig = px.bar(df_t, x='aantal', y='kosten', base = 'minimaal', 
+fig = px.bar(df_k, x='aantal', y='code', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 
 # Maak de bar plot voor kosten
