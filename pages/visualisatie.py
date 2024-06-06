@@ -34,9 +34,7 @@ geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_sel
 for productgroep in df['productgroep']:
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['productgroep'] == productgroep]
-    
-    st.dataframe(df_productgroep)
-    
+        
     # Selecteer alle kolommen behalve de uitgesloten kolommen
     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
 
@@ -94,15 +92,16 @@ st.dataframe(df_k)
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
-df_k['code'] = 'kosten'
+df_k['code'] = 'kosten hoogte test 1223'
 
-st.dataframe(df_k)
 # df_k[df_k.iloc[5, 0]] = df_k.iloc[5, 1]
 # df_k[df_k.iloc[6, 0]] = df_k.iloc[6, 1]
 # df_k[df_k.iloc[7, 0]] = df_k.iloc[7, 1]
 
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
+st.dataframe(df_k)
+
 fig = px.bar(df_k, x='aantal', y='code', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 
