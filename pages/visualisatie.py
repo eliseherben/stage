@@ -89,6 +89,6 @@ fig_kosten = px.bar(df2, x='oplossing', y='kosten', title='Kosten')
 fig_milieukosten = px.bar(df2, x='oplossing', y='milieukosten', title='Milieukosten')
 
 # Toon de grafieken
-fig_kosten.show()
-fig_milieukosten.show()
+st.plotly_chart(fig_kosten)
+st.plotly_chart(fig_milieukosten)
 
