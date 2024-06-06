@@ -369,7 +369,9 @@ else:
         
         # Impact themas op productgroepen
         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen))]
+        st.markdown(f"{variabelen_circulair}" {len(variabelen_circulair)})
         impact_circulair = [data.iloc[i, 5] for i in range(len(data)) if data.iloc[i, 7] == 'ja']
+        st.markdown(f"{impact_circulair}" {len(impact_circulair)})
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
         variabelen_budget = [lp_variabelen2[i][1] for i in range(len(lp_variabelen2))]
