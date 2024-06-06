@@ -432,6 +432,7 @@ else:
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[a][1]
         
         data3 = data[data['optimalisatie'] == 'nee']
+        st.dataframe(data3)
         for i in range(len(lp_variabelen2)):
             prob += lp_variabelen2[i][1] == data3.iloc[i, 9]
         
