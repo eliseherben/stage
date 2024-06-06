@@ -321,7 +321,8 @@ else:
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'ja'}
     
-    variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() if row["optimalisatie"] == 'nee'}
+    variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
+                   if row["optimalisatie"] == 'nee' and row["productgroep"] != 'Na-isolatie'}
     st.markdown(variabelen2)
     st.markdown(len(variabelen2))
     # Maak de variabelenlijst
@@ -366,7 +367,7 @@ else:
         impact_circulair = [data.iloc[i, 5] for i in range(len(data)) if data.iloc[i, 7] == 'ja']
         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
-        variabelen_budget = [lp_variabelen2[i][1] for i in range(len(lp_variabelen2)) if pd.notna(data.iloc[i, 4])]
+        variabelen_budget = [lp_variabelen2[i][1] for i in range(len(lp_variabelen2))]
         impact_budget = [data.iloc[i, 4] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
         st.markdown(impact_budget)
         st.markdown(len(impact_budget))
