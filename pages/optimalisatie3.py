@@ -305,6 +305,14 @@ else:
     data['huidige_waarden'] = data.apply(
     lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige_waarden'], axis=1
     )
+    
+    data['minimaal'] = data.apply(
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['minimaal'], axis=1
+    )
+    
+    data['maximaal'] = data.apply(
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['maximaal'], axis=1
+    )
  
     huidigen = [
     {"type": "21 Buitenwanden", "key_input": "Buitenwanden"},
