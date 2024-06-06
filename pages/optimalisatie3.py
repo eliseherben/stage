@@ -87,7 +87,6 @@ st.selectbox("Wat heeft meer prioriteit binnen dit project?",
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
-data['woonbeleving'] = [0, 0, 0.25, 0.111, 0, 0, 0.029, 0.188, 0, 0, 0.385, 0.35, 0.25, 0, 0.053, 0.111, 0.091, 0.167, 0, 0.364, 0, 0, 0.2, 0, 0]
 data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
 
 data.iloc[-1, 3] = data.iloc[-1, 3] + 1
@@ -292,6 +291,10 @@ else:
     
     data['huidige_waarden'] = 0
     
+    data['huidige waarden'] = data.apply(
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige waarden'], axis=1
+    )
+ 
     huidigen = [
     {"type": "21 Buitenwanden", "key_input": "Buitenwanden"},
     {"type": "22 Binnenwanden", "key_input": "Binnenwanden"},
