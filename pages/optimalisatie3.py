@@ -424,10 +424,7 @@ else:
         data3 = data[data['optimalisatie'] == 'nee']
         data3 = data3[data3['productgroep'] != '48 Na-isolatie']
         data3 = data3.reset_index(drop=True)
-        st.dataframe(data3)
-        st.markdown(data3.iloc[1, 9])
         for i in range(len(lp_variabelen2)):
-            st.markdown(lp_variabelen2[i][1])
             prob += lp_variabelen2[i][1] == data3.iloc[i, 9]
         
         prob += budget == st.session_state.budget
