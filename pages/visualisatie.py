@@ -91,7 +91,7 @@ df_k = df2[['oplossing', 'kosten']]
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
-df_k['code'] = 90
+df_k['code'] = '90'
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 
@@ -144,7 +144,7 @@ df_mk = df2[['oplossing', 'milieukosten']]
 df_mk = df_mk.T
 df_mk.columns = df_mk.iloc[0]
 df_mk = df_mk[1:]
-df_mk['code'] = 60
+df_mk['code'] = '60'
 df_mk
 
 df_mk['aantal'] = df_mk['maximaal'] - df_mk['minimaal']
