@@ -105,6 +105,7 @@ st.dataframe(df_k)
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 fig = px.bar(df_k, x='aantal', y='code', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
+st.plotly_chart(fig)
 
 # Maak de bar plot voor kosten
 fig_kosten = px.bar(df2, x='oplossing', y='kosten', title='Kosten')
