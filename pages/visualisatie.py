@@ -143,7 +143,6 @@ df_mk = df2[['oplossing', 'milieukosten']]
 df_mk = df_mk.T
 df_mk.columns = df_mk.iloc[0]
 df_mk = df_mk[1:]
-df_mk
 
 df_mk['aantal'] = df_mk['maximaal'] - df_mk['minimaal']
 
