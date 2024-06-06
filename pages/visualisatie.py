@@ -91,40 +91,40 @@ df_k = df2[['oplossing', 'kosten']]
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
-df_k['code'] = '90'
+df_k['test'] = '90'
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 
-fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
+fig2 = px.bar(df_k, x='aantal', y='test', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten')
 
 if df_k.columns[0] in geselecteerde_kolommen:
-    fig2.add_trace(px.scatter(df_k, x=df_k.columns[0], y='code', 
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[0], y='test', 
                                  color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 1']).data[0])
 
 if df_k.columns[1] in geselecteerde_kolommen:
-    fig2.add_trace(px.scatter(df_k, x=df_k.columns[1], y='code', 
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[1], y='test', 
                                  color_discrete_sequence=['rgba(0, 158, 224, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 2']).data[0])
 
 if df_k.columns[2] in geselecteerde_kolommen:
-    fig2.add_trace(px.scatter(df_k, x=df_k.columns[2], y='code', 
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[2], y='test', 
                                  color_discrete_sequence=['rgba(241, 142, 47, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 3']).data[0])
 
 if df_k.columns[3] in geselecteerde_kolommen:
-    fig2.add_trace(px.scatter(df_k, x=df_k.columns[3], y='code', 
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[3], y='test', 
                                  color_discrete_sequence=['rgba(151, 191, 13, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 4']).data[0])
 
 if df_k.columns[4] in geselecteerde_kolommen:
-    fig2.add_trace(px.scatter(df_k, x=df_k.columns[4], y='code', 
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[4], y='test', 
                                  color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 5']).data[0])
 
 if df_k.columns[7] in geselecteerde_kolommen:
-    fig2.add_trace(px.scatter(df_k, x=df_k.columns[7], y='code', 
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[7], y='test', 
                                  color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['huidige']).data[0])
 
