@@ -421,6 +421,7 @@ else:
         prob += w_circulair * circulair + w_afwijkingen * afwijkingen
         
         data2 = data[data['optimalisatie'] == 'ja']
+        data2.reset_index(drop=True)
         for i in range(len(lp_variabelen)):
             prob += lp_variabelen[i][1] >= data2.iloc[i, 2]
             prob += lp_variabelen[i][1] <= data2.iloc[i, 3]
@@ -432,6 +433,7 @@ else:
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[a][1]
         
         data3 = data[data['optimalisatie'] == 'nee']
+        data3.reset_index(drop=True)
         st.dataframe(data3)
         st.markdown(data3[1, 8])
         for i in range(len(lp_variabelen2)):
