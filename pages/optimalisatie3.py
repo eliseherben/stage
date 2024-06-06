@@ -306,19 +306,19 @@ else:
     lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige_waarden'], axis=1
     )
     
-    data.loc[data['productgroep'] == , '48 Na-isolatie', 'huidige_waarden'] = 0
+    data.loc[data['productgroep'] == '48 Na-isolatie', 'huidige_waarden'] = 0
     
     data['minimaal'] = data.apply(
     lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['minimaal'], axis=1
     )
     
-    data.loc[data['productgroep'] == , '48 Na-isolatie', 'minimaal'] = 0
+    data.loc[data['productgroep'] == '48 Na-isolatie', 'minimaal'] = 0
     
     data['maximaal'] = data.apply(
     lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['maximaal'], axis=1
     )
 
-    data.loc[data['productgroep'] == , '48 Na-isolatie', 'maximaal'] = 0
+    data.loc[data['productgroep'] == '48 Na-isolatie', 'maximaal'] = 0
      
     huidigen = [
     {"type": "21 Buitenwanden", "key_input": "Buitenwanden"},
