@@ -91,7 +91,7 @@ df_k = df2[['oplossing', 'kosten']]
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
-df_k['code'] = 'minimaal'
+df_k['code'] = 90
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 
@@ -126,7 +126,7 @@ if df_k.columns[4] in geselecteerde_kolommen:
 if df_k.columns[7] in geselecteerde_kolommen:
     fig2.add_trace(px.scatter(df_k, x=df_k.columns[7], y='code', 
                                  color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
-                                 size=[10], symbol = ['huidige waarden']).data[0])
+                                 size=[10], symbol = ['huidige']).data[0])
 
 fig2.update_layout(height=250)
 
