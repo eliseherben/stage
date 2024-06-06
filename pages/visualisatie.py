@@ -26,6 +26,7 @@ st.title("**Visualisatie oplossingen**")
 df = st.session_state.oplossingen
 
 st.markdown(st.session_state.doelwaardes)
+df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
@@ -79,4 +80,8 @@ for productgroep in df['productgroep']:
     fig.update_yaxes(visible=False, showticklabels=False)
 
     st.plotly_chart(fig)
+
+st.dataframe(df2)
+fig = px.bar(df, x="oplossing", y=['kosten', 'milieukosten'])
+st.plotly_chart(fig)
 
