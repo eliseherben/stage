@@ -433,7 +433,7 @@ else:
         
         data3 = data[data['optimalisatie'] == 'nee']
         st.dataframe(data3)
-        st.markdown(data3[1, 9])
+        st.markdown(data3[1, 8])
         for i in range(len(lp_variabelen2)):
             prob += lp_variabelen2[i][1] == data3.iloc[i, 9]
         
