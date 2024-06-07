@@ -87,7 +87,7 @@ st.markdown("**Primair thema**")
 st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
 st.selectbox("Wat heeft meer prioriteit binnen dit project?", 
             ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
-            index = 2, key='_doelstelling', on_change=set_doelstelling)
+            key='_doelstelling', on_change=set_doelstelling)
 
 
 # In[ ]:
