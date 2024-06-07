@@ -442,6 +442,11 @@ st.markdown("**Visualisatie**")
 df = st.session_state.oplossingen
 df.iloc[:, -1:] = df.iloc[:, -1:].astype(float)
 st.write(df.dtypes)
+
+for col in df.columns:
+    unique_values = df[col].unique()
+    st.markdown(f"Unieke waarden in kolom '{col}': {unique_values}")
+    
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
