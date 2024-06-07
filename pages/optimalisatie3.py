@@ -441,7 +441,6 @@ else:
 st.markdown("**Visualisatie**")
 df = st.session_state.oplossingen
 df.iloc[:, -1:] = df.iloc[:, -1:].astype(float)
-st.write(df.dtypes)
     
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
@@ -506,20 +505,12 @@ df_k = df2[['oplossing', 'kosten']]
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
-# df['column_name'] = df['column_name'].astype(float)
-st.dataframe(df_k)
-
-# df_k['minimaal'] = df_k['minimaal'].str.replace(',', '').astype(float)
-# df_k['maximaal'] = df_k['maximaal'].str.replace(',', '').astype(float)
 
 df_k['minimaal'] = pd.to_numeric(df_k['minimaal'])
 df_k['maximaal'] = pd.to_numeric(df_k['maximaal'])
 
-# df_k.iloc[:, :] = df_k.iloc[:, :].astype(float)
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 df_k['code'] = '90'
-st.write(df_k.dtypes)
-st.dataframe(df_k)
 
 fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten')
@@ -556,7 +547,7 @@ if df_k.columns[7] in geselecteerde_kolommen:
 
 fig2.update_layout(height=250)
 
-# fig2.update_yaxes(visible=False, showticklabels=False)
+fig2.update_yaxes(visible=False, showticklabels=False)
 st.plotly_chart(fig2)
 
 
@@ -611,7 +602,7 @@ if df_mk.columns[7] in geselecteerde_kolommen:
 
 fig2.update_layout(height=250)
 
-# fig2.update_yaxes(visible=False, showticklabels=False)
+fig2.update_yaxes(visible=False, showticklabels=False)
 st.plotly_chart(fig2)
 
 
