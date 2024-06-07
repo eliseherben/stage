@@ -516,8 +516,9 @@ df_k['minimaal'] = pd.to_numeric(df['minimaal'])
 df_k['maximaal'] = pd.to_numeric(df['maximaal'])
 
 # df_k.iloc[:, :] = df_k.iloc[:, :].astype(float)
-st.write(df_k.dtypes)
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
+st.write(df_k.dtypes)
+
 
 fig2 = px.bar(df_k, x='aantal', y=['90'], base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten')
