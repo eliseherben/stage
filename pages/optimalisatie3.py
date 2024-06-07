@@ -542,7 +542,7 @@ if df_k.columns[7] in geselecteerde_kolommen:
 
 fig2.update_layout(height=250)
 
-# fig2.update_yaxes(visible=False, showticklabels=False)
+fig2.update_yaxes(visible=False, showticklabels=False)
 st.plotly_chart(fig2)
 
 
