@@ -28,40 +28,14 @@ st.session_state._appartementen = st.session_state.appartementen
 
 def set_appartementen():
     st.session_state.appartementen = st.session_state._appartementen
+    
+if "doelstelling" not in st.session_state:
+    st.session_state.doelstelling = None
+    
+st.session_state._doelstelling = st.session_state.doelstelling
 
-
-# In[ ]:
-
-
-# import streamlit as st
-
-# # Lijst van de namen van de sessiestaten
-# sessie_staten = [
-#     "Buitenwanden", "Binnenwanden", "Vloeren", "Trappen_en_hellingen",
-#     "Daken", "Hoofddraagconstructie", "Buitenkozijnen", "Binnenkozijnen_en_deuren",
-#     "Luiken_en_vensters", "Balustrades_en_leuningen", "Binnenwandafwerkingen",
-#     "Vloerafwerkingen", "Plafonds", "Na_isolatie", "Riolering_en_HWA", "Warm__en_koud_water_installaties",
-#     "Verwarming_en_koeling", "Luchtbehandeling", "Elektrische_installaties", "Vaste_gebouwvoorziening", "Beveiliging", 
-#     "Liften", "Keuken", "Sanitair", "Terreininrichting"
-# ]
-
-# # Loop om sessiestaten te initialiseren
-# for staat_naam in sessie_staten:
-#     if staat_naam not in st.session_state:
-#         st.session_state[staat_naam] = None
-
-#     st.session_state[f"_{staat_naam}"] = st.session_state[staat_naam]
-
-#     def set_{staat_naam}():
-#         st.session_state[staat_naam] = st.session_state[f"_{staat_naam}"]
-
-#     if f"{staat_naam}_on" not in st.session_state:
-#         st.session_state[f"{staat_naam}_on"] = 1
-
-#     st.session_state[f"_{staat_naam}_on"] = st.session_state[f"{staat_naam}_on"]
-
-#     def set_{staat_naam}_on():
-#         st.session_state[f"{staat_naam}_on"] = st.session_state[f"_{staat_naam}_on"]
+def set_doelstelling():
+    st.session_state.doelstelling = st.session_state._doelstelling
 
 
 # productgroepen
@@ -473,4 +447,11 @@ st.page_link("simplex.py", label = 'Homepagina')
 
 if all(st.session_state[key] is not None for key in keys): 
     st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
+    
+
+st.markdown("**Primair thema**")
+st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
+st.selectbox("Wat heeft meer prioriteit binnen dit project?", 
+            ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
+            key='_doelstelling', on_change=set_doelstelling)
 

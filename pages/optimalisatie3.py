@@ -23,14 +23,6 @@ st.page_link("simplex.py", label="Homepagina")
 # In[ ]:
 
 
-if "doelstelling" not in st.session_state:
-    st.session_state.doelstelling = None
-    
-st.session_state._doelstelling = st.session_state.doelstelling
-
-def set_doelstelling():
-    st.session_state.doelstelling = st.session_state._doelstelling
-    
 if 'startwaardes' not in st.session_state:
     st.session_state.startwaardes = None
     
@@ -83,11 +75,7 @@ def set_doelwaardes():
 # In[ ]:
 
 
-st.markdown("**Primair thema**")
-st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
-st.selectbox("Wat heeft meer prioriteit binnen dit project?", 
-            ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
-            key='_doelstelling', on_change=set_doelstelling)
+
 
 
 # In[ ]:
@@ -381,6 +369,9 @@ else:
         gewichten = [(1, 0), (0.9, 0.1), (0.8, 0.2), (0.7, 0.3), (0.6, 0.4)]  # Lijst van wegingen
     if st.session_state.doelstelling == 'Minimale afwijkingen van de huidge aantallen':
         gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6)]  # Lijst van wegingen
+    if st.session_state.doelstelling == 'Geen voorkeur':
+        gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6), (0.5, 0.5), 
+                     (0.6, 0.4), (0.7, 0.3), (0.8, 0.2), (0.9, 0.1), (1, 0)]
 
     oplossingen = {}
     doelwaardes = []
@@ -457,6 +448,9 @@ else:
     doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum()))
     doelwaardes.append(('huidige_waarden', (data['huidige_waarden'] * data['kosten']).sum(), (data['huidige_waarden'] * data['circulair']).sum()))
 
+    kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
+    uitkomsten = data.drop(columns=kolommen_uitsluiten)
+    
     st.dataframe(data)
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
