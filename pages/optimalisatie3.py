@@ -441,7 +441,7 @@ else:
 st.markdown("**Visualisatie**")
 df = st.session_state.oplossingen
 df.iloc[:, -1:] = df.iloc[:, -1:].astype(float)
-st.markdown(df.dtypes)
+st.write(df.dtypes)
     
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
