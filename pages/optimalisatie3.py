@@ -508,7 +508,6 @@ df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
 # df['column_name'] = df['column_name'].astype(float)
 
-df_k['huidige_waarden'] = pd.to_numeric(df['huidige_waarden'])
 df_k['minimaal'] = pd.to_numeric(df['minimaal'])
 df_k['maximaal'] = pd.to_numeric(df['maximaal'])
 
