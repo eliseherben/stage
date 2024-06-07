@@ -507,7 +507,7 @@ df_k = df_k[1:]
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 
-fig2 = px.bar(df_k, x='aantal', y='aantal', base = 'minimaal',
+fig2 = px.bar(df_k, x='aantal', y=['90'], base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten')
 
 if df_k.columns[0] in geselecteerde_kolommen:
