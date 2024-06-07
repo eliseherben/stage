@@ -453,9 +453,8 @@ dict_lists = df_k.to_dict(orient='list')
 
 st.markdown("**Visualisatie**")
 df = st.session_state.oplossingen
-st.markdown(df.info())
+st.write(df.dtypes)
 # df.loc[len(df)] = dict_lists
-st.dataframe(df)
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
@@ -519,7 +518,7 @@ df_k = df2[['oplossing', 'kosten']]
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
-st.markdown(df_k.info())
+st.write(df_k.dtypes)
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 
 fig2 = px.bar(df_k, x='aantal', y=['90'], base = 'minimaal',
