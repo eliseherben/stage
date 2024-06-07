@@ -458,7 +458,7 @@ for productgroep in df['productgroep']:
 
     fig = px.bar(df_productgroep, x='aantal', y='code', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ')
-    st.dataframe(df_productgroep)
+
     if df_productgroep.columns[10] in geselecteerde_kolommen:
         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[10], y='code', 
                                  color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
