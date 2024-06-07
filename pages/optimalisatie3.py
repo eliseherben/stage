@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[ ]:
 
 
 import streamlit as st
@@ -86,12 +86,11 @@ def set_doelwaardes():
 st.markdown("**Primair thema**")
 st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
 st.selectbox("Wat heeft meer prioriteit binnen dit project?", 
-            ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen"), 
-            index = None, 
-            placeholder='Selecteer een thema...', key='_doelstelling', on_change=set_doelstelling)
+            ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
+            index = 2, key='_doelstelling', on_change=set_doelstelling)
 
 
-# In[6]:
+# In[ ]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
@@ -99,7 +98,7 @@ data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 
 data.iloc[-1, 3] = data.iloc[-1, 3] + 1
 
 
-# In[7]:
+# In[ ]:
 
 
 # data
