@@ -429,7 +429,7 @@ else:
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     
-    st.dataframe(uitkomsten)
+    st.dataframe(uitkomsten, hide_index = True)
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
     
