@@ -509,8 +509,12 @@ df_k = df_k[1:]
 # df['column_name'] = df['column_name'].astype(float)
 st.dataframe(df_k)
 
-df_k['minimaal'] = pd.to_numeric(df['minimaal'])
-df_k['maximaal'] = pd.to_numeric(df['maximaal'])
+df_k['minimaal'] = df_k['minimaal'].str.replace(',', '').astype(float)
+df_k['maximaal'] = df_k['maximaal'].str.replace(',', '').astype(float)
+
+
+df_k['minimaal'] = pd.to_numeric(df_k['minimaal'])
+df_k['maximaal'] = pd.to_numeric(df_k['maximaal'])
 
 # df_k.iloc[:, :] = df_k.iloc[:, :].astype(float)
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
