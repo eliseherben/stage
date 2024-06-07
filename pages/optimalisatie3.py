@@ -440,7 +440,8 @@ else:
 
 st.markdown("**Visualisatie**")
 df = st.session_state.oplossingen
-df.loc[len(df)] = {'productgroep': 'kosten', 'huidige_waarden': 909090, 'circulair_1_afwijkingen_0': 80808, 'code': '00'}
+df.loc[len(df)] = {'productgroep': 'kosten', 'huidige_waarden': 809090, 
+                   'circulair_1_afwijkingen_0': 80808, 'code': '00', 'minimaal': 709090, 'maximaal': 909090}
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
