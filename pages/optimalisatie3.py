@@ -509,7 +509,9 @@ df_k = df2[['oplossing', 'kosten']]
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
-df_k.iloc['huidige_waarden'] = pd.to_numeric(df['huidige_waarden'])
+# df['column_name'] = df['column_name'].astype(float)
+
+df_k['huidige_waarden'] = pd.to_numeric(df['huidige_waarden'])
 
 # df_k.iloc[:, :] = df_k.iloc[:, :].astype(float)
 st.write(df_k.dtypes)
