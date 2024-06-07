@@ -515,7 +515,7 @@ df_k['maximaal'] = pd.to_numeric(df['maximaal'])
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 df_k['code'] = '90'
 st.write(df_k.dtypes)
-
+st.markdown(df_k)
 
 fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten')
