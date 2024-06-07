@@ -497,6 +497,44 @@ for productgroep in df['productgroep']:
 # In[ ]:
 
 
+import pandas as pd
+import plotly.express as px
+
+# Voorbeeld DataFrame
+df_k = pd.DataFrame({
+    'code': ['A', 'B', 'C'],
+    'minimaal': [10, 20, 30],
+    'maximaal': [15, 25, 40]
+})
+
+# Bereken de 'aantal' kolom
+df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
+
+# Maak een extra kolom voor de minimale waarden
+df_k['base'] = df_k['minimaal']
+
+# Herstructureer de DataFrame voor gebruik in plotly express
+df_k_melted = df_k.melt(id_vars=['code'], value_vars=['base', 'aantal'], 
+                        var_name='type', value_name='waarde')
+
+# Voeg een kolom toe om de beginwaarden voor de staven te bepalen
+df_k_melted['start'] = df_k_melted.apply(lambda row: row['waarde'] if row['type'] == 'base' else 0, axis=1)
+
+# Maak de figuur
+fig = px.bar(df_k_melted, x='code', y='waarde', color='type',
+             color_discrete_sequence=['rgba(119, 118, 121, 0.1)', 'rgba(119, 118, 121, 0.5)'],
+             title='Kosten')
+
+# Update de layout om de staven correct weer te geven
+fig.update_layout(barmode='stack')
+
+# Toon de grafiek
+st.plotly_chart(fig)
+
+
+# In[ ]:
+
+
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
 df_k = df2[['oplossing', 'kosten']]
@@ -507,7 +545,7 @@ df_k = df_k[1:]
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 
-fig2 = px.bar(df_k, x='aantal', y=['90'], base = 'maximaal',
+fig2 = px.bar(df_k, x='aantal', y=['90'], base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten')
 
 if df_k.columns[0] in geselecteerde_kolommen:
