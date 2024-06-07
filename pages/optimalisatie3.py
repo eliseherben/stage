@@ -206,7 +206,7 @@ else:
 
         st.markdown(
             f"""
-            De productgroepen die het minste kosten per eenheid:
+            Minste kosten per eenheid:
             - {budget['productgroep'].iloc[0]}
             - {budget['productgroep'].iloc[1]}
             - {budget['productgroep'].iloc[2]}
@@ -218,7 +218,7 @@ else:
 
         st.markdown(
             f"""
-            De productgroepen die de laagste milieukosten per eenheid hebben:
+            Laagste milieukosten per eenheid hebben:
             - {circulair['productgroep'].iloc[0]}
             - {circulair['productgroep'].iloc[1]}
             - {circulair['productgroep'].iloc[2]}
@@ -398,8 +398,8 @@ else:
         prob += budget == st.session_state.budget
         
         status = prob.solve()
-        st.markdown(f"Status van de oplossing met weging (circulair: {w_circulair}, afwijkingen: {w_afwijkingen}): {pl.LpStatus[status]}")
-        st.markdown(f"milieukosten: {circulair.value()}")
+#         st.markdown(f"Status van de oplossing met weging (circulair: {w_circulair}, afwijkingen: {w_afwijkingen}): {pl.LpStatus[status]}")
+#         st.markdown(f"milieukosten: {circulair.value()}")
             
         # Sla de oplossing op in een dictionary
 #         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
@@ -429,7 +429,7 @@ else:
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     
-    st.dataframe(data)
+    st.dataframe(uitkomsten)
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
     
