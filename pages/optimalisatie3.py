@@ -512,6 +512,8 @@ df_k = df_k[1:]
 # df['column_name'] = df['column_name'].astype(float)
 
 df_k['huidige_waarden'] = pd.to_numeric(df['huidige_waarden'])
+df_k['minimaal'] = pd.to_numeric(df['minimaal'])
+df_k['maximaal'] = pd.to_numeric(df['maximaal'])
 
 # df_k.iloc[:, :] = df_k.iloc[:, :].astype(float)
 st.write(df_k.dtypes)
