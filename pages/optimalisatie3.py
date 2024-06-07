@@ -439,7 +439,7 @@ else:
 
 
 st.markdown("**Visualisatie**")
-df = st.session_state.oplossinge
+df = st.session_state.oplossingen
 df.iloc[:, -5:] = df.iloc[:, -5:].apply(lambda x: x.str.strip()).astype(float)
 # df.iloc[:, -1:] = df.iloc[:, -1:].astype(float)
 st.write(df.dtypes)
