@@ -440,6 +440,7 @@ else:
 
 st.markdown("**Visualisatie**")
 df = st.session_state.oplossingen
+df.loc[len(df)] = {'productgroep': 'kosten', 'huidige_waarden': 909090, 'circulair_1_afwijkingen_0': 80808}
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
@@ -492,44 +493,6 @@ for productgroep in df['productgroep']:
     fig.update_yaxes(visible=False, showticklabels=False)
 
     st.plotly_chart(fig)
-
-
-# In[ ]:
-
-
-import pandas as pd
-import plotly.express as px
-
-# Voorbeeld DataFrame
-df_k = pd.DataFrame({
-    'code': ['A', 'B', 'C'],
-    'minimaal': [10, 20, 30],
-    'maximaal': [15, 25, 40]
-})
-
-# Bereken de 'aantal' kolom
-df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
-
-# Maak een extra kolom voor de minimale waarden
-df_k['base'] = df_k['minimaal']
-
-# Herstructureer de DataFrame voor gebruik in plotly express
-df_k_melted = df_k.melt(id_vars=['code'], value_vars=['base', 'aantal'], 
-                        var_name='type', value_name='waarde')
-
-# Voeg een kolom toe om de beginwaarden voor de staven te bepalen
-df_k_melted['start'] = df_k_melted.apply(lambda row: row['waarde'] if row['type'] == 'base' else 0, axis=1)
-
-# Maak de figuur
-fig = px.bar(df_k_melted, x='code', y='waarde', color='type',
-             color_discrete_sequence=['rgba(119, 118, 121, 0.1)', 'rgba(119, 118, 121, 0.5)'],
-             title='Kosten')
-
-# Update de layout om de staven correct weer te geven
-fig.update_layout(barmode='stack')
-
-# Toon de grafiek
-st.plotly_chart(fig)
 
 
 # In[ ]:
