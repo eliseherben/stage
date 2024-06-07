@@ -218,7 +218,7 @@ else:
 
         st.markdown(
             f"""
-            Laagste milieukosten per eenheid hebben:
+            Laagste milieukosten per eenheid:
             - {circulair['productgroep'].iloc[0]}
             - {circulair['productgroep'].iloc[1]}
             - {circulair['productgroep'].iloc[2]}
