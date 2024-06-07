@@ -75,12 +75,6 @@ def set_doelwaardes():
 # In[ ]:
 
 
-
-
-
-# In[ ]:
-
-
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
 data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
 data.iloc[-1, 3] = data.iloc[-1, 3] + 1
@@ -145,26 +139,7 @@ st.session_state.maximaal = maximaal_list
 # In[ ]:
 
 
-# filtered = data.dropna(subset=['minimaal', 'maximaal'])
-
-# productgroepen = filtered['productgroep'].unique()
-# selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
-# filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
-
-# fig = px.bar(filtered_data, x='kosten', y='constant', 
-#                  color_discrete_sequence=['rgba(58, 71, 80, 0.1)'])
-    
-# fig.add_trace(px.scatter(filtered_data, x='kosten', y='constant', color='productgroep'))
-
-# fig.update_yaxes(visible=False)
-
-
-# st.plotly_chart(fig)
-
-
-# In[ ]:
-
-
+st.markdown("**Verdeling productgroepen**")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
 productgroepen = filtered['productgroep'].unique()
@@ -225,27 +200,30 @@ st.plotly_chart(fig_circulair)
 if st.session_state.projectbestand is None:
     st.markdown("upload een bestand")
 else: 
-    budget = data.sort_values(by='kosten')
-    
-    st.markdown(
-        f"""
-        De productgroepen die het minste kosten per eenheid:
-        - {budget['productgroep'].iloc[0]}
-        - {budget['productgroep'].iloc[1]}
-        - {budget['productgroep'].iloc[2]}
-        """
-        )
-    
-    circulair = data.sort_values(by='circulair')
+    col1, col2 = st.columns(2)
+    with col1:
+        budget = data.sort_values(by='kosten')
 
-    st.markdown(
-        f"""
-        De productgroepen die de laagste mki per eenheid hebben:
-        - {circulair['productgroep'].iloc[0]}
-        - {circulair['productgroep'].iloc[1]}
-        - {circulair['productgroep'].iloc[2]}
-        """
-        )
+        st.markdown(
+            f"""
+            De productgroepen die het minste kosten per eenheid:
+            - {budget['productgroep'].iloc[0]}
+            - {budget['productgroep'].iloc[1]}
+            - {budget['productgroep'].iloc[2]}
+            """
+            )
+    
+    with col2:
+        circulair = data.sort_values(by='circulair')
+
+        st.markdown(
+            f"""
+            De productgroepen die de laagste milieukosten per eenheid hebben:
+            - {circulair['productgroep'].iloc[0]}
+            - {circulair['productgroep'].iloc[1]}
+            - {circulair['productgroep'].iloc[2]}
+            """
+            )
 
 
 # **minimale afwijking**
@@ -460,35 +438,170 @@ else:
 # In[ ]:
 
 
+st.markdown("**Visualisatie**")
+df = st.session_state.oplossingen
+kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
+                          'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
+kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
+geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
 
-
-
-# In[ ]:
-
-
-st.page_link("pages/advies.py", label="Naar advies")
-st.page_link("pages/visualisatie.py", label="Visualisatie oplossingen")
-
-
-# maak er 1 dataframe van om te kunnen vergelijken
-
-# In[ ]:
-
-
-# if st.session_state.projectbestand is None:
-#     st.markdown("upload een bestand")
-# else: 
-#     if st.session_state.doelstelling is not None:
-#         st.markdown("**In dit project, is het optimaal om het aandeel van de productgroepen als volgt in te delen:**")
-
-#         df = pd.merge(df, data[['productgroep', 'eenheid']], on='productgroep')
+for productgroep in df['productgroep']:
+    # Selecteer de data voor de huidige productgroep
+    df_productgroep = df[df['productgroep'] == productgroep]
         
-#         for index, row in df.iterrows():
-#             st.markdown(f"- Binnen de productgroep {row['productgroep']} moet er {row['waarde']} {row['eenheid']} besteed worden")
+    # Selecteer alle kolommen behalve de uitgesloten kolommen
+    df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
+
+    df_productgroep['aantal'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
+    
+    fig = px.bar(df_productgroep, x='aantal', y='code', base = 'minimaal', 
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ')
+    
+    if df_productgroep.columns[11] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[11], y='code', 
+                                 color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 1']).data[0])
+    
+    if df_productgroep.columns[12] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[12], y='code', 
+                             color_discrete_sequence=['rgba(0, 158, 224, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 2']).data[0])
+    
+    if df_productgroep.columns[13] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[13], y='code', 
+                             color_discrete_sequence=['rgba(241, 142, 47, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 3']).data[0])
+    
+    if df_productgroep.columns[14] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[14], y='code', 
+                             color_discrete_sequence=['rgba(151, 191, 13, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 4']).data[0])
+   
+    if df_productgroep.columns[15] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[15], y='code', 
+                             color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 5']).data[0])
+        
+    if df_productgroep.columns[9] in geselecteerde_kolommen:
+        fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
+                             color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
+                             size=[10], symbol = ['huidig']).data[0])
+        
+    fig.update_layout(height=250)
+
+    fig.update_yaxes(visible=False, showticklabels=False)
+
+    st.plotly_chart(fig)
+
 
 
 # In[ ]:
 
 
+df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
+df_k = df2[['oplossing', 'kosten']]
+
+df_k = df_k.T
+df_k.columns = df_k.iloc[0]
+df_k = df_k[1:]
+
+df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
+
+fig2 = px.bar(df_k, x='aantal', y=[''], base = 'minimaal',
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten')
+
+if df_k.columns[0] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[0], y=[''], 
+                                 color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 1']).data[0])
+
+if df_k.columns[1] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[1], y=[''], 
+                                 color_discrete_sequence=['rgba(0, 158, 224, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 2']).data[0])
+
+if df_k.columns[2] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[2], y=[''], 
+                                 color_discrete_sequence=['rgba(241, 142, 47, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 3']).data[0])
+
+if df_k.columns[3] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[3], y=[''], 
+                                 color_discrete_sequence=['rgba(151, 191, 13, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 4']).data[0])
+
+if df_k.columns[4] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[4], y=[''], 
+                                 color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 5']).data[0])
+
+if df_k.columns[7] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[7], y=[''], 
+                                 color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['huidige']).data[0])
+
+fig2.update_layout(height=250)
+
+# fig2.update_yaxes(visible=False, showticklabels=False)
+st.plotly_chart(fig2)
+
+
+# In[ ]:
+
+
+df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
+
+df_mk = df2[['oplossing', 'milieukosten']]
+
+df_mk = df_mk.T
+df_mk.columns = df_mk.iloc[0]
+df_mk = df_mk[1:]
+
+df_mk['aantal'] = df_mk['maximaal'] - df_mk['minimaal']
+
+fig2 = px.bar(df_mk, x='aantal', y=['code'], base = 'minimaal',
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='milieukosten')
+
+if df_mk.columns[0] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_mk, x=df_mk.columns[0], y=['code'], 
+                                 color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 1']).data[0])
+
+if df_mk.columns[1] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_mk, x=df_mk.columns[1], y=['code'], 
+                                 color_discrete_sequence=['rgba(0, 158, 224, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 2']).data[0])
+
+if df_mk.columns[2] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_mk, x=df_mk.columns[2], y=['code'], 
+                                 color_discrete_sequence=['rgba(241, 142, 47, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 3']).data[0])
+
+if df_mk.columns[3] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_mk, x=df_mk.columns[3], y=['code'], 
+                                 color_discrete_sequence=['rgba(151, 191, 13, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 4']).data[0])
+
+if df_mk.columns[4] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_mk, x=df_mk.columns[4], y=['code'], 
+                                 color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 5']).data[0])
+
+if df_mk.columns[7] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_mk, x=df_mk.columns[7], y=['code'], 
+                                 color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['huidige']).data[0])
+
+fig2.update_layout(height=250)
+
+# fig2.update_yaxes(visible=False, showticklabels=False)
+st.plotly_chart(fig2)
+
+
+# In[ ]:
+
+
+# st.page_link("pages/advies.py", label="Naar advies")
+# st.page_link("pages/visualisatie.py", label="Visualisatie oplossingen")
 
