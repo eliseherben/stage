@@ -438,10 +438,15 @@ st.markdown("**Aantal appartementen**")
 st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', 
                 on_change=set_appartementen)
 
+st.markdown("**Primair thema**")
+# st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
+st.selectbox("Wat heeft meer prioriteit binnen dit project?", 
+            ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
+            key='_doelstelling', on_change=set_doelstelling)
 
 keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Daken', 'Hoofddraagconstructie', 'Buitenkozijnen', 
  'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
- 'Plafonds', 'Vaste_gebouwvoorziening', 'Keuken', 'Terreininrichting', 'budget', 'appartementen']
+ 'Plafonds', 'Vaste_gebouwvoorziening', 'Keuken', 'Terreininrichting', 'budget', 'appartementen', 'doelstelling']
 
 st.page_link("simplex.py", label = 'Homepagina')
 
@@ -449,9 +454,5 @@ if all(st.session_state[key] is not None for key in keys):
     st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
     
 
-st.markdown("**Primair thema**")
-st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
-st.selectbox("Wat heeft meer prioriteit binnen dit project?", 
-            ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
-            key='_doelstelling', on_change=set_doelstelling)
+
 
