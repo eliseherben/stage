@@ -512,7 +512,6 @@ st.dataframe(df_k)
 # df_k['minimaal'] = df_k['minimaal'].str.replace(',', '').astype(float)
 # df_k['maximaal'] = df_k['maximaal'].str.replace(',', '').astype(float)
 
-
 df_k['minimaal'] = pd.to_numeric(df_k['minimaal'])
 df_k['maximaal'] = pd.to_numeric(df_k['maximaal'])
 
@@ -571,6 +570,9 @@ df_mk = df2[['oplossing', 'milieukosten']]
 df_mk = df_mk.T
 df_mk.columns = df_mk.iloc[0]
 df_mk = df_mk[1:]
+
+df_mk['minimaal'] = pd.to_numeric(df_mk['minimaal'])
+df_mk['maximaal'] = pd.to_numeric(df_mk['maximaal'])
 
 df_mk['aantal'] = df_mk['maximaal'] - df_mk['minimaal']
 
