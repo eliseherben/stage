@@ -513,6 +513,7 @@ df_k['maximaal'] = pd.to_numeric(df['maximaal'])
 
 # df_k.iloc[:, :] = df_k.iloc[:, :].astype(float)
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
+df_k['code'] = '90'
 st.write(df_k.dtypes)
 
 
