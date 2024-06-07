@@ -509,7 +509,7 @@ df_k = df2[['oplossing', 'kosten']]
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
-df_k.iloc[:, -5:] = df_k.iloc[:, -5:].astype(float)
+df_k.iloc[:, :] = df_k.iloc[:, :].astype(float)
 st.write(df_k.dtypes)
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 
