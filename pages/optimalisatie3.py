@@ -453,7 +453,7 @@ dict_lists = df_k.to_dict(orient='list')
 
 st.markdown("**Visualisatie**")
 df = st.session_state.oplossingen
-df.loc[len(df)] = dict_lists
+# df.loc[len(df)] = dict_lists
 st.dataframe(df)
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
