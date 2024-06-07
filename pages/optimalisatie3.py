@@ -438,10 +438,23 @@ else:
 # In[ ]:
 
 
+df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
+df_k = df2[['oplossing', 'kosten']]
+
+df_k = df_k.T
+df_k.columns = df_k.iloc[0]
+df_k = df_k[1:]
+dict_lists = df_k.to_dict(orient='list')
+
+
+
+# In[ ]:
+
+
 st.markdown("**Visualisatie**")
 df = st.session_state.oplossingen
-df.loc[len(df)] = {'productgroep': 'kosten', 'huidige_waarden': 809090, 
-                   'circulair_1_afwijkingen_0': 80808, 'code': '00', 'minimaal': 709090, 'maximaal': 909090}
+df.loc[len(df)] = dict_lists
+st.dataframe(df)
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
@@ -500,7 +513,6 @@ for productgroep in df['productgroep']:
 
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
-
 df_k = df2[['oplossing', 'kosten']]
 
 df_k = df_k.T
