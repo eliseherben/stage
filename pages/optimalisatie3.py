@@ -438,23 +438,10 @@ else:
 # In[ ]:
 
 
-df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
-df_k = df2[['oplossing', 'kosten']]
-
-df_k = df_k.T
-df_k.columns = df_k.iloc[0]
-df_k = df_k[1:]
-dict_lists = df_k.to_dict(orient='list')
-
-
-
-# In[ ]:
-
-
 st.markdown("**Visualisatie**")
 df = st.session_state.oplossingen
+df.iloc[:, -5:] = df.iloc[:, -5:].astype(float)
 st.write(df.dtypes)
-# df.loc[len(df)] = dict_lists
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
