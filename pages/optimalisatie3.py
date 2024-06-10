@@ -164,6 +164,11 @@ st.dataframe(result)
 fig_kosten = px.bar(result, x='aantal', y = 'code', base = 'minimaal', color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 # fig_kosten.update_traces(marker_size=20)
 
+if result.columns[3] in selected_productgroepen:
+    fig_kosten.add_trace(px.scatter(result, x=result.columns[3], y='code', 
+                                 color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 1']).data[0])
+
 fig_kosten.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
