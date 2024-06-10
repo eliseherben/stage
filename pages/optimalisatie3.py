@@ -144,8 +144,6 @@ st.session_state.maximaal = maximaal_list
 st.markdown("**Verdeling productgroepen**")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
-st.dataframe(filtered)
-
 productgroepen = filtered['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
 filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
