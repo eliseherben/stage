@@ -471,12 +471,7 @@ data.iloc[22, -1] = st.session_state.Keuken
 data.iloc[23, -1] = st.session_state.appartementen
 data.iloc[24, -1] = st.session_state.Terreininrichting
 
-# Stel de locale in op een Nederlandse locale voor juiste weergave van valuta
-locale.setlocale(locale.LC_ALL, 'nl_NL.UTF-8')
-totaal_bedrag = (data['kosten'] * data['aantal']).sum()
-formatted_bedrag = locale.currency(totaal_bedrag, grouping=True)
-
-st.markdown(f"Totale kosten gebasseerd op huidige hoeveelheden: {formatted_bedrag}")
+st.markdown(f"Totale kosten gebasseerd op huidige hoeveelheden: €{((data['kosten'] * data['aantal']).sum()):.2f}")
 
 data['minimaal'] = data['minimaal'].fillna(1)
 data['maximaal'] = data['maximaal'].fillna(1)
