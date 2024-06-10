@@ -141,7 +141,6 @@ st.session_state.maximaal = maximaal_list
 # In[ ]:
 
 
-st.markdown("#")
 st.markdown("##### Verdeling productgroepen")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
@@ -506,6 +505,7 @@ else:
 # In[ ]:
 
 
+st.markdown('#')
 st.markdown("##### Visualisaties")
 df = st.session_state.oplossingen
     
