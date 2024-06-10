@@ -582,6 +582,11 @@ for productgroep in df['productgroep']:
             fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[19], y='code', 
                                  color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 10']).data[0])
+            
+        if df_productgroep.columns[20] in geselecteerde_kolommen:
+            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[20], y='code', 
+                                 color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
+                                 size=[10], symbol = ['oplossing 11']).data[0])
 
     fig.update_layout(height=250)
 
