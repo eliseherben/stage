@@ -470,14 +470,15 @@ data.iloc[22, -1] = st.session_state.Keuken
 data.iloc[23, -1] = st.session_state.appartementen
 data.iloc[24, -1] = st.session_state.Terreininrichting
 
+st.markdown((data['kosten'] * data['aantal']).sum())
 data['minimaal'] = data['minimaal'].fillna(1)
 data['maximaal'] = data['maximaal'].fillna(1)
 st.markdown((data['minimaal'] * st.session_state.appartementen * data['kosten']).sum())
 st.markdown((data['maximaal'] * st.session_state.appartementen * data['kosten']).sum())
 
 st.number_input("Vul het budget in voor het huidige project *", 
-                min_value = (data['minimaal'] if data['minimaal'] is not None else 1 * st.session_state.appartementen * data['kosten']).sum(), 
-                max_value = (data['maximaal'] if data['maximaal'] is not None else 1 * st.session_state.appartementen * data['kosten']).sum(), 
+                min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum(), 
+                max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(), 
                 key='_budget', on_change=set_budget)
 
 st.markdown("**Primair thema**")
