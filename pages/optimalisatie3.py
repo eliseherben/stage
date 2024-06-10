@@ -145,7 +145,12 @@ st.markdown("**Verdeling productgroepen**")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
 st.dataframe(filtered)
-result = filtered[['productgroep', 'kosten', 'circulair']]
+
+productgroepen = filtered['productgroep'].unique()
+selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
+filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
+
+result = filtered_data[['productgroep', 'kosten', 'circulair']]
 result = result.transpose()
 result.columns = result.iloc[0]
 result = result[1:]
@@ -155,13 +160,10 @@ code = ['01', '02']
 result.insert(16, 'minimaal', minimaal)
 result.insert(17, 'maximaal', maximaal)
 result.insert(18, 'code', code)
+result['aantal'] = result['maximaal'] - result['minimaal']
 st.dataframe(result)
 
-productgroepen = filtered['productgroep'].unique()
-selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
-filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
-
-fig_kosten = px.scatter(filtered_data, x='kosten', y = ['constant'], color='productgroep')
+fig_kosten = px.scatter(result, x='aantal', y = ['constant'], color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 fig_kosten.update_traces(marker_size=20)
 
 fig_kosten.update_yaxes(visible=False)
