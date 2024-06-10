@@ -150,6 +150,8 @@ result = filtered[['productgroep', 'code', 'kosten', 'circulair']]
 result = result.transpose()
 result.columns = result.iloc[0]
 result = result[1:]
+minimaal = [0, min(filtered['kosten']), max(filtered['kosten'])]
+st.markdown(minimaal)
 st.dataframe(result)
 
 productgroepen = filtered['productgroep'].unique()
