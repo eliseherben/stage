@@ -531,7 +531,8 @@ for productgroep in df['productgroep']:
     if df_productgroep.columns[9] in geselecteerde_kolommen:
         fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
                              color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
-                             size=[10], symbol = ['huidig'], hover_data = {df_productgroep.columns[9]: 'Waarde'}).data[0])
+                             size=[10], symbol = ['huidig'], 
+                            hover_data = {'code': False, 'symbol': False, 'size': False}).data[0])
     
     if df_productgroep.columns[10] in geselecteerde_kolommen:
         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[10], y='code', 
