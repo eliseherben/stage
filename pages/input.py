@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[2]:
 
 
 import streamlit as st
@@ -428,16 +428,24 @@ for element in elements:
             st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} **niet** mogelijk")
 
 
+# In[3]:
+
+
+data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
+sum()
+data
+
+
 # In[ ]:
 
-
-st.markdown("**Budget**")
-st.number_input("Vul het budget in voor het huidige project *", value=None, placeholder="Typ een bedrag", 
-                key='_budget', on_change=set_budget)
 
 st.markdown("**Aantal appartementen**")
 st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", value=0, key='_appartementen', 
                 on_change=set_appartementen)
+
+st.markdown("**Budget**")
+st.number_input("Vul het budget in voor het huidige project *", value=None, placeholder="Typ een bedrag", 
+                key='_budget', on_change=set_budget, format = "%d")
 
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
