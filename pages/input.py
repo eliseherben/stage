@@ -470,11 +470,12 @@ data.iloc[22, -1] = st.session_state.Keuken
 data.iloc[23, -1] = st.session_state.appartementen
 data.iloc[24, -1] = st.session_state.Terreininrichting
 
-st.markdown((data['kosten'] * data['aantal']).sum())
+st.markdown(f"Totale kosten gebasseerd op huidige hoeveelheden: {(data['kosten'] * data['aantal']).sum()}")
+
 data['minimaal'] = data['minimaal'].fillna(1)
 data['maximaal'] = data['maximaal'].fillna(1)
-st.markdown((data['minimaal'] * st.session_state.appartementen * data['kosten']).sum())
-st.markdown((data['maximaal'] * st.session_state.appartementen * data['kosten']).sum())
+# st.markdown((data['minimaal'] * st.session_state.appartementen * data['kosten']).sum())
+# st.markdown((data['maximaal'] * st.session_state.appartementen * data['kosten']).sum())
 
 st.number_input("Vul het budget in voor het huidige project *", 
                 min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum(), 
