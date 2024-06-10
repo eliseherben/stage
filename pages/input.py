@@ -445,6 +445,31 @@ st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", 
 st.markdown("**Budget**")
 data['aantal'] = None
 data.iloc[0, -1] = st.session_state.Buitenwanden
+data.iloc[1, -1] = st.session_state.Binnenwanden
+data.iloc[2, -1] = st.session_state.Vloeren
+data.iloc[3, -1] = st.session_state.Trappen_en_hellingen
+data.iloc[4, -1] = st.session_state.Daken
+data.iloc[5, -1] = st.session_state.Hoofddraagconstructie
+data.iloc[6, -1] = st.session_state.Buitenkozijnen
+data.iloc[7, -1] = st.session_state.Binnenkozijnen_en__deuren
+data.iloc[8, -1] = st.session_state.Luiken_en_vensters
+data.iloc[9, -1] = st.session_state.Balustrades_en_leuningen
+data.iloc[10, -1] = st.session_state.Binnenwandafwerkingen
+data.iloc[11, -1] = st.session_state.Vloerafwerkingen
+data.iloc[12, -1] = st.session_state.Plafonds
+data.iloc[13, -1] = st.session_state.appartementen
+data.iloc[14, -1] = st.session_state.appartementen
+data.iloc[15, -1] = st.session_state.appartementen
+data.iloc[16, -1] = st.session_state.appartementen
+data.iloc[17, -1] = st.session_state.appartementen
+data.iloc[18, -1] = st.session_state.appartementen
+data.iloc[19, -1] = st.session_state.Vaste_gebouwvoorziening
+data.iloc[20, -1] = st.session_state.appartementen
+data.iloc[21, -1] = st.session_state.appartementen
+data.iloc[22, -1] = st.session_state.Keuken
+data.iloc[22, -1] = st.session_state.appartementen
+data.iloc[24, -1] = st.session_state.Terreininrichting
+
 data
 
 st.number_input("Vul het budget in voor het huidige project *", value=None, placeholder="Typ een bedrag", 
