@@ -532,7 +532,7 @@ for productgroep in df['productgroep']:
         fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
                              color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['huidig'], 
-                            hover_data = {'code': False}).data[0])
+                            hover_data = {'code': True}).data[0])
     
     if df_productgroep.columns[10] in geselecteerde_kolommen:
         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[10], y='code', 
@@ -592,6 +592,8 @@ for productgroep in df['productgroep']:
 
     fig.update_layout(height=250)
 
+    fig.update_traces(hovertemplate='<b>Code:</b> %{y}<br>')
+    
     fig.update_yaxes(visible=False, showticklabels=False)
 
     st.plotly_chart(fig)
