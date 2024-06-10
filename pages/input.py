@@ -467,10 +467,10 @@ data.iloc[19, -1] = st.session_state.Vaste_gebouwvoorziening
 data.iloc[20, -1] = st.session_state.appartementen
 data.iloc[21, -1] = st.session_state.appartementen
 data.iloc[22, -1] = st.session_state.Keuken
-data.iloc[22, -1] = st.session_state.appartementen
+data.iloc[23, -1] = st.session_state.appartementen
 data.iloc[24, -1] = st.session_state.Terreininrichting
 
-data
+st.markdown(sum(data['kosten'] * data['aantal']))
 
 st.number_input("Vul het budget in voor het huidige project *", value=None, placeholder="Typ een bedrag", 
                 key='_budget', on_change=set_budget)
