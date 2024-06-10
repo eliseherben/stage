@@ -235,7 +235,7 @@ for i in range(len(selected_productgroepen)):
     if result_milieukosten.columns[i+3] in selected_productgroepen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        fig_circulair.add_trace(px.scatter(result_milieukosten, x=result.columns[i+3], y='code', 
+        fig_circulair.add_trace(px.scatter(result_milieukosten, x=result_milieukosten.columns[i+3], y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10], symbol = [result_milieukosten.columns[i+3]]).data[0])
 
