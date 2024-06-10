@@ -161,12 +161,34 @@ result.insert(2, 'code', code)
 result['aantal'] = result['maximaal'] - result['minimaal']
 st.dataframe(result)
 
+# Voorbeeld dictionary met kolommen en hun bijbehorende kleuren
+kleuren_dict = {
+    '21 Buitenwanden': 'rgba(241, 142, 47, 1.0)',
+    '22 Binnenwanden': 'rgba(255, 211, 0, 1.0)',
+    '23 Vloeren': 'rgba(0, 158, 224, 1.0)',
+    '24 Trappen en hellingen': 'rgba(151, 191, 13, 1.0)',
+    '27 Daken': 'rgba(147, 16, 126, 1.0)',
+    '28 Hoofddraagconstructie': 'rgba(119, 118, 121, 1.0)',
+    '31 Buitenkozijnen, -ramen, -deuren en -puien': 'rgba(241, 142, 47, 2.0)',
+    '32 Binnenkozijnen en -deuren': 'rgba(255, 211, 0, 2.0)',
+    '33 Luiken en vensters': 'rgba(0, 158, 224, 2.0)',
+    '34 Balustrades en leuningen': 'rgba(151, 191, 13, 2.0)',
+    '42 Binnenwandafwerkingen': 'rgba(147, 16, 126, 2.0)',
+    '43 Vloerafwerkingen': 'rgba(119, 118, 121, 2.0)',
+    '45 Plafonds': 'rgba(212, 0, 60, 1.0)',
+    '64 Vaste gebouwvoorziening': 'rgba(212, 0, 60, 2.0)',
+    '73 Keuken': 'rgba(241, 142, 47, 3.0)',
+    '90 Terreininrichting': 'rgba(255, 211, 0, 3.0)',
+    # Voeg hier meer kolommen en kleuren toe
+}
+
 fig_kosten = px.bar(result, x='aantal', y = 'code', base = 'minimaal', color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 # fig_kosten.update_traces(marker_size=20)
 for i in range(len(selected_productgroepen)):
     if result.columns[i+3] in selected_productgroepen:
+        kleur = kleuren_dict.get(kolomnaam, 'rgba(0, 0, 0, 1.0)')  # Standaard kleur is zwart als de kolom niet in de dictionary staat
         fig_kosten.add_trace(px.scatter(result, x=result.columns[i+3], y='code', 
-                                     color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
+                                     color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10], symbol = [result.columns[i+3]]).data[0])
 
 fig_kosten.update_yaxes(visible=False)
