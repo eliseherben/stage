@@ -471,6 +471,8 @@ data.iloc[23, -1] = st.session_state.appartementen
 data.iloc[24, -1] = st.session_state.Terreininrichting
 
 st.markdown((data['kosten'] * data['aantal']).sum())
+minimaal = [(data.loc[i, 'minimaal'] if data.loc[i, 'minimaal'] is not None else 1) for i in range(len(data))]
+st.markdown(minimaal)
 st.markdown(((data['minimaal'] if data['minimaal'] is not None else 1) * st.session_state.appartementen * data['kosten']).sum())
 st.markdown(((data['maximaal'] if data['maximaal'] is not None else 1) * st.session_state.appartementen * data['kosten']).sum())
 
