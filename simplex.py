@@ -80,7 +80,7 @@ st.title("Eigen Haard")
 st.session_state.file = None 
 st.markdown("**Afdeling**")
 st.selectbox(
-    "Welke afdeling?*", 
+    "Welke afdeling? *", 
     ['Nieuwbouw ontwikkeling', 'Nieuwbouw realisatie', 'Renovatie ontwikkeling', 'Renovatie realisatie', 'Planmatig onderhoud ontwikkeling', 
      'Planmatig onderhoud realisatie', 'Mutatie onderhoud', 'Dagelijks onderhoud'],
     index=None,
@@ -96,7 +96,7 @@ st.selectbox(
 )
 
 st.markdown("**Projectbestand**")
-uploaded_file = st.file_uploader("Choose a file*", help='Upload hier het projectbestand, op basis van dit bestand wordt de optimalisatie uitgevoerd. ')
+uploaded_file = st.file_uploader("Kies een bestand *", help='Upload hier het projectbestand, op basis van dit bestand wordt de optimalisatie uitgevoerd. ')
 st.session_state.projectbestand = uploaded_file
 
 if uploaded_file is not None:
