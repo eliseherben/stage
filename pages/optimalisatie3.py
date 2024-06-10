@@ -136,11 +136,15 @@ st.session_state.minimaal = minimaal_list
 st.session_state.maximaal = maximaal_list
 
 
+# hieronder kijken of het mogelijk is om een grijs vlak toe te voegen, als je dus meerdere productgroepen in een multiselect hebt etc
+
 # In[ ]:
 
 
 st.markdown("**Verdeling productgroepen**")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
+
+st.dataframe(filtered)
 
 productgroepen = filtered['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
