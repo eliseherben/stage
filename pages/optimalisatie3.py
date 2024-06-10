@@ -161,7 +161,7 @@ result.insert(2, 'code', code)
 result['aantal'] = result['maximaal'] - result['minimaal']
 st.dataframe(result)
 
-fig_kosten = px.scatter(result, x='aantal', y = ['constant'], color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
+fig_kosten = px.bar(result, x='aantal', y = 'code', base = 'minimaal', color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 fig_kosten.update_traces(marker_size=20)
 
 fig_kosten.update_yaxes(visible=False)
