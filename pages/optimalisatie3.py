@@ -161,6 +161,8 @@ result.insert(0, 'minimaal', minimaal)
 result.insert(1, 'maximaal', maximaal)
 result.insert(2, 'code', code)
 result['aantal'] = result['maximaal'] - result['minimaal']
+df_kosten = result.iloc[0, :]
+st.dataframe(df_kosten)
 st.dataframe(result)
 
 fig_kosten = px.scatter(result, x='aantal', y = ['constant'], color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
