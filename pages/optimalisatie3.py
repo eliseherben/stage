@@ -152,8 +152,8 @@ result.columns = result.iloc[0]
 result = result[1:]
 minimaal = [0, min(filtered['kosten']), min(filtered['circulair'])]
 maximaal = [0, max(filtered['kosten']), max(filtered['circulair'])]
-result.insert(15, 'minimaal', minimaal)
-result.insert(15, 'maximaal', maximaal)
+result.insert(16, 'minimaal', minimaal)
+result.insert(17, 'maximaal', maximaal)
 st.dataframe(result)
 
 productgroepen = filtered['productgroep'].unique()
