@@ -150,20 +150,15 @@ productgroepen = filtered['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
 filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
-result = filtered_data[['productgroep', 'kosten', 'circulair']]
+result = filtered_data[['productgroep', 'kosten']]
 result = result.transpose()
 result.columns = result.iloc[0]
 result = result[1:]
-minimaal = [min(filtered['kosten']), min(filtered['circulair'])]
-maximaal = [max(filtered['kosten']), max(filtered['circulair'])]
-code = ['01', '02']
-result.insert(0, 'minimaal', minimaal)
-result.insert(1, 'maximaal', maximaal)
+code = ['01']
+result.insert(0, 'minimaal', min(filtered['kosten']))
+result.insert(1, 'maximaal', max(filtered['kosten']))
 result.insert(2, 'code', code)
 result['aantal'] = result['maximaal'] - result['minimaal']
-df_kosten = result.iloc[0]
-df_kosten = df_kosten.transpose()
-st.dataframe(df_kosten)
 st.dataframe(result)
 
 fig_kosten = px.scatter(result, x='aantal', y = ['constant'], color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
