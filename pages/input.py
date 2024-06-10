@@ -432,7 +432,7 @@ for element in elements:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
-data
+# data
 
 
 # In[ ]:
@@ -443,8 +443,12 @@ st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", 
                 on_change=set_appartementen)
 
 st.markdown("**Budget**")
+data['aantal'] = None
+data.iloc[0, -1] = st.session.state.Buitenwanden
+data
+
 st.number_input("Vul het budget in voor het huidige project *", value=None, placeholder="Typ een bedrag", 
-                key='_budget', on_change=set_budget, format = "%u")
+                key='_budget', on_change=set_budget)
 
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
