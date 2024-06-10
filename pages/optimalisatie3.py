@@ -699,7 +699,8 @@ df_mk['aantal'] = df_mk['maximaal'] - df_mk['minimaal']
 df_mk['code'] = '00'
 
 fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
-                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='milieukosten')
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='milieukosten', 
+              hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
 if df_mk.columns[-3] in geselecteerde_kolommen:
     fig2.add_trace(px.scatter(df_mk, x='huidige_waarden', y='code', 
