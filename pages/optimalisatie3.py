@@ -157,9 +157,9 @@ result = result[1:]
 minimaal = [min(filtered['kosten']), min(filtered['circulair'])]
 maximaal = [max(filtered['kosten']), max(filtered['circulair'])]
 code = ['01', '02']
-result.insert(16, 'minimaal', minimaal)
-result.insert(17, 'maximaal', maximaal)
-result.insert(18, 'code', code)
+result.insert(0, 'minimaal', minimaal)
+result.insert(1, 'maximaal', maximaal)
+result.insert(2, 'code', code)
 result['aantal'] = result['maximaal'] - result['minimaal']
 st.dataframe(result)
 
