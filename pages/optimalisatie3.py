@@ -141,7 +141,7 @@ st.session_state.maximaal = maximaal_list
 # In[ ]:
 
 
-st.markdown("#### Verdeling productgroepen")
+st.markdown("##### Verdeling productgroepen")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
 productgroepen = filtered['productgroep'].unique()
@@ -203,56 +203,59 @@ st.plotly_chart(fig_kosten)
 # In[ ]:
 
 
-result_milieukosten = filtered_data[['productgroep', 'circulair']]
-result_milieukosten = result_milieukosten.transpose()
-result_milieukosten.columns = result_milieukosten.iloc[0]
-result_milieukosten = result_milieukosten[1:]
-result_milieukosten.insert(0, 'minimaal', min(filtered['circulair']))
-result_milieukosten.insert(1, 'maximaal', max(filtered['circulair']))
-result_milieukosten.insert(2, 'code', '02')
-result_milieukosten['Milieukosten per eenheid'] = result_milieukosten['maximaal'] - result_milieukosten['minimaal']
+if st.session_state.projectbestand is None:
+    st.markdown("Upload een bestand")
+else:
+    result_milieukosten = filtered_data[['productgroep', 'circulair']]
+    result_milieukosten = result_milieukosten.transpose()
+    result_milieukosten.columns = result_milieukosten.iloc[0]
+    result_milieukosten = result_milieukosten[1:]
+    result_milieukosten.insert(0, 'minimaal', min(filtered['circulair']))
+    result_milieukosten.insert(1, 'maximaal', max(filtered['circulair']))
+    result_milieukosten.insert(2, 'code', '02')
+    result_milieukosten['Milieukosten per eenheid'] = result_milieukosten['maximaal'] - result_milieukosten['minimaal']
 
-# Voorbeeld lijst met kleuren
-kleuren_schema = [
-    'rgba(212, 0, 60, 1.0)',
-    'rgba(241, 142, 47, 1.0)', 
-    'rgba(255, 211, 0, 1.0)',
-    'rgba(0, 158, 224, 1.0)', 
-    'rgba(151, 191, 13, 1.0)', 
-    'rgba(147, 16, 126, 1.0)',  
-    'rgba(119, 118, 121, 1.0)' 
-]
+    # Voorbeeld lijst met kleuren
+    kleuren_schema = [
+        'rgba(212, 0, 60, 1.0)',
+        'rgba(241, 142, 47, 1.0)', 
+        'rgba(255, 211, 0, 1.0)',
+        'rgba(0, 158, 224, 1.0)', 
+        'rgba(151, 191, 13, 1.0)', 
+        'rgba(147, 16, 126, 1.0)',  
+        'rgba(119, 118, 121, 1.0)' 
+    ]
 
 
-fig_circulair = px.bar(result_milieukosten, x='Milieukosten per eenheid', y = 'code', base = 'minimaal', 
-                    color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
+    fig_circulair = px.bar(result_milieukosten, x='Milieukosten per eenheid', y = 'code', base = 'minimaal', 
+                        color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 
-kleur_teller = 0
-# fig_kosten.update_traces(marker_size=20)
-for i in range(len(selected_productgroepen)):
-    if result_milieukosten.columns[i+3] in selected_productgroepen:
-        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-        kleur_teller += 1
-        fig_circulair.add_trace(px.scatter(result_milieukosten, x=result_milieukosten.columns[i+3], y='code', 
-                                     color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                     size=[10], symbol = [result_milieukosten.columns[i+3]]).data[0])
+    kleur_teller = 0
+    # fig_kosten.update_traces(marker_size=20)
+    for i in range(len(selected_productgroepen)):
+        if result_milieukosten.columns[i+3] in selected_productgroepen:
+            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+            kleur_teller += 1
+            fig_circulair.add_trace(px.scatter(result_milieukosten, x=result_milieukosten.columns[i+3], y='code', 
+                                         color_discrete_sequence=[kleur], labels={'x': ''}, 
+                                         size=[10], symbol = [result_milieukosten.columns[i+3]]).data[0])
 
-fig_circulair.update_yaxes(visible=False)
+    fig_circulair.update_yaxes(visible=False)
 
-fig_circulair.update_layout(
-    legend=dict(
-        orientation="h",
-        yanchor="bottom",
-        y=1.02,
-        xanchor="right",
-        x=1
+    fig_circulair.update_layout(
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        )
     )
-)
 
-fig_circulair.update_layout(height=250)
+    fig_circulair.update_layout(height=250)
 
 
-st.plotly_chart(fig_circulair)
+    st.plotly_chart(fig_circulair)
 
 
 # In[ ]:
@@ -499,7 +502,7 @@ else:
 # In[ ]:
 
 
-st.markdown("**Visualisatie**")
+st.markdown("##### Visualisaties")
 df = st.session_state.oplossingen
     
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
