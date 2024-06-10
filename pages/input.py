@@ -474,8 +474,8 @@ st.markdown((data['kosten'] * data['aantal']).sum())
 st.markdown(((data['minimaal'] if data['minimaal'] is not None else 1) * st.session_state.appartementen * data['kosten']).sum())
 
 st.number_input("Vul het budget in voor het huidige project *", 
-                min_value = (data['minimaal'] if data['minimaal'] is not None else 1 * st.session_state.appartementen * data['kosten']).sum(), 
-                max_value = (data['maximaal'] if data['maximaal'] is not None else 1 * st.session_state.appartementen * data['kosten']).sum(), 
+                min_value = ((data['minimaal'] if data['minimaal'] is not None else 1) * st.session_state.appartementen * data['kosten']).sum(), 
+                max_value = ((data['maximaal'] if data['maximaal'] is not None else 1) * st.session_state.appartementen * data['kosten']).sum(), 
                 key='_budget', on_change=set_budget)
 
 st.markdown("**Primair thema**")
