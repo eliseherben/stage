@@ -180,7 +180,7 @@ for i in range(len(selected_productgroepen)):
     if result_kosten.columns[i+3] in selected_productgroepen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        fig_kosten.add_trace(px.scatter(result_kosten, x=result.columns[i+3], y='code', 
+        fig_kosten.add_trace(px.scatter(result_kosten, x=result_kosten.columns[i+3], y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10], symbol = [result_kosten.columns[i+3]]).data[0])
 
