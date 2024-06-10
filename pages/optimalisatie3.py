@@ -640,8 +640,8 @@ if df_k.columns[4] in geselecteerde_kolommen:
                                  color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 5']).data[0])
 
-if df_k.columns[7] in geselecteerde_kolommen:
-    fig2.add_trace(px.scatter(df_k, x=df_k.columns[7], y='code', 
+if df_k.columns[-3] in geselecteerde_kolommen:
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[-3], y='code', 
                                  color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
                                  size=[10], symbol = ['huidige']).data[0])
 
