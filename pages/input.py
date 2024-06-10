@@ -432,7 +432,6 @@ for element in elements:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
-sum()
 data
 
 
