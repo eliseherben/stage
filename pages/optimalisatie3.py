@@ -145,15 +145,16 @@ st.markdown("**Verdeling productgroepen**")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
 st.dataframe(filtered)
-filtered['code'] = filtered['productgroep'].str[:2]
-result = filtered[['productgroep', 'code', 'kosten', 'circulair']]
+result = filtered[['productgroep', 'kosten', 'circulair']]
 result = result.transpose()
 result.columns = result.iloc[0]
 result = result[1:]
-minimaal = [0, min(filtered['kosten']), min(filtered['circulair'])]
-maximaal = [0, max(filtered['kosten']), max(filtered['circulair'])]
+minimaal = [min(filtered['kosten']), min(filtered['circulair'])]
+maximaal = [max(filtered['kosten']), max(filtered['circulair'])]
+code = ['01', '02']
 result.insert(16, 'minimaal', minimaal)
 result.insert(17, 'maximaal', maximaal)
+result.insert(18, 'code', code)
 st.dataframe(result)
 
 productgroepen = filtered['productgroep'].unique()
