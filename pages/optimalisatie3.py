@@ -145,6 +145,8 @@ st.markdown("**Verdeling productgroepen**")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
 st.dataframe(filtered)
+result = filtered.transpose()
+st.dataframe(result)
 
 productgroepen = filtered['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
