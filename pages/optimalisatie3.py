@@ -141,7 +141,7 @@ st.session_state.maximaal = maximaal_list
 # In[ ]:
 
 
-st.markdown("### Verdeling productgroepen")
+st.markdown("#### Verdeling productgroepen")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
 productgroepen = filtered['productgroep'].unique()
@@ -258,26 +258,6 @@ st.plotly_chart(fig_circulair)
 # In[ ]:
 
 
-# fig_circulair = px.scatter(filtered_data, x='circulair', y = ['constant'], color='productgroep')
-# fig_circulair.update_traces(marker_size=20, showlegend = False)
-
-# fig_circulair.update_yaxes(visible=False)
-
-# # Bepaal de minimum- en maximumwaarden voor de x-as
-# x_min = min(filtered['circulair']) - 10
-# x_max = max(filtered['circulair']) + 10
-
-# # Vastzetten van de x-as range
-# fig_circulair.update_xaxes(range=[0, 45])
-
-# fig_circulair.update_layout(height=250)
-
-# st.plotly_chart(fig_circulair)
-
-
-# In[ ]:
-
-
 if st.session_state.projectbestand is None:
     st.markdown("upload een bestand")
 else: 
@@ -316,7 +296,7 @@ else:
 if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
 else:
-    st.markdown("**Minimale afwijking in productgroepen**")
+    st.markdown("##### Minimale afwijking in productgroepen")
     
     elements = [
     {"type": "21 Buitenwanden", "key_toggle": "Buitenwanden_on"},
