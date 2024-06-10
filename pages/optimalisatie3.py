@@ -299,6 +299,8 @@ else:
 if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
 else:
+    st.markdown("#")
+    st.markdown("#")
     st.markdown("##### Minimale afwijking in productgroepen")
     
     elements = [
