@@ -382,6 +382,7 @@ def set_Terreininrichting_on():
 
 
 st.title("Productgroepen")
+st.page_link("simplex.py", label = 'Homepagina')
 
 
 # In[ ]:
@@ -391,22 +392,22 @@ import streamlit as st
 
 # Define a list of dictionaries for each wall type and their corresponding attributes
 elements = [
-    {"type": "21 Buitenwanden", "label": "Aantal m2 aan buitenwanden in het huidige project", "key_input": "_Buitenwanden", "key_toggle": "_Buitenwanden_on", "on_change_input": set_Buitenwanden, "on_change_toggle": set_Buitenwanden_on},
-    {"type": "22 Binnenwanden", "label": "Aantal m2 aan binnenwanden in het huidige project", "key_input": "_Binnenwanden", "key_toggle": "_Binnenwanden_on", "on_change_input": set_Binnenwanden, "on_change_toggle": set_Binnenwanden_on},
-    {"type": "23 Vloeren", "label": "Aantal m2 aan vloeren in het huidige project", "key_input": "_Vloeren", "key_toggle": "_Vloeren_on", "on_change_input": set_Vloeren, "on_change_toggle": set_Vloeren_on},
-    {"type": "24 Trappen en hellingen", "label": "Aantal stuks aan trappen en hellingen in het huidige project", "key_input": "_Trappen_en_hellingen", "key_toggle": "_Trappen_en_hellingen_on", "on_change_input": set_Trappen_en_hellingen, "on_change_toggle": set_Trappen_en_hellingen_on},
-    {"type": "27 Daken", "label": "Aantal m2 aan daken in het huidige project", "key_input": "_Daken", "key_toggle": "_Daken_on", "on_change_input": set_Daken, "on_change_toggle": set_Daken_on},
-    {"type": "28 Hoofddraagconstructie", "label": "Aantal m2 aan hoofddraagconstructie in het huidige project", "key_input": "_Hoofddraagconstructie", "key_toggle": "_Hoofddraagconstructie_on", "on_change_input": set_Hoofddraagconstructie, "on_change_toggle": set_Hoofddraagconstructie_on},
-    {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "label": "Aantal m aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project", "key_input": "_Buitenkozijnen", "key_toggle": "_Buitenkozijnen_on", "on_change_input": set_Buitenkozijnen, "on_change_toggle": set_Buitenkozijnen_on},
-    {"type": "32 Binnenkozijnen en -deuren", "label": "Aantal stuks aan binnenkozijnen en -deuren in het huidige project", "key_input": "_Binnenkozijnen_en__deuren", "key_toggle": "_Binnenkozijnen_en__deuren_on", "on_change_input": set_Binnenkozijnen_en__deuren, "on_change_toggle": set_Binnenkozijnen_en__deuren_on},
-    {"type": "33 Luiken en vensters", "label": "Aantal stuks aan luiken en vensters in het huidige project", "key_input": "_Luiken_en_vensters", "key_toggle": "_Luiken_en_vensters_on", "on_change_input": set_Luiken_en_vensters, "on_change_toggle": set_Luiken_en_vensters_on},
-    {"type": "34 Balustrades en leuningen", "label": "Aantal m aan balustrades en leuningen in het huidige project", "key_input": "_Balustrades_en_leuningen", "key_toggle": "_Balustrades_en_leuningen_on", "on_change_input": set_Balustrades_en_leuningen, "on_change_toggle": set_Balustrades_en_leuningen_on},
-    {"type": "42 Binnenwandafwerkingen", "label": "Aantal m2 aan binnenwandafwerkingen in het huidige project", "key_input": "_Binnenwandafwerkingen", "key_toggle": "_Binnenwandafwerkingen_on", "on_change_input": set_Binnenwandafwerkingen, "on_change_toggle": set_Binnenwandafwerkingen_on},
-    {"type": "43 Vloerafwerkingen", "label": "Aantal m2 aan vloerafwerkingen in het huidige project", "key_input": "_Vloerafwerkingen", "key_toggle": "_Vloerafwerkingen_on", "on_change_input": set_Vloerafwerkingen, "on_change_toggle": set_Vloerafwerkingen_on},
-    {"type": "45 Plafonds", "label": "Aantal m2 aan plafonds in het huidige project", "key_input": "_Plafonds", "key_toggle": "_Plafonds_on", "on_change_input": set_Plafonds, "on_change_toggle": set_Plafonds_on},
-    {"type": "64 Vaste gebouwvoorziening", "label": "Aantal stuks aan vaste gebouwvoorziening in het huidige project", "key_input": "_Vaste_gebouwvoorziening", "key_toggle": "_Vaste_gebouwvoorziening_on", "on_change_input": set_Vaste_gebouwvoorziening, "on_change_toggle": set_Vaste_gebouwvoorziening_on},
-    {"type": "73 Keuken", "label": "Aantal stuks aan keuken in het huidige project", "key_input": "_Keuken", "key_toggle": "_Keuken_on", "on_change_input": set_Keuken, "on_change_toggle": set_Keuken_on},
-    {"type": "90 Terreininrichting", "label": "Aantal stuks aan terreininrichting in het huidige project", "key_input": "_Terreininrichting", "key_toggle": "_Terreininrichting_on", "on_change_input": set_Terreininrichting, "on_change_toggle": set_Terreininrichting_on}
+    {"type": "21 Buitenwanden", "label": "Aantal m2 aan buitenwanden in het huidige project *", "key_input": "_Buitenwanden", "key_toggle": "_Buitenwanden_on", "on_change_input": set_Buitenwanden, "on_change_toggle": set_Buitenwanden_on},
+    {"type": "22 Binnenwanden", "label": "Aantal m2 aan binnenwanden in het huidige project *", "key_input": "_Binnenwanden", "key_toggle": "_Binnenwanden_on", "on_change_input": set_Binnenwanden, "on_change_toggle": set_Binnenwanden_on},
+    {"type": "23 Vloeren", "label": "Aantal m2 aan vloeren in het huidige project *", "key_input": "_Vloeren", "key_toggle": "_Vloeren_on", "on_change_input": set_Vloeren, "on_change_toggle": set_Vloeren_on},
+    {"type": "24 Trappen en hellingen", "label": "Aantal stuks aan trappen en hellingen in het huidige project *", "key_input": "_Trappen_en_hellingen", "key_toggle": "_Trappen_en_hellingen_on", "on_change_input": set_Trappen_en_hellingen, "on_change_toggle": set_Trappen_en_hellingen_on},
+    {"type": "27 Daken", "label": "Aantal m2 aan daken in het huidige project *", "key_input": "_Daken", "key_toggle": "_Daken_on", "on_change_input": set_Daken, "on_change_toggle": set_Daken_on},
+    {"type": "28 Hoofddraagconstructie", "label": "Aantal m2 aan hoofddraagconstructie in het huidige project *", "key_input": "_Hoofddraagconstructie", "key_toggle": "_Hoofddraagconstructie_on", "on_change_input": set_Hoofddraagconstructie, "on_change_toggle": set_Hoofddraagconstructie_on},
+    {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "label": "Aantal m aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project *", "key_input": "_Buitenkozijnen", "key_toggle": "_Buitenkozijnen_on", "on_change_input": set_Buitenkozijnen, "on_change_toggle": set_Buitenkozijnen_on},
+    {"type": "32 Binnenkozijnen en -deuren", "label": "Aantal stuks aan binnenkozijnen en -deuren in het huidige project *", "key_input": "_Binnenkozijnen_en__deuren", "key_toggle": "_Binnenkozijnen_en__deuren_on", "on_change_input": set_Binnenkozijnen_en__deuren, "on_change_toggle": set_Binnenkozijnen_en__deuren_on},
+    {"type": "33 Luiken en vensters", "label": "Aantal stuks aan luiken en vensters in het huidige project *", "key_input": "_Luiken_en_vensters", "key_toggle": "_Luiken_en_vensters_on", "on_change_input": set_Luiken_en_vensters, "on_change_toggle": set_Luiken_en_vensters_on},
+    {"type": "34 Balustrades en leuningen", "label": "Aantal m aan balustrades en leuningen in het huidige project *", "key_input": "_Balustrades_en_leuningen", "key_toggle": "_Balustrades_en_leuningen_on", "on_change_input": set_Balustrades_en_leuningen, "on_change_toggle": set_Balustrades_en_leuningen_on},
+    {"type": "42 Binnenwandafwerkingen", "label": "Aantal m2 aan binnenwandafwerkingen in het huidige project *", "key_input": "_Binnenwandafwerkingen", "key_toggle": "_Binnenwandafwerkingen_on", "on_change_input": set_Binnenwandafwerkingen, "on_change_toggle": set_Binnenwandafwerkingen_on},
+    {"type": "43 Vloerafwerkingen", "label": "Aantal m2 aan vloerafwerkingen in het huidige project *", "key_input": "_Vloerafwerkingen", "key_toggle": "_Vloerafwerkingen_on", "on_change_input": set_Vloerafwerkingen, "on_change_toggle": set_Vloerafwerkingen_on},
+    {"type": "45 Plafonds", "label": "Aantal m2 aan plafonds in het huidige project *", "key_input": "_Plafonds", "key_toggle": "_Plafonds_on", "on_change_input": set_Plafonds, "on_change_toggle": set_Plafonds_on},
+    {"type": "64 Vaste gebouwvoorziening", "label": "Aantal stuks aan vaste gebouwvoorziening in het huidige project *", "key_input": "_Vaste_gebouwvoorziening", "key_toggle": "_Vaste_gebouwvoorziening_on", "on_change_input": set_Vaste_gebouwvoorziening, "on_change_toggle": set_Vaste_gebouwvoorziening_on},
+    {"type": "73 Keuken", "label": "Aantal stuks aan keuken in het huidige project *", "key_input": "_Keuken", "key_toggle": "_Keuken_on", "on_change_input": set_Keuken, "on_change_toggle": set_Keuken_on},
+    {"type": "90 Terreininrichting", "label": "Aantal stuks aan terreininrichting in het huidige project *", "key_input": "_Terreininrichting", "key_toggle": "_Terreininrichting_on", "on_change_input": set_Terreininrichting, "on_change_toggle": set_Terreininrichting_on}
 ]
 
 # Loop through the list to create the UI elements for each element type
@@ -431,24 +432,22 @@ for element in elements:
 
 
 st.markdown("**Budget**")
-st.number_input("Vul het budget in voor het huidige project", value=None, placeholder="Typ een bedrag", 
+st.number_input("Vul het budget in voor het huidige project *", value=None, placeholder="Typ een bedrag", 
                 key='_budget', on_change=set_budget)
 
 st.markdown("**Aantal appartementen**")
-st.number_input("Het aantal appartementen dat gebouwd worden in dit project", value=0, key='_appartementen', 
+st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", value=0, key='_appartementen', 
                 on_change=set_appartementen)
 
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
-st.selectbox("Wat heeft meer prioriteit binnen dit project?", 
+st.selectbox("Wat heeft meer prioriteit binnen dit project? *", 
             ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
             key='_doelstelling', on_change=set_doelstelling)
 
 keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Daken', 'Hoofddraagconstructie', 'Buitenkozijnen', 
  'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
  'Plafonds', 'Vaste_gebouwvoorziening', 'Keuken', 'Terreininrichting', 'budget', 'appartementen', 'doelstelling']
-
-st.page_link("simplex.py", label = 'Homepagina')
 
 if all(st.session_state[key] is not None for key in keys): 
     st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
