@@ -150,15 +150,14 @@ productgroepen = filtered['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
 filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
-result = filtered_data[['productgroep', 'kosten']]
-result = result.transpose()
-result.columns = result.iloc[0]
-result = result[1:]
-result.insert(0, 'minimaal', min(filtered['kosten']))
-result.insert(1, 'maximaal', max(filtered['kosten']))
-result.insert(2, 'code', '01')
-result['Kosten per eenheid'] = result['maximaal'] - result['minimaal']
-st.dataframe(result)
+result_kosten = filtered_data[['productgroep', 'kosten']]
+result_kosten = result_kosten.transpose()
+result_kosten.columns = result_kosten.iloc[0]
+result_kosten = result_kosten[1:]
+result_kosten.insert(0, 'minimaal', min(filtered['kosten']))
+result_kosten.insert(1, 'maximaal', max(filtered['kosten']))
+result_kosten.insert(2, 'code', '01')
+result_kosten['Kosten per eenheid'] = result_kosten['maximaal'] - result_kosten['minimaal']
 
 # Voorbeeld lijst met kleuren
 kleuren_schema = [
@@ -172,27 +171,20 @@ kleuren_schema = [
 ]
 
 
-fig_kosten = px.bar(result, x='Kosten per eenheid', y = 'code', base = 'minimaal', 
+fig_kosten = px.bar(result_kosten, x='Kosten per eenheid', y = 'code', base = 'minimaal', 
                     color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 
 kleur_teller = 0
 # fig_kosten.update_traces(marker_size=20)
 for i in range(len(selected_productgroepen)):
-    if result.columns[i+3] in selected_productgroepen:
+    if result_kosten.columns[i+3] in selected_productgroepen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        fig_kosten.add_trace(px.scatter(result, x=result.columns[i+3], y='code', 
+        fig_kosten.add_trace(px.scatter(result_kosten, x=result.columns[i+3], y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                     size=[10], symbol = [result.columns[i+3]]).data[0])
+                                     size=[10], symbol = [result_kosten.columns[i+3]]).data[0])
 
 fig_kosten.update_yaxes(visible=False)
-
-# Bepaal de minimum- en maximumwaarden voor de x-as
-# x_min = min(filtered['kosten']) - 100
-# x_max = max(filtered['kosten']) + 100
-
-# # Vastzetten van de x-as range
-# fig_kosten.update_xaxes(range=[x_min, x_max])
 
 fig_kosten.update_layout(
     legend=dict(
@@ -221,7 +213,6 @@ result_milieukosten.insert(0, 'minimaal', min(filtered['circulair']))
 result_milieukosten.insert(1, 'maximaal', max(filtered['circulair']))
 result_milieukosten.insert(2, 'code', '02')
 result_milieukosten['Milieukosten per eenheid'] = result_milieukosten['maximaal'] - result_milieukosten['minimaal']
-st.dataframe(result_milieukosten)
 
 # Voorbeeld lijst met kleuren
 kleuren_schema = [
@@ -249,13 +240,6 @@ for i in range(len(selected_productgroepen)):
                                      size=[10], symbol = [result_milieukosten.columns[i+3]]).data[0])
 
 fig_circulair.update_yaxes(visible=False)
-
-# Bepaal de minimum- en maximumwaarden voor de x-as
-# x_min = min(filtered['kosten']) - 100
-# x_max = max(filtered['kosten']) + 100
-
-# # Vastzetten van de x-as range
-# fig_kosten.update_xaxes(range=[x_min, x_max])
 
 fig_circulair.update_layout(
     legend=dict(
