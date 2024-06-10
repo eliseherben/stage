@@ -167,11 +167,11 @@ fig_kosten = px.bar(result, x='aantal', y = 'code', base = 'minimaal', color_dis
 fig_kosten.update_yaxes(visible=False)
 
 # Bepaal de minimum- en maximumwaarden voor de x-as
-x_min = min(filtered['kosten']) - 100
-x_max = max(filtered['kosten']) + 100
+# x_min = min(filtered['kosten']) - 100
+# x_max = max(filtered['kosten']) + 100
 
-# Vastzetten van de x-as range
-fig_kosten.update_xaxes(range=[x_min, x_max])
+# # Vastzetten van de x-as range
+# fig_kosten.update_xaxes(range=[x_min, x_max])
 
 fig_kosten.update_layout(
     legend=dict(
