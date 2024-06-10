@@ -141,6 +141,7 @@ st.session_state.maximaal = maximaal_list
 # In[ ]:
 
 
+st.markdown("#")
 st.markdown("##### Verdeling productgroepen")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
@@ -264,6 +265,7 @@ else:
 if st.session_state.projectbestand is None:
     st.markdown("upload een bestand")
 else: 
+    st.markdown("#")
     col1, col2 = st.columns(2)
     with col1:
         budget = data.sort_values(by='kosten')
