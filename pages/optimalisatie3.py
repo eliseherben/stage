@@ -525,7 +525,8 @@ for productgroep in df['productgroep']:
     df_productgroep['aantal'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
 
     fig = px.bar(df_productgroep, x='aantal', y='code', base = 'minimaal', 
-                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ')
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ',
+                hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
     if df_productgroep.columns[9] in geselecteerde_kolommen:
         fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
@@ -612,7 +613,8 @@ df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 df_k['code'] = '00'
 
 fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
-                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten')
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten', 
+             hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
 if df_k.columns[-3] in geselecteerde_kolommen:
     fig2.add_trace(px.scatter(df_k, x='huidige_waarden', y='code', 
