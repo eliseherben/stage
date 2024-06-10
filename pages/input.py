@@ -444,7 +444,7 @@ st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", 
 
 st.markdown("**Budget**")
 data['aantal'] = None
-data.iloc[0, -1] = st.session.state.Buitenwanden
+data.iloc[0, -1] = st.session_state.Buitenwanden
 data
 
 st.number_input("Vul het budget in voor het huidige project *", value=None, placeholder="Typ een bedrag", 
