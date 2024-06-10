@@ -161,7 +161,7 @@ result.insert(0, 'minimaal', minimaal)
 result.insert(1, 'maximaal', maximaal)
 result.insert(2, 'code', code)
 result['aantal'] = result['maximaal'] - result['minimaal']
-df_kosten = result.iloc[0, :]
+df_kosten = result.iloc[0]
 st.dataframe(df_kosten)
 st.dataframe(result)
 
