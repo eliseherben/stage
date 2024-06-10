@@ -186,7 +186,7 @@ fig_kosten = px.bar(result, x='aantal', y = 'code', base = 'minimaal', color_dis
 # fig_kosten.update_traces(marker_size=20)
 for i in range(len(selected_productgroepen)):
     if result.columns[i+3] in selected_productgroepen:
-        kleur = kleuren_dict.get(kolomnaam, 'rgba(0, 0, 0, 1.0)')  # Standaard kleur is zwart als de kolom niet in de dictionary staat
+        kleur = kleuren_dict.get(result.columns[i+3], 'rgba(0, 0, 0, 1.0)')  # Standaard kleur is zwart als de kolom niet in de dictionary staat
         fig_kosten.add_trace(px.scatter(result, x=result.columns[i+3], y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10], symbol = [result.columns[i+3]]).data[0])
