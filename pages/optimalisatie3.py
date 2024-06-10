@@ -147,7 +147,7 @@ filtered = data.dropna(subset=['minimaal', 'maximaal'])
 st.dataframe(filtered)
 filtered['code'] = filtered['productgroep'].str[:2]
 result = filtered[['productgroep', 'code', 'kosten', 'circulair']]
-result = filtered.transpose()
+result = result.transpose()
 result.columns = result.iloc[0]
 result = result[1:]
 st.dataframe(result)
