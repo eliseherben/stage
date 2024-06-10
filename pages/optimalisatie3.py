@@ -698,7 +698,7 @@ df_mk['maximaal'] = pd.to_numeric(df_mk['maximaal'])
 df_mk['aantal'] = df_mk['maximaal'] - df_mk['minimaal']
 df_mk['code'] = '00'
 
-fig2 = px.bar(df_mk, x='aantal', y=['code'], base = 'minimaal',
+fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='milieukosten')
 
 if df_mk.columns[-3] in geselecteerde_kolommen:
