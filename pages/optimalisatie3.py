@@ -141,7 +141,7 @@ st.session_state.maximaal = maximaal_list
 # In[ ]:
 
 
-st.markdown("###Verdeling productgroepen")
+st.markdown("### Verdeling productgroepen")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
 productgroepen = filtered['productgroep'].unique()
