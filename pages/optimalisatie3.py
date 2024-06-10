@@ -152,7 +152,6 @@ result.columns = result.iloc[0]
 result = result[1:]
 minimaal = [0, min(filtered['kosten']), min(filtered['circulair'])]
 maximaal = [0, max(filtered['kosten']), max(filtered['circulair'])]
-st.markdown(minimale_milieukosten)
 result.insert(-1, 'minimaal', minimaal)
 result.insert(-1, 'maximaal', maximaal)
 st.dataframe(result)
