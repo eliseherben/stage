@@ -473,7 +473,7 @@ data.iloc[24, -1] = st.session_state.Terreininrichting
 
 # Stel de locale in op een Nederlandse locale voor juiste weergave van valuta
 locale.setlocale(locale.LC_ALL, 'nl_NL.UTF-8')
-totaal bedrag = (data['kosten'] * data['aantal']).sum()
+totaal_bedrag = (data['kosten'] * data['aantal']).sum()
 formatted_bedrag = locale.currency(totaal_bedrag, grouping=True)
 
 st.markdown(f"Totale kosten gebasseerd op huidige hoeveelheden: {formatted_bedrag}")
