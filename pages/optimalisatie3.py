@@ -724,10 +724,9 @@ kleur_teller = 0
 
 fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='milieukosten', 
-                 hover_data={'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False},
-              hover_name='milieukosten')
+                 hover_data={'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
-hovertemplate = '<b>%{hovertext}</b><br>Minimaal: %{customdata[0]}<br>Maximaal: %{customdata[1]}<br>'
+hovertemplate = '<b>%{x}</b><br>Minimaal: %{customdata[0]}<br>Maximaal: %{customdata[1]}<br>'
 fig2.update_traces(hovertemplate=hovertemplate, customdata=df_mk[['minimaal', 'maximaal']].values)
 
 
