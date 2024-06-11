@@ -732,9 +732,9 @@ fig2.update_traces(hovertemplate=hovertemplate, customdata=df_mk[['minimaal', 'm
 if df_mk.columns[-3] in geselecteerde_kolommen:
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
-    fig2.add_trace(px.scatter(df_mk, x='huidige_waarden', y='code', 
+    scatter = px.scatter(df_mk, x='huidige_waarden', y='code', 
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
-                         size=[10], symbol = ['huidig']))
+                         size=[10], symbol=['huidig'])
     scatter.update_traces(hovertemplate=hovertemplate, customdata=df_mk[['minimaal', 'maximaal']].values)
     fig2.add_trace(scatter.data[0])
 
