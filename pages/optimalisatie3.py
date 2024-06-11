@@ -519,7 +519,7 @@ df = df[df['eenheid'].notna()]
 
 for productgroep in df['productgroep']:
     kleur_teller = 0
-    st.markdown(f"kleuren teller {kleuren_teller}")
+    st.markdown(f"kleuren teller {kleur_teller}")
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['productgroep'] == productgroep]
 
