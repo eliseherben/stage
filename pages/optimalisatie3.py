@@ -146,8 +146,8 @@ filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
 opties = st.selectbox("Soort visualisatie", 
                          ["Alleen de productgroepen met m2 als eenheid", 
-                          "Alleen de productgroepen met stuks als eenheid", "Alle productgroepen"])
-
+                          "Alleen de productgroepen met stuks als eenheid", "Alle productgroepen"], index = None, 
+                      placeholder = 'Kies een visualisatie')
 
 if opties == "Alleen de productgroepen met m2 als eenheid":
     filtered = filtered[filtered['eenheid'] == 'm2']
@@ -156,7 +156,8 @@ if opties == "Alleen de productgroepen met stuks als eenheid":
 
 
 productgroepen = filtered['productgroep'].unique()
-selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
+selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen, 
+                                         placeholder = 'Selecteer productgroep(en)')
 filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
 result_kosten = filtered_data[['productgroep', 'kosten']]
@@ -178,7 +179,6 @@ kleuren_schema = [
     'rgba(147, 16, 126, 1.0)',  
     'rgba(119, 118, 121, 1.0)' 
 ]
-
 
 fig_kosten = px.bar(result_kosten, x='Kosten per eenheid', y = 'code', base = 'minimaal', 
                     color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
