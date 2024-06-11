@@ -735,7 +735,7 @@ if df_mk.columns[-3] in geselecteerde_kolommen:
     scatter = px.scatter(df_mk, x='huidige_waarden', y='code', 
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol=['huidig'])
-    scatter_hovertemplate = 'Kolom: %{x}<br>Waarde: %{y}<br>'
+    scatter_hovertemplate = 'Huidige waarden: %{x}<br>'
     scatter.update_traces(hovertemplate=scatter_hovertemplate)
     fig2.add_trace(scatter.data[0])
 
