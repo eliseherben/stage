@@ -138,7 +138,7 @@ st.session_state.maximaal = maximaal_list
 
 # hieronder kijken of het mogelijk is om een grijs vlak toe te voegen, als je dus meerdere productgroepen in een multiselect hebt etc
 
-# In[1]:
+# In[ ]:
 
 
 st.markdown("##### Verdeling productgroepen")
@@ -207,7 +207,6 @@ fig_kosten.update_layout(
 
 fig_kosten.update_layout(height=250)
 
-
 st.plotly_chart(fig_kosten)
 
 
@@ -237,7 +236,6 @@ else:
         'rgba(119, 118, 121, 1.0)' 
     ]
 
-
     fig_circulair = px.bar(result_milieukosten, x='Milieukosten per eenheid', y = 'code', base = 'minimaal', 
                         color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 
@@ -264,7 +262,6 @@ else:
     )
 
     fig_circulair.update_layout(height=250)
-
 
     st.plotly_chart(fig_circulair)
 
@@ -450,10 +447,7 @@ else:
         variabelen_milieukosten = [lp_variabelen3[i][1] for i in range(len(lp_variabelen3))]
         impact_milieukosten = [data.iloc[i, 5] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
         milieukosten = pl.lpSum(variabelen_milieukosten[i] * impact_milieukosten[i] for i in range(len(variabelen_milieukosten)))
-        
-#         impact_afwijkingen = [1/(data.iloc[i, 3] - data.iloc[i, 2]) for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3]) and pd.notna(data.iloc[i, 4])]
-#         afwijkingen2 = pl.lpSum(afwijkingen_list[i] * impact_afwijkingen[i] for i in range(len(impact_afwijkingen)))
-        
+            
         afwijkingen = pl.lpSum(afwijkingen_list)
         
         prob += w_circulair * circulair + w_afwijkingen * afwijkingen
@@ -463,9 +457,7 @@ else:
         for i in range(len(lp_variabelen)):
             prob += lp_variabelen[i][1] >= data2.iloc[i, 2]
             prob += lp_variabelen[i][1] <= data2.iloc[i, 3]
-        
-#         lp_variabelen2 = [lp_variabelen[i][1] for i in range(len(lp_variabelen)) if pd.notna(data.iloc[i, 2]) and pd.notna(data.iloc[i, 3])]
-        
+                
         for a in range(len(afwijkingen_list)):
             prob += afwijkingen_list[a] >= lp_variabelen[a][1] - startwaardes[a]
             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[a][1]
@@ -479,16 +471,10 @@ else:
         prob += budget == st.session_state.budget
         
         status = prob.solve()
-#         st.markdown(f"Status van de oplossing met weging (circulair: {w_circulair}, afwijkingen: {w_afwijkingen}): {pl.LpStatus[status]}")
-#         st.markdown(f"milieukosten: {circulair.value()}")
-            
-        # Sla de oplossing op in een dictionary
-#         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
-#         oplossing_vars = [var.varValue for key, var in lp_variabelen]
+
         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
         oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
-        st.markdown(oplossingen)
-        st.markdown(oplossingswaarden)
+
         data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
         if pl.LpStatus[status] == 'Optimal':
             index = 0
