@@ -411,10 +411,11 @@ elements = [
     {"type": "73 Keuken", "label": "Aantal stuks aan keuken in het huidige project *", "key_input": "_Keuken", "key_toggle": "_Keuken_on", "on_change_input": set_Keuken, "on_change_toggle": set_Keuken_on},
     {"type": "90 Terreininrichting", "label": "Aantal stuks aan terreininrichting in het huidige project *", "key_input": "_Terreininrichting", "key_toggle": "_Terreininrichting_on", "on_change_input": set_Terreininrichting, "on_change_toggle": set_Terreininrichting_on}
 ]
-
+keys = ['budget', 'appartementen', 'doelstelling']
 # Loop through the list to create the UI elements for each element type
 for element in elements:
     if element['type'][:2] in st.session_state.list:
+        keys.append(element['key_input'][1:])
         st.markdown(f"**{element['type']}**")
         st.number_input(element['label'], value=None, 
                         placeholder="vul het aantal m2 in" if 'm2' in element['label'] else "vul het aantal stuks in", 
@@ -429,6 +430,7 @@ for element in elements:
                 st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} mogelijk")
             else:
                 st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} **niet** mogelijk")
+st.markdown(keys)
 
 
 # In[3]:
@@ -491,9 +493,9 @@ st.selectbox("Wat heeft meer prioriteit binnen dit project? *",
             ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
             key='_doelstelling', on_change=set_doelstelling)
 
-keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Daken', 'Hoofddraagconstructie', 'Buitenkozijnen', 
- 'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
- 'Plafonds', 'Vaste_gebouwvoorziening', 'Keuken', 'Terreininrichting', 'budget', 'appartementen', 'doelstelling']
+# keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Daken', 'Hoofddraagconstructie', 'Buitenkozijnen', 
+#  'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
+#  'Plafonds', 'Vaste_gebouwvoorziening', 'Keuken', 'Terreininrichting', 'budget', 'appartementen', 'doelstelling']
 
 if all(st.session_state[key] is not None for key in keys): 
     st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
