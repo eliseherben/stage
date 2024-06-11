@@ -304,7 +304,7 @@ else:
     st.markdown("##### Minimale afwijking in productgroepen")
     
     for i in range(len(data)):
-        if data.iloc[i, 0][:2] in st.session_state.list:
+        if data.iloc[i, 0][:2] not in st.session_state.list:
             data.drop(index = i, inplace = True)
     
     elements = [
