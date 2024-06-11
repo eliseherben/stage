@@ -481,10 +481,10 @@ data['maximaal'] = data['maximaal'].fillna(1)
 # st.markdown((data['minimaal'] * st.session_state.appartementen * data['kosten']).sum())
 # st.markdown((data['maximaal'] * st.session_state.appartementen * data['kosten']).sum())
 
-st.number_input("Vul het budget in voor het huidige project *", 
-                min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum(), 
-                max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(), 
+st.number_input("Vul het budget in voor het huidige project *",  
                 key='_budget', on_change=set_budget)
+# min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum(), 
+#                 max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(),
 
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
