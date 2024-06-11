@@ -144,7 +144,7 @@ if uploaded_file is not None:
     test2 = test.groupby('productgroep')['status in ontwerp:'].apply(status).reset_index()
     st.dataframe(test2)
     
-    lijst = [test2.iloc[i, 0][:2] for i in range(test2) if test2.iloc[i, 1] == 'actueel']
+    lijst = [test2.iloc[i, 0][:2] for i in range(len(test2)) if test2.iloc[i, 1] == 'actueel']
     st.markdown(lijst)
     
     st.dataframe(dataframe, hide_index = True)
