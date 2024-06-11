@@ -506,7 +506,7 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['huidig'])
         
-        scatter_hovertemplate = 'Huidige waarde: %{x} %{customdata[2]}<br>'
+        scatter_hovertemplate = 'Huidige waarde: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
     
@@ -517,7 +517,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 1'])
         
-        scatter_hovertemplate = 'Oplossing 1: %{x} %{customdata[2]}<br>'
+        scatter_hovertemplate = 'Oplossing 1: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
 
@@ -528,7 +528,7 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 2'])
         
-        scatter_hovertemplate = 'Oplossing 2: %{x} %{customdata[2]}<br>'
+        scatter_hovertemplate = 'Oplossing 2: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
 
@@ -539,7 +539,7 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 3'])
     
-        scatter_hovertemplate = 'Oplossing 3: %{x} %{customdata[2]}<br>'
+        scatter_hovertemplate = 'Oplossing 3: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
 
@@ -550,7 +550,7 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 4'])
         
-        scatter_hovertemplate = 'Oplossing 4: %{x} %{customdata[2]}<br>'
+        scatter_hovertemplate = 'Oplossing 4: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
 
@@ -561,7 +561,7 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 5'])
         
-        scatter_hovertemplate = 'Oplossing 5: %{x} %{customdata[2]}<br>'
+        scatter_hovertemplate = 'Oplossing 5: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
 
@@ -573,7 +573,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 6'])
             
-            scatter_hovertemplate = 'Oplossing 6: %{x} %{customdata[2]}<br>'
+            scatter_hovertemplate = 'Oplossing 6: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
 
@@ -584,7 +584,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 7'])
             
-            scatter_hovertemplate = 'Oplossing 7: %{x} %{customdata[2]}<br>'
+            scatter_hovertemplate = 'Oplossing 7: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
 
@@ -595,7 +595,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 8'])
             
-            scatter_hovertemplate = 'Oplossing 8: %{x} %{customdata[2]}<br>'
+            scatter_hovertemplate = 'Oplossing 8: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
 
@@ -606,7 +606,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 9'])
             
-            scatter_hovertemplate = 'Oplossing 9: %{x} %{customdata[2]}<br>'
+            scatter_hovertemplate = 'Oplossing 9: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
 
@@ -617,7 +617,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 10'])
             
-            scatter_hovertemplate = 'Oplossing 10: %{x} %{customdata[2]}<br>'
+            scatter_hovertemplate = 'Oplossing 10: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
             
@@ -628,7 +628,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 11'])
             
-            scatter_hovertemplate = 'Oplossing 11: %{x} %{customdata[2]}<br>'
+            scatter_hovertemplate = 'Oplossing 11: %{x} %{df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
 
