@@ -633,8 +633,6 @@ for productgroep in df['productgroep']:
             fig.add_trace(scatter.data[0])
 
     fig.update_layout(height=250)
-
-    fig.update_traces(hovertemplate='<b>Code:</b> %{y}<br>')
     
     fig.update_yaxes(visible=False, showticklabels=False)
 
