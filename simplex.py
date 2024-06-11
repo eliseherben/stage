@@ -89,8 +89,8 @@ st.session_state.file = None
 st.markdown("**Afdeling**")
 st.selectbox(
     "Welke afdeling? *", 
-    ('Nieuwbouw ontwikkeling', 'Nieuwbouw realisatie', 'Renovatie ontwikkeling', 'Renovatie realisatie', 'Planmatig onderhoud ontwikkeling', 
-     'Planmatig onderhoud realisatie', 'Mutatie onderhoud', 'Dagelijks onderhoud'),
+    ['Nieuwbouw ontwikkeling', 'Nieuwbouw realisatie', 'Renovatie ontwikkeling', 'Renovatie realisatie', 'Planmatig onderhoud ontwikkeling', 
+     'Planmatig onderhoud realisatie', 'Mutatie onderhoud', 'Dagelijks onderhoud'],
     index=None,
     placeholder="Selecteer een afdeling", key = "_afdeling", on_change = set_afdeling
 )
