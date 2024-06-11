@@ -535,6 +535,9 @@ for productgroep in df['productgroep']:
     if df_productgroep.columns[9] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
+        st.markdown(f"kleuren tellllller {kleuren_teller}")
+        st.markdown(f"kleur {kleur}")
+
         fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['huidig'], 
@@ -557,6 +560,8 @@ for productgroep in df['productgroep']:
     if df_productgroep.columns[12] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
+        st.markdown(f"kleuren tellllller {kleuren_teller}")
+        st.markdown(f"kleur {kleur}")
         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[12], y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 3']).data[0])
@@ -571,6 +576,8 @@ for productgroep in df['productgroep']:
     if df_productgroep.columns[14] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
+        st.markdown(f"kleuren tellllller {kleuren_teller}")
+        st.markdown(f"kleur {kleur}")
         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[14], y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 5']).data[0])
