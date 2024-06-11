@@ -64,6 +64,14 @@ st.session_state._name = st.session_state.name
 
 def set_name():
     st.session_state.name = st.session_state._name
+    
+if 'list' not in st.session_state:
+    st.session_state.list = None
+
+st.session_state._list = st.session_state.list
+
+def set_list():
+    st.session_state.list = st.session_state._list
 
 
 # In[ ]:
@@ -146,6 +154,7 @@ if uploaded_file is not None:
     
     lijst = [test2.iloc[i, 0][:2] for i in range(len(test2)) if test2.iloc[i, 1] == 'actueel']
     st.markdown(lijst)
+    st.session_state.list = lijst
     
     st.dataframe(dataframe, hide_index = True)
     st.session_state.dataframe = dataframe
