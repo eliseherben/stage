@@ -503,7 +503,7 @@ else:
     
 
 
-# In[ ]:
+# In[1]:
 
 
 st.markdown('#')
@@ -519,6 +519,7 @@ df = df[df['eenheid'].notna()]
 
 for productgroep in df['productgroep']:
     kleuren_teller = 0
+    st.markdown(f"kleuren teller {kleuren_teller})
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['productgroep'] == productgroep]
 
@@ -647,8 +648,7 @@ fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
              hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
 if df_k.columns[-3] in geselecteerde_kolommen:
-    kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-
+    
     fig2.add_trace(px.scatter(df_k, x='huidige_waarden', y='code', 
                          color_discrete_sequence=['rgba(212, 0, 60, 1.0)'], labels={'x': ''}, 
                          size=[10], symbol = ['huidig']).data[0])
