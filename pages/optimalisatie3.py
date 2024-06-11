@@ -495,92 +495,143 @@ for productgroep in df['productgroep']:
     fig = px.bar(df_productgroep, x='aantal', y='code', base = 'minimaal', 
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ',
                 hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
+    
+    bar_hovertemplate = 'Minimaal: %{customdata[0]}<br>Maximaal: %{customdata[1]}<br>'
+    fig.update_traces(hovertemplate=bar_hovertemplate, customdata=df_k[['minimaal', 'maximaal']].values)
 
     if df_productgroep.columns[9] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
+        scatter = px.scatter(df_productgroep, x='huidige_waarden', y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['huidig'], 
-                            hover_data = {'code': True}).data[0])
+                            hover_data = {'code': True})
+        
+        scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig.add_trace(scatter.data[0])
     
     if df_productgroep.columns[10] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[10], y='code', 
+        scatter = px.scatter(df_productgroep, x=df_productgroep.columns[10], y='code', 
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 1']).data[0])
+                                 size=[10], symbol = ['oplossing 1'])
+        
+        scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig.add_trace(scatter.data[0])
 
     if df_productgroep.columns[11] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[11], y='code', 
+        scatter = px.scatter(df_productgroep, x=df_productgroep.columns[11], y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossing 2']).data[0])
+                             size=[10], symbol = ['oplossing 2'])
+        
+        scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig.add_trace(scatter.data[0])
 
     if df_productgroep.columns[12] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[12], y='code', 
+        scatter = px.scatter(df_productgroep, x=df_productgroep.columns[12], y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossing 3']).data[0])
+                             size=[10], symbol = ['oplossing 3'])
+        
+        scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig.add_trace(scatter.data[0])
 
     if df_productgroep.columns[13] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[13], y='code', 
+        scatter = px.scatter(df_productgroep, x=df_productgroep.columns[13], y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossing 4']).data[0])
+                             size=[10], symbol = ['oplossing 4'])
+        
+        scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig.add_trace(scatter.data[0])
 
     if df_productgroep.columns[14] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[14], y='code', 
+        scatter = px.scatter(df_productgroep, x=df_productgroep.columns[14], y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossing 5']).data[0])
-    
+                             size=[10], symbol = ['oplossing 5'])
+        
+        scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig.add_trace(scatter.data[0])
+
     if st.session_state.doelstelling == 'Geen voorkeur':
         if df_productgroep.columns[15] in geselecteerde_kolommen:
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[15], y='code', 
+            scatter = px.scatter(df_productgroep, x=df_productgroep.columns[15], y='code', 
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 6']).data[0])
+                                 size=[10], symbol = ['oplossing 6'])
+            
+            scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+            scatter.update_traces(hovertemplate=scatter_hovertemplate)
+            fig.add_trace(scatter.data[0])
 
         if df_productgroep.columns[16] in geselecteerde_kolommen:
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[16], y='code', 
+            scatter = px.scatter(df_productgroep, x=df_productgroep.columns[16], y='code', 
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 7']).data[0])
+                                 size=[10], symbol = ['oplossing 7'])
+            
+            scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+            scatter.update_traces(hovertemplate=scatter_hovertemplate)
+            fig.add_trace(scatter.data[0])
 
         if df_productgroep.columns[17] in geselecteerde_kolommen:
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[17], y='code', 
+            scatter = px.scatter(df_productgroep, x=df_productgroep.columns[17], y='code', 
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 8']).data[0])
+                                 size=[10], symbol = ['oplossing 8'])
+            
+            scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+            scatter.update_traces(hovertemplate=scatter_hovertemplate)
+            fig.add_trace(scatter.data[0])
 
         if df_productgroep.columns[18] in geselecteerde_kolommen:
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[18], y='code', 
+            scatter = px.scatter(df_productgroep, x=df_productgroep.columns[18], y='code', 
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 9']).data[0])
+                                 size=[10], symbol = ['oplossing 9'])
+            
+            scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+            scatter.update_traces(hovertemplate=scatter_hovertemplate)
+            fig.add_trace(scatter.data[0])
 
         if df_productgroep.columns[19] in geselecteerde_kolommen:
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[19], y='code', 
+            scatter = px.scatter(df_productgroep, x=df_productgroep.columns[19], y='code', 
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 10']).data[0])
+                                 size=[10], symbol = ['oplossing 10'])
+            
+            scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+            scatter.update_traces(hovertemplate=scatter_hovertemplate)
+            fig.add_trace(scatter.data[0])
             
         if df_productgroep.columns[20] in geselecteerde_kolommen:
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[20], y='code', 
+            scatter = px.scatter(df_productgroep, x=df_productgroep.columns[20], y='code', 
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 11']).data[0])
+                                 size=[10], symbol = ['oplossing 11'])
+            
+            scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+            scatter.update_traces(hovertemplate=scatter_hovertemplate)
+            fig.add_trace(scatter.data[0])
 
     fig.update_layout(height=250)
 
@@ -772,7 +823,7 @@ df_mk['aantal'] = df_mk['maximaal'] - df_mk['minimaal']
 df_mk['code'] = '00'
 
 kleur_teller = 0
-st.dataframe(df_mk)
+
 fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='milieukosten', 
                  hover_data={'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
