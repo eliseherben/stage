@@ -496,7 +496,7 @@ for productgroep in df['productgroep']:
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ',
                 hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
     
-    bar_hovertemplate = 'Minimaal: %{customdata[0]} %{customdata[2]}<br>Maximaal: %{customdata[1]} %{customdata[2]}<br>'
+    bar_hovertemplate = 'Minimaal: %{customdata[0]} {customdata[2]}<br>Maximaal: %{customdata[1]} %{customdata[2]}<br>'
     fig.update_traces(hovertemplate=bar_hovertemplate, customdata=df_productgroep[['minimaal', 'maximaal', 'eenheid']].values)
 
     if df_productgroep.columns[9] in geselecteerde_kolommen:
@@ -506,7 +506,7 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['huidig'])
         
-        scatter_hovertemplate = f'Huidige waarde: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+        scatter_hovertemplate = f'Huidige waarde: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
     
@@ -517,7 +517,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 1'])
         
-        scatter_hovertemplate = f'Oplossing 1: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+        scatter_hovertemplate = f'Oplossing 1: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
 
@@ -528,7 +528,7 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 2'])
         
-        scatter_hovertemplate = f'Oplossing 2: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+        scatter_hovertemplate = f'Oplossing 2: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
 
@@ -539,7 +539,7 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 3'])
     
-        scatter_hovertemplate = f'Oplossing 3: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+        scatter_hovertemplate = f'Oplossing 3: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
 
@@ -550,7 +550,7 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 4'])
         
-        scatter_hovertemplate = f'Oplossing 4: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+        scatter_hovertemplate = f'Oplossing 4: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
 
@@ -561,7 +561,7 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 5'])
         
-        scatter_hovertemplate = f'Oplossing 5: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+        scatter_hovertemplate = f'Oplossing 5: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig.add_trace(scatter.data[0])
 
@@ -573,7 +573,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 6'])
             
-            scatter_hovertemplate = f'Oplossing 6: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+            scatter_hovertemplate = f'Oplossing 6: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
 
@@ -584,7 +584,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 7'])
             
-            scatter_hovertemplate = f'Oplossing 7: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+            scatter_hovertemplate = f'Oplossing 7: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
 
@@ -595,7 +595,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 8'])
             
-            scatter_hovertemplate = f'Oplossing 8: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+            scatter_hovertemplate = f'Oplossing 8: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
 
@@ -606,7 +606,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 9'])
             
-            scatter_hovertemplate = f'Oplossing 9: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+            scatter_hovertemplate = f'Oplossing 9: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
 
@@ -617,7 +617,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 10'])
             
-            scatter_hovertemplate = f'Oplossing 10: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+            scatter_hovertemplate = f'Oplossing 10: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
             
@@ -628,7 +628,7 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 11'])
             
-            scatter_hovertemplate = f'Oplossing 11: %{{x}} %{df_productgroep["eenheid"].iloc[0]}<br>'
+            scatter_hovertemplate = f'Oplossing 11: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
             scatter.update_traces(hovertemplate=scatter_hovertemplate)
             fig.add_trace(scatter.data[0])
 
