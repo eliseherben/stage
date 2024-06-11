@@ -706,6 +706,11 @@ st.plotly_chart(fig2)
 # In[ ]:
 
 
+import locale
+
+# Set locale to Dutch (Netherlands)
+locale.setlocale(locale.LC_ALL, 'nl_NL')
+
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
 df_mk = df2[['oplossing', 'milieukosten']]
@@ -736,7 +741,7 @@ if df_mk.columns[-3] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol=['huidig'])
     
-    scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+    scatter_hovertemplate = f'Huidige waarde: €{{x:n}}<br>'
     scatter.update_traces(hovertemplate=scatter_hovertemplate)
     fig2.add_trace(scatter.data[0])
 
@@ -747,7 +752,7 @@ if df_mk.columns[0] in geselecteerde_kolommen:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 1'])
     
-    scatter_hovertemplate = f'Oplossing 1: €%{{x:,.2f}}<br>'
+    scatter_hovertemplate = f'Oplossing 1: €{{x:n}}<br>'
     scatter.update_traces(hovertemplate=scatter_hovertemplate)
     fig2.add_trace(scatter.data[0])
     
@@ -758,7 +763,7 @@ if df_mk.columns[1] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 2'])
     
-    scatter_hovertemplate = f'Oplossing 2: €%{{x:,.2f}}<br>'
+    scatter_hovertemplate = f'Oplossing 2: €{{x:n}}<br>'
     scatter.update_traces(hovertemplate=scatter_hovertemplate)
     fig2.add_trace(scatter.data[0])
 
@@ -769,7 +774,7 @@ if df_mk.columns[2] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 3'])
     
-    scatter_hovertemplate = f'Oplossing 3: €%{{x:,.2f}}<br>'
+    scatter_hovertemplate = f'Oplossing 3: €{{x:n}}<br>'
     scatter.update_traces(hovertemplate=scatter_hovertemplate)
     fig2.add_trace(scatter.data[0])
 
@@ -780,7 +785,7 @@ if df_mk.columns[3] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 4'])
     
-    scatter_hovertemplate = f'Oplossing 4: €%{{x:,.2f}}<br>'
+    scatter_hovertemplate = f'Oplossing 4: €{{x:n}}<br>'
     scatter.update_traces(hovertemplate=scatter_hovertemplate)
     fig2.add_trace(scatter.data[0])
 
@@ -791,7 +796,7 @@ if df_mk.columns[4] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 5'])
     
-    scatter_hovertemplate = f'Oplossing 5: €%{{x:,.2f}}<br>'
+    scatter_hovertemplate = f'Oplossing 5: €{{x:n}}<br>'
     scatter.update_traces(hovertemplate=scatter_hovertemplate)
     fig2.add_trace(scatter.data[0])
 
@@ -803,7 +808,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 6'])
         
-        scatter_hovertemplate = f'Oplossing 6: €%{{x:,.2f}}<br>'
+        scatter_hovertemplate = f'Oplossing 6: €{{x:n}}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig2.add_trace(scatter.data[0])
 
@@ -814,7 +819,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 7'])
         
-        scatter_hovertemplate = f'Oplossing 7: €%{{x:,.2f}}<br>'
+        scatter_hovertemplate = f'Oplossing 7: €{{x:n}}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig2.add_trace(scatter.data[0])
 
@@ -825,7 +830,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 8'])
         
-        scatter_hovertemplate = f'Oplossing 8: €%{{x:,.2f}}<br>'
+        scatter_hovertemplate = f'Oplossing 8: €{{x:n}}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig2.add_trace(scatter.data[0])
 
@@ -836,7 +841,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 9'])
         
-        scatter_hovertemplate = f'Oplossing 9: €%{{x:,.2f}}<br>'
+        scatter_hovertemplate = f'Oplossing 9: €{{x:n}}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig2.add_trace(scatter.data[0])
 
@@ -847,7 +852,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 10'])
         
-        scatter_hovertemplate = f'Oplossing 10: €%{{x:,.2f}}<br>'
+        scatter_hovertemplate = f'Oplossing 10: €{{x:n}}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig2.add_trace(scatter.data[0])
 
@@ -858,7 +863,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 11'])
         
-        scatter_hovertemplate = f'Oplossing 11: €%{{x:,.2f}}<br>'
+        scatter_hovertemplate = f'Oplossing 11: €{{x:n}}<br>'
         scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig2.add_trace(scatter.data[0])
 
@@ -866,6 +871,12 @@ fig2.update_layout(height=250)
 
 fig2.update_yaxes(visible=False, showticklabels=False)
 st.plotly_chart(fig2)
+
+
+# In[2]:
+
+
+import locale
 
 
 # In[ ]:
