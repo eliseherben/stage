@@ -825,7 +825,7 @@ fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='milieukosten', 
                  hover_data={'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
-bar_hovertemplate = 'Minimaal: %{customdata[0]}<br>Maximaal: %{customdata[1]}<br>'
+bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{customdata[1]:,.2f}<br>'
 fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_mk[['minimaal', 'maximaal']].values)
 
 if df_mk.columns[-3] in geselecteerde_kolommen:
