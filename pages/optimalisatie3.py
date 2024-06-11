@@ -485,13 +485,12 @@ else:
         # Sla de oplossing op in een dictionary
 #         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
 #         oplossing_vars = [var.varValue for key, var in lp_variabelen]
+        oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
+        oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
+        st.markdown(oplossingen)
+        st.markdown(oplossingswaarden)
+        data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
         if pl.LpStatus[status] == 'Optimal':
-            oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
-            oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
-            st.markdown(oplossingen)
-            st.markdown(oplossingswaarden)
-            data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
-
             index = 0
             for i, row in data.iterrows():
                 if row['optimalisatie'] == 'ja':
