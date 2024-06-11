@@ -487,7 +487,8 @@ else:
 #         oplossing_vars = [var.varValue for key, var in lp_variabelen]
         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
         oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
-        
+        st.markdowm(oplossingen)
+        st.markdown(oplossingswaarden)
         data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
         
         index = 0
