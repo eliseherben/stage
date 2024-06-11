@@ -726,12 +726,18 @@ fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='milieukosten', 
               hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
+hovertemplate = '<b>%{hovertext}</b><br>Minimaal: %{customdata[0]}<br>Maximaal: %{customdata[1]}<br>'
+fig2.update_traces(hovertemplate=hovertemplate, customdata=df_mk[['minimaal', 'maximaal']].values)
+
+
 if df_mk.columns[-3] in geselecteerde_kolommen:
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     fig2.add_trace(px.scatter(df_mk, x='huidige_waarden', y='code', 
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
-                         size=[10], symbol = ['huidig']).data[0])
+                         size=[10], symbol = ['huidig']))
+    scatter.update_traces(hovertemplate=hovertemplate, customdata=df_mk[['minimaal', 'maximaal']].values)
+    fig2.add_trace(scatter.data[0])
 
 if df_mk.columns[0] in geselecteerde_kolommen:
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
