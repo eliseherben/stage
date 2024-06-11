@@ -131,10 +131,17 @@ if uploaded_file is not None:
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17]], axis = 1)
         dataframe = dataframe
 
+    def status(status_series):
+        if (status_series == 'vervallen').all():
+            return 'vervallen'
+        elif (status_series == 'actueel').any():
+            return 'actueel'
+        else:
+            return 'onbekend'
         
     test = dataframe[['status in ontwerp:', 'productgroep']]
     st.dataframe(test, hide_index = True)
-    test2 = test.groupby('productgroep')['status in ontwerp:'].sum().reset_index()
+    test2 = test.groupby('productgroep')['status in ontwerp:'].apply(status).reset_index()
     st.dataframe(test2)
     st.dataframe(dataframe, hide_index = True)
     st.session_state.dataframe = dataframe
