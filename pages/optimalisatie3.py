@@ -632,7 +632,7 @@ if df_k.columns[0] in geselecteerde_kolommen:
                              size=[10], symbol = ['oplossing 1']).data[0])
 
 if df_k.columns[1] in geselecteerde_kolommen:
-    fig2.add_trace(px.scatter(df_k, x=df_k.columns[11], y='code', 
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[1], y='code', 
                          color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 2']).data[0])
 
@@ -720,7 +720,7 @@ if df_mk.columns[0] in geselecteerde_kolommen:
                              size=[10], symbol = ['oplossing 1']).data[0])
 
 if df_mk.columns[1] in geselecteerde_kolommen:
-    fig2.add_trace(px.scatter(df_mk, x=df_mk.columns[11], y='code', 
+    fig2.add_trace(px.scatter(df_mk, x=df_mk.columns[1], y='code', 
                          color_discrete_sequence=['rgba(255, 211, 0, 1.0)'], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 2']).data[0])
 
