@@ -413,7 +413,7 @@ elements = [
 ]
 
 # Loop through the list to create the UI elements for each element type
-for element in elements if element['type'][:2] in st.session_state.list :
+for element in elements if element['type'][:2] in st.session_state.list:
     st.markdown(f"**{element['type']}**")
     st.number_input(element['label'], value=None, 
                     placeholder="vul het aantal m2 in" if 'm2' in element['label'] else "vul het aantal stuks in", 
