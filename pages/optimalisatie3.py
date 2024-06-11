@@ -629,7 +629,7 @@ if df_k.columns[-3] in geselecteerde_kolommen:
                          size=[10], symbol = ['huidig']).data[0])
 
 if df_k.columns[0] in geselecteerde_kolommen:
-    fig2.add_trace(px.scatter(df_k, x=df_k.columns[10], y='code', 
+    fig2.add_trace(px.scatter(df_k, x=df_k.columns[0], y='code', 
                              color_discrete_sequence=['rgba(241, 142, 47, 1.0)'], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 1']).data[0])
 
