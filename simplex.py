@@ -147,13 +147,10 @@ if uploaded_file is not None:
         else:
             return 'onbekend'
         
-    test = dataframe[['status in ontwerp:', 'productgroep']]
-    st.dataframe(test, hide_index = True)
-    test2 = test.groupby('productgroep')['status in ontwerp:'].apply(status).reset_index()
-    st.dataframe(test2)
+    df1 = dataframe[['status in ontwerp:', 'productgroep']]
+    df2 = df1.groupby('productgroep')['status in ontwerp:'].apply(status).reset_index()
     
-    lijst = [test2.iloc[i, 0][:2] for i in range(len(test2)) if test2.iloc[i, 1] == 'actueel']
-    st.markdown(lijst)
+    lijst = [df2.iloc[i, 0][:2] for i in range(len(test2)) if df2.iloc[i, 1] == 'actueel']
     st.session_state.list = lijst
     
     st.dataframe(dataframe, hide_index = True)
