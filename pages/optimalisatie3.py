@@ -518,7 +518,7 @@ geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_sel
 df = df[df['eenheid'].notna()]
 
 for productgroep in df['productgroep']:
-    kleuren_teller = 0
+    kleur_teller = 0
     st.markdown(f"kleuren teller {kleuren_teller}")
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['productgroep'] == productgroep]
@@ -535,9 +535,9 @@ for productgroep in df['productgroep']:
     if df_productgroep.columns[9] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        st.markdown(f"kleuren tellllller {kleuren_teller}")
+        st.markdown(f"kleuren tellllller {kleur_teller}")
         st.markdown(f"kleur {kleur}")
-
+        st.markdown(f"kleur {len(kleuren_schema)}")
         fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['huidig'], 
@@ -560,7 +560,7 @@ for productgroep in df['productgroep']:
     if df_productgroep.columns[12] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        st.markdown(f"kleuren tellllller {kleuren_teller}")
+        st.markdown(f"kleuren tellllller {kleur_teller}")
         st.markdown(f"kleur {kleur}")
         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[12], y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
@@ -576,7 +576,7 @@ for productgroep in df['productgroep']:
     if df_productgroep.columns[14] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
-        st.markdown(f"kleuren tellllller {kleuren_teller}")
+        st.markdown(f"kleuren tellllller {kleur_teller}")
         st.markdown(f"kleur {kleur}")
         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[14], y='code', 
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
