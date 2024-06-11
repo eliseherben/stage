@@ -613,7 +613,7 @@ fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
              hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
 bar_hovertemplate = 'Minimaal: %{customdata[0]}<br>Maximaal: %{customdata[1]}<br>'
-fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_mk[['minimaal', 'maximaal']].values)
+fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_k[['minimaal', 'maximaal']].values)
 
 if df_k.columns[-3] in geselecteerde_kolommen:
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
