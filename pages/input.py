@@ -391,6 +391,7 @@ st.page_link("simplex.py", label = 'Homepagina')
 
 import streamlit as st
 
+
 # Define a list of dictionaries for each wall type and their corresponding attributes
 elements = [
     {"type": "21 Buitenwanden", "label": "Aantal m2 aan buitenwanden in het huidige project *", "key_input": "_Buitenwanden", "key_toggle": "_Buitenwanden_on", "on_change_input": set_Buitenwanden, "on_change_toggle": set_Buitenwanden_on},
@@ -412,7 +413,7 @@ elements = [
 ]
 
 # Loop through the list to create the UI elements for each element type
-for element in elements:
+for element in elements if element['type'][:2] in st.session_state.list :
     st.markdown(f"**{element['type']}**")
     st.number_input(element['label'], value=None, 
                     placeholder="vul het aantal m2 in" if 'm2' in element['label'] else "vul het aantal stuks in", 
