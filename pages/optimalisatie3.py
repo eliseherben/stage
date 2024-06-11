@@ -304,8 +304,8 @@ else:
     st.markdown("##### Minimale afwijking in productgroepen")
     
     for i in range(len(data)):
-        if data.iloc[i, 'productgroep'][:2] in st.session_state.list:
-            data.drop([data.iloc[i, 'productgroep']], inplace = True)
+        if data.iloc[i, 0][:2] in st.session_state.list:
+            data.drop([data.iloc[i, 0]], inplace = True)
     
     elements = [
     {"type": "21 Buitenwanden", "key_toggle": "Buitenwanden_on"},
