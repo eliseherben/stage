@@ -138,11 +138,21 @@ st.session_state.maximaal = maximaal_list
 
 # hieronder kijken of het mogelijk is om een grijs vlak toe te voegen, als je dus meerdere productgroepen in een multiselect hebt etc
 
-# In[ ]:
+# In[1]:
 
 
 st.markdown("##### Verdeling productgroepen")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
+
+opties = st.selectbox = ("Soort visualisatie", ("Alleen de productgroepen met m2 als eenheid", 
+                                       "Alleen de productgroepen met stuks als eenheid", 
+                                      "Alle productgroepen"))
+
+if opties == "Alleen de productgroepen met m2 als eenheid":
+    filtered = filtered[filtered['eenheid'] == 'm2']
+if opties == "Alleen de productgroepen met stuks als eenheid":
+    filtered = filtered[filtered['eenheid'] == 'stuks']
+
 
 productgroepen = filtered['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen)
