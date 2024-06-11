@@ -497,7 +497,7 @@ for productgroep in df['productgroep']:
                 hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
     
     bar_hovertemplate = 'Minimaal: %{customdata[0]}<br>Maximaal: %{customdata[1]}<br>'
-    fig.update_traces(hovertemplate=bar_hovertemplate, customdata=df_k[['minimaal', 'maximaal']].values)
+    fig.update_traces(hovertemplate=bar_hovertemplate, customdata=df_productgroep[['minimaal', 'maximaal']].values)
 
     if df_productgroep.columns[9] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
