@@ -144,7 +144,7 @@ st.session_state.maximaal = maximaal_list
 st.markdown("##### Verdeling productgroepen")
 filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
-opties = st.selectbox = ("Soort visualisatie", 
+opties = st.selectbox("Soort visualisatie", 
                          ["Alleen de productgroepen met m2 als eenheid", 
                           "Alleen de productgroepen met stuks als eenheid", "Alle productgroepen"])
 
