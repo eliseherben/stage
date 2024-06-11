@@ -706,11 +706,6 @@ st.plotly_chart(fig2)
 # In[ ]:
 
 
-import locale
-
-# Set locale to Dutch (Netherlands)
-locale.setlocale(locale.LC_ALL, 'nl_NL')
-
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
 df_mk = df2[['oplossing', 'milieukosten']]
