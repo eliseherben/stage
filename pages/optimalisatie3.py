@@ -18,6 +18,7 @@ from plotly.subplots import make_subplots
 st.write("#")
 st.title("Optimalisatie")
 st.page_link("simplex.py", label="Homepagina")
+st.page_link("pages/input.py", label = "Terug naar input")
 
 
 # In[ ]:
@@ -83,40 +84,6 @@ data.iloc[-1, 3] = data.iloc[-1, 3] + 1
 # In[ ]:
 
 
-# data
-
-
-# In[ ]:
-
-
-data2 = pd.read_csv("dataframe2.csv", sep=';', decimal = ',')
-
-
-# In[ ]:
-
-
-data3 = pd.read_csv("dataframe3.csv", sep=';', decimal = ',')
-
-
-# In[ ]:
-
-
-data3['minimaal'] = data3['minimaal'] * st.session_state.appartementen
-data3['maximaal'] = data3['maximaal'] * st.session_state.appartementen
-data3['constant'] = ['']*len(data3)
-
-
-# In[ ]:
-
-
-data2['minimaal'] = data2['minimaal'] * st.session_state.appartementen
-data2['maximaal'] = data2['maximaal'] * st.session_state.appartementen
-data2['constant'] = ['']*len(data2)
-
-
-# In[ ]:
-
-
 data['minimaal'] = data['minimaal'] * st.session_state.appartementen
 data['maximaal'] = data['maximaal'] * st.session_state.appartementen
 data['constant'] = ['']*len(data)
@@ -135,8 +102,6 @@ maximaal_list = filtered_data['maximaal'].tolist()
 st.session_state.minimaal = minimaal_list
 st.session_state.maximaal = maximaal_list
 
-
-# hieronder kijken of het mogelijk is om een grijs vlak toe te voegen, als je dus meerdere productgroepen in een multiselect hebt etc
 
 # In[ ]:
 
@@ -503,11 +468,20 @@ else:
     
 
 
-# In[1]:
+# In[ ]:
 
+
+import streamlit as st
+import plotly.express as px
+
+def add_trace(fig, df_productgroep, col_name, color, symbol_label):
+    fig.add_trace(px.scatter(df_productgroep, x=col_name, y='code', 
+                             color_discrete_sequence=[color], labels={'x': ''}, 
+                             size=[10], symbol=[symbol_label]).data[0])
 
 st.markdown('#')
 st.markdown("##### Visualisaties")
+
 df = st.session_state.oplossingen
     
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
@@ -517,113 +491,150 @@ geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_sel
 
 df = df[df['eenheid'].notna()]
 
-for productgroep in df['productgroep']:
+for productgroep in df['productgroep'].unique():
     kleur_teller = 0
-    # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['productgroep'] == productgroep]
-
-    # Selecteer alle kolommen behalve de uitgesloten kolommen
-    df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
-
     df_productgroep['aantal'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
 
-    fig = px.bar(df_productgroep, x='aantal', y='code', base = 'minimaal', 
-                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ',
-                hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
+    fig = px.bar(df_productgroep, x='aantal', y='code', base='minimaal', 
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep}',
+                 hover_data={'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
-    if df_productgroep.columns[9] in geselecteerde_kolommen:
-        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-        kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
-                             color_discrete_sequence=[kleur], labels={'x': ''}, 
-                             size=[10], symbol = ['huidig'], 
-                            hover_data = {'code': True}).data[0])
+    for i, col_name in enumerate(df_productgroep.columns[9:21]):
+        if col_name in geselecteerde_kolommen:
+            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+            kleur_teller += 1
+            symbol_label = 'huidig' if i == 0 else f'oplossing {i}'
+            add_trace(fig, df_productgroep, col_name, kleur, symbol_label)
     
-    if df_productgroep.columns[10] in geselecteerde_kolommen:
-        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-        kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[10], y='code', 
-                                 color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 1']).data[0])
-
-    if df_productgroep.columns[11] in geselecteerde_kolommen:
-        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-        kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[11], y='code', 
-                             color_discrete_sequence=[kleur], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossing 2']).data[0])
-
-    if df_productgroep.columns[12] in geselecteerde_kolommen:
-        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-        kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[12], y='code', 
-                             color_discrete_sequence=[kleur], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossing 3']).data[0])
-
-    if df_productgroep.columns[13] in geselecteerde_kolommen:
-        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-        kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[13], y='code', 
-                             color_discrete_sequence=[kleur], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossing 4']).data[0])
-
-    if df_productgroep.columns[14] in geselecteerde_kolommen:
-        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-        kleur_teller += 1
-        fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[14], y='code', 
-                             color_discrete_sequence=[kleur], labels={'x': ''}, 
-                             size=[10], symbol = ['oplossing 5']).data[0])
-    
-    if st.session_state.doelstelling == 'Geen voorkeur':
-        if df_productgroep.columns[15] in geselecteerde_kolommen:
-            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-            kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[15], y='code', 
-                                 color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 6']).data[0])
-
-        if df_productgroep.columns[16] in geselecteerde_kolommen:
-            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-            kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[16], y='code', 
-                                 color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 7']).data[0])
-
-        if df_productgroep.columns[17] in geselecteerde_kolommen:
-            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-            kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[17], y='code', 
-                                 color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 8']).data[0])
-
-        if df_productgroep.columns[18] in geselecteerde_kolommen:
-            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-            kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[18], y='code', 
-                                 color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 9']).data[0])
-
-        if df_productgroep.columns[19] in geselecteerde_kolommen:
-            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-            kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[19], y='code', 
-                                 color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 10']).data[0])
-            
-        if df_productgroep.columns[20] in geselecteerde_kolommen:
-            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-            kleur_teller += 1
-            fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[20], y='code', 
-                                 color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                 size=[10], symbol = ['oplossing 11']).data[0])
-
     fig.update_layout(height=250)
-
     fig.update_traces(hovertemplate='<b>Code:</b> %{y}<br>')
-    
     fig.update_yaxes(visible=False, showticklabels=False)
 
     st.plotly_chart(fig)
+
+
+# In[1]:
+
+
+# st.markdown('#')
+# st.markdown("##### Visualisaties")
+# df = st.session_state.oplossingen
+    
+# kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
+#                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
+# kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
+# geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
+
+# df = df[df['eenheid'].notna()]
+
+# for productgroep in df['productgroep']:
+#     kleur_teller = 0
+#     # Selecteer de data voor de huidige productgroep
+#     df_productgroep = df[df['productgroep'] == productgroep]
+
+#     # Selecteer alle kolommen behalve de uitgesloten kolommen
+#     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
+
+#     df_productgroep['aantal'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
+
+#     fig = px.bar(df_productgroep, x='aantal', y='code', base = 'minimaal', 
+#                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ',
+#                 hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
+
+#     if df_productgroep.columns[9] in geselecteerde_kolommen:
+#         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#         kleur_teller += 1
+#         fig.add_trace(px.scatter(df_productgroep, x='huidige_waarden', y='code', 
+#                              color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                              size=[10], symbol = ['huidig'], 
+#                             hover_data = {'code': True}).data[0])
+    
+#     if df_productgroep.columns[10] in geselecteerde_kolommen:
+#         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#         kleur_teller += 1
+#         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[10], y='code', 
+#                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                  size=[10], symbol = ['oplossing 1']).data[0])
+
+#     if df_productgroep.columns[11] in geselecteerde_kolommen:
+#         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#         kleur_teller += 1
+#         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[11], y='code', 
+#                              color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                              size=[10], symbol = ['oplossing 2']).data[0])
+
+#     if df_productgroep.columns[12] in geselecteerde_kolommen:
+#         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#         kleur_teller += 1
+#         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[12], y='code', 
+#                              color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                              size=[10], symbol = ['oplossing 3']).data[0])
+
+#     if df_productgroep.columns[13] in geselecteerde_kolommen:
+#         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#         kleur_teller += 1
+#         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[13], y='code', 
+#                              color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                              size=[10], symbol = ['oplossing 4']).data[0])
+
+#     if df_productgroep.columns[14] in geselecteerde_kolommen:
+#         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#         kleur_teller += 1
+#         fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[14], y='code', 
+#                              color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                              size=[10], symbol = ['oplossing 5']).data[0])
+    
+#     if st.session_state.doelstelling == 'Geen voorkeur':
+#         if df_productgroep.columns[15] in geselecteerde_kolommen:
+#             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#             kleur_teller += 1
+#             fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[15], y='code', 
+#                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                  size=[10], symbol = ['oplossing 6']).data[0])
+
+#         if df_productgroep.columns[16] in geselecteerde_kolommen:
+#             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#             kleur_teller += 1
+#             fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[16], y='code', 
+#                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                  size=[10], symbol = ['oplossing 7']).data[0])
+
+#         if df_productgroep.columns[17] in geselecteerde_kolommen:
+#             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#             kleur_teller += 1
+#             fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[17], y='code', 
+#                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                  size=[10], symbol = ['oplossing 8']).data[0])
+
+#         if df_productgroep.columns[18] in geselecteerde_kolommen:
+#             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#             kleur_teller += 1
+#             fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[18], y='code', 
+#                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                  size=[10], symbol = ['oplossing 9']).data[0])
+
+#         if df_productgroep.columns[19] in geselecteerde_kolommen:
+#             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#             kleur_teller += 1
+#             fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[19], y='code', 
+#                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                  size=[10], symbol = ['oplossing 10']).data[0])
+            
+#         if df_productgroep.columns[20] in geselecteerde_kolommen:
+#             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#             kleur_teller += 1
+#             fig.add_trace(px.scatter(df_productgroep, x=df_productgroep.columns[20], y='code', 
+#                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                  size=[10], symbol = ['oplossing 11']).data[0])
+
+#     fig.update_layout(height=250)
+
+#     fig.update_traces(hovertemplate='<b>Code:</b> %{y}<br>')
+    
+#     fig.update_yaxes(visible=False, showticklabels=False)
+
+#     st.plotly_chart(fig)
 
 
 # In[ ]:
