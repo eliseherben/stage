@@ -430,7 +430,6 @@ for element in elements:
                 st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} mogelijk")
             else:
                 st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} **niet** mogelijk")
-st.markdown(keys)
 
 
 # In[3]:
