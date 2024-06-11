@@ -496,7 +496,7 @@ for productgroep in df['productgroep']:
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title=f'{productgroep} ',
                 hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
     
-    bar_hovertemplate = 'Minimaal: %{customdata[0]} {eenheid}<br>Maximaal: %{customdata[1]} {eenheid}<br>'
+    bar_hovertemplate = 'Minimaal: %{customdata[0]} {customdata[2]}<br>Maximaal: %{customdata[1]} {customdata[2]}<br>'
     fig.update_traces(hovertemplate=bar_hovertemplate, customdata=df_productgroep[['minimaal', 'maximaal', 'eenheid']].values)
 
     if df_productgroep.columns[9] in geselecteerde_kolommen:
