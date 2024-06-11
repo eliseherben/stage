@@ -490,16 +490,16 @@ else:
         st.markdown(oplossingen)
         st.markdown(oplossingswaarden)
         data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
-        
-        index = 0
-        for i, row in data.iterrows():
-            if row['optimalisatie'] == 'ja':
-                if index < len(oplossingswaarden):
-                    data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = oplossingswaarden[index]
-                    index += 1
-            else:
-                data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = data.at[i, 'huidige_waarden']
-        
+        if pl.LpStatus[status] == 'Optimal':
+            index = 0
+            for i, row in data.iterrows():
+                if row['optimalisatie'] == 'ja':
+                    if index < len(oplossingswaarden):
+                        data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = oplossingswaarden[index]
+                        index += 1
+                else:
+                    data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = data.at[i, 'huidige_waarden']
+
         doelwaardes.append((f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}", 
                             (data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] * data['kosten']).sum(), 
                             (data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] * data['circulair']).sum()))
