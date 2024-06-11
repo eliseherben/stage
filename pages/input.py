@@ -413,21 +413,22 @@ elements = [
 ]
 
 # Loop through the list to create the UI elements for each element type
-for element in elements if element['type'][:2] in st.session_state.list:
-    st.markdown(f"**{element['type']}**")
-    st.number_input(element['label'], value=None, 
-                    placeholder="vul het aantal m2 in" if 'm2' in element['label'] else "vul het aantal stuks in", 
-                    key=element['key_input'], 
-                    on_change=element['on_change_input'])
-    col1, col2 = st.columns([0.5, 9.5])
-    with col1:
-        toggle = st.toggle("", key=element['key_toggle'], 
-                           on_change=element['on_change_toggle'])
-    with col2:
-        if toggle:
-            st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} mogelijk")
-        else:
-            st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} **niet** mogelijk")
+for element in elements:
+    if element['type'][:2] in st.session_state.list:
+        st.markdown(f"**{element['type']}**")
+        st.number_input(element['label'], value=None, 
+                        placeholder="vul het aantal m2 in" if 'm2' in element['label'] else "vul het aantal stuks in", 
+                        key=element['key_input'], 
+                        on_change=element['on_change_input'])
+        col1, col2 = st.columns([0.5, 9.5])
+        with col1:
+            toggle = st.toggle("", key=element['key_toggle'], 
+                               on_change=element['on_change_toggle'])
+        with col2:
+            if toggle:
+                st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} mogelijk")
+            else:
+                st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} **niet** mogelijk")
 
 
 # In[3]:
