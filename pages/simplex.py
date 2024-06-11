@@ -134,7 +134,7 @@ if uploaded_file is not None:
         
     test = dataframe[['status in ontwerp:', 'productgroep']]
     st.dataframe(test, hide_index = True)
-    test2 = test.groupby('productgroep')
+    test2 = test.groupby('productgroep')['status in ontwerp:'].sum().reset_index()
     st.dataframe(test2)
     st.dataframe(dataframe, hide_index = True)
     st.session_state.dataframe = dataframe
