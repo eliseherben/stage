@@ -150,7 +150,7 @@ if uploaded_file is not None:
     df1 = dataframe[['status in ontwerp:', 'productgroep']]
     df2 = df1.groupby('productgroep')['status in ontwerp:'].apply(status).reset_index()
     
-    lijst = [df2.iloc[i, 0][:2] for i in range(len(test2)) if df2.iloc[i, 1] == 'actueel']
+    lijst = [df2.iloc[i, 0][:2] for i in range(len(df2)) if df2.iloc[i, 1] == 'actueel']
     st.session_state.list = lijst
     
     st.dataframe(dataframe, hide_index = True)
