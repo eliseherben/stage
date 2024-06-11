@@ -517,8 +517,8 @@ geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_sel
 
 df = df[df['eenheid'].notna()]
 
-kleuren_teller = 0
 for productgroep in df['productgroep']:
+    kleuren_teller = 0
     # Selecteer de data voor de huidige productgroep
     df_productgroep = df[df['productgroep'] == productgroep]
 
