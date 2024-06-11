@@ -653,7 +653,6 @@ if df_k.columns[4] in geselecteerde_kolommen:
                          color_discrete_sequence=['rgba(147, 16, 126, 1.0)'], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 5']).data[0])
 
-st.markdown(st.session_state.doelstelling)
 if st.session_state.doelstelling == 'Geen voorkeur':
     if df_k.columns[5] in geselecteerde_kolommen:
         fig2.add_trace(px.scatter(df_k, x=df_k.columns[5], y='code', 
