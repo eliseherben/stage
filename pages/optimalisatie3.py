@@ -462,7 +462,7 @@ else:
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     uitkomsten = uitkomsten.round(1) 
-    st.markdown(uitkomsten.dtype())
+    st.markdown(uitkomsten.dtypes)
     
     st.dataframe(uitkomsten, hide_index = True)
     st.session_state.oplossingen = data
