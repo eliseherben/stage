@@ -465,8 +465,8 @@ else:
     uitkomsten = uitkomsten.round(1) 
     
     columns = uitkomsten.columns.tolist()
-    for i in range(len(uitkomsten)):
-        columns[i+3] = f'Oplossing {1+1}'
+    for i in range(len(uitkomsten)-3):
+        columns[i+3] = f'Oplossing {i+1}'
     
     st.dataframe(uitkomsten, hide_index = True)
     st.session_state.oplossingen = data
