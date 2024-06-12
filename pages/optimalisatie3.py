@@ -464,12 +464,24 @@ else:
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
     uitkomsten = uitkomsten.round(1) 
     
-    st.markdown(w_circulair)
     columns = uitkomsten.columns.tolist()
+    
+    def plot_pie(milieukosten, afwijkingen):
+        labels = ['Milieukosten', 'Afwijkingen']
+        values = [milieukosten, afwijkingen]
+        fig = px.pie(values=values, names=labels, title='Verdeling van Milieukosten en Afwijkingen')
+    return fig
+
     for i in range(len(columns)-3):
         st.markdown(f"**Oplossing {i+1}:**")
         st.markdown(f"- Milieukosten {gewichten[i][0] * 100}%")
         st.markdown(f"- Afwijkingen {gewichten[i][1] * 100}%")
+        
+        # Maak een pie chart
+        fig = plot_pie(gewichten[i][0] * 100, gewichten[i][1] * 100)
+
+        # Weergeven van de pie chart in Streamlit
+        st.plotly_chart(fig) 
         
         columns[i+3] = f'Oplossing {i+1}'
     uitkomsten.columns = columns
