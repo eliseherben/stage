@@ -443,7 +443,7 @@ data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
 
 
 st.markdown("**Aantal appartementen**")
-st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", value=0, key='_appartementen', 
+st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
                 on_change=set_appartementen)
 
 st.markdown("**Budget**")
