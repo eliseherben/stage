@@ -501,13 +501,12 @@ else:
         st.dataframe(oplossing, hide_index = True)
 
     uitkomsten.columns = columns
-    st.dataframe(uitkomsten, hide_index = True)
+#     st.dataframe(uitkomsten, hide_index = True)
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
     
     col1, col2, col3 = st.columns(3)
-    
-    st.markdown(len(uitkomsten))
+    st.markdown("###### Vergelijking")
     options = st.multiselect(
     "Kies tot 3 oplossingen voor een vergelijking",
     [i for i in uitkomsten.columns[3:]], max_selections = 3)
