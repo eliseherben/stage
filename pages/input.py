@@ -23,7 +23,7 @@ def set_budget():
     st.session_state.budget = st.session_state._budget
     
 if "appartementen" not in st.session_state:
-    st.session_state.appartementen = None
+    st.session_state.appartementen = 0
     
 st.session_state._appartementen = st.session_state.appartementen
 
