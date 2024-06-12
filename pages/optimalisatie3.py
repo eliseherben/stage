@@ -490,6 +490,9 @@ else:
 #             st.plotly_chart(fig, use_container_width=True)
         
         columns[i+3] = f'Oplossing {i+1}'
+        uitkomsten = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', f'Oplossing {i+1}']]
+        st.dataframe(uitkomsten, hide_index = True)
+
     uitkomsten.columns = columns
     st.dataframe(uitkomsten, hide_index = True)
     st.session_state.oplossingen = data
