@@ -467,6 +467,10 @@ else:
     st.markdown(w_circulair)
     columns = uitkomsten.columns.tolist()
     for i in range(len(columns)-3):
+        st.markdown(f"**Oplossing {i+1}: **")
+        st.markdown(f"- Milieukosten {gewichten[i][0] * 100}%")
+        st.markdown(f"- Afwijkingen {gewichten[i][1] * 100}%")
+        
         columns[i+3] = f'Oplossing {i+1}'
     uitkomsten.columns = columns
     st.dataframe(uitkomsten, hide_index = True)
