@@ -514,6 +514,14 @@ else:
         st.markdown(f"**Oplossing {1}:**")
         st.markdown(f"- Milieukosten {100}%")
         st.markdown(f"- Afwijkingen {100}%")
+        
+    st.markdown(len(uitkomsten))
+    options = st.multiselect(
+    "Kies tot 3 oplossingen voor een vergelijking",
+    ["Green", "Yellow", "Red", "Blue"],
+    ["Yellow", "Red"])
+
+st.write("You selected:", options)
 
 
 # In[ ]:
