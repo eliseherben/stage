@@ -469,7 +469,7 @@ else:
     def plot_pie(milieukosten, afwijkingen):
         labels = ['Milieukosten', 'Afwijkingen']
         values = [milieukosten, afwijkingen]
-        fig = px.pie(values=values, names=labels, title='Verdeling van Milieukosten en Afwijkingen')
+        fig = px.pie(values=values, names=labels)
         fig.update_traces(textposition='inside', textinfo='percent+label')
         fig.update(layout_showlegend=False)
         return fig
@@ -479,8 +479,8 @@ else:
         
         with col1:
             st.markdown(f"**Oplossing {i+1}:**")
-            st.markdown(f"- Milieukosten {gewichten[i][0] * 100:.2f}%")
-            st.markdown(f"- Afwijkingen {gewichten[i][1] * 100:.2f}%")
+            st.markdown(f"- Milieukosten {gewichten[i][0] * 100}%")
+            st.markdown(f"- Afwijkingen {gewichten[i][1] * 100}%")
 
         with col2:
             # Maak een pie chart
