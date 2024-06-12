@@ -518,7 +518,7 @@ else:
     st.markdown(len(uitkomsten))
     options = st.multiselect(
     "Kies tot 3 oplossingen voor een vergelijking",
-    [i for i in df.columns])
+    [i for i in uitkomsten.columns])
 
 
 # In[ ]:
