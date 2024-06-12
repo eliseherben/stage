@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[6]:
 
 
 import streamlit as st
@@ -73,12 +73,18 @@ def set_doelwaardes():
     st.session_state.doelwaardes = st.session_state._doelwaardes
 
 
-# In[2]:
+# In[7]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
 data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
 data.iloc[-1, 3] = data.iloc[-1, 3] + 1
+
+
+# In[8]:
+
+
+data
 
 
 # In[ ]:
@@ -520,8 +526,9 @@ else:
     "Kies tot 3 oplossingen voor een vergelijking",
     [i for i in uitkomsten.columns[3:]], max_selections = 3)
 
-    st.markdown(options) 
-    vergelijken = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', f'{i for i in options}']]
+    st.markdown(options)
+    kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
+    vergelijken = uitkomsten[kolommen]
     st.dataframe(vergelijken)
 
 
