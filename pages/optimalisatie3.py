@@ -514,7 +514,6 @@ else:
         st.markdown(f"**Oplossing {1}:**")
         st.markdown(f"- Milieukosten {100}%")
         st.markdown(f"- Afwijkingen {100}%")
-    st.markdown()
 
 
 # In[ ]:
