@@ -469,7 +469,8 @@ else:
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
     uitkomsten = uitkomsten.round(1) 
-    
+    st.dataframe(uitkomsten)
+    st.dataframe(data)
     columns = uitkomsten.columns.tolist()
     
     def plot_pie(milieukosten, afwijkingen):
