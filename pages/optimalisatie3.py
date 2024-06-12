@@ -463,7 +463,7 @@ else:
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
     uitkomsten = uitkomsten.round(1) 
-    
+    st.dataframe(uitkomsten, hide_index = True)
     columns = uitkomsten.columns.tolist()
     for i in range(len(uitkomsten)-3):
         st.markdown(i)
