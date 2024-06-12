@@ -465,12 +465,10 @@ else:
     uitkomsten = uitkomsten.round(1) 
     st.dataframe(uitkomsten, hide_index = True)
     columns = uitkomsten.columns.tolist()
-    len(columns)
-    len(uitkomsten)
     for i in range(len(columns)-3):
         st.markdown(i)
         columns[i+3] = f'Oplossing {i+1}'
-    
+    uitkomsten.columns = columns
     st.dataframe(uitkomsten, hide_index = True)
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
