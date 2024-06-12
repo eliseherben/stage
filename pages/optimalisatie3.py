@@ -506,26 +506,16 @@ else:
     st.session_state.doelwaardes = doelwaardes
     
     col1, col2, col3 = st.columns(3)
-    with col1:
-        st.markdown(f"**Oplossing {1}:**")
-        st.markdown(f"- Milieukosten {100}%")
-        st.markdown(f"- Afwijkingen {100}%")
-        
-    with col2:
-        st.markdown(f"**Oplossing {1}:**")
-        st.markdown(f"- Milieukosten {100}%")
-        st.markdown(f"- Afwijkingen {100}%")
-        
-    with col3:
-        st.markdown(f"**Oplossing {1}:**")
-        st.markdown(f"- Milieukosten {100}%")
-        st.markdown(f"- Afwijkingen {100}%")
-        
+    
     st.markdown(len(uitkomsten))
     options = st.multiselect(
     "Kies tot 3 oplossingen voor een vergelijking",
     [i for i in uitkomsten.columns[3:]], max_selections = 3)
 
+    for i in options:
+        st.markdown(f"**{i}**")
+        st.markdown(f"- Milieukosten {gewichten[i[10:]][0] * 100}%")
+        st.markdown(f"- Afwijkingen {gewichten[i[10:]][1] * 100}%")
     st.markdown(options)
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
