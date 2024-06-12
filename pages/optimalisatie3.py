@@ -471,6 +471,7 @@ else:
         values = [milieukosten, afwijkingen]
         fig = px.pie(values=values, names=labels, title='Verdeling van Milieukosten en Afwijkingen')
         fig.update_traces(textposition='inside', textinfo='percent+label')
+        fig.update(layout_showlegend=False)
         return fig
 
     for i in range(len(columns)-3):
