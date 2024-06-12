@@ -470,10 +470,11 @@ else:
         labels = ['Milieukosten', 'Afwijkingen']
         values = [milieukosten, afwijkingen]
         fig = px.pie(values=values, names=labels, title='Verdeling van Milieukosten en Afwijkingen')
+        fig.update_traces(textposition='inside', textinfo='percent+label')
         return fig
 
     for i in range(len(columns)-3):
-        col1, col2 = st.columns([1, 2])
+        col1, col2 = st.columns([2, 1])
         
         with col1:
             st.markdown(f"**Oplossing {i+1}:**")
