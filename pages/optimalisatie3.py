@@ -521,7 +521,7 @@ else:
                 st.markdown(f"- Afwijkingen {gewichten[x-1][1] * 100}%")
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
-    st.dataframe(vergelijken)
+    st.dataframe(vergelijken, hide_index = True)
 
 
 # In[ ]:

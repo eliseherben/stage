@@ -400,7 +400,7 @@ elements = [
     {"type": "24 Trappen en hellingen", "label": "Aantal stuks aan trappen en hellingen in het huidige project *", "key_input": "_Trappen_en_hellingen", "key_toggle": "_Trappen_en_hellingen_on", "on_change_input": set_Trappen_en_hellingen, "on_change_toggle": set_Trappen_en_hellingen_on},
     {"type": "27 Daken", "label": "Aantal m2 aan daken in het huidige project *", "key_input": "_Daken", "key_toggle": "_Daken_on", "on_change_input": set_Daken, "on_change_toggle": set_Daken_on},
     {"type": "28 Hoofddraagconstructie", "label": "Aantal m2 aan hoofddraagconstructie in het huidige project *", "key_input": "_Hoofddraagconstructie", "key_toggle": "_Hoofddraagconstructie_on", "on_change_input": set_Hoofddraagconstructie, "on_change_toggle": set_Hoofddraagconstructie_on},
-    {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "label": "Aantal m aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project *", "key_input": "_Buitenkozijnen", "key_toggle": "_Buitenkozijnen_on", "on_change_input": set_Buitenkozijnen, "on_change_toggle": set_Buitenkozijnen_on},
+    {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "label": "Aantal stuks aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project *", "key_input": "_Buitenkozijnen", "key_toggle": "_Buitenkozijnen_on", "on_change_input": set_Buitenkozijnen, "on_change_toggle": set_Buitenkozijnen_on},
     {"type": "32 Binnenkozijnen en -deuren", "label": "Aantal stuks aan binnenkozijnen en -deuren in het huidige project *", "key_input": "_Binnenkozijnen_en__deuren", "key_toggle": "_Binnenkozijnen_en__deuren_on", "on_change_input": set_Binnenkozijnen_en__deuren, "on_change_toggle": set_Binnenkozijnen_en__deuren_on},
     {"type": "33 Luiken en vensters", "label": "Aantal stuks aan luiken en vensters in het huidige project *", "key_input": "_Luiken_en_vensters", "key_toggle": "_Luiken_en_vensters_on", "on_change_input": set_Luiken_en_vensters, "on_change_toggle": set_Luiken_en_vensters_on},
     {"type": "34 Balustrades en leuningen", "label": "Aantal m aan balustrades en leuningen in het huidige project *", "key_input": "_Balustrades_en_leuningen", "key_toggle": "_Balustrades_en_leuningen_on", "on_change_input": set_Balustrades_en_leuningen, "on_change_toggle": set_Balustrades_en_leuningen_on},
@@ -478,13 +478,11 @@ st.markdown(f"Totale kosten gebasseerd op huidige hoeveelheden: €{((data['kost
 
 data['minimaal'] = data['minimaal'].fillna(1)
 data['maximaal'] = data['maximaal'].fillna(1)
-# st.markdown((data['minimaal'] * st.session_state.appartementen * data['kosten']).sum())
-# st.markdown((data['maximaal'] * st.session_state.appartementen * data['kosten']).sum())
 
 st.number_input("Vul het budget in voor het huidige project *",  
+                min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum(), 
+                max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(),
                 key='_budget', on_change=set_budget)
-# min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum(), 
-#                 max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(),
 
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
@@ -492,13 +490,8 @@ st.selectbox("Wat heeft meer prioriteit binnen dit project? *",
             ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
             key='_doelstelling', on_change=set_doelstelling)
 
-# keys = ['Buitenwanden', 'Binnenwanden', 'Vloeren', 'Trappen_en_hellingen', 'Daken', 'Hoofddraagconstructie', 'Buitenkozijnen', 
-#  'Binnenkozijnen_en__deuren', 'Luiken_en_vensters', 'Balustrades_en_leuningen', 'Binnenwandafwerkingen', 'Vloerafwerkingen', 
-#  'Plafonds', 'Vaste_gebouwvoorziening', 'Keuken', 'Terreininrichting', 'budget', 'appartementen', 'doelstelling']
 
 if all(st.session_state[key] is not None for key in keys): 
     st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
-    
-
 
 
