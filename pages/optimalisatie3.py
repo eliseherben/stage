@@ -463,10 +463,10 @@ else:
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
     uitkomsten = uitkomsten.round(1) 
-    st.dataframe(uitkomsten, hide_index = True)
+    
+    st.markdown(w_circulair)
     columns = uitkomsten.columns.tolist()
     for i in range(len(columns)-3):
-        st.markdown(i)
         columns[i+3] = f'Oplossing {i+1}'
     uitkomsten.columns = columns
     st.dataframe(uitkomsten, hide_index = True)
