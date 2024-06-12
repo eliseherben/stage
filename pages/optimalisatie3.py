@@ -272,7 +272,7 @@ else:
 
 # **minimale afwijking**
 
-# In[ ]:
+# In[1]:
 
 
 # Controleer of het projectbestand is geüpload
@@ -511,17 +511,15 @@ else:
     options = st.multiselect(
     "Kies tot 3 oplossingen voor een vergelijking",
     [i for i in uitkomsten.columns[3:]], max_selections = 3)
+    if len(options) != 0:
+        cols = st.columns(len(options))
 
-    cols = st.columns(len(options))
-    
-    for i, option in enumerate(options):
-        with cols[i]:
-            st.markdown(f"**{option}**")
-            x = pd.to_numeric(option[10:])
-            st.markdown(x)
-            st.markdown(f"- Milieukosten {gewichten[x-1][0] * 100}%")
-            st.markdown(f"- Afwijkingen {gewichten[x-1][1] * 100}%")
-    st.markdown(options)
+        for i, option in enumerate(options):
+            with cols[i]:
+                st.markdown(f"**{option}**")
+                x = pd.to_numeric(option[10:])
+                st.markdown(f"- Milieukosten {gewichten[x-1][0] * 100}%")
+                st.markdown(f"- Afwijkingen {gewichten[x-1][1] * 100}%")
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
     st.dataframe(vergelijken)
