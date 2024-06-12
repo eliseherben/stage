@@ -491,8 +491,8 @@ else:
         
         columns[i+3] = f'Oplossing {i+1}'
         uitkomsten.columns = columns
-        uitkomsten = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', f'Oplossing {i+1}']]
-        st.dataframe(uitkomsten, hide_index = True)
+        oplossing = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', f'Oplossing {i+1}']]
+        st.dataframe(oplossing, hide_index = True)
 
     uitkomsten.columns = columns
     st.dataframe(uitkomsten, hide_index = True)
