@@ -514,7 +514,7 @@ else:
 
     for i in options:
         st.markdown(f"**{i}**")
-        x = i.str[10:]
+        x = pd.to_numeric(i[10:])
         st.markdown(x)
         st.markdown(f"- Milieukosten {gewichten[x][0] * 100}%")
         st.markdown(f"- Afwijkingen {gewichten[x][1] * 100}%")
