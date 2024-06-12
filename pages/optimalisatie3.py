@@ -462,7 +462,6 @@ else:
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
-    st.dataframe(uitkomsten.dtypes)
     uitkomsten = uitkomsten.round(1) 
     
     st.dataframe(uitkomsten, hide_index = True)
@@ -663,7 +662,6 @@ df_k['maximaal'] = pd.to_numeric(df_k['maximaal'])
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 df_k['code'] = '00'
 
-st.dataframe(df_k.dtypes)
 kleur_teller = 0
 fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten', 
