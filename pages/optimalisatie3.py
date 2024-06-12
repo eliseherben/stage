@@ -485,6 +485,11 @@ geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_sel
 
 df = df[df['eenheid'].notna()]
 
+df['minimaal'] = pd.to_numeric(df['minimaal'])
+df['maximaal'] = pd.to_numeric(df['maximaal'])
+df['minimaal'] = df['minimaal'].round(1)
+df['maximaal'] = df['maximaal'].round(1)
+
 for productgroep in df['productgroep']:
     kleur_teller = 0
     # Selecteer de data voor de huidige productgroep
