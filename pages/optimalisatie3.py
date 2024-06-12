@@ -518,9 +518,11 @@ else:
     st.markdown(len(uitkomsten))
     options = st.multiselect(
     "Kies tot 3 oplossingen voor een vergelijking",
-    [i for i in uitkomsten.columns[3:]])
+    [i for i in uitkomsten.columns[3:]], max_selections = 3)
 
-    st.markdown(options)
+    st.markdown(options) 
+    vergelijken = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', i for i in options]]
+    st.dataframe(vergelijken)
 
 
 # In[ ]:
