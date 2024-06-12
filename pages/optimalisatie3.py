@@ -464,6 +464,10 @@ else:
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
     uitkomsten = uitkomsten.round(1) 
     
+    columns = uitkomsten.columns.tolist()
+    for i in range(len(uitkomsten)):
+        columns[i+3] = f'Oplossing {1+1}'
+    
     st.dataframe(uitkomsten, hide_index = True)
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
