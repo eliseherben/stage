@@ -514,6 +514,7 @@ else:
 
     for i in options:
         st.markdown(f"**{i}**")
+        x = i.str[10:]
         st.markdown(f"- Milieukosten {gewichten[i[10:]][0] * 100}%")
         st.markdown(f"- Afwijkingen {gewichten[i[10:]][1] * 100}%")
     st.markdown(options)
