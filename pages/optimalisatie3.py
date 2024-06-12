@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 import streamlit as st
@@ -73,7 +73,7 @@ def set_doelwaardes():
     st.session_state.doelwaardes = st.session_state._doelwaardes
 
 
-# In[ ]:
+# In[2]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
@@ -518,7 +518,9 @@ else:
     st.markdown(len(uitkomsten))
     options = st.multiselect(
     "Kies tot 3 oplossingen voor een vergelijking",
-    [i for i in uitkomsten.columns])
+    [i for i in uitkomsten.columns[3:]])
+
+    st.markdown(options)
 
 
 # In[ ]:
@@ -1025,7 +1027,7 @@ fig2.update_yaxes(visible=False, showticklabels=False)
 st.plotly_chart(fig2)
 
 
-# In[2]:
+# In[ ]:
 
 
 import locale
