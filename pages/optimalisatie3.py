@@ -470,7 +470,7 @@ else:
         labels = ['Milieukosten', 'Afwijkingen']
         values = [milieukosten, afwijkingen]
         fig = px.pie(values=values, names=labels, title='Verdeling van Milieukosten en Afwijkingen')
-    return fig
+        return fig
 
     for i in range(len(columns)-3):
         st.markdown(f"**Oplossing {i+1}:**")
