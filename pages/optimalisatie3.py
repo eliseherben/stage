@@ -466,6 +466,7 @@ else:
     
     columns = uitkomsten.columns.tolist()
     for i in range(len(uitkomsten)-3):
+        st.markdown(i)
         columns[i+3] = f'Oplossing {i+1}'
     
     st.dataframe(uitkomsten, hide_index = True)
