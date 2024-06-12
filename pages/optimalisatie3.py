@@ -84,7 +84,7 @@ data.iloc[-1, 3] = data.iloc[-1, 3] + 1
 # In[8]:
 
 
-data
+# data
 
 
 # In[ ]:
@@ -515,8 +515,8 @@ else:
     for i in options:
         st.markdown(f"**{i}**")
         x = i.str[10:]
-        st.markdown(f"- Milieukosten {gewichten[i[10:]][0] * 100}%")
-        st.markdown(f"- Afwijkingen {gewichten[i[10:]][1] * 100}%")
+        st.markdown(f"- Milieukosten {gewichten[x][0] * 100}%")
+        st.markdown(f"- Afwijkingen {gewichten[x][1] * 100}%")
     st.markdown(options)
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
