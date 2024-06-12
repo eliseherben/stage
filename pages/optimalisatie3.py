@@ -482,12 +482,12 @@ else:
             st.markdown(f"- Milieukosten {gewichten[i][0] * 100}%")
             st.markdown(f"- Afwijkingen {gewichten[i][1] * 100}%")
 
-        with col2:
-            # Maak een pie chart
-            fig = plot_pie(gewichten[i][0] * 100, gewichten[i][1] * 100)
+#         with col2:
+#             # Maak een pie chart
+#             fig = plot_pie(gewichten[i][0] * 100, gewichten[i][1] * 100)
 
-            # Weergeven van de pie chart in Streamlit
-            st.plotly_chart(fig, use_container_width=True)
+#             # Weergeven van de pie chart in Streamlit
+#             st.plotly_chart(fig, use_container_width=True)
         
         columns[i+3] = f'Oplossing {i+1}'
     uitkomsten.columns = columns
