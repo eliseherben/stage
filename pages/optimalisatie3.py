@@ -461,9 +461,9 @@ else:
 
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
-    uitkomsten = uitkomsten.round(1) 
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
     st.dataframe(uitkomsten.dtypes)
+    uitkomsten = uitkomsten.round(1) 
     
     st.dataframe(uitkomsten, hide_index = True)
     st.session_state.oplossingen = data
