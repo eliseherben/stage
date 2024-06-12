@@ -499,6 +499,22 @@ else:
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
     
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown(f"**Oplossing {1}:**")
+        st.markdown(f"- Milieukosten {100}%")
+        st.markdown(f"- Afwijkingen {100}%")
+        
+    with col2:
+        st.markdown(f"**Oplossing {1}:**")
+        st.markdown(f"- Milieukosten {100}%")
+        st.markdown(f"- Afwijkingen {100}%")
+        
+    with col3:
+        st.markdown(f"**Oplossing {1}:**")
+        st.markdown(f"- Milieukosten {100}%")
+        st.markdown(f"- Afwijkingen {100}%")
+    st.markdown()
 
 
 # In[ ]:
