@@ -125,7 +125,6 @@ if opties == "Alleen de productgroepen met m2 als eenheid":
 if opties == "Alleen de productgroepen met stuks als eenheid":
     filtered = filtered[filtered['eenheid'] == 'stuks']
 
-
 productgroepen = filtered['productgroep'].unique()
 selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen, 
                                          placeholder = 'Selecteer productgroep(en)')
@@ -148,8 +147,7 @@ kleuren_schema = [
     'rgba(0, 158, 224, 1.0)', 
     'rgba(151, 191, 13, 1.0)', 
     'rgba(147, 16, 126, 1.0)',  
-    'rgba(119, 118, 121, 1.0)' 
-]
+    'rgba(119, 118, 121, 1.0)']
 
 fig_kosten = px.bar(result_kosten, x='Kosten per eenheid', y = 'code', base = 'minimaal', 
                     color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
@@ -172,9 +170,7 @@ fig_kosten.update_layout(
         yanchor="bottom",
         y=1.02,
         xanchor="right",
-        x=1
-    )
-)
+        x=1))
 
 fig_kosten.update_layout(height=250)
 
@@ -204,8 +200,7 @@ else:
         'rgba(0, 158, 224, 1.0)', 
         'rgba(151, 191, 13, 1.0)', 
         'rgba(147, 16, 126, 1.0)',  
-        'rgba(119, 118, 121, 1.0)' 
-    ]
+        'rgba(119, 118, 121, 1.0)']
 
     fig_circulair = px.bar(result_milieukosten, x='Milieukosten per eenheid', y = 'code', base = 'minimaal', 
                         color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
@@ -228,9 +223,7 @@ else:
             yanchor="bottom",
             y=1.02,
             xanchor="right",
-            x=1
-        )
-    )
+            x=1))
 
     fig_circulair.update_layout(height=250)
 
@@ -254,8 +247,7 @@ else:
             - {budget['productgroep'].iloc[0]}
             - {budget['productgroep'].iloc[1]}
             - {budget['productgroep'].iloc[2]}
-            """
-            )
+            """)
     
     with col2:
         circulair = data.sort_values(by='circulair')
@@ -266,8 +258,7 @@ else:
             - {circulair['productgroep'].iloc[0]}
             - {circulair['productgroep'].iloc[1]}
             - {circulair['productgroep'].iloc[2]}
-            """
-            )
+            """)
 
 
 # **minimale afwijking**
@@ -302,8 +293,7 @@ else:
     {"type": "45 Plafonds", "key_toggle": "Plafonds_on"},
     {"type": "64 Vaste gebouwvoorziening","key_toggle": "Vaste_gebouwvoorziening_on"},
     {"type": "73 Keuken", "key_toggle": "Keuken_on"},
-    {"type": "90 Terreininrichting", "key_toggle": "Terreininrichting_on"}
-    ]
+    {"type": "90 Terreininrichting", "key_toggle": "Terreininrichting_on"}]
     
     for element in elements:
         if not st.session_state[element['key_toggle']]:
@@ -316,20 +306,17 @@ else:
     data['huidige_waarden'] = 0
     
     data['huidige_waarden'] = data.apply(
-    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige_waarden'], axis=1
-    )
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige_waarden'], axis=1)
     
     data.loc[data['productgroep'] == '48 Na-isolatie', 'huidige_waarden'] = 0
     
     data['minimaal'] = data.apply(
-    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['minimaal'], axis=1
-    )
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['minimaal'], axis=1)
     
     data.loc[data['productgroep'] == '48 Na-isolatie', 'minimaal'] = 0
     
     data['maximaal'] = data.apply(
-    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['maximaal'], axis=1
-    )
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['maximaal'], axis=1)
 
     data.loc[data['productgroep'] == '48 Na-isolatie', 'maximaal'] = 0
      
@@ -349,8 +336,7 @@ else:
     {"type": "45 Plafonds", "key_input": "Plafonds"},
     {"type": "64 Vaste gebouwvoorziening","key_input": "Vaste_gebouwvoorziening"},
     {"type": "73 Keuken", "key_input": "Keuken"},
-    {"type": "90 Terreininrichting", "key_input": "Terreininrichting"}
-    ]
+    {"type": "90 Terreininrichting", "key_input": "Terreininrichting"}]
     
     for huidige in huidigen:
         for index, row in data.iterrows():
@@ -402,8 +388,7 @@ else:
 
     oplossingen = {}
     doelwaardes = []
-    
-    
+    j = 0
     for w_circulair, w_afwijkingen in gewichten:
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
         
@@ -449,15 +434,16 @@ else:
 
         data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
         if pl.LpStatus[status] == 'Optimal':
-            data.rename(columns = {f'circulair_{w_circulair}_afwijkingen_{w_afwijkingen}': 'Oplossing '})
+            data.rename(columns = {f'circulair_{w_circulair}_afwijkingen_{w_afwijkingen}': f'Oplossing {j}'}, inplace = True)
+            st.dataframe(data)
             index = 0
             for i, row in data.iterrows():
                 if row['optimalisatie'] == 'ja':
                     if index < len(oplossingswaarden):
-                        data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = oplossingswaarden[index]
+                        data.at[i, f"Oplossing {j}"] = oplossingswaarden[index]
                         index += 1
                 else:
-                    data.at[i, f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = data.at[i, 'huidige_waarden']
+                    data.at[i, f"Oplossing {j}"] = data.at[i, 'huidige_waarden']
 
         doelwaardes.append((f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}", 
                             (data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] * data['kosten']).sum(), 
@@ -469,7 +455,6 @@ else:
     doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum(), 
                        max_abs_diff.sum()))
     doelwaardes.append(('huidige_waarden', (data['huidige_waarden'] * data['kosten']).sum(), (data['huidige_waarden'] * data['circulair']).sum()))
-    
     
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
@@ -506,7 +491,6 @@ else:
         st.dataframe(oplossing, hide_index = True)
 
     uitkomsten.columns = columns
-#     st.dataframe(uitkomsten, hide_index = True)
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
     
@@ -546,10 +530,6 @@ st.dataframe(df)
 df = df[df['eenheid'].notna()]
 
 df[df.columns[10:]] = df[df.columns[10:]].apply(pd.to_numeric)
-# df['minimaal'] = pd.to_numeric(df['minimaal'])
-# df['maximaal'] = pd.to_numeric(df['maximaal'])
-# df['minimaal'] = df['minimaal'].round(1)
-# df['maximaal'] = df['maximaal'].round(1)
 df = df.round(1)
 
 for productgroep in df['productgroep']:
@@ -721,8 +701,6 @@ df_k = df_k[1:]
 
 df_k[df_k.columns[:]] = df_k[df_k.columns[:]].apply(pd.to_numeric)
 df_k = df_k.round(2)
-# df_k['minimaal'] = pd.to_numeric(df_k['minimaal'])
-# df_k['maximaal'] = pd.to_numeric(df_k['maximaal'])
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 df_k['code'] = '00'
@@ -885,8 +863,6 @@ df_mk = df_mk[1:]
 
 df_mk[df_mk.columns[:]] = df_mk[df_mk.columns[:]].apply(pd.to_numeric)
 df_mk = df_mk.round(2)
-# df_mk['minimaal'] = pd.to_numeric(df_mk['minimaal'])
-# df_mk['maximaal'] = pd.to_numeric(df_mk['maximaal'])
 
 df_mk['aantal'] = df_mk['maximaal'] - df_mk['minimaal']
 df_mk['code'] = '00'
@@ -1051,15 +1027,10 @@ df_a = df_a[1:]
 
 df_a[df_a.columns[:]] = df_a[df_a.columns[:]].apply(pd.to_numeric)
 df_a = df_a.round(1)
-st.dataframe(df_a.dtypes)
-# df_a['minimaal'] = pd.to_numeric(df_a['minimaal'])
-# df_a['maximaal'] = pd.to_numeric(df_a['maximaal'])
-st.dataframe(df_a.dtypes)
 
 df_a['aantal'] = df_a['maximaal'] - df_a['minimaal']
 df_a['code'] = '00'
 df_a = df_a.round(1) 
-st.dataframe(df_a)
 
 kleur_teller = 0
 fig2 = px.bar(df_a, x='aantal', y='code', base = 'minimaal',
