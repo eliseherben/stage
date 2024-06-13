@@ -445,6 +445,7 @@ else:
         status = prob.solve()
     
         st.markdown(circulair.value())
+        st.markdown("--------")
         st.markdown(afwijkingen.value())
         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
         oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
