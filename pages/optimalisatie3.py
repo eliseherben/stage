@@ -464,9 +464,10 @@ else:
                             (data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] * data['circulair']).sum(), 
                             afwijkingen.value()))
 
-    doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum()))
-    doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum()))
-    doelwaardes.append(('huidige_waarden', (data['huidige_waarden'] * data['kosten']).sum(), (data['huidige_waarden'] * data['circulair']).sum()))
+    doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
+    doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum(), 
+                       (max(abs(data['huidige_waarden'] - data['minimaal']), abs(data['huidige_waarden'] - data['maximaal']))).sum()))
+    doelwaardes.append(('huidige_waarden', (data['huidige_waarden'] * data['kosten']).sum(), (data['huidige_waarden'] * data['circulair']).sum(), 0))
     
     
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
