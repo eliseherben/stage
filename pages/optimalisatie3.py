@@ -1073,8 +1073,8 @@ fig = px.scatter(df2, x="milieukosten", y="afwijkingen", color="voorkeur",
                  labels={
                      "milieukosten": "Totale milieukosten in euro's",
                      "afwijkingen": "Totale afwijkingen",
-                     "voorkeur": "Voorkeur"
-                 })
+                     "voorkeur": "Voorkeur"}, 
+                 title="Uitkomsten doelfuncties pareto")
 
 st.plotly_chart(fig)
 
