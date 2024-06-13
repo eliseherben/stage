@@ -1053,7 +1053,7 @@ def bepaal_voorkeur(wegingen):
 df2['voorkeur'] = df2['oplossing'].apply(bepaal_voorkeur)
 
 st.dataframe(df2)
-
+st.markdown(df2.dtypes)
 
 # Kleuren toewijzen
 color_discrete_map = {
