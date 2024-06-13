@@ -1068,7 +1068,7 @@ color_discrete_map = {
 }
 
 # Scatter plot maken
-fig = px.scatter(df, x="milieukosten", y="afwijkingen", color="voorkeur",
+fig = px.scatter(df2, x="milieukosten", y="afwijkingen", color="voorkeur",
                  color_discrete_map=color_discrete_map)
 
 st.plotly_chart(fig)
