@@ -1184,11 +1184,13 @@ st.markdown("##### Uitkomsten doelfuncties")
 df2 = df2[:-3]
 
 st.markdown(gewichten)
+df2['gewichten'] = gewichten
+st.dataframe(df2)
 # Functie om de voorkeur te bepalen
 def bepaal_voorkeur(wegingen):
     # Splitsen van de string en omzetten naar float
-    circulair = float(wegingen.split('_')[1])
-    afwijkingen = float(wegingen.split('_')[3])
+    circulair = wegingen[0]
+    afwijkingen = wegingen[1]
     
     # Bepalen van de voorkeur
     if circulair > afwijkingen:
@@ -1199,7 +1201,7 @@ def bepaal_voorkeur(wegingen):
         return "geen voorkeur"
 
 # Nieuwe kolom toevoegen met de voorkeur
-df2['voorkeur'] = df2['oplossing'].apply(bepaal_voorkeur)
+df2['voorkeur'] = df2['gewichten'].apply(bepaal_voorkeur)
 
 for i in range(len(df2)):
     df2.iloc[i, 0] = f"Oplossing {i + 1}"
