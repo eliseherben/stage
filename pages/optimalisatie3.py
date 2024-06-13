@@ -434,7 +434,6 @@ else:
 
         data[f"Oplossing {j}"] = None
         if pl.LpStatus[status] == 'Optimal':
-            st.dataframe(data)
             index = 0
             for i, row in data.iterrows():
                 if row['optimalisatie'] == 'ja':
@@ -526,7 +525,6 @@ kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie',
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
 geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
 
-st.dataframe(df)
 df = df[df['eenheid'].notna()]
 
 df[df.columns[10:]] = df[df.columns[10:]].apply(pd.to_numeric)
