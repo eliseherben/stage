@@ -1226,7 +1226,7 @@ fig = px.scatter(df2, x="milieukosten", y="afwijkingen", color="voorkeur",
                      "voorkeur": "Voorkeur"}, 
                  title="Uitkomsten doelfuncties pareto", 
                  hover_data = {'oplossing': True, 'kosten': True, 'milieukosten': True, 'afwijkingen': True, 
-                               'gewichten': False, 'Voorkeur': False})
+                               'gewichten': False, 'voorkeur': False})
 
 st.plotly_chart(fig)
 
