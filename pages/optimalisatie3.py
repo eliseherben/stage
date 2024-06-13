@@ -1224,7 +1224,8 @@ fig = px.scatter(df2, x="milieukosten", y="afwijkingen", color="voorkeur",
                      "milieukosten": "Totale milieukosten in euro's",
                      "afwijkingen": "Totale afwijkingen",
                      "voorkeur": "Voorkeur"}, 
-                 title="Uitkomsten doelfuncties pareto")
+                 title="Uitkomsten doelfuncties pareto", 
+                 hover_data = {'oplossing': True, 'kosten': True, 'milieukosten': True, 'afwijkingen': True, 'gewichten': False})
 
 st.plotly_chart(fig)
 
