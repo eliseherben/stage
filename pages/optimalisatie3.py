@@ -466,7 +466,7 @@ else:
 
     st.dataframe(data)
     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
-    st.markdown(max_abs_diff)
+    st.dataframe(max_abs_diff)
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
     doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum(), 
                        (max(abs(data['huidige_waarden'] - data['minimaal']), abs(data['huidige_waarden'] - data['maximaal']))).sum()))
