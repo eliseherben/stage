@@ -1033,6 +1033,170 @@ st.plotly_chart(fig2)
 # In[ ]:
 
 
+df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten', 'afwijkingen'])
+st.dataframe(df2)
+df_k = df2[['oplossing', 'afwijkingen']]
+
+df_k = df_k.T
+df_k.columns = df_k.iloc[0]
+df_k = df_k[1:]
+
+df_k['minimaal'] = pd.to_numeric(df_k['minimaal'])
+df_k['maximaal'] = pd.to_numeric(df_k['maximaal'])
+
+df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
+df_k['code'] = '00'
+
+kleur_teller = 0
+fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten', 
+             hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
+
+bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{customdata[1]:,.2f}<br>'
+fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_k[['minimaal', 'maximaal']].values)
+
+if df_k.columns[-3] in geselecteerde_kolommen:
+    kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+    kleur_teller += 1
+    scatter = px.scatter(df_k, x='huidige_waarden', y='code', 
+                         color_discrete_sequence=[kleur], labels={'x': ''}, 
+                         size=[10], symbol = ['huidig'])
+    
+    scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    fig2.add_trace(scatter.data[0])
+
+if df_k.columns[0] in geselecteerde_kolommen:
+    kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+    kleur_teller += 1
+    scatter = px.scatter(df_k, x=df_k.columns[0], y='code', 
+                             color_discrete_sequence=[kleur], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 1'])
+    
+    scatter_hovertemplate = f'Oplossing 1: €%{{x:,.2f}}<br>'
+    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    fig2.add_trace(scatter.data[0])
+
+if df_k.columns[1] in geselecteerde_kolommen:
+    kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+    kleur_teller += 1
+    scatter = px.scatter(df_k, x=df_k.columns[1], y='code', 
+                         color_discrete_sequence=[kleur], labels={'x': ''}, 
+                         size=[10], symbol = ['oplossing 2'])
+    
+    scatter_hovertemplate = f'Oplossing 2: €%{{x:,.2f}}<br>'
+    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    fig2.add_trace(scatter.data[0])
+
+if df_k.columns[2] in geselecteerde_kolommen:
+    kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+    kleur_teller += 1
+    scatter = px.scatter(df_k, x=df_k.columns[2], y='code', 
+                         color_discrete_sequence=[kleur], labels={'x': ''}, 
+                         size=[10], symbol = ['oplossing 3'])
+    
+    scatter_hovertemplate = f'Oplossing 3: €%{{x:,.2f}}<br>'
+    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    fig2.add_trace(scatter.data[0])
+
+if df_k.columns[3] in geselecteerde_kolommen:
+    kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+    kleur_teller += 1
+    scatter = px.scatter(df_k, x=df_k.columns[3], y='code', 
+                         color_discrete_sequence=[kleur], labels={'x': ''}, 
+                         size=[10], symbol = ['oplossing 4'])
+    
+    scatter_hovertemplate = f'Oplossing 4: €%{{x:,.2f}}<br>'
+    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    fig2.add_trace(scatter.data[0])
+
+if df_k.columns[4] in geselecteerde_kolommen:
+    kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+    kleur_teller += 1
+    scatter = px.scatter(df_k, x=df_k.columns[4], y='code', 
+                         color_discrete_sequence=[kleur], labels={'x': ''}, 
+                         size=[10], symbol = ['oplossing 5'])
+    
+    scatter_hovertemplate = f'Oplossing 5: €%{{x:,.2f}}<br>'
+    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    fig2.add_trace(scatter.data[0])
+
+if st.session_state.doelstelling == 'Geen voorkeur':
+    if df_k.columns[5] in geselecteerde_kolommen:
+        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+        kleur_teller += 1
+        scatter = px.scatter(df_k, x=df_k.columns[5], y='code', 
+                             color_discrete_sequence=[kleur], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 6'])
+        
+        scatter_hovertemplate = f'Oplossing 6: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig2.add_trace(scatter.data[0])
+
+    if df_k.columns[6] in geselecteerde_kolommen:
+        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+        kleur_teller += 1
+        scatter = px.scatter(df_k, x=df_k.columns[6], y='code', 
+                             color_discrete_sequence=[kleur], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 7'])
+        
+        scatter_hovertemplate = f'Oplossing 7: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig2.add_trace(scatter.data[0])
+
+    if df_k.columns[7] in geselecteerde_kolommen:
+        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+        kleur_teller += 1
+        scatter = px.scatter(df_k, x=df_k.columns[7], y='code', 
+                             color_discrete_sequence=[kleur], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 8'])
+        
+        scatter_hovertemplate = f'Oplossing 8: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig2.add_trace(scatter.data[0])
+
+    if df_k.columns[8] in geselecteerde_kolommen:
+        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+        kleur_teller += 1
+        scatter = px.scatter(df_k, x=df_k.columns[8], y='code', 
+                             color_discrete_sequence=[kleur], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 9'])
+        
+        scatter_hovertemplate = f'Oplossing 9: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig2.add_trace(scatter.data[0])
+
+    if df_k.columns[9] in geselecteerde_kolommen:
+        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+        kleur_teller += 1
+        scatter = px.scatter(df_k, x=df_k.columns[9], y='code', 
+                             color_discrete_sequence=[kleur], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 10'])
+        
+        scatter_hovertemplate = f'Oplossing 10: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig2.add_trace(scatter.data[0])
+
+    if df_k.columns[10] in geselecteerde_kolommen:
+        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+        kleur_teller += 1
+        scatter = px.scatter(df_k, x=df_k.columns[10], y='code', 
+                             color_discrete_sequence=[kleur], labels={'x': ''}, 
+                             size=[10], symbol = ['oplossing 11'])
+        
+        scatter_hovertemplate = f'Oplossing 11: €%{{x:,.2f}}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig2.add_trace(scatter.data[0])
+    
+fig2.update_layout(height=250)
+
+fig2.update_yaxes(visible=False, showticklabels=False)
+st.plotly_chart(fig2)
+
+
+# In[ ]:
+
+
 st.markdown("##### Uitkomsten doelfuncties")
 df2 = df2[:-3]
 
