@@ -545,7 +545,7 @@ geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_sel
 st.dataframe(df)
 df = df[df['eenheid'].notna()]
 
-df[df.columns[:]] = df[df.columns[:]].apply(pd.to_numeric)
+df[df.columns[10:]] = df[df.columns[10:]].apply(pd.to_numeric)
 # df['minimaal'] = pd.to_numeric(df['minimaal'])
 # df['maximaal'] = pd.to_numeric(df['maximaal'])
 # df['minimaal'] = df['minimaal'].round(1)
