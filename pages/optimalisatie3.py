@@ -542,6 +542,7 @@ kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie',
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
 geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
 
+st.dataframe(df)
 df = df[df['eenheid'].notna()]
 
 df[df.columns[:]] = df[df.columns[:]].apply(pd.to_numeric)
@@ -718,7 +719,7 @@ df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
 
-df_k[df_k.columns[:]] = df_k[df_k.columns[:]].apply(pd.to_numeric)
+df_k[df_k.columns[1:]] = df_k[df_k.columns[1:]].apply(pd.to_numeric)
 df_k = df_k.round(2)
 # df_k['minimaal'] = pd.to_numeric(df_k['minimaal'])
 # df_k['maximaal'] = pd.to_numeric(df_k['maximaal'])
@@ -882,7 +883,7 @@ df_mk = df_mk.T
 df_mk.columns = df_mk.iloc[0]
 df_mk = df_mk[1:]
 
-df_mk[df_mk.columns[:]] = df_mk[df_mk.columns[:]].apply(pd.to_numeric)
+df_mk[df_mk.columns[1:]] = df_mk[df_mk.columns[1:]].apply(pd.to_numeric)
 df_mk = df_mk.round(2)
 # df_mk['minimaal'] = pd.to_numeric(df_mk['minimaal'])
 # df_mk['maximaal'] = pd.to_numeric(df_mk['maximaal'])
@@ -1048,7 +1049,7 @@ df_a = df_a.T
 df_a.columns = df_a.iloc[0]
 df_a = df_a[1:]
 
-df_a[df_a.columns[:]] = df_a[df_a.columns[:]].apply(pd.to_numeric)
+df_a[df_a.columns[1:]] = df_a[df_a.columns[1:]].apply(pd.to_numeric)
 df_a = df_a.round(1)
 st.dataframe(df_a.dtypes)
 # df_a['minimaal'] = pd.to_numeric(df_a['minimaal'])
