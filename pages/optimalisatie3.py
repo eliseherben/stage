@@ -713,7 +713,6 @@ for productgroep in df['productgroep']:
 
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten', 'afwijkingen'])
-st.dataframe(df2)
 df_k = df2[['oplossing', 'kosten']]
 
 df_k = df_k.T
@@ -875,8 +874,6 @@ st.plotly_chart(fig2)
 
 # In[ ]:
 
-
-df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
 
 df_mk = df2[['oplossing', 'milieukosten']]
 
@@ -1041,7 +1038,24 @@ st.plotly_chart(fig2)
 # In[ ]:
 
 
-import locale
+# Functie om de voorkeur te bepalen
+def bepaal_voorkeur(wegingen):
+    # Splitsen van de string en omzetten naar float
+    circulair = float(wegingen.split('_')[1])
+    afwijkingen = float(wegingen.split('_')[3])
+    
+    # Bepalen van de voorkeur
+    if circulair > afwijkingen:
+        return "voorkeur voor milieukosten"
+    elif circulair < afwijkingen:
+        return "voorkeur voor afwijkingen"
+    else:
+        return "geen voorkeur"
+
+# Nieuwe kolom toevoegen met de voorkeur
+df2['voorkeur'] = df2['wegingen'].apply(bepaal_voorkeur)
+
+st.dataframe(df2)
 
 
 # In[ ]:
