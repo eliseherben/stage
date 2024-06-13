@@ -1047,6 +1047,7 @@ df_a['maximaal'] = pd.to_numeric(df_a['maximaal'])
 
 df_a['aantal'] = df_a['maximaal'] - df_a['minimaal']
 df_a['code'] = '00'
+df_a = df_a.round(1) 
 
 kleur_teller = 0
 fig2 = px.bar(df_a, x='aantal', y='code', base = 'minimaal',
