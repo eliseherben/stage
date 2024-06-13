@@ -1042,8 +1042,11 @@ df_a = df_a.T
 df_a.columns = df_a.iloc[0]
 df_a = df_a[1:]
 
-df_a['minimaal'] = pd.to_numeric(df_a['minimaal'])
-df_a['maximaal'] = pd.to_numeric(df_a['maximaal'])
+st.dataframe(df_a.dtypes)
+# df_a['minimaal'] = pd.to_numeric(df_a['minimaal'])
+# df_a['maximaal'] = pd.to_numeric(df_a['maximaal'])
+df_a = pd.to_numeric(df_a)
+st.dataframe(df_a.dtypes)
 
 df_a['aantal'] = df_a['maximaal'] - df_a['minimaal']
 df_a['code'] = '00'
