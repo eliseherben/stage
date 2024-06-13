@@ -444,9 +444,6 @@ else:
         
         status = prob.solve()
     
-        st.markdown(circulair.value())
-        st.markdown(afwijkingen.value())
-        st.markdown("--------")
         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
         oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
 
@@ -476,8 +473,6 @@ else:
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
     uitkomsten = uitkomsten.round(1) 
-    st.dataframe(uitkomsten)
-    st.dataframe(data)
     columns = uitkomsten.columns.tolist()
     
     def plot_pie(milieukosten, afwijkingen):
@@ -528,9 +523,9 @@ else:
                 x = pd.to_numeric(option[10:])
                 st.markdown(f"- Milieukosten {gewichten[x-1][0] * 100}%")
                 st.markdown(f"- Afwijkingen {gewichten[x-1][1] * 100}%")
-    kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
-    vergelijken = uitkomsten[kolommen]
-    st.dataframe(vergelijken, hide_index = True)
+        kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
+        vergelijken = uitkomsten[kolommen]
+        st.dataframe(vergelijken, hide_index = True)
 
 
 # In[ ]:
