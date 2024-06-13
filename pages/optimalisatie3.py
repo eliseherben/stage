@@ -1183,6 +1183,7 @@ st.plotly_chart(fig2)
 st.markdown("##### Uitkomsten doelfuncties")
 df2 = df2[:-3]
 
+st.markdown(gewichten)
 # Functie om de voorkeur te bepalen
 def bepaal_voorkeur(wegingen):
     # Splitsen van de string en omzetten naar float
