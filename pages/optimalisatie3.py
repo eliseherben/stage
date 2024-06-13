@@ -388,7 +388,7 @@ else:
 
     oplossingen = {}
     doelwaardes = []
-    j = 0
+    j = 1
     for w_circulair, w_afwijkingen in gewichten:
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
         
@@ -429,12 +429,11 @@ else:
         
         status = prob.solve()
     
-        oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
-        oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
+        oplossingen[f"Oplossing {j}"] = [var.varValue for key, var in lp_variabelen]
+        oplossingswaarden = list(oplossingen[f"Oplossing {j}"])
 
-        data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
+        data[f"Oplossing {j}"] = None
         if pl.LpStatus[status] == 'Optimal':
-            data.rename(columns = {f'circulair_{w_circulair}_afwijkingen_{w_afwijkingen}': f'Oplossing {j}'}, inplace = True)
             st.dataframe(data)
             index = 0
             for i, row in data.iterrows():
@@ -445,10 +444,11 @@ else:
                 else:
                     data.at[i, f"Oplossing {j}"] = data.at[i, 'huidige_waarden']
 
-        doelwaardes.append((f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}", 
-                            (data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] * data['kosten']).sum(), 
-                            (data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] * data['circulair']).sum(), 
+        doelwaardes.append((f"Oplossing {j}", 
+                            (data[f"Oplossing {j}"] * data['kosten']).sum(), 
+                            (data[f"Oplossing {j}"] * data['circulair']).sum(), 
                             afwijkingen.value()))
+        j += 1
 
     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
