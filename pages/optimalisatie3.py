@@ -1045,7 +1045,7 @@ df_a = df_a[1:]
 st.dataframe(df_a.dtypes)
 # df_a['minimaal'] = pd.to_numeric(df_a['minimaal'])
 # df_a['maximaal'] = pd.to_numeric(df_a['maximaal'])
-df_a = pd.to_numeric(df_a)
+df_a.apply(pd.to_numeric)
 st.dataframe(df_a.dtypes)
 
 df_a['aantal'] = df_a['maximaal'] - df_a['minimaal']
