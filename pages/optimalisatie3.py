@@ -711,6 +711,7 @@ for productgroep in df['productgroep']:
 
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten'])
+st.dataframe(df2)
 df_k = df2[['oplossing', 'kosten']]
 
 df_k = df_k.T
