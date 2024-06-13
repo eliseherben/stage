@@ -464,6 +464,7 @@ else:
                             (data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] * data['circulair']).sum(), 
                             afwijkingen.value()))
 
+    st.dataframe(data)
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
     doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum(), 
                        (max(abs(data['huidige_waarden'] - data['minimaal']), abs(data['huidige_waarden'] - data['maximaal']))).sum()))
