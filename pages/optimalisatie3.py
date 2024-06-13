@@ -544,10 +544,12 @@ geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_sel
 
 df = df[df['eenheid'].notna()]
 
-df['minimaal'] = pd.to_numeric(df['minimaal'])
-df['maximaal'] = pd.to_numeric(df['maximaal'])
-df['minimaal'] = df['minimaal'].round(1)
-df['maximaal'] = df['maximaal'].round(1)
+df[df.columns[:]] = df[df.columns[:]].apply(pd.to_numeric)
+# df['minimaal'] = pd.to_numeric(df['minimaal'])
+# df['maximaal'] = pd.to_numeric(df['maximaal'])
+# df['minimaal'] = df['minimaal'].round(1)
+# df['maximaal'] = df['maximaal'].round(1)
+df = df.round(1)
 
 for productgroep in df['productgroep']:
     kleur_teller = 0
@@ -716,8 +718,10 @@ df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
 
-df_k['minimaal'] = pd.to_numeric(df_k['minimaal'])
-df_k['maximaal'] = pd.to_numeric(df_k['maximaal'])
+df_k[df_k.columns[:]] = df_k[df_k.columns[:]].apply(pd.to_numeric)
+df_k = df_k.round(2)
+# df_k['minimaal'] = pd.to_numeric(df_k['minimaal'])
+# df_k['maximaal'] = pd.to_numeric(df_k['maximaal'])
 
 df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 df_k['code'] = '00'
@@ -878,8 +882,10 @@ df_mk = df_mk.T
 df_mk.columns = df_mk.iloc[0]
 df_mk = df_mk[1:]
 
-df_mk['minimaal'] = pd.to_numeric(df_mk['minimaal'])
-df_mk['maximaal'] = pd.to_numeric(df_mk['maximaal'])
+df_mk[df_mk.columns[:]] = df_mk[df_mk.columns[:]].apply(pd.to_numeric)
+df_mk = df_mk.round(2)
+# df_mk['minimaal'] = pd.to_numeric(df_mk['minimaal'])
+# df_mk['maximaal'] = pd.to_numeric(df_mk['maximaal'])
 
 df_mk['aantal'] = df_mk['maximaal'] - df_mk['minimaal']
 df_mk['code'] = '00'
@@ -1042,10 +1048,11 @@ df_a = df_a.T
 df_a.columns = df_a.iloc[0]
 df_a = df_a[1:]
 
+df_a[df_a.columns[:]] = df_a[df_a.columns[:]].apply(pd.to_numeric)
+df_a = df_a.round(1)
 st.dataframe(df_a.dtypes)
 # df_a['minimaal'] = pd.to_numeric(df_a['minimaal'])
 # df_a['maximaal'] = pd.to_numeric(df_a['maximaal'])
-df_a.applymap(pd.to_numeric)
 st.dataframe(df_a.dtypes)
 
 df_a['aantal'] = df_a['maximaal'] - df_a['minimaal']
