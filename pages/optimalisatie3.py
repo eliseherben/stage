@@ -1033,6 +1033,7 @@ st.plotly_chart(fig2)
 # In[ ]:
 
 
+st.markdown("##### Uitkomsten doelfuncties")
 df2 = df2[:-3]
 
 # Functie om de voorkeur te bepalen
@@ -1053,7 +1054,7 @@ def bepaal_voorkeur(wegingen):
 df2['voorkeur'] = df2['oplossing'].apply(bepaal_voorkeur)
 
 for i in range(len(df2)):
-    df2.iloc[i, 0] = f"Oplossing {i}"
+    df2.iloc[i, 0] = f"Oplossing {i + 1}"
     
 df2 = df2.round(1) 
 df3 = df2[['oplossing', 'kosten', 'milieukosten', 'afwijkingen']]
@@ -1068,7 +1069,12 @@ color_discrete_map = {
 
 # Scatter plot maken
 fig = px.scatter(df2, x="milieukosten", y="afwijkingen", color="voorkeur",
-                 color_discrete_map=color_discrete_map)
+                 color_discrete_map=color_discrete_map, 
+                 labels={
+                     "milieukosten": "Totale milieukosten in euro's",
+                     "afwijkingen": "Totale afwijkingen",
+                     "voorkeur": "Voorkeur"
+                 })
 
 st.plotly_chart(fig)
 
