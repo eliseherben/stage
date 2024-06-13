@@ -1038,6 +1038,8 @@ st.plotly_chart(fig2)
 # In[ ]:
 
 
+df2 = df2[:-3]
+
 # Functie om de voorkeur te bepalen
 def bepaal_voorkeur(wegingen):
     # Splitsen van de string en omzetten naar float
@@ -1053,7 +1055,7 @@ def bepaal_voorkeur(wegingen):
         return "geen voorkeur"
 
 # Nieuwe kolom toevoegen met de voorkeur
-df2['voorkeur'] = df2['wegingen'].apply(bepaal_voorkeur)
+df2['voorkeur'] = df2['oplossing'].apply(bepaal_voorkeur)
 
 st.dataframe(df2)
 
