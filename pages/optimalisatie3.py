@@ -724,7 +724,7 @@ df_k['code'] = '00'
 
 kleur_teller = 0
 fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
-                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten', 
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='Kosten', 
              hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
 bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{customdata[1]:,.2f}<br>'
@@ -887,7 +887,7 @@ df_mk['code'] = '00'
 kleur_teller = 0
 
 fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
-                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='milieukosten', 
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='Milieukosten', 
                  hover_data={'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
 bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{customdata[1]:,.2f}<br>'
@@ -1050,7 +1050,7 @@ df_a['code'] = '00'
 
 kleur_teller = 0
 fig2 = px.bar(df_a, x='aantal', y='code', base = 'minimaal',
-                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='kosten', 
+                 color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='Afwijkingen', 
              hover_data = {'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
 
 bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{customdata[1]:,.2f}<br>'
