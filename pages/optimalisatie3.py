@@ -1052,8 +1052,8 @@ def bepaal_voorkeur(wegingen):
 # Nieuwe kolom toevoegen met de voorkeur
 df2['voorkeur'] = df2['oplossing'].apply(bepaal_voorkeur)
 
-st.dataframe(df2)
-st.dataframe(df2.dtypes)
+df2 = df2.round(1) 
+st.dataframe(df2, hide_index = True)
 
 # Kleuren toewijzen
 color_discrete_map = {
