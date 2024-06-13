@@ -1063,8 +1063,8 @@ st.dataframe(df2)
 # Kleuren toewijzen
 color_discrete_map = {
     "voorkeur voor milieukosten": "rgba(212, 0, 60, 1.0)",
-    "voorkeur voor afwijkingen": "rgba(241, 142, 47, 1.0)",
-    "geen voorkeur": "rgba(255, 211, 0, 1.0)"
+    "voorkeur voor afwijkingen": "rgba(0, 158, 224, 1.0)", 
+    "geen voorkeur": "rgba(151, 191, 13, 1.0)"
 }
 
 # Scatter plot maken
