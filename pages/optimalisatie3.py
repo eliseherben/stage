@@ -442,12 +442,14 @@ else:
         prob += budget == st.session_state.budget
         
         status = prob.solve()
-
+    
+        st.markdown(afwijkingen.value())
         oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = [var.varValue for key, var in lp_variabelen]
         oplossingswaarden = list(oplossingen[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"])
 
         data[f"circulair_{w_circulair}_afwijkingen_{w_afwijkingen}"] = None
         if pl.LpStatus[status] == 'Optimal':
+            data.rename(columns = {f'circulair_{w_circulair}_afwijkingen_{w_afwijkingen}': 'Oplossing '})
             index = 0
             for i, row in data.iterrows():
                 if row['optimalisatie'] == 'ja':
