@@ -1038,6 +1038,12 @@ st.plotly_chart(fig2)
 # In[ ]:
 
 
+
+
+
+# In[ ]:
+
+
 df2 = df2[:-3]
 
 # Functie om de voorkeur te bepalen
@@ -1058,6 +1064,9 @@ def bepaal_voorkeur(wegingen):
 df2['voorkeur'] = df2['oplossing'].apply(bepaal_voorkeur)
 
 st.dataframe(df2)
+
+fig = px.scatter(df2, x="milieukosten", y="afwijkingen", color="voorkeur")
+st.plotly_chart(fig)
 
 
 # In[ ]:
