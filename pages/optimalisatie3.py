@@ -496,7 +496,7 @@ else:
     col1, col2, col3 = st.columns(3)
     st.markdown("###### Vergelijking")
     options = st.multiselect(
-    "Kies tot 3 oplossingen voor een vergelijking",
+    "Kies tot 4 oplossingen voor een vergelijking",
     [i for i in uitkomsten.columns[3:]], max_selections = 4)
     
     if len(options) != 0:
