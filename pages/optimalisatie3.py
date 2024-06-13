@@ -1038,12 +1038,6 @@ st.plotly_chart(fig2)
 # In[ ]:
 
 
-
-
-
-# In[ ]:
-
-
 df2 = df2[:-3]
 
 # Functie om de voorkeur te bepalen
@@ -1065,7 +1059,18 @@ df2['voorkeur'] = df2['oplossing'].apply(bepaal_voorkeur)
 
 st.dataframe(df2)
 
-fig = px.scatter(df2, x="milieukosten", y="afwijkingen", color="voorkeur")
+
+# Kleuren toewijzen
+color_discrete_map = {
+    "voorkeur voor milieukosten": "rgba(212, 0, 60, 1.0)",
+    "voorkeur voor afwijkingen": "rgba(241, 142, 47, 1.0)",
+    "geen voorkeur": "rgba(255, 211, 0, 1.0)"
+}
+
+# Scatter plot maken
+fig = px.scatter(df, x="milieukosten", y="afwijkingen", color="voorkeur",
+                 color_discrete_map=color_discrete_map)
+
 st.plotly_chart(fig)
 
 
