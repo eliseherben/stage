@@ -495,7 +495,11 @@ else:
     uitkomsten.columns = columns
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
+    gevoeligheidsanalyse = uitkomsten.drop(['eenheid', 'huidige_waarden'], axis=1)
+    gevoeligheidsanalyse = gevoeligheidsanalyse.transpose()
+    gevoeligheidsanalyse['wegingen'] = gewichten
     st.dataframe(uitkomsten)
+    st.dataframe(gevoeligheidsanalyse)
     
     col1, col2, col3 = st.columns(3)
     st.markdown("###### Vergelijking")
