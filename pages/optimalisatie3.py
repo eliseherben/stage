@@ -383,8 +383,11 @@ else:
     if st.session_state.doelstelling == 'Minimale afwijkingen van de huidge aantallen':
         gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6)]  # Lijst van wegingen
     if st.session_state.doelstelling == 'Geen voorkeur':
-        gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6), (0.5, 0.5), 
-                     (0.6, 0.4), (0.7, 0.3), (0.8, 0.2), (0.9, 0.1), (1, 0)]
+        gewichten =  [(i/99, 1 - i/99) for i in range(100)]
+
+#         [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6), (0.5, 0.5), 
+#                      (0.6, 0.4), (0.7, 0.3), (0.8, 0.2), (0.9, 0.1), (1, 0)]
+    
 
     oplossingen = {}
     doelwaardes = []
@@ -492,6 +495,7 @@ else:
     uitkomsten.columns = columns
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
+    st.dataframe(uitkomsten)
     
     col1, col2, col3 = st.columns(3)
     st.markdown("###### Vergelijking")
