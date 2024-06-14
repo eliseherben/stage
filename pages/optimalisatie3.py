@@ -503,11 +503,11 @@ else:
     gevoeligheidsanalyse['wegingen'] = gewichten
     
     for index, kosten, circulair, afwijking in doelwaardes:
-    # Controleren of de index bestaat in het dataframe
-    if index in gevoeligheidsanalyse.index:
-        gevoeligheidsanalyse.loc[index, 'kosten'] = kosten
-        gevoeligheidsanalyse.loc[index, 'circulair'] = circulair
-        gevoeligheidsanalyse.loc[index, 'afwijking'] = afwijking
+        # Controleren of de index bestaat in het dataframe
+        if index in gevoeligheidsanalyse.index:
+            gevoeligheidsanalyse.loc[index, 'kosten'] = kosten
+            gevoeligheidsanalyse.loc[index, 'circulair'] = circulair
+            gevoeligheidsanalyse.loc[index, 'afwijking'] = afwijking
     
     st.dataframe(uitkomsten)
     st.dataframe(gevoeligheidsanalyse)
