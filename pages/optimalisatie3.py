@@ -519,7 +519,8 @@ else:
 import numpy as np
 import pandas as pd
 import pulp as pl
-import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
 
 # Controleer of het projectbestand is geüpload
 if st.session_state.projectbestand is None:
@@ -672,21 +673,31 @@ else:
     # Identificeer de omslagpunten
     omslagpunten = results_df.loc[(results_df["Optimal_Solution"].shift() != results_df["Optimal_Solution"]).any(axis=1)]
 
-    st.markdown("Gevoeligheidsanalyse Resultaten")
+    st.write("Gevoeligheidsanalyse Resultaten")
     st.write(results_df)
     st.write("Omslagpunten")
     st.write(omslagpunten)
     
-    # Plot de resultaten
-    fig, ax = plt.subplots()
+    # Plot de resultaten met Plotly
+    fig = go.Figure()
+
     for (w1, w2, solution) in optimal_solutions:
-        ax.plot(w1, solution["objective_value"], 'ro')
-    
-    ax.set_xlabel("Gewicht 1")
-    ax.set_ylabel("Objective Value")
-    ax.set_title("Gevoeligheidsanalyse Resultaten")
-    
-    st.pyplot(fig)
+        fig.add_trace(go.Scatter(
+            x=[w1],
+            y=[solution["objective_value"]],
+            mode='markers',
+            marker=dict(size=10),
+            name=f'w1={w1}, w2={w2}'
+        ))
+
+    fig.update_layout(
+        title="Gevoeligheidsanalyse Resultaten",
+        xaxis_title="Gewicht 1",
+        yaxis_title="Objective Value",
+        showlegend=True
+    )
+
+    st.plotly_chart(fig)
 
 
 # In[ ]:
