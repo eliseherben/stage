@@ -502,7 +502,8 @@ else:
     gevoeligheidsanalyse = gevoeligheidsanalyse[1:]
     gevoeligheidsanalyse['wegingen'] = gewichten
     
-    for (index, kosten, circulair, afwijking) in doelwaardes:
+    waardes = doelwaardes[:-1]
+    for (index, kosten, circulair, afwijking) in waardes:
         # Controleren of de index bestaat in het dataframe
         if index in gevoeligheidsanalyse.index:
             gevoeligheidsanalyse.loc[index, 'kosten'] = kosten
