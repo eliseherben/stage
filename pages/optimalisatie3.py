@@ -503,6 +503,12 @@ else:
     st.dataframe(uitkomsten)
     st.dataframe(gevoeligheidsanalyse)
     
+    y = gevoeligheidsanalyse.columns[-1]
+    for col in gevoeligheidsanalyse.columns[:-1]:
+        fig = px.line(gevoeligheidsanalyse, x=col, y=y)
+        st.plotly_chart(fig)
+
+    
     col1, col2, col3 = st.columns(3)
     st.markdown("###### Vergelijking")
     options = st.multiselect(
