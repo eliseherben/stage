@@ -497,6 +497,7 @@ else:
     st.session_state.doelwaardes = doelwaardes
     gevoeligheidsanalyse = uitkomsten.drop(['eenheid', 'huidige_waarden'], axis=1)
     gevoeligheidsanalyse = gevoeligheidsanalyse.transpose()
+    st.dataframe(gevoeligheidsanalyse)
     gevoeligheidsanalyse['wegingen'] = gewichten
     st.dataframe(uitkomsten)
     st.dataframe(gevoeligheidsanalyse)
