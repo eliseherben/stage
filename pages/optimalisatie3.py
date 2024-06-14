@@ -266,262 +266,6 @@ else:
 # In[1]:
 
 
-# # Controleer of het projectbestand is geüpload
-# if st.session_state.projectbestand is None:
-#     st.markdown("Upload een bestand")
-# else:
-#     st.markdown("#")
-#     st.markdown("##### Minimale afwijking in productgroepen")
-    
-#     for i in range(len(data)):
-#         if data.iloc[i, 0][:2] not in st.session_state.list:
-#             data.drop(index = i, inplace = True)
-    
-#     elements = [
-#     {"type": "21 Buitenwanden", "key_toggle": "Buitenwanden_on"},
-#     {"type": "22 Binnenwanden", "key_toggle": "Binnenwanden_on"},
-#     {"type": "23 Vloeren", "key_toggle": "Vloeren_on"},
-#     {"type": "24 Trappen en hellingen", "key_toggle": "Trappen_en_hellingen_on"},
-#     {"type": "27 Daken", "key_toggle": "Daken_on"},
-#     {"type": "28 Hoofddraagconstructie", "key_toggle": "Hoofddraagconstructie_on"},
-#     {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "key_toggle": "Buitenkozijnen_on"},
-#     {"type": "32 Binnenkozijnen en -deuren", "key_toggle": "Binnenkozijnen_en__deuren_on"},
-#     {"type": "33 Luiken en vensters", "key_toggle": "Luiken_en_vensters_on"},
-#     {"type": "34 Balustrades en leuningen", "key_toggle": "Balustrades_en_leuningen_on"},
-#     {"type": "42 Binnenwandafwerkingen", "key_toggle": "Binnenwandafwerkingen_on"},
-#     {"type": "43 Vloerafwerkingen", "key_toggle": "Vloerafwerkingen_on"},
-#     {"type": "45 Plafonds", "key_toggle": "Plafonds_on"},
-#     {"type": "64 Vaste gebouwvoorziening","key_toggle": "Vaste_gebouwvoorziening_on"},
-#     {"type": "73 Keuken", "key_toggle": "Keuken_on"},
-#     {"type": "90 Terreininrichting", "key_toggle": "Terreininrichting_on"}]
-    
-#     for element in elements:
-#         if not st.session_state[element['key_toggle']]:
-#             for index, row in data.iterrows():
-#                 if element['type'] == row['productgroep']:
-#                     data.at[index, 'optimalisatie'] = 'nee'
-
-#     data['code'] = data['productgroep'].str[:2]
-
-#     data['huidige_waarden'] = 0
-    
-#     data['huidige_waarden'] = data.apply(
-#     lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige_waarden'], axis=1)
-    
-#     data.loc[data['productgroep'] == '48 Na-isolatie', 'huidige_waarden'] = 0
-    
-#     data['minimaal'] = data.apply(
-#     lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['minimaal'], axis=1)
-    
-#     data.loc[data['productgroep'] == '48 Na-isolatie', 'minimaal'] = 0
-    
-#     data['maximaal'] = data.apply(
-#     lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['maximaal'], axis=1)
-
-#     data.loc[data['productgroep'] == '48 Na-isolatie', 'maximaal'] = 0
-     
-#     huidigen = [
-#     {"type": "21 Buitenwanden", "key_input": "Buitenwanden"},
-#     {"type": "22 Binnenwanden", "key_input": "Binnenwanden"},
-#     {"type": "23 Vloeren", "key_input": "Vloeren"},
-#     {"type": "24 Trappen en hellingen", "key_input": "Trappen_en_hellingen"},
-#     {"type": "27 Daken", "key_input": "Daken"},
-#     {"type": "28 Hoofddraagconstructie", "key_input": "Hoofddraagconstructie"},
-#     {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "key_input": "Buitenkozijnen"},
-#     {"type": "32 Binnenkozijnen en -deuren", "key_input": "Binnenkozijnen_en__deuren"},
-#     {"type": "33 Luiken en vensters", "key_input": "Luiken_en_vensters"},
-#     {"type": "34 Balustrades en leuningen", "key_input": "Balustrades_en_leuningen"},
-#     {"type": "42 Binnenwandafwerkingen", "key_input": "Binnenwandafwerkingen"},
-#     {"type": "43 Vloerafwerkingen", "key_input": "Vloerafwerkingen"},
-#     {"type": "45 Plafonds", "key_input": "Plafonds"},
-#     {"type": "64 Vaste gebouwvoorziening","key_input": "Vaste_gebouwvoorziening"},
-#     {"type": "73 Keuken", "key_input": "Keuken"},
-#     {"type": "90 Terreininrichting", "key_input": "Terreininrichting"}]
-    
-#     for huidige in huidigen:
-#         for index, row in data.iterrows():
-#             if huidige['type'] == row['productgroep']:
-#                 data.at[index, 'huidige_waarden'] = st.session_state[huidige['key_input']]
-    
-#     # Definieer de LP variabelen
-#     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
-#                   if row["optimalisatie"] == 'ja'}
-    
-#     variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
-#                    if row["optimalisatie"] == 'nee' and row["productgroep"] != '48 Na-isolatie'}
-    
-#     # Maak de variabelenlijst
-#     lp_variabelen = [(key, value) for key, value in variabelen.items()]
-#     lp_variabelen2 = [(key, value) for key, value in variabelen2.items()]
-#     lp_variabelen3 = lp_variabelen + [(key, value) for key, value in variabelen2.items()]
-
-#     lp_variabelen3.sort()
-    
-#     dynamic_vars = {}
-#     afwijkingen_list = []
-#     doelwaardes = []
-    
-#     for (key, var), i in zip(lp_variabelen, range(len(lp_variabelen))):
-#         if var.name == "31_Buitenkozijnen,__ramen,__deuren_en__puien":
-#             var_name = (var.name.split("_")[1])[:-1] + '_start'
-#             dynamic_vars[var_name] = st.session_state[(var.name.split("_")[1])[:-1]]
-
-#             afwijkingen_var = pl.LpVariable('d_' + (var.name.split("_")[1])[:-1], lowBound = 0)
-#             afwijkingen_list.append(afwijkingen_var)
-#         else:
-#             var_name = var.name[3:] + '_start'
-#             dynamic_vars[var_name] = st.session_state[var.name[3:]]
-
-#             afwijkingen_var = pl.LpVariable('d_' + var.name[3:], lowBound = 0) 
-#             afwijkingen_list.append(afwijkingen_var)
-                
-#     startwaardes = list(dynamic_vars.values())
-#     st.session_state.startwaardes = startwaardes
-    
-#     if st.session_state.doelstelling == 'Minimale milieukosten':
-#         gewichten = [(1, 0), (0.9, 0.1), (0.8, 0.2), (0.7, 0.3), (0.6, 0.4)]  # Lijst van wegingen
-#     if st.session_state.doelstelling == 'Minimale afwijkingen van de huidge aantallen':
-#         gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6)]  # Lijst van wegingen
-#     if st.session_state.doelstelling == 'Geen voorkeur':
-#         gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6), (0.5, 0.5), 
-#                      (0.6, 0.4), (0.7, 0.3), (0.8, 0.2), (0.9, 0.1), (1, 0)]
-
-#     oplossingen = {}
-#     doelwaardes = []
-#     j = 1
-#     for w_circulair, w_afwijkingen in gewichten:
-#         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
-        
-#         # Impact themas op productgroepen
-#         variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen))]
-#         impact_circulair = [data.iloc[i, 5] for i in range(len(data)) if data.iloc[i, 6] == 'ja']
-#         circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
-        
-#         variabelen_budget = [lp_variabelen3[i][1] for i in range(len(lp_variabelen3))]
-#         impact_budget = [data.iloc[i, 4] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
-#         budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
-        
-#         variabelen_milieukosten = [lp_variabelen3[i][1] for i in range(len(lp_variabelen3))]
-#         impact_milieukosten = [data.iloc[i, 5] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
-#         milieukosten = pl.lpSum(variabelen_milieukosten[i] * impact_milieukosten[i] for i in range(len(variabelen_milieukosten)))
-            
-#         afwijkingen = pl.lpSum(afwijkingen_list)
-        
-#         prob += w_circulair * circulair + w_afwijkingen * afwijkingen
-        
-#         data2 = data[data['optimalisatie'] == 'ja']
-#         data2 = data2.reset_index(drop=True)
-#         for i in range(len(lp_variabelen)):
-#             prob += lp_variabelen[i][1] >= data2.iloc[i, 2]
-#             prob += lp_variabelen[i][1] <= data2.iloc[i, 3]
-                
-#         for a in range(len(afwijkingen_list)):
-#             prob += afwijkingen_list[a] >= lp_variabelen[a][1] - startwaardes[a]
-#             prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[a][1]
-        
-#         data3 = data[data['optimalisatie'] == 'nee']
-#         data3 = data3[data3['productgroep'] != '48 Na-isolatie']
-#         data3 = data3.reset_index(drop=True)
-#         for i in range(len(lp_variabelen2)):
-#             prob += lp_variabelen2[i][1] == data3.iloc[i, 9]
-        
-#         prob += budget == st.session_state.budget
-        
-#         status = prob.solve()
-    
-#         oplossingen[f"Oplossing {j}"] = [var.varValue for key, var in lp_variabelen]
-#         oplossingswaarden = list(oplossingen[f"Oplossing {j}"])
-
-#         data[f"Oplossing {j}"] = None
-#         if pl.LpStatus[status] == 'Optimal':
-#             index = 0
-#             for i, row in data.iterrows():
-#                 if row['optimalisatie'] == 'ja':
-#                     if index < len(oplossingswaarden):
-#                         data.at[i, f"Oplossing {j}"] = oplossingswaarden[index]
-#                         index += 1
-#                 else:
-#                     data.at[i, f"Oplossing {j}"] = data.at[i, 'huidige_waarden']
-
-#         doelwaardes.append((f"Oplossing {j}", 
-#                             (data[f"Oplossing {j}"] * data['kosten']).sum(), 
-#                             (data[f"Oplossing {j}"] * data['circulair']).sum(), 
-#                             afwijkingen.value()))
-#         j += 1
-
-#     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
-#     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
-#     doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum(), 
-#                        max_abs_diff.sum()))
-#     doelwaardes.append(('huidige_waarden', (data['huidige_waarden'] * data['kosten']).sum(), (data['huidige_waarden'] * data['circulair']).sum()))
-    
-#     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
-#     uitkomsten = data.drop(columns=kolommen_uitsluiten)
-#     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
-#     uitkomsten = uitkomsten.round(1) 
-#     columns = uitkomsten.columns.tolist()
-    
-#     def plot_pie(milieukosten, afwijkingen):
-#         labels = ['Milieukosten', 'Afwijkingen']
-#         values = [milieukosten, afwijkingen]
-#         fig = px.pie(values=values, names=labels)
-#         fig.update_traces(textposition='inside', textinfo='percent+label')
-#         fig.update(layout_showlegend=False)
-#         return fig
-
-#     for i in range(len(columns)-3):
-#         col1, col2 = st.columns([2, 1])
-        
-#         with col1:
-#             st.markdown(f"**Oplossing {i+1}:**")
-#             st.markdown(f"- Milieukosten {gewichten[i][0] * 100}%")
-#             st.markdown(f"- Afwijkingen {gewichten[i][1] * 100}%")
-
-# #         with col2:
-# #             # Maak een pie chart
-# #             fig = plot_pie(gewichten[i][0] * 100, gewichten[i][1] * 100)
-
-# #             # Weergeven van de pie chart in Streamlit
-# #             st.plotly_chart(fig, use_container_width=True)
-        
-#         columns[i+3] = f'Oplossing {i+1}'
-#         uitkomsten.columns = columns
-#         oplossing = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', f'Oplossing {i+1}']]
-#         st.dataframe(oplossing, hide_index = True)
-
-#     uitkomsten.columns = columns
-#     st.session_state.oplossingen = data
-#     st.session_state.doelwaardes = doelwaardes
-    
-#     col1, col2, col3 = st.columns(3)
-#     st.markdown("###### Vergelijking")
-#     options = st.multiselect(
-#     "Kies tot 4 oplossingen voor een vergelijking",
-#     [i for i in uitkomsten.columns[3:]], max_selections = 4)
-    
-#     if len(options) != 0:
-#         cols = st.columns(len(options))
-
-#         for i, option in enumerate(options):
-#             with cols[i]:
-#                 st.markdown(f"**{option}**")
-#                 x = pd.to_numeric(option[10:])
-#                 st.markdown(f"- Milieukosten {gewichten[x-1][0] * 100}%")
-#                 st.markdown(f"- Afwijkingen {gewichten[x-1][1] * 100}%")
-#         kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
-#         vergelijken = uitkomsten[kolommen]
-#         st.dataframe(vergelijken, hide_index = True)
-
-
-# In[ ]:
-
-
-import numpy as np
-import pandas as pd
-import pulp as pl
-import plotly.express as px
-import plotly.graph_objects as go
-
 # Controleer of het projectbestand is geüpload
 if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
@@ -529,30 +273,28 @@ else:
     st.markdown("#")
     st.markdown("##### Minimale afwijking in productgroepen")
     
-    # Filter data
     for i in range(len(data)):
         if data.iloc[i, 0][:2] not in st.session_state.list:
-            data.drop(index=i, inplace=True)
-
-    # Voeg dynamische waarden toe aan de data
+            data.drop(index = i, inplace = True)
+    
     elements = [
-        {"type": "21 Buitenwanden", "key_toggle": "Buitenwanden_on"},
-        {"type": "22 Binnenwanden", "key_toggle": "Binnenwanden_on"},
-        {"type": "23 Vloeren", "key_toggle": "Vloeren_on"},
-        {"type": "24 Trappen en hellingen", "key_toggle": "Trappen_en_hellingen_on"},
-        {"type": "27 Daken", "key_toggle": "Daken_on"},
-        {"type": "28 Hoofddraagconstructie", "key_toggle": "Hoofddraagconstructie_on"},
-        {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "key_toggle": "Buitenkozijnen_on"},
-        {"type": "32 Binnenkozijnen en -deuren", "key_toggle": "Binnenkozijnen_en__deuren_on"},
-        {"type": "33 Luiken en vensters", "key_toggle": "Luiken_en_vensters_on"},
-        {"type": "34 Balustrades en leuningen", "key_toggle": "Balustrades_en_leuningen_on"},
-        {"type": "42 Binnenwandafwerkingen", "key_toggle": "Binnenwandafwerkingen_on"},
-        {"type": "43 Vloerafwerkingen", "key_toggle": "Vloerafwerkingen_on"},
-        {"type": "45 Plafonds", "key_toggle": "Plafonds_on"},
-        {"type": "64 Vaste gebouwvoorziening","key_toggle": "Vaste_gebouwvoorziening_on"},
-        {"type": "73 Keuken", "key_toggle": "Keuken_on"},
-        {"type": "90 Terreininrichting", "key_toggle": "Terreininrichting_on"}]
-
+    {"type": "21 Buitenwanden", "key_toggle": "Buitenwanden_on"},
+    {"type": "22 Binnenwanden", "key_toggle": "Binnenwanden_on"},
+    {"type": "23 Vloeren", "key_toggle": "Vloeren_on"},
+    {"type": "24 Trappen en hellingen", "key_toggle": "Trappen_en_hellingen_on"},
+    {"type": "27 Daken", "key_toggle": "Daken_on"},
+    {"type": "28 Hoofddraagconstructie", "key_toggle": "Hoofddraagconstructie_on"},
+    {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "key_toggle": "Buitenkozijnen_on"},
+    {"type": "32 Binnenkozijnen en -deuren", "key_toggle": "Binnenkozijnen_en__deuren_on"},
+    {"type": "33 Luiken en vensters", "key_toggle": "Luiken_en_vensters_on"},
+    {"type": "34 Balustrades en leuningen", "key_toggle": "Balustrades_en_leuningen_on"},
+    {"type": "42 Binnenwandafwerkingen", "key_toggle": "Binnenwandafwerkingen_on"},
+    {"type": "43 Vloerafwerkingen", "key_toggle": "Vloerafwerkingen_on"},
+    {"type": "45 Plafonds", "key_toggle": "Plafonds_on"},
+    {"type": "64 Vaste gebouwvoorziening","key_toggle": "Vaste_gebouwvoorziening_on"},
+    {"type": "73 Keuken", "key_toggle": "Keuken_on"},
+    {"type": "90 Terreininrichting", "key_toggle": "Terreininrichting_on"}]
+    
     for element in elements:
         if not st.session_state[element['key_toggle']]:
             for index, row in data.iterrows():
@@ -560,46 +302,47 @@ else:
                     data.at[index, 'optimalisatie'] = 'nee'
 
     data['code'] = data['productgroep'].str[:2]
+
     data['huidige_waarden'] = 0
     
     data['huidige_waarden'] = data.apply(
-        lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige_waarden'], axis=1)
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['huidige_waarden'], axis=1)
     
     data.loc[data['productgroep'] == '48 Na-isolatie', 'huidige_waarden'] = 0
     
     data['minimaal'] = data.apply(
-        lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['minimaal'], axis=1)
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['minimaal'], axis=1)
     
     data.loc[data['productgroep'] == '48 Na-isolatie', 'minimaal'] = 0
     
     data['maximaal'] = data.apply(
-        lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['maximaal'], axis=1)
+    lambda row: st.session_state.appartementen if pd.isna(row['eenheid']) else row['maximaal'], axis=1)
 
     data.loc[data['productgroep'] == '48 Na-isolatie', 'maximaal'] = 0
-
+     
     huidigen = [
-        {"type": "21 Buitenwanden", "key_input": "Buitenwanden"},
-        {"type": "22 Binnenwanden", "key_input": "Binnenwanden"},
-        {"type": "23 Vloeren", "key_input": "Vloeren"},
-        {"type": "24 Trappen en hellingen", "key_input": "Trappen_en_hellingen"},
-        {"type": "27 Daken", "key_input": "Daken"},
-        {"type": "28 Hoofddraagconstructie", "key_input": "Hoofddraagconstructie"},
-        {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "key_input": "Buitenkozijnen"},
-        {"type": "32 Binnenkozijnen en -deuren", "key_input": "Binnenkozijnen_en__deuren"},
-        {"type": "33 Luiken en vensters", "key_input": "Luiken_en_vensters"},
-        {"type": "34 Balustrades en leuningen", "key_input": "Balustrades_en_leuningen"},
-        {"type": "42 Binnenwandafwerkingen", "key_input": "Binnenwandafwerkingen"},
-        {"type": "43 Vloerafwerkingen", "key_input": "Vloerafwerkingen"},
-        {"type": "45 Plafonds", "key_input": "Plafonds"},
-        {"type": "64 Vaste gebouwvoorziening","key_input": "Vaste_gebouwvoorziening"},
-        {"type": "73 Keuken", "key_input": "Keuken"},
-        {"type": "90 Terreininrichting", "key_input": "Terreininrichting"}]
-
+    {"type": "21 Buitenwanden", "key_input": "Buitenwanden"},
+    {"type": "22 Binnenwanden", "key_input": "Binnenwanden"},
+    {"type": "23 Vloeren", "key_input": "Vloeren"},
+    {"type": "24 Trappen en hellingen", "key_input": "Trappen_en_hellingen"},
+    {"type": "27 Daken", "key_input": "Daken"},
+    {"type": "28 Hoofddraagconstructie", "key_input": "Hoofddraagconstructie"},
+    {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "key_input": "Buitenkozijnen"},
+    {"type": "32 Binnenkozijnen en -deuren", "key_input": "Binnenkozijnen_en__deuren"},
+    {"type": "33 Luiken en vensters", "key_input": "Luiken_en_vensters"},
+    {"type": "34 Balustrades en leuningen", "key_input": "Balustrades_en_leuningen"},
+    {"type": "42 Binnenwandafwerkingen", "key_input": "Binnenwandafwerkingen"},
+    {"type": "43 Vloerafwerkingen", "key_input": "Vloerafwerkingen"},
+    {"type": "45 Plafonds", "key_input": "Plafonds"},
+    {"type": "64 Vaste gebouwvoorziening","key_input": "Vaste_gebouwvoorziening"},
+    {"type": "73 Keuken", "key_input": "Keuken"},
+    {"type": "90 Terreininrichting", "key_input": "Terreininrichting"}]
+    
     for huidige in huidigen:
         for index, row in data.iterrows():
             if huidige['type'] == row['productgroep']:
                 data.at[index, 'huidige_waarden'] = st.session_state[huidige['key_input']]
-
+    
     # Definieer de LP variabelen
     variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
                   if row["optimalisatie"] == 'ja'}
@@ -623,81 +366,151 @@ else:
             var_name = (var.name.split("_")[1])[:-1] + '_start'
             dynamic_vars[var_name] = st.session_state[(var.name.split("_")[1])[:-1]]
 
-            afwijkingen_var = (var.name.split("_")[1])[:-1] + '_afwijking'
-            afwijkingen_list.append((afwijkingen_var, dynamic_vars[var_name]))
-            doelwaardes.append(dynamic_vars[var_name])
+            afwijkingen_var = pl.LpVariable('d_' + (var.name.split("_")[1])[:-1], lowBound = 0)
+            afwijkingen_list.append(afwijkingen_var)
         else:
-            dynamic_vars[var.name + '_start'] = st.session_state[var.name]
+            var_name = var.name[3:] + '_start'
+            dynamic_vars[var_name] = st.session_state[var.name[3:]]
 
-            afwijkingen_list.append((var.name + '_afwijking', dynamic_vars[var.name + '_start']))
-            doelwaardes.append(dynamic_vars[var.name + '_start'])
-
-    budget_vars = {var_name: st.session_state[(var.name.split("_")[1])[:-1] + '_milieukosten'] for var_name, var in variabelen.items()}
-
-    # Los het LP model op voor elke gewichtscombinatie
-    gewichten_set = [(1, 0), (0.9, 0.1), (0.8, 0.2), (0.7, 0.3), (0.6, 0.4), (0.5, 0.5), (0.4, 0.6), (0.3, 0.7), (0.2, 0.8), (0.1, 0.9), (0, 1)]
+            afwijkingen_var = pl.LpVariable('d_' + var.name[3:], lowBound = 0) 
+            afwijkingen_list.append(afwijkingen_var)
+                
+    startwaardes = list(dynamic_vars.values())
+    st.session_state.startwaardes = startwaardes
     
-    optimal_solutions = []
-    
-    for (w1, w2) in gewichten_set:
-        # Maak het LP model
-        model = pl.LpProblem("Optimalisatie", pl.LpMinimize)
+    if st.session_state.doelstelling == 'Minimale milieukosten':
+        gewichten = [(1, 0), (0.9, 0.1), (0.8, 0.2), (0.7, 0.3), (0.6, 0.4)]  # Lijst van wegingen
+    if st.session_state.doelstelling == 'Minimale afwijkingen van de huidge aantallen':
+        gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6)]  # Lijst van wegingen
+    if st.session_state.doelstelling == 'Geen voorkeur':
+        gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6), (0.5, 0.5), 
+                     (0.6, 0.4), (0.7, 0.3), (0.8, 0.2), (0.9, 0.1), (1, 0)]
+
+    oplossingen = {}
+    doelwaardes = []
+    j = 1
+    for w_circulair, w_afwijkingen in gewichten:
+        prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
         
-        # Voeg de gewogen somdoelfunctie toe
-        model += w1 * pl.lpSum([budget_vars[var] * variabelen[var] for var in variabelen]) + \
-                 w2 * pl.lpSum([(variabelen[var] - dynamic_vars[var + '_start']) ** 2 for var in variabelen])
-
-        # Voeg de budgetconstraint toe
-        model += pl.lpSum([budget_vars[var] * variabelen[var] for var in variabelen]) <= st.session_state.budget
-
-        # Voeg de constraints toe voor minimale en maximale waarden
-        for key, var in variabelen.items():
-            row = data.loc[data['productgroep'] == key]
-            min_val = row['minimaal'].values[0]
-            max_val = row['maximaal'].values[0]
-            model += var >= min_val
-            model += var <= max_val
+        # Impact themas op productgroepen
+        variabelen_circulair = [lp_variabelen[i][1] for i in range(len(lp_variabelen))]
+        impact_circulair = [data.iloc[i, 5] for i in range(len(data)) if data.iloc[i, 6] == 'ja']
+        circulair = pl.lpSum(variabelen_circulair[i] * impact_circulair[i] for i in range(len(variabelen_circulair)))
         
-        # Los het model op
-        model.solve()
-
-        # Verzamel de resultaten
-        optimal_solution = {v.name: v.varValue for v in model.variables()}
-        optimal_solution["objective_value"] = pl.value(model.objective)
-        optimal_solutions.append((w1, w2, optimal_solution))
+        variabelen_budget = [lp_variabelen3[i][1] for i in range(len(lp_variabelen3))]
+        impact_budget = [data.iloc[i, 4] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
+        budget = pl.lpSum(variabelen_budget[i] * impact_budget[i] for i in range(len(variabelen_budget)))
+        
+        variabelen_milieukosten = [lp_variabelen3[i][1] for i in range(len(lp_variabelen3))]
+        impact_milieukosten = [data.iloc[i, 5] for i in range(len(data)) if pd.notna(data.iloc[i, 4])]
+        milieukosten = pl.lpSum(variabelen_milieukosten[i] * impact_milieukosten[i] for i in range(len(variabelen_milieukosten)))
+            
+        afwijkingen = pl.lpSum(afwijkingen_list)
+        
+        prob += w_circulair * circulair + w_afwijkingen * afwijkingen
+        
+        data2 = data[data['optimalisatie'] == 'ja']
+        data2 = data2.reset_index(drop=True)
+        for i in range(len(lp_variabelen)):
+            prob += lp_variabelen[i][1] >= data2.iloc[i, 2]
+            prob += lp_variabelen[i][1] <= data2.iloc[i, 3]
+                
+        for a in range(len(afwijkingen_list)):
+            prob += afwijkingen_list[a] >= lp_variabelen[a][1] - startwaardes[a]
+            prob += afwijkingen_list[a] >= startwaardes[a] - lp_variabelen[a][1]
+        
+        data3 = data[data['optimalisatie'] == 'nee']
+        data3 = data3[data3['productgroep'] != '48 Na-isolatie']
+        data3 = data3.reset_index(drop=True)
+        for i in range(len(lp_variabelen2)):
+            prob += lp_variabelen2[i][1] == data3.iloc[i, 9]
+        
+        prob += budget == st.session_state.budget
+        
+        status = prob.solve()
     
-    # Analyseer de resultaten
-    results_df = pd.DataFrame(optimal_solutions, columns=["Weight_1", "Weight_2", "Optimal_Solution"])
-    results_df["Objective_Value"] = results_df["Optimal_Solution"].apply(lambda x: x.pop("objective_value"))
+        oplossingen[f"Oplossing {j}"] = [var.varValue for key, var in lp_variabelen]
+        oplossingswaarden = list(oplossingen[f"Oplossing {j}"])
 
-    # Identificeer de omslagpunten
-    omslagpunten = results_df.loc[(results_df["Optimal_Solution"].shift() != results_df["Optimal_Solution"]).any(axis=1)]
+        data[f"Oplossing {j}"] = None
+        if pl.LpStatus[status] == 'Optimal':
+            index = 0
+            for i, row in data.iterrows():
+                if row['optimalisatie'] == 'ja':
+                    if index < len(oplossingswaarden):
+                        data.at[i, f"Oplossing {j}"] = oplossingswaarden[index]
+                        index += 1
+                else:
+                    data.at[i, f"Oplossing {j}"] = data.at[i, 'huidige_waarden']
 
-    st.write("Gevoeligheidsanalyse Resultaten")
-    st.write(results_df)
-    st.write("Omslagpunten")
-    st.write(omslagpunten)
+        doelwaardes.append((f"Oplossing {j}", 
+                            (data[f"Oplossing {j}"] * data['kosten']).sum(), 
+                            (data[f"Oplossing {j}"] * data['circulair']).sum(), 
+                            afwijkingen.value()))
+        j += 1
+
+    max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
+    doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
+    doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum(), 
+                       max_abs_diff.sum()))
+    doelwaardes.append(('huidige_waarden', (data['huidige_waarden'] * data['kosten']).sum(), (data['huidige_waarden'] * data['circulair']).sum()))
     
-    # Plot de resultaten met Plotly
-    fig = go.Figure()
+    kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
+    uitkomsten = data.drop(columns=kolommen_uitsluiten)
+    uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
+    uitkomsten = uitkomsten.round(1) 
+    columns = uitkomsten.columns.tolist()
+    
+    def plot_pie(milieukosten, afwijkingen):
+        labels = ['Milieukosten', 'Afwijkingen']
+        values = [milieukosten, afwijkingen]
+        fig = px.pie(values=values, names=labels)
+        fig.update_traces(textposition='inside', textinfo='percent+label')
+        fig.update(layout_showlegend=False)
+        return fig
 
-    for (w1, w2, solution) in optimal_solutions:
-        fig.add_trace(go.Scatter(
-            x=[w1],
-            y=[solution["objective_value"]],
-            mode='markers',
-            marker=dict(size=10),
-            name=f'w1={w1}, w2={w2}'
-        ))
+    for i in range(len(columns)-3):
+        col1, col2 = st.columns([2, 1])
+        
+        with col1:
+            st.markdown(f"**Oplossing {i+1}:**")
+            st.markdown(f"- Milieukosten {gewichten[i][0] * 100}%")
+            st.markdown(f"- Afwijkingen {gewichten[i][1] * 100}%")
 
-    fig.update_layout(
-        title="Gevoeligheidsanalyse Resultaten",
-        xaxis_title="Gewicht 1",
-        yaxis_title="Objective Value",
-        showlegend=True
-    )
+#         with col2:
+#             # Maak een pie chart
+#             fig = plot_pie(gewichten[i][0] * 100, gewichten[i][1] * 100)
 
-    st.plotly_chart(fig)
+#             # Weergeven van de pie chart in Streamlit
+#             st.plotly_chart(fig, use_container_width=True)
+        
+        columns[i+3] = f'Oplossing {i+1}'
+        uitkomsten.columns = columns
+        oplossing = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', f'Oplossing {i+1}']]
+        st.dataframe(oplossing, hide_index = True)
+
+    uitkomsten.columns = columns
+    st.session_state.oplossingen = data
+    st.session_state.doelwaardes = doelwaardes
+    
+    col1, col2, col3 = st.columns(3)
+    st.markdown("###### Vergelijking")
+    options = st.multiselect(
+    "Kies tot 4 oplossingen voor een vergelijking",
+    [i for i in uitkomsten.columns[3:]], max_selections = 4)
+    
+    if len(options) != 0:
+        cols = st.columns(len(options))
+
+        for i, option in enumerate(options):
+            with cols[i]:
+                st.markdown(f"**{option}**")
+                x = pd.to_numeric(option[10:])
+                st.markdown(f"- Milieukosten {gewichten[x-1][0] * 100}%")
+                st.markdown(f"- Afwijkingen {gewichten[x-1][1] * 100}%")
+        kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
+        vergelijken = uitkomsten[kolommen]
+        st.dataframe(vergelijken, hide_index = True)
 
 
 # In[ ]:
