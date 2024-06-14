@@ -503,9 +503,12 @@ else:
     st.dataframe(uitkomsten)
     st.dataframe(gevoeligheidsanalyse)
     
-    y = gevoeligheidsanalyse.columns[-1]
+    df['x'] = df['wegingen'].apply(lambda x: x[0])
+
+    # Itereer over elke kolom behalve de laatste kolom (nu 'Y')
+    x = 'x'
     for col in gevoeligheidsanalyse.columns[:-1]:
-        fig = px.line(gevoeligheidsanalyse, x=col, y=y)
+        fig = px.line(gevoeligheidsanalyse, x=x, y=col)
         st.plotly_chart(fig)
 
     
