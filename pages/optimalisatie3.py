@@ -503,7 +503,7 @@ else:
     st.dataframe(uitkomsten)
     st.dataframe(gevoeligheidsanalyse)
     
-    df['x'] = df['wegingen'].apply(lambda x: x[0])
+    gevoeligheidsanalyse['x'] = gevoeligheidsanalyse['wegingen'].apply(lambda x: x[0])
 
     # Itereer over elke kolom behalve de laatste kolom (nu 'Y')
     x = 'x'
