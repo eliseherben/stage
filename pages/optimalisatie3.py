@@ -672,7 +672,7 @@ else:
     # Identificeer de omslagpunten
     omslagpunten = results_df.loc[(results_df["Optimal_Solution"].shift() != results_df["Optimal_Solution"]).any(axis=1)]
 
-    st.write("Gevoeligheidsanalyse Resultaten")
+    st.markdown("Gevoeligheidsanalyse Resultaten")
     st.write(results_df)
     st.write("Omslagpunten")
     st.write(omslagpunten)
