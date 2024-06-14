@@ -458,6 +458,7 @@ else:
                        max_abs_diff.sum()))
     doelwaardes.append(('huidige_waarden', (data['huidige_waarden'] * data['kosten']).sum(), (data['huidige_waarden'] * data['circulair']).sum()))
     
+    st.markdown(doelwaardes)
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
