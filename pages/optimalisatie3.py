@@ -451,6 +451,8 @@ else:
                             (data[f"Oplossing {j}"] * data['kosten']).sum(), 
                             (data[f"Oplossing {j}"] * data['circulair']).sum(), 
                             afwijkingen.value()))
+        huidige_oplossing = {var.name: var.varValue for var in prob.variables() if var.varValue != 0}
+
         j += 1
         
         if vorige_oplossing is not None:
