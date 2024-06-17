@@ -458,7 +458,7 @@ else:
  # Controleer of er een significante verandering is in de oplossing
         if vorige_oplossing is not None:
             significant_change = any(
-                abs(huidige_oplossing.get(var, 0) - vorige_oplossing.get(var, 0)) > 1e-6
+                abs(huidige_oplossing.get(var, 0) - vorige_oplossing.get(var, 0)) > 1
                 for var in set(huidige_oplossing) | set(vorige_oplossing)
             )
             if significant_change:
@@ -480,30 +480,24 @@ else:
     omslagpunten_df.columns = new_columns
     omslagpunten_df = omslagpunten_df.transpose()
     omslagpunten_df['code'] = omslagpunten_df.index.str[:2]
-    st.dataframe(omslagpunten_df)
     
     result_df = pd.merge(data, omslagpunten_df, on = 'code',  how = 'left')
     row_index = result_df.index[result_df['productgroep'] == '48 Na-isolatie'].tolist()[0]
     result_df.iloc[row_index, 2:] = result_df.iloc[row_index, 2:].fillna(0)
     
-    st.dataframe(result_df)
     afwijkingen = []
     for a in range(10, result_df.shape[1]):
         afwijking = []
         for i in range(result_df.shape[0]):
             afwijking.append(abs(result_df.iloc[i, 9] - result_df.iloc[i, a]))
-        st.markdown(afwijking)
         afwijkingen.append(sum(afwijking))
 
-    st.markdown(afwijkingen)
     for i in range(len(afwijkingen)):
         doelwaardes.append((f"Oplossing {i+1}", 
                                 (result_df[f"Oplossing {i+1}"] * result_df['kosten']).sum(), 
                                 (result_df[f"Oplossing {i+1}"] * result_df['circulair']).sum(), 
                                 afwijkingen[i]))
-        
-    st.markdown(doelwaardes)
-    
+            
     max_abs_diff = result_df.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), 
                                                    abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
     doelwaardes.append(('minimaal', (result_df['minimaal'] * result_df['kosten']).sum(), 
@@ -533,8 +527,8 @@ else:
         
         with col1:
             st.markdown(f"**Oplossing {i+1}:**")
-            st.markdown(f"- Milieukosten {omslagpunten_df.iloc[0, i] * 100}%")
-            st.markdown(f"- Afwijkingen {omslagpunten_df.iloc[1, i] * 100}%")
+            st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, i] * 100)}%")
+            st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, i] * 100)}%")
 
 #         with col2:
 #             # Maak een pie chart
@@ -549,7 +543,6 @@ else:
         st.dataframe(oplossing, hide_index = True)
 
     uitkomsten.columns = columns
-    st.dataframe(data)
     st.session_state.oplossingen = result_df
     st.session_state.doelwaardes = doelwaardes
     gevoeligheidsanalyse = uitkomsten.drop(['eenheid', 'huidige_waarden'], axis=1)
@@ -566,7 +559,6 @@ else:
 #             gevoeligheidsanalyse.loc[index, 'circulair'] = circulair
 #             gevoeligheidsanalyse.loc[index, 'afwijking'] = afwijking
     
-    st.dataframe(uitkomsten)
 #     st.dataframe(gevoeligheidsanalyse)
     
 #     gevoeligheidsanalyse['x'] = gevoeligheidsanalyse['wegingen'].apply(lambda x: x[0])
