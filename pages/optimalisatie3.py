@@ -487,7 +487,6 @@ else:
                        max_abs_diff.sum()))
     doelwaardes.append(('huidige_waarden', (data['huidige_waarden'] * data['kosten']).sum(), (data['huidige_waarden'] * data['circulair']).sum()))
     
-    st.markdown(doelwaardes)
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
@@ -523,6 +522,7 @@ else:
 #         st.dataframe(oplossing, hide_index = True)
 
     uitkomsten.columns = columns
+    st.dataframe(data)
     st.session_state.oplossingen = data
     st.session_state.doelwaardes = doelwaardes
     gevoeligheidsanalyse = uitkomsten.drop(['eenheid', 'huidige_waarden'], axis=1)
