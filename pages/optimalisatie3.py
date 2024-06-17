@@ -642,9 +642,16 @@ for productgroep in df['productgroep']:
                                  color_discrete_sequence=[kleur], labels={'x': ''}, 
                                  size=[10], symbol = ['oplossing 1'])
         
-        scatter_hovertemplate = f'Oplossing 1: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
-        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        scatter_hovertemplate = (
+            f'Oplossing 1: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
+            'Weging milieukosten: %{customdata[0]}<br>'
+            'Weging afwijkingen: %{customdata[1]}<br>'
+        )
+        scatter.update_traces(
+            hovertemplate=scatter_hovertemplate, 
+        customdata=omslagpunten_df[['Gewicht_circulair', 'Gewicht_afwijkingen']])
         fig.add_trace(scatter.data[0])
+        
 
     if df_productgroep.columns[11] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
