@@ -479,6 +479,7 @@ else:
     new_columns = [col.replace('__', ' -').replace('_', ' ') for col in omslagpunten_df.columns]
     omslagpunten_df.columns = new_columns
     omslagpunten_df = omslagpunten_df.transpose()
+    omslagpunten_df['code'] = omslagpunten_df.index[:2]
     st.dataframe(omslagpunten_df)
 
     result_df = pd.merge(data, omslagpunten_df, right_index = True, left_on = 'productgroep',  how = 'left')
