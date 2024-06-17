@@ -486,7 +486,7 @@ else:
     st.dataframe(result_df)
     afwijkingen = []
     for a in range(result_df.shape[1] - 9):
-        print(a)
+        st.markdown(a)
         for i in range(result_df.shape[0]):
             afwijkingen.append(abs(result_df.iloc[i, 9] - result_df.iloc[i, 10]))
 
