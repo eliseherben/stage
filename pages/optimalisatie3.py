@@ -482,7 +482,7 @@ else:
     omslagpunten_df['code'] = omslagpunten_df.index.str[:2]
     st.dataframe(omslagpunten_df)
 
-    result_df = pd.merge(data, omslagpunten_df, right_index = True, left_on = 'productgroep',  how = 'left')
+    result_df = pd.merge(data, omslagpunten_df, on = 'code',  how = 'left')
     st.dataframe(result_df)
     afwijkingen = []
     for a in range(10, result_df.shape[1]):
