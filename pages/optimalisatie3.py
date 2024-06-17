@@ -436,25 +436,24 @@ else:
         oplossingen[f"Oplossing {j}"] = [var.varValue for key, var in lp_variabelen]
         oplossingswaarden = list(oplossingen[f"Oplossing {j}"])
 
-        data[f"Oplossing {j}"] = None
-        if pl.LpStatus[status] == 'Optimal':
-            index = 0
-            for i, row in data.iterrows():
-                if row['optimalisatie'] == 'ja':
-                    if index < len(oplossingswaarden):
-                        data.at[i, f"Oplossing {j}"] = oplossingswaarden[index]
-                        index += 1
-                else:
-                    data.at[i, f"Oplossing {j}"] = data.at[i, 'huidige_waarden']
+#         data[f"Oplossing {j}"] = None
+#         if pl.LpStatus[status] == 'Optimal':
+#             index = 0
+#             for i, row in data.iterrows():
+#                 if row['optimalisatie'] == 'ja':
+#                     if index < len(oplossingswaarden):
+#                         data.at[i, f"Oplossing {j}"] = oplossingswaarden[index]
+#                         index += 1
+#                 else:
+#                     data.at[i, f"Oplossing {j}"] = data.at[i, 'huidige_waarden']
 
-        doelwaardes.append((f"Oplossing {j}", 
-                            (data[f"Oplossing {j}"] * data['kosten']).sum(), 
-                            (data[f"Oplossing {j}"] * data['circulair']).sum(), 
-                            afwijkingen.value()))
+#         doelwaardes.append((f"Oplossing {j}", 
+#                             (data[f"Oplossing {j}"] * data['kosten']).sum(), 
+#                             (data[f"Oplossing {j}"] * data['circulair']).sum(), 
+#                             afwijkingen.value()))
         huidige_oplossing = {var.name: var.varValue for var in prob.variables() if var.varValue != 0 and not var.name.startswith('d_')}
 
         j += 1
-        st.markdown(vorige_oplossing)
         
  # Controleer of er een significante verandering is in de oplossing
         if vorige_oplossing is not None:
@@ -489,9 +488,16 @@ else:
         afwijking = []
         for i in range(result_df.shape[0]):
             afwijking.append(abs(result_df.iloc[i, 9] - result_df.iloc[i, a]))
-        afwijkingen.append(tuple(afwijking))
+        afwijkingen.append(sum(afwijking))
 
     st.markdown(afwijkingen)
+    for i in range(10, result_df.shape[1]):
+        doelwaardes.append((f"Oplossing {i-9}", 
+                                (data[f"Oplossing {i-9}"] * data['kosten']).sum(), 
+                                (data[f"Oplossing {i-9}"] * data['circulair']).sum(), 
+                                afwijkingen[i]))
+        
+    st.markdown(doelwaardes)
     
     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
