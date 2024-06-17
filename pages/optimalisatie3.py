@@ -481,11 +481,11 @@ else:
     omslagpunten_df = omslagpunten_df.transpose()
     omslagpunten_df['code'] = omslagpunten_df.index.str[:2]
     st.dataframe(omslagpunten_df)
-
-    row_index = data.index[data['productgroep'] == '48 Na-isolatie'].tolist()[0]
-    data.iloc[row_index, 2:] = data.iloc[row_index, 2:].fillna(0)
     
     result_df = pd.merge(data, omslagpunten_df, on = 'code',  how = 'left')
+    row_index = result_df.index[result_df['productgroep'] == '48 Na-isolatie'].tolist()[0]
+    result_df.iloc[row_index, 2:] = result_df.iloc[row_index, 2:].fillna(0)
+    
     st.dataframe(result_df)
     afwijkingen = []
     for a in range(10, result_df.shape[1]):
