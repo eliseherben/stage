@@ -383,14 +383,15 @@ else:
     if st.session_state.doelstelling == 'Minimale afwijkingen van de huidge aantallen':
         gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6)]  # Lijst van wegingen
     if st.session_state.doelstelling == 'Geen voorkeur':
-        gewichten =  [(i/999, 1 - i/999) for i in range(1000)]
+        gewichten =  [(i/99, 1 - i/99) for i in range(100)]
 
 #         [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6), (0.5, 0.5), 
 #                      (0.6, 0.4), (0.7, 0.3), (0.8, 0.2), (0.9, 0.1), (1, 0)]
     
-
     oplossingen = {}
     doelwaardes = []
+    vorige_oplossing = None
+    omslagpunten = []
     j = 1
     for w_circulair, w_afwijkingen in gewichten:
         prob = pl.LpProblem("Eerste doelstelling", pl.LpMinimize)
@@ -451,6 +452,19 @@ else:
                             (data[f"Oplossing {j}"] * data['circulair']).sum(), 
                             afwijkingen.value()))
         j += 1
+        
+        if vorige_oplossing is not None:
+            significant_change = any(
+                abs(huidige_oplossing.get(var, 0) - vorige_oplossing.get(var, 0)) > 1e-6
+                for var in set(huidige_oplossing) | set(vorige_oplossing)
+            )
+            if significant_change:
+                omslagpunten.append({
+                    "Gewicht_circulair": w_circulair,
+                    "Gewicht_afwijkingen": w_afwijkingen,
+                    "Oplossing": huidige_oplossing
+                })
+        vorige_oplossing = huidige_oplossing
 
     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
@@ -521,7 +535,8 @@ else:
         fig = px.line(gevoeligheidsanalyse, x=x, y=col)
         st.plotly_chart(fig)
 
-    
+    omslagpunten_df = pd.DataFrame(omslagpunten)
+    st.dataframe(omslagpunten_df)
     col1, col2, col3 = st.columns(3)
     st.markdown("###### Vergelijking")
     options = st.multiselect(
