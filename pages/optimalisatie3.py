@@ -643,7 +643,7 @@ for productgroep in df['productgroep']:
         fig.add_trace(scatter.data[0])
     
     if df_productgroep.columns[10] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_productgroep.columns[10]]
+        selected_row = gewichten_df.loc[[df_productgroep.columns[10]]]
         test = selected_row.transpose()
         st.dataframe(test)
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
