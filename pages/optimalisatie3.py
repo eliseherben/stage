@@ -651,7 +651,7 @@ for productgroep in df['productgroep']:
         )
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
-        customdata=omslagpunten_df[['Gewicht_circulair', 'Gewicht_afwijkingen']])
+        customdata=gewichten_df[['Gewicht_circulair', 'Gewicht_afwijkingen']])
         fig.add_trace(scatter.data[0])
         
 
