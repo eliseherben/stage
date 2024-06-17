@@ -454,6 +454,7 @@ else:
         huidige_oplossing = {var.name: var.varValue for var in prob.variables() if var.varValue != 0}
 
         j += 1
+        st.markdown(vorige_oplossing)
         
         if vorige_oplossing is not None:
             significant_change = any(
