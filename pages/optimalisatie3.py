@@ -456,17 +456,16 @@ else:
         j += 1
         st.markdown(vorige_oplossing)
         
+ # Controleer of er een significante verandering is in de oplossing
         if vorige_oplossing is not None:
             significant_change = any(
                 abs(huidige_oplossing.get(var, 0) - vorige_oplossing.get(var, 0)) > 1e-6
                 for var in set(huidige_oplossing) | set(vorige_oplossing)
             )
             if significant_change:
-                omslagpunten.append({
-                    "Gewicht_circulair": w_circulair,
-                    "Gewicht_afwijkingen": w_afwijkingen,
-                    "Oplossing": huidige_oplossing
-                })
+                omslagpunt = {"Gewicht_circulair": w_circulair, "Gewicht_afwijkingen": w_afwijkingen}
+                omslagpunt.update(huidige_oplossing)
+                omslagpunten.append(omslagpunt)
         vorige_oplossing = huidige_oplossing
     
     omslagpunten_df = pd.DataFrame(omslagpunten)
