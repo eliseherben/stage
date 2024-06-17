@@ -477,8 +477,8 @@ else:
     # Toepassen van de nieuwe index op het DataFrame
     omslagpunten_df.index = new_index
     
-    new_columns = [col.replace('__', ', ').replace('_', ' ') for col in omslagpunten_df.columns]
-    omslagpunten_df.columns = new_columns
+#     new_columns = [col.replace('__', ', ').replace('_', ' ') for col in omslagpunten_df.columns]
+#     omslagpunten_df.columns = new_columns
     st.dataframe(omslagpunten_df)
 
     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
