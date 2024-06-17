@@ -467,6 +467,9 @@ else:
                     "Oplossing": huidige_oplossing
                 })
         vorige_oplossing = huidige_oplossing
+    
+    omslagpunten_df = pd.DataFrame(omslagpunten)
+    st.dataframe(omslagpunten_df)
 
     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
@@ -537,8 +540,6 @@ else:
         fig = px.line(gevoeligheidsanalyse, x=x, y=col)
         st.plotly_chart(fig)
 
-    omslagpunten_df = pd.DataFrame(omslagpunten)
-    st.dataframe(omslagpunten_df)
     col1, col2, col3 = st.columns(3)
     st.markdown("###### Vergelijking")
     options = st.multiselect(
