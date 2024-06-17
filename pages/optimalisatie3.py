@@ -664,7 +664,7 @@ for productgroep in df['productgroep']:
         
 
     if df_productgroep.columns[11] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_productgroep.columns[11]]
+        selected_row = gewichten_df.loc[[df_productgroep.columns[11]]]
         selected_row = selected_row.transpose()
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
@@ -683,7 +683,7 @@ for productgroep in df['productgroep']:
         fig.add_trace(scatter.data[0])
 
     if df_productgroep.columns[12] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_productgroep.columns[12]]
+        selected_row = gewichten_df.loc[[df_productgroep.columns[12]]]
         selected_row = selected_row.transpose()
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
@@ -702,7 +702,7 @@ for productgroep in df['productgroep']:
         fig.add_trace(scatter.data[0])
 
     if df_productgroep.columns[13] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_productgroep.columns[13]]
+        selected_row = gewichten_df.loc[[df_productgroep.columns[13]]]
         selected_row = selected_row.transpose()
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
@@ -715,7 +715,7 @@ for productgroep in df['productgroep']:
         fig.add_trace(scatter.data[0])
 
     if df_productgroep.columns[14] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_productgroep.columns[14]]
+        selected_row = gewichten_df.loc[[df_productgroep.columns[14]]]
         selected_row = selected_row.transpose()
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
@@ -735,7 +735,7 @@ for productgroep in df['productgroep']:
 
     if st.session_state.doelstelling == 'Geen voorkeur':
         if df_productgroep.columns[15] in geselecteerde_kolommen:
-            selected_row = gewichten_df.loc[df_productgroep.columns[15]]
+            selected_row = gewichten_df.loc[[df_productgroep.columns[15]]]
             selected_row = selected_row.transpose()
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
@@ -754,7 +754,7 @@ for productgroep in df['productgroep']:
             fig.add_trace(scatter.data[0])
 
         if df_productgroep.columns[16] in geselecteerde_kolommen:
-            selected_row = gewichten_df.loc[df_productgroep.columns[16]]
+            selected_row = gewichten_df.loc[[df_productgroep.columns[16]]]
             selected_row = selected_row.transpose()
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
@@ -773,7 +773,7 @@ for productgroep in df['productgroep']:
             fig.add_trace(scatter.data[0])
 
         if df_productgroep.columns[17] in geselecteerde_kolommen:
-            selected_row = gewichten_df.loc[df_productgroep.columns[17]]
+            selected_row = gewichten_df.loc[[df_productgroep.columns[17]]]
             selected_row = selected_row.transpose()
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
@@ -792,7 +792,7 @@ for productgroep in df['productgroep']:
             fig.add_trace(scatter.data[0])
 
         if df_productgroep.columns[18] in geselecteerde_kolommen:
-            selected_row = gewichten_df.loc[df_productgroep.columns[18]]
+            selected_row = gewichten_df.loc[[df_productgroep.columns[18]]]
             selected_row = selected_row.transpose()
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
@@ -811,7 +811,7 @@ for productgroep in df['productgroep']:
             fig.add_trace(scatter.data[0])
 
         if df_productgroep.columns[19] in geselecteerde_kolommen:
-            selected_row = gewichten_df.loc[df_productgroep.columns[19]]
+            selected_row = gewichten_df.loc[[df_productgroep.columns[19]]]
             selected_row = selected_row.transpose()
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
@@ -830,7 +830,7 @@ for productgroep in df['productgroep']:
             fig.add_trace(scatter.data[0])
             
         if df_productgroep.columns[20] in geselecteerde_kolommen:
-            selected_row = gewichten_df.loc[df_productgroep.columns[20]]
+            selected_row = gewichten_df.loc[[df_productgroep.columns[20]]]
             selected_row = selected_row.transpose()
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
