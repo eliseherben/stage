@@ -607,7 +607,7 @@ df = df[df['eenheid'].notna()]
 df[df.columns[10:]] = df[df.columns[10:]].apply(pd.to_numeric)
 df = df.round(1)
 gewichten_df = omslagpunten_df.transpose()
-st.markdown(gewichten_df)
+st.dataframe(gewichten_df)
 
 for productgroep in df['productgroep']:
     kleur_teller = 0
