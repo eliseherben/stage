@@ -710,8 +710,14 @@ for productgroep in df['productgroep']:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 4'])
         
-        scatter_hovertemplate = f'Oplossing 4: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
-        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        scatter_hovertemplate = (
+            f'Oplossing 4: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
+            'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+            'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+        )
+        scatter.update_traces(
+            hovertemplate=scatter_hovertemplate, 
+        customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
         fig.add_trace(scatter.data[0])
 
     if df_productgroep.columns[14] in geselecteerde_kolommen:
@@ -750,7 +756,7 @@ for productgroep in df['productgroep']:
             )
             scatter.update_traces(
                 hovertemplate=scatter_hovertemplate, 
-            customdata=gewichten_df[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
+            customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
             fig.add_trace(scatter.data[0])
 
         if df_productgroep.columns[16] in geselecteerde_kolommen:
