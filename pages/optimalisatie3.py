@@ -643,6 +643,7 @@ for productgroep in df['productgroep']:
     
     if df_productgroep.columns[10] in geselecteerde_kolommen:
         selected_row = gewichten_df.loc[df_productgroep.columns[10]]
+        st.dataframe(selected_row)
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_productgroep, x=df_productgroep.columns[10], y='code', 
