@@ -451,7 +451,7 @@ else:
                             (data[f"Oplossing {j}"] * data['kosten']).sum(), 
                             (data[f"Oplossing {j}"] * data['circulair']).sum(), 
                             afwijkingen.value()))
-        huidige_oplossing = {var.name: var.varValue for var in prob.variables() if var.varValue != 0}
+        huidige_oplossing = {var.name: var.varValue for var in probleem.variables() if var.varValue != 0 and not var.name.startswith('d_')}
 
         j += 1
         st.markdown(vorige_oplossing)
@@ -459,7 +459,7 @@ else:
  # Controleer of er een significante verandering is in de oplossing
         if vorige_oplossing is not None:
             significant_change = any(
-                abs(huidige_oplossing.get(var, 0) - vorige_oplossing.get(var, 0)) > 5
+                abs(huidige_oplossing.get(var, 0) - vorige_oplossing.get(var, 0)) > 1
                 for var in set(huidige_oplossing) | set(vorige_oplossing)
             )
             if significant_change:
@@ -469,6 +469,13 @@ else:
         vorige_oplossing = huidige_oplossing
     
     omslagpunten_df = pd.DataFrame(omslagpunten)
+    current_index = omslagpunten_df.index
+
+    # Nieuwe index met 'oplossing' ervoor en +1 toegevoegd aan elke indexwaarde
+    new_index = ['Oplossing ' + str(idx + 1) for idx in current_index]
+
+    # Toepassen van de nieuwe index op het DataFrame
+    omslagpunten_df.index = new_index
     st.dataframe(omslagpunten_df)
 
     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
