@@ -607,6 +607,9 @@ df = df[df['eenheid'].notna()]
 df[df.columns[10:]] = df[df.columns[10:]].apply(pd.to_numeric)
 df = df.round(1)
 gewichten_df = omslagpunten_df.transpose()
+gewichten_df['Gewicht circulair (%)'] = gewichten_df['Gewicht circulair'] * 100
+gewichten_df['Gewicht afwijkingen (%)'] = gewichten_df['Gewicht afwijkingen'] * 100
+
 st.dataframe(gewichten_df)
 
 for productgroep in df['productgroep']:
@@ -646,12 +649,12 @@ for productgroep in df['productgroep']:
         
         scatter_hovertemplate = (
             f'Oplossing 1: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
-            'Weging milieukosten: %{customdata[0]:.2f}<br>'
-            'Weging afwijkingen: %{customdata[1]:.2f}<br>'
+            'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+            'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
         )
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
-        customdata=gewichten_df[['Gewicht circulair', 'Gewicht afwijkingen']])
+        customdata=gewichten_df[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
         fig.add_trace(scatter.data[0])
         
 
