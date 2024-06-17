@@ -646,8 +646,8 @@ for productgroep in df['productgroep']:
         
         scatter_hovertemplate = (
             f'Oplossing 1: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
-            'Weging milieukosten: %{customdata[0]}<br>'
-            'Weging afwijkingen: %{customdata[1]}<br>'
+            'Weging milieukosten: %{round(customdata[0] * 100)}<br>'
+            'Weging afwijkingen: %{round(customdata[1] * 100)}<br>'
         )
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
