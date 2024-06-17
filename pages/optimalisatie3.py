@@ -485,10 +485,11 @@ else:
     result_df = pd.merge(data, omslagpunten_df, right_index = True, left_on = 'productgroep',  how = 'left')
     st.dataframe(result_df)
     afwijkingen = []
-    for a in range(9, result_df.shape[1]):
-        st.markdown(a)
+    for a in range(10, result_df.shape[1]):
+        afwijking = []
         for i in range(result_df.shape[0]):
-            afwijkingen.append(abs(result_df.iloc[i, 9] - result_df.iloc[i, 10]))
+            afwijking.append(abs(result_df.iloc[i, 9] - result_df.iloc[i, a]))
+        afwijkingen.append(tuple(afwijking))
 
     st.markdown(afwijkingen)
     
