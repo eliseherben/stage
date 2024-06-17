@@ -436,16 +436,16 @@ else:
         oplossingen[f"Oplossing {j}"] = [var.varValue for key, var in lp_variabelen]
         oplossingswaarden = list(oplossingen[f"Oplossing {j}"])
 
-        data[f"Oplossing {j}"] = None
-        if pl.LpStatus[status] == 'Optimal':
-            index = 0
-            for i, row in data.iterrows():
-                if row['optimalisatie'] == 'ja':
-                    if index < len(oplossingswaarden):
-                        data.at[i, f"Oplossing {j}"] = oplossingswaarden[index]
-                        index += 1
-                else:
-                    data.at[i, f"Oplossing {j}"] = data.at[i, 'huidige_waarden']
+#         data[f"Oplossing {j}"] = None
+#         if pl.LpStatus[status] == 'Optimal':
+#             index = 0
+#             for i, row in data.iterrows():
+#                 if row['optimalisatie'] == 'ja':
+#                     if index < len(oplossingswaarden):
+#                         data.at[i, f"Oplossing {j}"] = oplossingswaarden[index]
+#                         index += 1
+#                 else:
+#                     data.at[i, f"Oplossing {j}"] = data.at[i, 'huidige_waarden']
 
         doelwaardes.append((f"Oplossing {j}", 
                             (data[f"Oplossing {j}"] * data['kosten']).sum(), 
@@ -482,6 +482,9 @@ else:
     omslagpunten_df = omslagpunten_df.transpose()
     st.dataframe(omslagpunten_df)
 
+    result_df = pd.merge(data, omslagpunten_df, left_index = True, right_on = 'productgroep', how = 'left')
+    st.dataframe(result_df)
+    
     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
     doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum(), 
