@@ -556,26 +556,26 @@ else:
     gevoeligheidsanalyse = gevoeligheidsanalyse.transpose()
     gevoeligheidsanalyse.columns = gevoeligheidsanalyse.iloc[0]
     gevoeligheidsanalyse = gevoeligheidsanalyse[1:]
-    gevoeligheidsanalyse['wegingen'] = gewichten
+#     gevoeligheidsanalyse['wegingen'] = gewichten
     
-    waardes = doelwaardes[:-1]
-    for (index, kosten, circulair, afwijking) in waardes:
-        # Controleren of de index bestaat in het dataframe
-        if index in gevoeligheidsanalyse.index:
-            gevoeligheidsanalyse.loc[index, 'kosten'] = kosten
-            gevoeligheidsanalyse.loc[index, 'circulair'] = circulair
-            gevoeligheidsanalyse.loc[index, 'afwijking'] = afwijking
+#     waardes = doelwaardes[:-1]
+#     for (index, kosten, circulair, afwijking) in waardes:
+#         # Controleren of de index bestaat in het dataframe
+#         if index in gevoeligheidsanalyse.index:
+#             gevoeligheidsanalyse.loc[index, 'kosten'] = kosten
+#             gevoeligheidsanalyse.loc[index, 'circulair'] = circulair
+#             gevoeligheidsanalyse.loc[index, 'afwijking'] = afwijking
     
     st.dataframe(uitkomsten)
-    st.dataframe(gevoeligheidsanalyse)
+#     st.dataframe(gevoeligheidsanalyse)
     
-    gevoeligheidsanalyse['x'] = gevoeligheidsanalyse['wegingen'].apply(lambda x: x[0])
+#     gevoeligheidsanalyse['x'] = gevoeligheidsanalyse['wegingen'].apply(lambda x: x[0])
 
     # Itereer over elke kolom behalve de laatste kolom (nu 'Y')
-    x = 'x'
-    for col in gevoeligheidsanalyse.columns[:-1]:
-        fig = px.line(gevoeligheidsanalyse, x=x, y=col)
-        st.plotly_chart(fig)
+#     x = 'x'
+#     for col in gevoeligheidsanalyse.columns[:-1]:
+#         fig = px.line(gevoeligheidsanalyse, x=x, y=col)
+#         st.plotly_chart(fig)
 
     col1, col2, col3 = st.columns(3)
     st.markdown("###### Vergelijking")
