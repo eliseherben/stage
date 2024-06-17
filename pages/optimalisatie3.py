@@ -595,7 +595,8 @@ else:
 st.markdown('#')
 st.markdown("##### Visualisaties")
 df = st.session_state.oplossingen
-    
+st.dataframe(df)
+
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
@@ -1256,55 +1257,54 @@ st.plotly_chart(fig2)
 # In[ ]:
 
 
-st.markdown("##### Uitkomsten doelfuncties")
-df2 = df2[:-3]
+# st.markdown("##### Uitkomsten doelfuncties")
+# df2 = df2[:-3]
 
-st.markdown(gewichten)
-df2['gewichten'] = gewichten
-st.dataframe(df2)
-# Functie om de voorkeur te bepalen
-def bepaal_voorkeur(wegingen):
-    # Splitsen van de string en omzetten naar float
-    circulair = wegingen[0]
-    afwijkingen = wegingen[1]
+# df2['gewichten'] = gewichten
+# st.dataframe(df2)
+# # Functie om de voorkeur te bepalen
+# def bepaal_voorkeur(wegingen):
+#     # Splitsen van de string en omzetten naar float
+#     circulair = wegingen[0]
+#     afwijkingen = wegingen[1]
     
-    # Bepalen van de voorkeur
-    if circulair > afwijkingen:
-        return "voorkeur voor milieukosten"
-    elif circulair < afwijkingen:
-        return "voorkeur voor afwijkingen"
-    else:
-        return "geen voorkeur"
+#     # Bepalen van de voorkeur
+#     if circulair > afwijkingen:
+#         return "voorkeur voor milieukosten"
+#     elif circulair < afwijkingen:
+#         return "voorkeur voor afwijkingen"
+#     else:
+#         return "geen voorkeur"
 
-# Nieuwe kolom toevoegen met de voorkeur
-df2['voorkeur'] = df2['gewichten'].apply(bepaal_voorkeur)
+# # Nieuwe kolom toevoegen met de voorkeur
+# df2['voorkeur'] = df2['gewichten'].apply(bepaal_voorkeur)
 
-for i in range(len(df2)):
-    df2.iloc[i, 0] = f"Oplossing {i + 1}"
+# for i in range(len(df2)):
+#     df2.iloc[i, 0] = f"Oplossing {i + 1}"
     
-df2 = df2.round(1) 
-df3 = df2[['oplossing', 'kosten', 'milieukosten', 'afwijkingen']]
-st.dataframe(df3, hide_index = True)
+# df2 = df2.round(1) 
+# df3 = df2[['oplossing', 'kosten', 'milieukosten', 'afwijkingen']]
+# st.dataframe(df3, hide_index = True)
 
-# Kleuren toewijzen
-color_discrete_map = {
-    "voorkeur voor milieukosten": "rgba(212, 0, 60, 1.0)",
-    "voorkeur voor afwijkingen": "rgba(0, 158, 224, 1.0)", 
-    "geen voorkeur": "rgba(151, 191, 13, 1.0)"
-}
+# # Kleuren toewijzen
+# color_discrete_map = {
+#     "voorkeur voor milieukosten": "rgba(212, 0, 60, 1.0)",
+#     "voorkeur voor afwijkingen": "rgba(0, 158, 224, 1.0)", 
+#     "geen voorkeur": "rgba(151, 191, 13, 1.0)"
+# }
 
-# Scatter plot maken
-fig = px.scatter(df2, x="milieukosten", y="afwijkingen", color="voorkeur",
-                 color_discrete_map=color_discrete_map, 
-                 labels={
-                     "milieukosten": "Totale milieukosten in euro's",
-                     "afwijkingen": "Totale afwijkingen",
-                     "voorkeur": "Voorkeur"}, 
-                 title="Uitkomsten doelfuncties pareto", 
-                 hover_data = {'oplossing': True, 'kosten': True, 'milieukosten': True, 'afwijkingen': True, 
-                               'gewichten': False, 'voorkeur': False})
+# # Scatter plot maken
+# fig = px.scatter(df2, x="milieukosten", y="afwijkingen", color="voorkeur",
+#                  color_discrete_map=color_discrete_map, 
+#                  labels={
+#                      "milieukosten": "Totale milieukosten in euro's",
+#                      "afwijkingen": "Totale afwijkingen",
+#                      "voorkeur": "Voorkeur"}, 
+#                  title="Uitkomsten doelfuncties pareto", 
+#                  hover_data = {'oplossing': True, 'kosten': True, 'milieukosten': True, 'afwijkingen': True, 
+#                                'gewichten': False, 'voorkeur': False})
 
-st.plotly_chart(fig)
+# st.plotly_chart(fig)
 
 
 # In[ ]:
