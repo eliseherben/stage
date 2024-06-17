@@ -504,14 +504,18 @@ else:
         
     st.markdown(doelwaardes)
     
-    max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
-    doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
-    doelwaardes.append(('maximaal', (data['maximaal'] * data['kosten']).sum(), (data['maximaal'] * data['circulair']).sum(), 
+    max_abs_diff = result_df.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), 
+                                                   abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
+    doelwaardes.append(('minimaal', (result_df['minimaal'] * result_df['kosten']).sum(), 
+                        (result_df['minimaal'] * result_df['circulair']).sum(), 0))
+    doelwaardes.append(('maximaal', (result_df['maximaal'] * result_df['kosten']).sum(), 
+                        (result_df['maximaal'] * result_df['circulair']).sum(), 
                        max_abs_diff.sum()))
-    doelwaardes.append(('huidige_waarden', (data['huidige_waarden'] * data['kosten']).sum(), (data['huidige_waarden'] * data['circulair']).sum()))
+    doelwaardes.append(('huidige_waarden', (result_df['huidige_waarden'] * result_df['kosten']).sum(), 
+                        (result_df['huidige_waarden'] * result_df['circulair']).sum()))
     
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
-    uitkomsten = data.drop(columns=kolommen_uitsluiten)
+    uitkomsten = result_df.drop(columns=kolommen_uitsluiten)
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
     uitkomsten = uitkomsten.round(1) 
     columns = uitkomsten.columns.tolist()
@@ -546,7 +550,7 @@ else:
 
     uitkomsten.columns = columns
     st.dataframe(data)
-    st.session_state.oplossingen = data
+    st.session_state.oplossingen = result_df
     st.session_state.doelwaardes = doelwaardes
     gevoeligheidsanalyse = uitkomsten.drop(['eenheid', 'huidige_waarden'], axis=1)
     gevoeligheidsanalyse = gevoeligheidsanalyse.transpose()
