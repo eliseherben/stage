@@ -484,7 +484,10 @@ else:
 
     result_df = pd.merge(data, omslagpunten_df, right_index = True, left_on = 'productgroep',  how = 'left')
     st.dataframe(result_df)
-    st.markdown(abs(result_df.iloc[1, 9] - result_df.iloc[1, 10]))
+    afwijkingen = []
+    for i in range(result_df.shape[0]):
+        afwijkingen.append(abs(result_df.iloc[i, 9] - result_df.iloc[i, 10]))
+    st.markdown(afwijkingen)
     
     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
     doelwaardes.append(('minimaal', (data['minimaal'] * data['kosten']).sum(), (data['minimaal'] * data['circulair']).sum(), 0))
