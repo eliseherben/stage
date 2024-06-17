@@ -436,16 +436,16 @@ else:
         oplossingen[f"Oplossing {j}"] = [var.varValue for key, var in lp_variabelen]
         oplossingswaarden = list(oplossingen[f"Oplossing {j}"])
 
-#         data[f"Oplossing {j}"] = None
-#         if pl.LpStatus[status] == 'Optimal':
-#             index = 0
-#             for i, row in data.iterrows():
-#                 if row['optimalisatie'] == 'ja':
-#                     if index < len(oplossingswaarden):
-#                         data.at[i, f"Oplossing {j}"] = oplossingswaarden[index]
-#                         index += 1
-#                 else:
-#                     data.at[i, f"Oplossing {j}"] = data.at[i, 'huidige_waarden']
+        data[f"Oplossing {j}"] = None
+        if pl.LpStatus[status] == 'Optimal':
+            index = 0
+            for i, row in data.iterrows():
+                if row['optimalisatie'] == 'ja':
+                    if index < len(oplossingswaarden):
+                        data.at[i, f"Oplossing {j}"] = oplossingswaarden[index]
+                        index += 1
+                else:
+                    data.at[i, f"Oplossing {j}"] = data.at[i, 'huidige_waarden']
 
         doelwaardes.append((f"Oplossing {j}", 
                             (data[f"Oplossing {j}"] * data['kosten']).sum(), 
