@@ -496,10 +496,10 @@ else:
         afwijkingen.append(sum(afwijking))
 
     st.markdown(afwijkingen)
-    for i in range(10, result_df.shape[1]):
-        doelwaardes.append((f"Oplossing {i-9}", 
-                                (result_df[f"Oplossing {i-9}"] * result_df['kosten']).sum(), 
-                                (result_df[f"Oplossing {i-9}"] * result_df['circulair']).sum(), 
+    for i in range(len(afwijkingen)):
+        doelwaardes.append((f"Oplossing {i+1}", 
+                                (result_df[f"Oplossing {i+1}"] * result_df['kosten']).sum(), 
+                                (result_df[f"Oplossing {i+1}"] * result_df['circulair']).sum(), 
                                 afwijkingen[i]))
         
     st.markdown(doelwaardes)
