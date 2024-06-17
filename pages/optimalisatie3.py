@@ -488,7 +488,7 @@ else:
         afwijking = []
         for i in range(result_df.shape[0]):
             afwijking.append(abs(result_df.iloc[i, 9] - result_df.iloc[i, a]))
-        st,markdown(afwijking)
+        st.markdown(afwijking)
         afwijkingen.append(sum(afwijking))
 
     st.markdown(afwijkingen)
