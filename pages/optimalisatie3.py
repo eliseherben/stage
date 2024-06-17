@@ -451,7 +451,7 @@ else:
                             (data[f"Oplossing {j}"] * data['kosten']).sum(), 
                             (data[f"Oplossing {j}"] * data['circulair']).sum(), 
                             afwijkingen.value()))
-        huidige_oplossing = {var.name: var.varValue for var in probleem.variables() if var.varValue != 0 and not var.name.startswith('d_')}
+        huidige_oplossing = {var.name: var.varValue for var in prob.variables() if var.varValue != 0 and not var.name.startswith('d_')}
 
         j += 1
         st.markdown(vorige_oplossing)
