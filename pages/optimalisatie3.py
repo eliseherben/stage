@@ -528,25 +528,25 @@ else:
         fig.update(layout_showlegend=False)
         return fig
 
-#     for i in range(len(columns)-3):
-#         col1, col2 = st.columns([2, 1])
+    for i in range(len(columns)-3):
+        col1, col2 = st.columns([2, 1])
         
-#         with col1:
-#             st.markdown(f"**Oplossing {i+1}:**")
-#             st.markdown(f"- Milieukosten {gewichten[i][0] * 100}%")
-#             st.markdown(f"- Afwijkingen {gewichten[i][1] * 100}%")
+        with col1:
+            st.markdown(f"**Oplossing {i+1}:**")
+            st.markdown(f"- Milieukosten {omslagpunten_df.iloc[0, i] * 100}%")
+            st.markdown(f"- Afwijkingen {omslagpunten_df[1, i] * 100}%")
 
-# #         with col2:
-# #             # Maak een pie chart
-# #             fig = plot_pie(gewichten[i][0] * 100, gewichten[i][1] * 100)
+#         with col2:
+#             # Maak een pie chart
+#             fig = plot_pie(gewichten[i][0] * 100, gewichten[i][1] * 100)
 
-# #             # Weergeven van de pie chart in Streamlit
-# #             st.plotly_chart(fig, use_container_width=True)
+#             # Weergeven van de pie chart in Streamlit
+#             st.plotly_chart(fig, use_container_width=True)
         
-#         columns[i+3] = f'Oplossing {i+1}'
-#         uitkomsten.columns = columns
-#         oplossing = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', f'Oplossing {i+1}']]
-#         st.dataframe(oplossing, hide_index = True)
+        columns[i+3] = f'Oplossing {i+1}'
+        uitkomsten.columns = columns
+        oplossing = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', f'Oplossing {i+1}']]
+        st.dataframe(oplossing, hide_index = True)
 
     uitkomsten.columns = columns
     st.dataframe(data)
