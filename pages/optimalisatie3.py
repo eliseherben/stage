@@ -459,7 +459,7 @@ else:
  # Controleer of er een significante verandering is in de oplossing
         if vorige_oplossing is not None:
             significant_change = any(
-                abs(huidige_oplossing.get(var, 0) - vorige_oplossing.get(var, 0)) > 1
+                abs(huidige_oplossing.get(var, 0) - vorige_oplossing.get(var, 0)) > 5
                 for var in set(huidige_oplossing) | set(vorige_oplossing)
             )
             if significant_change:
