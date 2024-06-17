@@ -876,7 +876,7 @@ bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{custom
 fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_k[['minimaal', 'maximaal']].values)
 
 if df_k.columns[-3] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_k.columns[-3]]
+    selected_row = gewichten_df.loc[[df_k.columns[-3]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_k, x='huidige_waarden', y='code', 
@@ -906,7 +906,7 @@ if df_k.columns[0] in geselecteerde_kolommen:
     fig.add_trace(scatter.data[0])
 
 if df_k.columns[1] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_k.columns[1]]
+    selected_row = gewichten_df.loc[[df_k.columns[1]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_k, x=df_k.columns[1], y='code', 
@@ -924,7 +924,7 @@ if df_k.columns[1] in geselecteerde_kolommen:
     fig.add_trace(scatter.data[0])
 
 if df_k.columns[2] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_k.columns[2]]
+    selected_row = gewichten_df.loc[[df_k.columns[2]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_k, x=df_k.columns[2], y='code', 
@@ -942,7 +942,7 @@ if df_k.columns[2] in geselecteerde_kolommen:
     fig.add_trace(scatter.data[0])
 
 if df_k.columns[3] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_k.columns[3]]
+    selected_row = gewichten_df.loc[[df_k.columns[3]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_k, x=df_k.columns[3], y='code', 
@@ -960,7 +960,7 @@ if df_k.columns[3] in geselecteerde_kolommen:
     fig.add_trace(scatter.data[0])
 
 if df_k.columns[4] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_k.columns[4]]
+    selected_row = gewichten_df.loc[[df_k.columns[4]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_k, x=df_k.columns[4], y='code', 
@@ -979,7 +979,7 @@ if df_k.columns[4] in geselecteerde_kolommen:
 
 if st.session_state.doelstelling == 'Geen voorkeur':
     if df_k.columns[5] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_k.columns[5]]
+        selected_row = gewichten_df.loc[[df_k.columns[5]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_k, x=df_k.columns[5], y='code', 
@@ -997,7 +997,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         fig.add_trace(scatter.data[0])
 
     if df_k.columns[6] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_k.columns[6]]
+        selected_row = gewichten_df.loc[[df_k.columns[6]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_k, x=df_k.columns[6], y='code', 
@@ -1015,7 +1015,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         fig.add_trace(scatter.data[0])
 
     if df_k.columns[7] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_k.columns[7]]
+        selected_row = gewichten_df.loc[[df_k.columns[7]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_k, x=df_k.columns[7], y='code', 
@@ -1035,7 +1035,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         fig2.add_trace(scatter.data[0])
 
     if df_k.columns[8] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_k.columns[8]]
+        selected_row = gewichten_df.loc[[df_k.columns[8]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_k, x=df_k.columns[8], y='code', 
@@ -1053,7 +1053,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         fig.add_trace(scatter.data[0])
 
     if df_k.columns[9] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_k.columns[9]]
+        selected_row = gewichten_df.loc[[df_k.columns[9]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_k, x=df_k.columns[9], y='code', 
@@ -1065,7 +1065,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         fig2.add_trace(scatter.data[0])
 
     if df_k.columns[10] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_k.columns[10]]
+        selected_row = gewichten_df.loc[[df_k.columns[10]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_k, x=df_k.columns[10], y='code', 
@@ -1113,7 +1113,7 @@ bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{custom
 fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_mk[['minimaal', 'maximaal']].values)
 
 if df_mk.columns[-3] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_mk.columns[-3]]
+    selected_row = gewichten_df.loc[[df_mk.columns[-3]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_mk, x='huidige_waarden', y='code', 
@@ -1131,7 +1131,7 @@ if df_mk.columns[-3] in geselecteerde_kolommen:
     fig.add_trace(scatter.data[0])
 
 if df_mk.columns[0] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_mk.columns[0]]
+    selected_row = gewichten_df.loc[[df_mk.columns[0]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_mk, x=df_mk.columns[0], y='code', 
@@ -1143,7 +1143,7 @@ if df_mk.columns[0] in geselecteerde_kolommen:
     fig2.add_trace(scatter.data[0])
     
 if df_mk.columns[1] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_mk.columns[1]]
+    selected_row = gewichten_df.loc[[df_mk.columns[1]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_mk, x=df_mk.columns[1], y='code', 
@@ -1161,7 +1161,7 @@ if df_mk.columns[1] in geselecteerde_kolommen:
     fig.add_trace(scatter.data[0])
 
 if df_mk.columns[2] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_mk.columns[2]]
+    selected_row = gewichten_df.loc[[df_mk.columns[2]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_mk, x=df_mk.columns[2], y='code', 
@@ -1179,7 +1179,7 @@ if df_mk.columns[2] in geselecteerde_kolommen:
     fig.add_trace(scatter.data[0])
     
 if df_mk.columns[3] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_mk.columns[3]]
+    selected_row = gewichten_df.loc[[df_mk.columns[3]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_mk, x=df_mk.columns[3], y='code', 
@@ -1197,7 +1197,7 @@ if df_mk.columns[3] in geselecteerde_kolommen:
     fig.add_trace(scatter.data[0])
 
 if df_mk.columns[4] in geselecteerde_kolommen:
-    selected_row = gewichten_df.loc[df_mk.columns[4]]
+    selected_row = gewichten_df.loc[[df_mk.columns[4]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_mk, x=df_mk.columns[4], y='code', 
@@ -1216,7 +1216,7 @@ if df_mk.columns[4] in geselecteerde_kolommen:
 
 if st.session_state.doelstelling == 'Geen voorkeur':
     if df_mk.columns[5] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_mk.columns[5]]
+        selected_row = gewichten_df.loc[[df_mk.columns[5]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_mk, x=df_mk.columns[5], y='code', 
@@ -1234,7 +1234,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         fig.add_trace(scatter.data[0])
 
     if df_mk.columns[6] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_mk.columns[6]]
+        selected_row = gewichten_df.loc[[df_mk.columns[6]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_mk, x=df_mk.columns[6], y='code', 
@@ -1252,7 +1252,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         fig.add_trace(scatter.data[0])
 
     if df_mk.columns[7] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_mk.columns[7]]
+        selected_row = gewichten_df.loc[[df_mk.columns[7]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_mk, x=df_mk.columns[7], y='code', 
@@ -1270,7 +1270,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         fig.add_trace(scatter.data[0])
 
     if df_mk.columns[8] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_mk.columns[8]]
+        selected_row = gewichten_df.loc[[df_mk.columns[8]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_mk, x=df_mk.columns[8], y='code', 
@@ -1288,7 +1288,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         fig.add_trace(scatter.data[0])
 
     if df_mk.columns[9] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_mk.columns[9]]
+        selected_row = gewichten_df.loc[[df_mk.columns[9]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_mk, x=df_mk.columns[9], y='code', 
@@ -1306,7 +1306,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         fig.add_trace(scatter.data[0])
 
     if df_mk.columns[10] in geselecteerde_kolommen:
-        selected_row = gewichten_df.loc[df_mk.columns[10]]
+        selected_row = gewichten_df.loc[[df_mk.columns[10]]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
         scatter = px.scatter(df_mk, x=df_mk.columns[10], y='code', 
