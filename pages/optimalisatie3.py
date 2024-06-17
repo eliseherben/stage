@@ -534,7 +534,7 @@ else:
         with col1:
             st.markdown(f"**Oplossing {i+1}:**")
             st.markdown(f"- Milieukosten {omslagpunten_df.iloc[0, i] * 100}%")
-            st.markdown(f"- Afwijkingen {omslagpunten_df[1, i] * 100}%")
+            st.markdown(f"- Afwijkingen {omslagpunten_df.iloc[1, i] * 100}%")
 
 #         with col2:
 #             # Maak een pie chart
