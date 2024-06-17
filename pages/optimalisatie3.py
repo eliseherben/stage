@@ -482,7 +482,7 @@ else:
     omslagpunten_df = omslagpunten_df.transpose()
     st.dataframe(omslagpunten_df)
 
-    result_df = pd.merge(data, omslagpunten_df, left_index = True, right_on = 'productgroep', how = 'left')
+    result_df = pd.merge(data, omslagpunten_df, right_index = True, left_on = 'productgroep',  how = 'left')
     st.dataframe(result_df)
     
     max_abs_diff = data.apply(lambda row: max(abs(row['huidige_waarden'] - row['minimaal']), abs(row['huidige_waarden'] - row['maximaal'])), axis=1)
