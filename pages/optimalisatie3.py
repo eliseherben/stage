@@ -468,9 +468,10 @@ else:
         vorige_oplossing = huidige_oplossing
     
     omslagpunten_df = pd.DataFrame(omslagpunten)
-    st.markdown(omslagpunten_df)
+    st.dataframe(omslagpunten_df)
     if st.session_state.doelstelling == 'Minimale milieukosten':
         omslagpunten_df = omslagpunten_df[omslagpunten_df['Gewicht_circulair'] > omslagpunten_df['Gewicht_afwijkingen']]
+        omslagpunten_df = omslagpunten_df.reset_index(inplace = True)
         st.dataframe(omslagpunten_df)
     if st.session_state.doelstelling == 'Minimale afwijkingen van de huidge aantallen':
         gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6)]  # Lijst van wegingen
