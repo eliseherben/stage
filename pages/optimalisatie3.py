@@ -890,7 +890,7 @@ if df_k.columns[-3] in geselecteerde_kolommen:
 if df_k.columns[0] in geselecteerde_kolommen:
     st.markdown(df_k.columns[0])
     st.markdown(geselecteerde_kolommen)
-    selected_row = gewichten_df.loc[df_k.columns[0]]
+    selected_row = gewichten_df.loc[[df_k.columns[0]]]
     st.dataframe(selected_row)
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
