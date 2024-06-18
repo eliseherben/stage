@@ -611,7 +611,8 @@ gewichten_df['Gewicht circulair (%)'] = gewichten_df['Gewicht circulair'] * 100
 gewichten_df['Gewicht afwijkingen (%)'] = gewichten_df['Gewicht afwijkingen'] * 100
 
 st.dataframe(gewichten_df)
-gewichten_df.iloc[:-1] = gewichten_df.iloc[:-1].apply(pd.to_numeric)
+gewichten_df = gewichten_df.iloc[:-1]
+gewichten_df[gewichten_df.columns[:]] = gewichten_df[gewichten_df.columns[:]].apply(pd.to_numeric)
 
 for productgroep in df['productgroep']:
     kleur_teller = 0
