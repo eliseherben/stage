@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[6]:
+# In[ ]:
 
 
 import streamlit as st
@@ -73,7 +73,7 @@ def set_doelwaardes():
     st.session_state.doelwaardes = st.session_state._doelwaardes
 
 
-# In[7]:
+# In[ ]:
 
 
 data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
@@ -81,7 +81,7 @@ data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 
 data.iloc[-1, 3] = data.iloc[-1, 3] + 1
 
 
-# In[8]:
+# In[ ]:
 
 
 # data
@@ -263,7 +263,7 @@ else:
 
 # **minimale afwijking**
 
-# In[1]:
+# In[ ]:
 
 
 # Controleer of het projectbestand is geüpload
@@ -595,7 +595,7 @@ else:
         st.dataframe(vergelijken, hide_index = True)
 
 
-# In[1]:
+# In[ ]:
 
 
 st.markdown('#')
@@ -709,7 +709,6 @@ for i in range(len(kolommen_te_selecteren)):
                 scatter.update_traces(hovertemplate=scatter_hovertemplate)
                 fig2.add_trace(scatter.data[0])
             else:
-                st.markdown(kolommen_te_selecteren[i])
                 selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
@@ -770,7 +769,6 @@ for i in range(len(kolommen_te_selecteren)):
                 scatter.update_traces(hovertemplate=scatter_hovertemplate)
                 fig2.add_trace(scatter.data[0])
             else:
-                st.markdown(kolommen_te_selecteren[i])
                 selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
@@ -832,7 +830,6 @@ for i in range(len(kolommen_te_selecteren)):
                 scatter.update_traces(hovertemplate=scatter_hovertemplate)
                 fig2.add_trace(scatter.data[0])
             else:
-                st.markdown(kolommen_te_selecteren[i])
                 selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
