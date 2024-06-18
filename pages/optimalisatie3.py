@@ -639,7 +639,7 @@ for productgroep in df['productgroep']:
     for i in range(len(kolommen_te_selecteren)):
         if kolommen_te_selecteren[i] in geselecteerde_kolommen:
             st.markdown(kolommen_te_selecteren[i])
-            selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}]]
+            selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
             scatter = px.scatter(df_productgroep, x=f'{kolommen_te_selecteren[i]}, y='code', 
