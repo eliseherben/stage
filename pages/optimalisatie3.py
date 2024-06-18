@@ -764,7 +764,7 @@ for i in range(len(kolommen_te_selecteren)):
             if kolommen_te_selecteren[i] == 'huidige_waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
-                scatter = px.scatter(df_ mk, x='huidige_waarden', y='code', 
+                scatter = px.scatter(df_mk, x='huidige_waarden', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10], symbol = ['huidig'])
 
@@ -776,7 +776,7 @@ for i in range(len(kolommen_te_selecteren)):
                 selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
-                scatter = px.scatter(df_ mk, x=f'{kolommen_te_selecteren[i]}', y='code', 
+                scatter = px.scatter(df_mk, x=f'{kolommen_te_selecteren[i]}', y='code', 
                                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                                          size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
 
@@ -826,7 +826,7 @@ for i in range(len(kolommen_te_selecteren)):
             if kolommen_te_selecteren[i] == 'huidige_waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
-                scatter = px.scatter(df_ mk, x='huidige_waarden', y='code', 
+                scatter = px.scatter(df_a, x='huidige_waarden', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10])
 
@@ -838,7 +838,7 @@ for i in range(len(kolommen_te_selecteren)):
                 selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
-                scatter = px.scatter(df_ mk, x=f'{kolommen_te_selecteren[i]}', y='code', 
+                scatter = px.scatter(df_a, x=f'{kolommen_te_selecteren[i]}', y='code', 
                                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                                          size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
 
