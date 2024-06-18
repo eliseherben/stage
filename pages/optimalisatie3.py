@@ -611,6 +611,7 @@ gewichten_df['Gewicht afwijkingen (%)'] = gewichten_df['Gewicht afwijkingen'] * 
 
 gewichten_df = gewichten_df.iloc[:-1]
 gewichten_df[gewichten_df.columns[:]] = gewichten_df[gewichten_df.columns[:]].apply(pd.to_numeric)
+st.dataframe(df)
 
 for productgroep in df['productgroep']:
     kleur_teller = 0
