@@ -468,13 +468,12 @@ else:
         vorige_oplossing = huidige_oplossing
     
     omslagpunten_df = pd.DataFrame(omslagpunten)
-    st.dataframe(omslagpunten_df)
     if st.session_state.doelstelling == 'Minimale milieukosten':
         omslagpunten_df = omslagpunten_df[omslagpunten_df['Gewicht_circulair'] > omslagpunten_df['Gewicht_afwijkingen']]
         omslagpunten_df = omslagpunten_df.reset_index(drop = True)
-        st.dataframe(omslagpunten_df)
     if st.session_state.doelstelling == 'Minimale afwijkingen van de huidge aantallen':
-        gewichten = [(0, 1), (0.1, 0.9), (0.2, 0.8), (0.3, 0.7), (0.4, 0.6)]  # Lijst van wegingen
+        omslagpunten_df = omslagpunten_df[omslagpunten_df['Gewicht_afwijkingen'] > omslagpunten_df['Gewicht_circulair']]
+        omslagpunten_df = omslagpunten_df.reset_index(drop = True)
     current_index = omslagpunten_df.index
 
     # Nieuwe index met 'oplossing' ervoor en +1 toegevoegd aan elke indexwaarde
@@ -482,7 +481,6 @@ else:
 
     # Toepassen van de nieuwe index op het DataFrame
     omslagpunten_df.index = new_index
-    st.dataframe(omslagpunten_df)
         
     new_columns = [col.replace('__', ' -').replace('_', ' ') for col in omslagpunten_df.columns]
     omslagpunten_df.columns = new_columns
@@ -597,7 +595,7 @@ else:
         st.dataframe(vergelijken, hide_index = True)
 
 
-# In[ ]:
+# In[1]:
 
 
 st.markdown('#')
@@ -638,7 +636,9 @@ for productgroep in df['productgroep']:
     
     bar_hovertemplate = 'Minimaal: %{customdata[0]} %{customdata[2]}<br>Maximaal: %{customdata[1]} %{customdata[2]}<br>'
     fig.update_traces(hovertemplate=bar_hovertemplate, customdata=df_productgroep[['minimaal', 'maximaal', 'eenheid']].values)
-
+    for i in range(len(kolommen_te_selecteren)):
+        if kolommen_te_selecteren[i] in geselecteerde_kolommen:
+            st.markdown(kolommen_te_selecteren[i])
     if df_productgroep.columns[9] in geselecteerde_kolommen:
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
