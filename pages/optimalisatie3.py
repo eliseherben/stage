@@ -475,7 +475,8 @@ else:
 
     # Toepassen van de nieuwe index op het DataFrame
     omslagpunten_df.index = new_index
-    
+    st.dataframe(omslagpunten_df)
+
     new_columns = [col.replace('__', ' -').replace('_', ' ') for col in omslagpunten_df.columns]
     omslagpunten_df.columns = new_columns
     omslagpunten_df = omslagpunten_df.transpose()
@@ -484,7 +485,6 @@ else:
     result_df = pd.merge(data, omslagpunten_df, on = 'code',  how = 'left')
     row_index = result_df.index[result_df['productgroep'] == '48 Na-isolatie'].tolist()[0]
     result_df.iloc[row_index, 2:] = result_df.iloc[row_index, 2:].fillna(0)
-    st.dataframe(result_df)
     
     afwijkingen = []
     for a in range(10, result_df.shape[1]):
