@@ -876,6 +876,7 @@ bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{custom
 fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_k[['minimaal', 'maximaal']].values)
 
 if df_k.columns[-3] in geselecteerde_kolommen:
+    st.markdown(df_k.columns[-3])
     selected_row = gewichten_df.loc[[df_k.columns[-3]]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
