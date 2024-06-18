@@ -630,6 +630,7 @@ for productgroep in df['productgroep']:
     fig.update_traces(hovertemplate=bar_hovertemplate, customdata=df_productgroep[['minimaal', 'maximaal', 'eenheid']].values)
 
     if df_productgroep.columns[9] in geselecteerde_kolommen:
+        st.markdown(df_productgroep.columns[9])
         selected_row = gewichten_df.loc[df_productgroep.columns[9]]
         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
         kleur_teller += 1
