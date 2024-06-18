@@ -604,7 +604,7 @@ geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_sel
 
 df = df[df['eenheid'].notna()]
 
-df[df.columns[10:]] = df[df.columns[10:]].apply(pd.to_numeric)
+df[df.columns[1:]] = df[df.columns[1:]].apply(pd.to_numeric)
 df = df.round(1)
 gewichten_df = omslagpunten_df.transpose()
 gewichten_df['Gewicht circulair (%)'] = gewichten_df['Gewicht circulair'] * 100
