@@ -1366,8 +1366,14 @@ if df_a.columns[-3] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol = ['huidig'])
     
-    scatter_hovertemplate = f'Huidige waarde: %{{x}}<br>'
-    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    scatter_hovertemplate = (
+        f'Huidige waarde: %{{x}}<br>'
+        'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+        'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+    )
+    scatter.update_traces(
+        hovertemplate=scatter_hovertemplate, 
+    customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
     fig2.add_trace(scatter.data[0])
 
 if df_a.columns[0] in geselecteerde_kolommen:
@@ -1377,8 +1383,14 @@ if df_a.columns[0] in geselecteerde_kolommen:
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 1'])
     
-    scatter_hovertemplate = f'Oplossing 1: %{{x}}<br>'
-    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    scatter_hovertemplate = (
+        f'Oplossing 1: %{{x}}<br>'
+        'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+        'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+    )
+    scatter.update_traces(
+        hovertemplate=scatter_hovertemplate, 
+    customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
     fig2.add_trace(scatter.data[0])
 
 if df_a.columns[1] in geselecteerde_kolommen:
@@ -1388,8 +1400,14 @@ if df_a.columns[1] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 2'])
     
-    scatter_hovertemplate = f'Oplossing 2: %{{x}}<br>'
-    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    scatter_hovertemplate = (
+        f'Oplossing 2: %{{x}}<br>'
+        'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+        'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+    )
+    scatter.update_traces(
+        hovertemplate=scatter_hovertemplate, 
+    customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
     fig2.add_trace(scatter.data[0])
 
 if df_a.columns[2] in geselecteerde_kolommen:
@@ -1399,8 +1417,14 @@ if df_a.columns[2] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 3'])
     
-    scatter_hovertemplate = f'Oplossing 3: %{{x}}<br>'
-    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    scatter_hovertemplate = (
+        f'Oplossing 3: %{{x}}<br>'
+        'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+        'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+    )
+    scatter.update_traces(
+        hovertemplate=scatter_hovertemplate, 
+    customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
     fig2.add_trace(scatter.data[0])
 
 if df_a.columns[3] in geselecteerde_kolommen:
@@ -1410,8 +1434,14 @@ if df_a.columns[3] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 4'])
     
-    scatter_hovertemplate = f'Oplossing 4: %{{x}}<br>'
-    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    scatter_hovertemplate = (
+        f'Oplossing 4: %{{x}}<br>'
+        'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+        'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+    )
+    scatter.update_traces(
+        hovertemplate=scatter_hovertemplate, 
+    customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
     fig2.add_trace(scatter.data[0])
 
 if df_a.columns[4] in geselecteerde_kolommen:
@@ -1421,8 +1451,14 @@ if df_a.columns[4] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol = ['oplossing 5'])
     
-    scatter_hovertemplate = f'Oplossing 5: %{{x}}<br>'
-    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    scatter_hovertemplate = (
+        f'Oplossing 5: %{{x}}<br>'
+        'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+        'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+    )
+    scatter.update_traces(
+        hovertemplate=scatter_hovertemplate, 
+    customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
     fig2.add_trace(scatter.data[0])
 
 if st.session_state.doelstelling == 'Geen voorkeur':
@@ -1433,8 +1469,14 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 6'])
         
-        scatter_hovertemplate = f'Oplossing 6: %{{x}}<br>'
-        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        scatter_hovertemplate = (
+            f'Oplossing 6: %{{x}}<br>'
+            'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+            'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+        )
+        scatter.update_traces(
+            hovertemplate=scatter_hovertemplate, 
+        customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
         fig2.add_trace(scatter.data[0])
 
     if df_a.columns[6] in geselecteerde_kolommen:
@@ -1444,8 +1486,14 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 7'])
         
-        scatter_hovertemplate = f'Oplossing 7: %{{x}}<br>'
-        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        scatter_hovertemplate = (
+            f'Oplossing 7: %{{x}}<br>'
+            'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+            'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+        )
+        scatter.update_traces(
+            hovertemplate=scatter_hovertemplate, 
+        customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
         fig2.add_trace(scatter.data[0])
 
     if df_a.columns[7] in geselecteerde_kolommen:
@@ -1455,8 +1503,14 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 8'])
         
-        scatter_hovertemplate = f'Oplossing 8: %{{x}}<br>'
-        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        scatter_hovertemplate = (
+            f'Oplossing 8: %{{x}}<br>'
+            'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+            'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+        )
+        scatter.update_traces(
+            hovertemplate=scatter_hovertemplate, 
+        customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
         fig2.add_trace(scatter.data[0])
 
     if df_a.columns[8] in geselecteerde_kolommen:
@@ -1466,8 +1520,14 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 9'])
         
-        scatter_hovertemplate = f'Oplossing 9: %{{x}}<br>'
-        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        scatter_hovertemplate = (
+            f'Oplossing 9: %{{x}}<br>'
+            'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+            'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+        )
+        scatter.update_traces(
+            hovertemplate=scatter_hovertemplate, 
+        customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
         fig2.add_trace(scatter.data[0])
 
     if df_a.columns[9] in geselecteerde_kolommen:
@@ -1477,8 +1537,14 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 10'])
         
-        scatter_hovertemplate = f'Oplossing 10: %{{x}}<br>'
-        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        scatter_hovertemplate = (
+            f'Oplossing 10: %{{x}}<br>'
+            'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+            'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+        )
+        scatter.update_traces(
+            hovertemplate=scatter_hovertemplate, 
+        customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
         fig2.add_trace(scatter.data[0])
 
     if df_a.columns[10] in geselecteerde_kolommen:
@@ -1488,8 +1554,14 @@ if st.session_state.doelstelling == 'Geen voorkeur':
                              color_discrete_sequence=[kleur], labels={'x': ''}, 
                              size=[10], symbol = ['oplossing 11'])
         
-        scatter_hovertemplate = f'Oplossing 11: %{{x}}<br>'
-        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        scatter_hovertemplate = (
+            f'Oplossing 11: %{{x}}<br>'
+            'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+            'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+        )
+        scatter.update_traces(
+            hovertemplate=scatter_hovertemplate, 
+        customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
         fig2.add_trace(scatter.data[0])
     
 fig2.update_layout(height=250)
