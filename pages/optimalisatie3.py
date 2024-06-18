@@ -891,6 +891,7 @@ if df_k.columns[0] in geselecteerde_kolommen:
     st.markdown(df_k.columns[0])
     st.markdown(geselecteerde_kolommen)
     selected_row = gewichten_df.loc[df_k.columns[0]]
+    st.markdown(selected_row)
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_k, x=df_k.columns[0], y='code', 
