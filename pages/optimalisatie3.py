@@ -865,6 +865,9 @@ df_k['aantal'] = df_k['maximaal'] - df_k['minimaal']
 df_k['code'] = '00'
 
 st.dataframe(df_k)
+st.dataframe(df_k.dtypes)
+st.dataframe(gewichten_df)
+st.dataframe(gewichten_df.dtypes)
 
 kleur_teller = 0
 fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
