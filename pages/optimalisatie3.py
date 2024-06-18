@@ -1125,14 +1125,8 @@ if df_mk.columns[-3] in geselecteerde_kolommen:
                          color_discrete_sequence=[kleur], labels={'x': ''}, 
                          size=[10], symbol=['huidig'])
     
-    scatter_hovertemplate = (
-        f'Huidige waarde: €%{{x:,.2f}}<br>'
-        'Weging milieukosten: %{customdata[0]:.2f}%<br>'
-        'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
-    )
-    scatter.update_traces(
-        hovertemplate=scatter_hovertemplate, 
-    customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
+    scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+    scatter.update_traces(hovertemplate=scatter_hovertemplate)
     fig2.add_trace(scatter.data[0])
 
 if df_mk.columns[0] in geselecteerde_kolommen:
