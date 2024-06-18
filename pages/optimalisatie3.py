@@ -617,7 +617,6 @@ gewichten_df['Gewicht afwijkingen (%)'] = gewichten_df['Gewicht afwijkingen'] * 
 
 gewichten_df = gewichten_df.iloc[:-1]
 gewichten_df[gewichten_df.columns[:]] = gewichten_df[gewichten_df.columns[:]].apply(pd.to_numeric)
-st.dataframe(df)
 
 for productgroep in df['productgroep']:
     kleur_teller = 0
@@ -649,7 +648,6 @@ for productgroep in df['productgroep']:
                 scatter.update_traces(hovertemplate=scatter_hovertemplate)
                 fig.add_trace(scatter.data[0])
             else:
-                st.markdown(kolommen_te_selecteren[i])
                 selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
