@@ -888,7 +888,7 @@ if df_k.columns[-3] in geselecteerde_kolommen:
     
     scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
     scatter.update_traces(hovertemplate=scatter_hovertemplate)
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
 
 if df_k.columns[0] in geselecteerde_kolommen:
     st.markdown(df_k.columns[0])
@@ -909,7 +909,7 @@ if df_k.columns[0] in geselecteerde_kolommen:
     scatter.update_traces(
         hovertemplate=scatter_hovertemplate, 
     customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
 
 if df_k.columns[1] in geselecteerde_kolommen:
     selected_row = gewichten_df.loc[[df_k.columns[1]]]
@@ -927,7 +927,7 @@ if df_k.columns[1] in geselecteerde_kolommen:
     scatter.update_traces(
         hovertemplate=scatter_hovertemplate, 
     customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
 
 if df_k.columns[2] in geselecteerde_kolommen:
     selected_row = gewichten_df.loc[[df_k.columns[2]]]
@@ -945,7 +945,7 @@ if df_k.columns[2] in geselecteerde_kolommen:
     scatter.update_traces(
         hovertemplate=scatter_hovertemplate, 
     customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
 
 if df_k.columns[3] in geselecteerde_kolommen:
     selected_row = gewichten_df.loc[[df_k.columns[3]]]
@@ -963,7 +963,7 @@ if df_k.columns[3] in geselecteerde_kolommen:
     scatter.update_traces(
         hovertemplate=scatter_hovertemplate, 
     customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
 
 if df_k.columns[4] in geselecteerde_kolommen:
     selected_row = gewichten_df.loc[[df_k.columns[4]]]
@@ -981,7 +981,7 @@ if df_k.columns[4] in geselecteerde_kolommen:
     scatter.update_traces(
         hovertemplate=scatter_hovertemplate, 
     customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
 
 if st.session_state.doelstelling == 'Geen voorkeur':
     if df_k.columns[5] in geselecteerde_kolommen:
@@ -1000,7 +1000,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
         customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-        fig.add_trace(scatter.data[0])
+        fig2.add_trace(scatter.data[0])
 
     if df_k.columns[6] in geselecteerde_kolommen:
         selected_row = gewichten_df.loc[[df_k.columns[6]]]
@@ -1018,7 +1018,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
         customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-        fig.add_trace(scatter.data[0])
+        fig2.add_trace(scatter.data[0])
 
     if df_k.columns[7] in geselecteerde_kolommen:
         selected_row = gewichten_df.loc[[df_k.columns[7]]]
@@ -1056,7 +1056,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
         customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-        fig.add_trace(scatter.data[0])
+        fig2.add_trace(scatter.data[0])
 
     if df_k.columns[9] in geselecteerde_kolommen:
         selected_row = gewichten_df.loc[[df_k.columns[9]]]
@@ -1086,7 +1086,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
         customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-        fig.add_trace(scatter.data[0])
+        fig2.add_trace(scatter.data[0])
     
 fig2.update_layout(height=250)
 
@@ -1133,7 +1133,7 @@ if df_mk.columns[-3] in geselecteerde_kolommen:
     scatter.update_traces(
         hovertemplate=scatter_hovertemplate, 
     customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
 
 if df_mk.columns[0] in geselecteerde_kolommen:
     selected_row = gewichten_df.loc[[df_mk.columns[0]]]
@@ -1163,7 +1163,7 @@ if df_mk.columns[1] in geselecteerde_kolommen:
     scatter.update_traces(
         hovertemplate=scatter_hovertemplate, 
     customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
 
 if df_mk.columns[2] in geselecteerde_kolommen:
     selected_row = gewichten_df.loc[[df_mk.columns[2]]]
@@ -1181,7 +1181,7 @@ if df_mk.columns[2] in geselecteerde_kolommen:
     scatter.update_traces(
         hovertemplate=scatter_hovertemplate, 
     customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
     
 if df_mk.columns[3] in geselecteerde_kolommen:
     selected_row = gewichten_df.loc[[df_mk.columns[3]]]
@@ -1199,7 +1199,7 @@ if df_mk.columns[3] in geselecteerde_kolommen:
     scatter.update_traces(
         hovertemplate=scatter_hovertemplate, 
     customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
 
 if df_mk.columns[4] in geselecteerde_kolommen:
     selected_row = gewichten_df.loc[[df_mk.columns[4]]]
@@ -1217,7 +1217,7 @@ if df_mk.columns[4] in geselecteerde_kolommen:
     scatter.update_traces(
         hovertemplate=scatter_hovertemplate, 
     customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-    fig.add_trace(scatter.data[0])
+    fig2.add_trace(scatter.data[0])
 
 if st.session_state.doelstelling == 'Geen voorkeur':
     if df_mk.columns[5] in geselecteerde_kolommen:
@@ -1254,7 +1254,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
         customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-        fig.add_trace(scatter.data[0])
+        fig2.add_trace(scatter.data[0])
 
     if df_mk.columns[7] in geselecteerde_kolommen:
         selected_row = gewichten_df.loc[[df_mk.columns[7]]]
@@ -1272,7 +1272,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
         customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-        fig.add_trace(scatter.data[0])
+        fig2.add_trace(scatter.data[0])
 
     if df_mk.columns[8] in geselecteerde_kolommen:
         selected_row = gewichten_df.loc[[df_mk.columns[8]]]
@@ -1290,7 +1290,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
         customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-        fig.add_trace(scatter.data[0])
+        fig2.add_trace(scatter.data[0])
 
     if df_mk.columns[9] in geselecteerde_kolommen:
         selected_row = gewichten_df.loc[[df_mk.columns[9]]]
@@ -1308,7 +1308,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
         customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-        fig.add_trace(scatter.data[0])
+        fig2.add_trace(scatter.data[0])
 
     if df_mk.columns[10] in geselecteerde_kolommen:
         selected_row = gewichten_df.loc[[df_mk.columns[10]]]
@@ -1326,7 +1326,7 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
         customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-        fig.add_trace(scatter.data[0])
+        fig2.add_trace(scatter.data[0])
         
 fig2.update_layout(height=250)
 
