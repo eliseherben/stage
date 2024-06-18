@@ -484,6 +484,7 @@ else:
     result_df = pd.merge(data, omslagpunten_df, on = 'code',  how = 'left')
     row_index = result_df.index[result_df['productgroep'] == '48 Na-isolatie'].tolist()[0]
     result_df.iloc[row_index, 2:] = result_df.iloc[row_index, 2:].fillna(0)
+    st.dataframe(result_df)
     
     afwijkingen = []
     for a in range(10, result_df.shape[1]):
