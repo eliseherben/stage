@@ -642,7 +642,7 @@ for productgroep in df['productgroep']:
             selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
             kleur_teller += 1
-            scatter = px.scatter(df_productgroep, x=f'{kolommen_te_selecteren[i]}, y='code', 
+            scatter = px.scatter(df_productgroep, x=f'{kolommen_te_selecteren[i]}', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
 
