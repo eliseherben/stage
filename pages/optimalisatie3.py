@@ -888,6 +888,7 @@ if df_k.columns[-3] in geselecteerde_kolommen:
     fig.add_trace(scatter.data[0])
 
 if df_k.columns[0] in geselecteerde_kolommen:
+    st.markdown(df_k.columns[0])
     selected_row = gewichten_df.loc[df_k.columns[0]]
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
