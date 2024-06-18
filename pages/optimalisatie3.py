@@ -851,7 +851,6 @@ for productgroep in df['productgroep']:
 
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten', 'afwijkingen'])
-st.dataframe(df2)
 df_k = df2[['oplossing', 'kosten']]
 
 df_k = df_k.T
@@ -885,7 +884,6 @@ if df_k.columns[-3] in geselecteerde_kolommen:
 
 if df_k.columns[0] in geselecteerde_kolommen:
     selected_row = gewichten_df.loc[[df_k.columns[0]]]
-    st.dataframe(selected_row)
     kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
     kleur_teller += 1
     scatter = px.scatter(df_k, x=df_k.columns[0], y='code', 
@@ -1027,8 +1025,6 @@ if st.session_state.doelstelling == 'Geen voorkeur':
         scatter.update_traces(
             hovertemplate=scatter_hovertemplate, 
         customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-        fig.add_trace(scatter.data[0])
-        scatter.update_traces(hovertemplate=scatter_hovertemplate)
         fig2.add_trace(scatter.data[0])
 
     if df_k.columns[8] in geselecteerde_kolommen:
