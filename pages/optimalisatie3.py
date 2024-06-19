@@ -569,7 +569,7 @@ else:
     
     gevoeligheidsanalyse['x'] = gevoeligheidsanalyse['wegingen'].apply(lambda x: x[0])
 
-    Itereer over elke kolom behalve de laatste kolom (nu 'Y')
+    #Itereer over elke kolom behalve de laatste kolom (nu 'Y')
     x = 'x'
     for col in gevoeligheidsanalyse.columns[:-1]:
         fig = px.line(gevoeligheidsanalyse, x=x, y=col)
