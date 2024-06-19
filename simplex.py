@@ -165,6 +165,9 @@ if uploaded_file is not None:
 # In[ ]:
 
 
+if st.button("clear all"):
+    st.session_state.clear()
+
 if uploaded_file is not None:
     st.page_link("pages/input.py", label="Naar input")
 
