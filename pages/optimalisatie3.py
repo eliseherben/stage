@@ -869,7 +869,7 @@ else:
     # Itereer over elke kolom behalve de laatste kolom (nu 'Y')
     x = 'x'
     for col in gevoeligheidsanalyse.columns[:-1]:
-        fig = px.line(gevoeligheidsanalyse, x=x, y=col, text="x")
+        fig = px.line(gevoeligheidsanalyse, x=x, y=col, text=col)
         st.plotly_chart(fig)
 
     col1, col2, col3 = st.columns(3)
