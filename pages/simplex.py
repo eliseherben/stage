@@ -142,6 +142,8 @@ if uploaded_file is not None:
     def status(status_series):
         if (status_series == 'vervallen').all():
             return 'vervallen'
+        elif (status_series == 'n.v.t.').all(): 
+            return 'n.v.t.'
         elif (status_series == 'actueel').any():
             return 'actueel'
         else:
@@ -150,6 +152,7 @@ if uploaded_file is not None:
     df1 = dataframe[['status in ontwerp:', 'productgroep']]
     df2 = df1.groupby('productgroep')['status in ontwerp:'].apply(status).reset_index()
     
+    st.dataframe(df2)
     lijst = [df2.iloc[i, 0][:2] for i in range(len(df2)) if df2.iloc[i, 1] == 'actueel']
     st.session_state.list = lijst
     
