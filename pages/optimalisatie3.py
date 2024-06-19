@@ -555,6 +555,7 @@ else:
     gevoeligheidsanalyse = gevoeligheidsanalyse.transpose()
     gevoeligheidsanalyse.columns = gevoeligheidsanalyse.iloc[0]
     gevoeligheidsanalyse = gevoeligheidsanalyse[1:]
+    st.dataframe(gevoeligheidsanalyse)
     gevoeligheidsanalyse['wegingen'] = gewichten
     
     st.dataframe(gevoeligheidsanalyse)
