@@ -557,7 +557,10 @@ else:
     gevoeligheidsanalyse = gevoeligheidsanalyse[1:]
     gevoeligheidsanalyse['wegingen'] = gewichten
     
+    st.dataframe(gevoeligheidsanalyse)
+    
     waardes = doelwaardes[:-1]
+    st.markdown(waardes)
     for (index, kosten, circulair, afwijking) in waardes:
         # Controleren of de index bestaat in het dataframe
         if index in gevoeligheidsanalyse.index:
