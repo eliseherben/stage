@@ -144,7 +144,7 @@ if uploaded_file is not None:
             return 'vervallen'
         elif (status_series == 'n.v.t.').all(): 
             return 'n.v.t.'
-        elif (status_series == 'vervallen' or status_series == 'actueel').all():
+        elif status_series.isin(['vervallen', 'n.v.t.']).all():
             return 'vervallen of n.v.t.'
         elif (status_series == 'actueel').any():
             return 'actueel'
