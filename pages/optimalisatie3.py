@@ -929,6 +929,9 @@ for productgroep in df['productgroep']:
     # Selecteer alle kolommen behalve de uitgesloten kolommen
     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
 
+    if df_geselecteerd.nunique().eq(1).all():
+        continue
+    
     df_productgroep['aantal'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
 
     fig = px.bar(df_productgroep, x='aantal', y='code', base='minimaal', color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], 
