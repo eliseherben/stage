@@ -488,7 +488,7 @@ huidig_budget = st.number_input("Vul het budget in op basis van de huidige hoeve
 
 # st.markdown(f'factor: {huidig_budget / streven_budget}, budget optimalisatie: {((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)}')
 
-budget = ((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)
+budget = ((data["kosten"] * data["aantal"]).sum())
 minimaal = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
 maximaal = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
     
