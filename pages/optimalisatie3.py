@@ -928,7 +928,7 @@ for productgroep in df['productgroep']:
 
     # Selecteer alle kolommen behalve de uitgesloten kolommen
     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
-
+    st.dataframe(df_geselecteerd)
     if df_geselecteerd.nunique().eq(1).all():
         continue
     
