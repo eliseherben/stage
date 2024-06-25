@@ -498,7 +498,7 @@ data.iloc[22, -1] = st.session_state.Keuken
 data.iloc[23, -1] = st.session_state.appartementen
 data.iloc[24, -1] = st.session_state.Terreininrichting
 
-st.markdown(f"Totale kosten gebasseerd op huidige hoeveelheden: €{((data['kosten'] * data['aantal']).sum()):.2f}")
+# st.markdown(f"Totale kosten gebasseerd op huidige hoeveelheden: €{((data['kosten'] * data['aantal']).sum()):.2f}")
 
 data['minimaal'] = data['minimaal'].fillna(1)
 data['maximaal'] = data['maximaal'].fillna(1)
@@ -517,21 +517,13 @@ budget = ((data["kosten"] * data["aantal"]).sum())
 minimaal = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
 maximaal = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
 st.session_state.factor = st.session_state.huidig_budget/budget
-st.markdown(minimaal)
-st.markdown(maximaal)
-
-st.markdown(minimaal * (st.session_state.factor))
-st.markdown(maximaal * (st.session_state.factor))
     
 st.number_input("Vul het te streven budget in voor het huidige project", 
                 min_value = minimaal * (st.session_state.factor), 
                 max_value = maximaal * (st.session_state.factor), 
                key = '_streven_budget', on_change=set_streven_budget)
 
-st.markdown(st.session_state.streven_budget)
-
 st.session_state.budget = st.session_state.streven_budget / (st.session_state.factor)
-st.markdown(st.session_state.budget)
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
 st.selectbox("Wat heeft meer prioriteit binnen dit project? *", 
