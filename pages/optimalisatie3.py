@@ -981,7 +981,7 @@ for productgroep in df['productgroep']:
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten', 'afwijkingen'])
 st.dataframe(df2)
 st.markdown(st.session_state.factor)
-df2['kosten'] = df['kosten']* 2
+df2['kosten'] = df2['kosten'] * st.session_state.factor
 st.dataframe(df2)
 df_k = df2[['oplossing', 'kosten']]
 
