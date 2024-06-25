@@ -489,6 +489,13 @@ streven_budget = st.number_input("Vul het te streven budget in voor het huidige 
 
 st.markdown(f'factor: {huidig_budget / streven_budget}, budget optimalisatie: {((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)}')
 
+budget = ((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)
+min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
+max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
+
+if budget < min_value or budget > max_value:
+    st.error("budget is buiten bereik")
+    
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
 st.selectbox("Wat heeft meer prioriteit binnen dit project? *", 
