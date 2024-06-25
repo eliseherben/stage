@@ -1004,7 +1004,7 @@ for i in range(len(kolommen_te_selecteren)):
             if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
-                scatter = px.scatter(df_k, x='huidige_waarden', y='code', 
+                scatter = px.scatter(df_k, x='Huidige waarden', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10], symbol = ['Huidige waarde'])
 
@@ -1066,7 +1066,7 @@ for i in range(len(kolommen_te_selecteren)):
             if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
-                scatter = px.scatter(df_mk, x='huidige_waarden', y='code', 
+                scatter = px.scatter(df_mk, x='Huidige waarden', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10], symbol = ['Huidige waarde'])
 
