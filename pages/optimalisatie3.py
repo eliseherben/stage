@@ -975,11 +975,11 @@ for productgroep in df['productgroep']:
     st.plotly_chart(fig)
 
 
-# In[ ]:
+# In[1]:
 
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten', 'afwijkingen'])
-
+st.markdown(df2)
 df_k = df2[['oplossing', 'kosten']]
 
 df_k = df_k.T
