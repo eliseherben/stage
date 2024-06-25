@@ -552,7 +552,6 @@ else:
 
     uitkomsten.columns = columns
     st.session_state.oplossingen = result_df
-    st.dataframe(result_df)
     st.session_state.doelwaardes = doelwaardes
     gevoeligheidsanalyse = uitkomsten.drop(['eenheid', 'huidige_waarden'], axis=1)
     gevoeligheidsanalyse = gevoeligheidsanalyse.transpose()
@@ -1003,7 +1002,7 @@ for i in range(len(kolommen_te_selecteren)):
                 kleur_teller += 1
                 scatter = px.scatter(df_k, x='huidige_waarden', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                     size=[10], symbol = ['huidig'])
+                                     size=[10], symbol = ['Huidige waarde'])
 
                 scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
                 scatter.update_traces(hovertemplate=scatter_hovertemplate)
@@ -1063,7 +1062,7 @@ for i in range(len(kolommen_te_selecteren)):
                 kleur_teller += 1
                 scatter = px.scatter(df_mk, x='huidige_waarden', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                     size=[10], symbol = ['huidig'])
+                                     size=[10], symbol = ['Huidige waarde'])
 
                 scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
                 scatter.update_traces(hovertemplate=scatter_hovertemplate)
