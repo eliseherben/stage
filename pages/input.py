@@ -484,7 +484,7 @@ data['maximaal'] = data['maximaal'].fillna(1)
 #                 max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(),
 #                 key='_budget', on_change=set_budget)
 
-huidg_budget = st.number_input("Vul het budget in op basis van de huidige hoeveelheden binnen het project")
+huidig_budget = st.number_input("Vul het budget in op basis van de huidige hoeveelheden binnen het project")
 streven_budget = st.number_input("Vul het te streven budget in voor het huidige project")
 
 st.markdown(f'factor: {huidig_budget / streven_budget}, budget optimalisatie: {((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)}')
