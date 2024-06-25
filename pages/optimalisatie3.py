@@ -551,9 +551,7 @@ else:
         oplossing = uitkomsten[['productgroep', 'eenheid', 'Huidige waarden', f'Oplossing {i+1}']]
         st.dataframe(oplossing, hide_index = True)
     
-    st.dataframe(result_df)
     result_df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
-    st.dataframe(result_df)
     
     uitkomsten.columns = columns
     st.session_state.oplossingen = result_df
@@ -905,7 +903,7 @@ else:
 st.markdown('#')
 st.markdown("##### Visualisaties")
 df = st.session_state.oplossingen
-df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+# df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
 
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
