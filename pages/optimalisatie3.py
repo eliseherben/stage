@@ -560,8 +560,7 @@ else:
 
             styled_df = oplossing.style.apply(highlight_difference, axis=1)
             styled_df = styled_df.format(precision=0)
-            st.markdown(styled_df.to_html(index=False), unsafe_allow_html=True)
-#             st.dataframe(styled_df, hide_index = True)
+            st.dataframe(styled_df, hide_index = True)
     
     result_df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
     
