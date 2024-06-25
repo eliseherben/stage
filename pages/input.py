@@ -22,6 +22,22 @@ st.session_state._budget = st.session_state.budget
 def set_budget():
     st.session_state.budget = st.session_state._budget
     
+if "huidig_budget" not in st.session_state:
+    st.session_state.huidig_budget = None
+    
+st.session_state._huidig_budget = st.session_state.huidig_budget
+
+def set_huidig_budget():
+    st.session_state.huidig_budget = st.session_state._huidig_budget
+    
+if "streven_budget" not in st.session_state:
+    st.session_state.streven_budget = None
+    
+st.session_state._streven_bugdet = st.session_state.streven_budget
+
+def set_streven_bugdet():
+    st.session_state.streven_budget = st.session_state._streven_bugdet
+    
 if "appartementen" not in st.session_state:
     st.session_state.appartementen = 0
     
@@ -484,7 +500,8 @@ data['maximaal'] = data['maximaal'].fillna(1)
 #                 max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(),
 #                 key='_budget', on_change=set_budget)
 
-huidig_budget = st.number_input("Vul het budget in op basis van de huidige hoeveelheden binnen het project")
+huidig_budget = st.number_input("Vul het budget in op basis van de huidige hoeveelheden binnen het project", 
+                               key = '_huidig_budget', on_change=set_budget)
 
 # st.markdown(f'factor: {huidig_budget / streven_budget}, budget optimalisatie: {((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)}')
 
@@ -498,9 +515,11 @@ st.markdown(minimaal * (huidig_budget/budget))
 st.markdown(maximaal * (huidig_budget/budget))
     
 st.number_input("Vul het te streven budget in voor het huidige project", 
-                                min_value = minimaal * (huidig_budget/budget), 
-                                max_value = maximaal * (huidig_budget/budget))
+                min_value = minimaal * (huidig_budget/budget), max_value = maximaal * (huidig_budget/budget), 
+               key = '_streven_budget', on_change=set_streven_budget)
 
+st.session_state.budget = st.session_state.streven_budget / (huidig_budget/budget)
+st.markdown(st.session_state.budget)
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
 st.selectbox("Wat heeft meer prioriteit binnen dit project? *", 
