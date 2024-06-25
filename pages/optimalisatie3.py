@@ -534,9 +534,10 @@ else:
         col1, col2 = st.columns([2, 1])
         
         with col1:
-            st.markdown(f"**Oplossing {i+1}:**")
-            st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, i] * 100)}%")
-            st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, i] * 100)}%")
+            with st.expander(f"Zie oplossing {i+1}"):
+                st.markdown(f"**Oplossing {i+1}:**")
+                st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, i] * 100)}%")
+                st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, i] * 100)}%")
 
 #         with col2:
 #             # Maak een pie chart
