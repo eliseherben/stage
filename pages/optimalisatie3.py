@@ -900,7 +900,6 @@ else:
 st.markdown('#')
 st.markdown("##### Visualisaties")
 df = st.session_state.oplossingen
-st.markdown(df.columns)
 df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
 
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
@@ -1127,7 +1126,7 @@ for i in range(len(kolommen_te_selecteren)):
             if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
-                scatter = px.scatter(df_a, x='huidige_waarden', y='code', 
+                scatter = px.scatter(df_a, x='Huidige waarden', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10])
 
