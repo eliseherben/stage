@@ -33,10 +33,10 @@ def set_huidig_budget():
 if "streven_budget" not in st.session_state:
     st.session_state.streven_budget = None
     
-st.session_state._set_streven_budget = st.session_state.streven_budget
+st.session_state._streven_budget = st.session_state.streven_budget
 
 def set_streven_budget():
-    st.session_state.streven_budget = st.session_state._set_streven_budget
+    st.session_state.streven_budget = st.session_state._streven_budget
     
 if "appartementen" not in st.session_state:
     st.session_state.appartementen = 0
