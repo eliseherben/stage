@@ -610,7 +610,10 @@ else:
                 st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
         kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
         vergelijken = uitkomsten[kolommen]
-        st.dataframe(vergelijken, hide_index = True)
+        styled_df = vergelijken.style.apply(highlight_difference, axis=1)
+        styled_df = styled_df.format(precision=0)
+        
+        st.dataframe(styled_df, hide_index = True)
 
 
 # gevoeligheidsanalyse
