@@ -479,10 +479,15 @@ st.markdown(f"Totale kosten gebasseerd op huidige hoeveelheden: €{((data['kost
 data['minimaal'] = data['minimaal'].fillna(1)
 data['maximaal'] = data['maximaal'].fillna(1)
 
-st.number_input("Vul het budget in voor het huidige project *",  
-                min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum(), 
-                max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(),
-                key='_budget', on_change=set_budget)
+# st.number_input("Vul het budget in voor het huidige project *",  
+#                 min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum(), 
+#                 max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(),
+#                 key='_budget', on_change=set_budget)
+
+huidg_budget = st.number_input("Vul het budget in op basis van de huidige hoeveelheden binnen het project")
+streven_budget = st.number_input("Vul het te streven budget in voor het huidige project")
+
+st.markdown(f'factor: {huidig_budget / streven_budget}, budget optimalisatie: {((data['kosten'] * data['aantal']).sum())/(huidig_budget / streven_budget):.2f}')
 
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
