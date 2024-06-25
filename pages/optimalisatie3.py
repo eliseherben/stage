@@ -561,6 +561,7 @@ else:
             return styles
 
         styled_df = oplossing.style.apply(highlight_difference, axis=1)
+        styled_df = styled_df.format(precision=0)
         st.dataframe(styled_df, hide_index = True)
     
     result_df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
