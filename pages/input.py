@@ -518,6 +518,8 @@ st.number_input("Vul het te streven budget in voor het huidige project",
                 min_value = minimaal * (st.session_state.huidig_budget/budget), max_value = maximaal * (st.session_state.huidig_budget/budget), 
                key = '_streven_budget', on_change=set_streven_budget)
 
+st.markdown(st.session_state.streven_budget)
+
 st.session_state.budget = st.session_state.streven_budget / (st.session_state.huidig_budget/budget)
 st.markdown(st.session_state.budget)
 st.markdown("**Primair thema**")
