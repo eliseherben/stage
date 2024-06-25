@@ -154,7 +154,7 @@ if uploaded_file is not None:
     df1 = dataframe[['status in ontwerp:', 'productgroep']]
     df2 = df1.groupby('productgroep')['status in ontwerp:'].apply(status).reset_index()
     
-    st.dataframe(df2)
+#     st.dataframe(df2)
     lijst = [df2.iloc[i, 0][:2] for i in range(len(df2)) if df2.iloc[i, 1] == 'actueel']
     st.session_state.list = lijst
     
@@ -165,9 +165,9 @@ if uploaded_file is not None:
 # In[ ]:
 
 
-if st.button("clear all"):
-    st.session_state.clear()
-    st.experimental_rerun()  # Rerun the app to refresh the page
+# if st.button("clear all"):
+#     st.session_state.clear()
+#     st.experimental_rerun()  # Rerun the app to refresh the page
 
 if uploaded_file is not None:
     st.page_link("pages/input.py", label="Naar input")
