@@ -547,7 +547,8 @@ else:
         
         columns[i+3] = f'Oplossing {i+1}'
         uitkomsten.columns = columns
-        oplossing = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', f'Oplossing {i+1}']]
+        uitkomsten.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+        oplossing = uitkomsten[['productgroep', 'eenheid', 'Huidige waarden', f'Oplossing {i+1}']]
         st.dataframe(oplossing, hide_index = True)
     
     st.dataframe(result_df)
