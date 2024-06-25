@@ -515,7 +515,8 @@ st.markdown(minimaal * (st.session_state.huidig_budget/budget))
 st.markdown(maximaal * (st.session_state.huidig_budget/budget))
     
 st.number_input("Vul het te streven budget in voor het huidige project", 
-                min_value = minimaal * (st.session_state.huidig_budget/budget), max_value = maximaal * (st.session_state.huidig_budget/budget), 
+                min_value = minimaal * (st.session_state.huidig_budget/budget), 
+                max_value = maximaal * (st.session_state.huidig_budget/budget), 
                key = '_streven_budget', on_change=set_streven_budget)
 
 st.markdown(st.session_state.streven_budget)
