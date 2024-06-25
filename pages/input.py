@@ -38,6 +38,14 @@ st.session_state._streven_budget = st.session_state.streven_budget
 def set_streven_budget():
     st.session_state.streven_budget = st.session_state._streven_budget
     
+if "factor" not in st.session_state:
+    st.session_state.factor = None
+    
+st.session_state._factor = st.session_state.factor
+
+def set_factor():
+    st.session_state.factor = st.session_state._factor
+    
 if "appartementen" not in st.session_state:
     st.session_state.appartementen = 0
     
@@ -508,20 +516,21 @@ st.number_input("Vul het budget in op basis van de huidige hoeveelheden binnen h
 budget = ((data["kosten"] * data["aantal"]).sum())
 minimaal = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
 maximaal = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
+st.session_state.factor = st.session_state.huidig_budget/budget
 st.markdown(minimaal)
 st.markdown(maximaal)
 
-st.markdown(minimaal * (st.session_state.huidig_budget/budget))
-st.markdown(maximaal * (st.session_state.huidig_budget/budget))
+st.markdown(minimaal * (st.session_state.factor))
+st.markdown(maximaal * (st.session_state.factor))
     
 st.number_input("Vul het te streven budget in voor het huidige project", 
-                min_value = minimaal * (st.session_state.huidig_budget/budget), 
-                max_value = maximaal * (st.session_state.huidig_budget/budget), 
+                min_value = minimaal * (st.session_state.factor), 
+                max_value = maximaal * (st.session_state.factor), 
                key = '_streven_budget', on_change=set_streven_budget)
 
 st.markdown(st.session_state.streven_budget)
 
-st.session_state.budget = st.session_state.streven_budget / (st.session_state.huidig_budget/budget)
+st.session_state.budget = st.session_state.streven_budget / (st.session_state.factor)
 st.markdown(st.session_state.budget)
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
