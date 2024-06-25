@@ -591,8 +591,8 @@ else:
             with cols[i]:
                 st.markdown(f"**{option}**")
                 x = pd.to_numeric(option[10:])
-                st.markdown(f"- Milieukosten {gewichten[x-1][0] * 100}%")
-                st.markdown(f"- Afwijkingen {gewichten[x-1][1] * 100}%")
+                st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
+                st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
         kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
         vergelijken = uitkomsten[kolommen]
         st.dataframe(vergelijken, hide_index = True)
