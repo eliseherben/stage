@@ -273,7 +273,7 @@ if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
 else:
     st.markdown("#")
-    st.markdown("##### Minimale afwijking in productgroepen")
+    st.markdown("##### Oplossingen optimalisatie")
     
     for i in range(len(data)):
         if data.iloc[i, 0][:2] not in st.session_state.list:
@@ -581,7 +581,7 @@ else:
 #         st.plotly_chart(fig)
 
     col1, col2, col3 = st.columns(3)
-    st.markdown("###### Vergelijking")
+    st.markdown("##### Vergelijking")
     options = st.multiselect(
     "Kies tot 4 oplossingen voor een vergelijking",
     [i for i in uitkomsten.columns[3:]], max_selections = 4)
