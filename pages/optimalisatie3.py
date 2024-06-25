@@ -959,7 +959,7 @@ for productgroep in df['productgroep']:
                                          size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
 
                 scatter_hovertemplate = (
-                    f'Oplossing 1: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
+                    f'{kolommen_te_selecteren[i]}: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
                     'Weging milieukosten: %{customdata[0]:.2f}%<br>'
                     'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
                 )
@@ -1023,7 +1023,7 @@ for i in range(len(kolommen_te_selecteren)):
                                          size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
 
                 scatter_hovertemplate = (
-                    f'Oplossing 1: €%{{x:,.2f}}<br>'
+                    f'{kolommen_te_selecteren[i]} : €%{{x:,.2f}}<br>'
                     'Weging milieukosten: %{customdata[0]:.2f}%<br>'
                     'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
                 )
@@ -1085,7 +1085,7 @@ for i in range(len(kolommen_te_selecteren)):
                                          size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
 
                 scatter_hovertemplate = (
-                    f'Oplossing 1: €%{{x:,.2f}}<br>'
+                    f'{kolommen_te_selecteren[i]}: €%{{x:,.2f}}<br>'
                     'Weging milieukosten: %{customdata[0]:.2f}%<br>'
                     'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
                 )
@@ -1149,7 +1149,7 @@ for i in range(len(kolommen_te_selecteren)):
                                          size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
 
                 scatter_hovertemplate = (
-                    f'Oplossing 1: €%{{x:,.2f}}<br>'
+                    f'{kolommen_te_selecteren[i]}: €%{{x:,.2f}}<br>'
                     'Weging milieukosten: %{customdata[0]:.2f}%<br>'
                     'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
                 )
