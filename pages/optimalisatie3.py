@@ -976,13 +976,14 @@ for productgroep in df['productgroep']:
 
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten', 'afwijkingen'])
-df2.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
 
 df_k = df2[['oplossing', 'kosten']]
 
 df_k = df_k.T
 df_k.columns = df_k.iloc[0]
 df_k = df_k[1:]
+
+df_k.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
 
 df_k[df_k.columns[:]] = df_k[df_k.columns[:]].apply(pd.to_numeric)
 df_k = df_k.round(2)
@@ -1043,6 +1044,8 @@ df_mk = df_mk.T
 df_mk.columns = df_mk.iloc[0]
 df_mk = df_mk[1:]
 
+df_mk.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+
 df_mk[df_mk.columns[:]] = df_mk[df_mk.columns[:]].apply(pd.to_numeric)
 df_mk = df_mk.round(2)
 
@@ -1099,15 +1102,13 @@ st.plotly_chart(fig2)
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten', 'afwijkingen'])
 
-df2.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
-st.dataframe(df2)
-
 df_a = df2[['oplossing', 'afwijkingen']]
-st.dataframe(df_a)
 
 df_a = df_a.T
 df_a.columns = df_a.iloc[0]
 df_a = df_a[1:]
+
+df_a.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
 
 df_a[df_a.columns[:]] = df_a[df_a.columns[:]].apply(pd.to_numeric)
 df_a = df_a.round(1)
