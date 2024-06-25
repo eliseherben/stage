@@ -1098,7 +1098,9 @@ st.plotly_chart(fig2)
 
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten', 'afwijkingen'])
+
 df2.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+st.dataframe(df2)
 
 df_a = df2[['oplossing', 'afwijkingen']]
 st.dataframe(df_a)
