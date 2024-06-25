@@ -491,8 +491,10 @@ huidig_budget = st.number_input("Vul het budget in op basis van de huidige hoeve
 budget = ((data["kosten"] * data["aantal"]).sum())
 minimaal = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
 maximaal = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
+st.markdown(minimaal)
+st.markdown(maximaal)
     
-streven_budget = st.number_input("Vul het te streven budget in voor het huidige project", 
+st.number_input("Vul het te streven budget in voor het huidige project", 
                                 min_value = minimaal * (huidig_budget/budget), 
                                 max_value = maximaal * (huidig_budget/budget))
 
