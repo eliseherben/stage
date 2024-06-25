@@ -610,6 +610,7 @@ else:
                 st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
         kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
         vergelijken = uitkomsten[kolommen]
+        vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
         styled_df = vergelijken.style.apply(highlight_difference, axis=1)
         styled_df = styled_df.format(precision=0)
         
