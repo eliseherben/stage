@@ -549,7 +549,11 @@ else:
         uitkomsten.columns = columns
         oplossing = uitkomsten[['productgroep', 'eenheid', 'huidige_waarden', f'Oplossing {i+1}']]
         st.dataframe(oplossing, hide_index = True)
-
+    
+    st.dataframe(result_df)
+    result_df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+    st.dataframe(result_df)
+    
     uitkomsten.columns = columns
     st.session_state.oplossingen = result_df
     st.session_state.doelwaardes = doelwaardes
