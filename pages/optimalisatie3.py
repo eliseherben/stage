@@ -901,6 +901,8 @@ st.markdown('#')
 st.markdown("##### Visualisaties")
 df = st.session_state.oplossingen
 st.markdown(df.columns)
+df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+
 kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
 kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
@@ -936,10 +938,10 @@ for productgroep in df['productgroep']:
     fig.update_traces(hovertemplate=bar_hovertemplate, customdata=df_productgroep[['minimaal', 'maximaal', 'eenheid']].values)
     for i in range(len(kolommen_te_selecteren)):
         if kolommen_te_selecteren[i] in geselecteerde_kolommen:
-            if kolommen_te_selecteren[i] == 'huidige_waarden':
+            if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
-                scatter = px.scatter(df_productgroep, x='huidige_waarden', y='code', 
+                scatter = px.scatter(df_productgroep, x='Huidige waarden', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
                                      size=[10], symbol = ['Huidige waarde'])
 
@@ -975,6 +977,8 @@ for productgroep in df['productgroep']:
 
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten', 'afwijkingen'])
+df2.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+
 df_k = df2[['oplossing', 'kosten']]
 
 df_k = df_k.T
@@ -997,7 +1001,7 @@ fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_k[['minimaal',
 
 for i in range(len(kolommen_te_selecteren)):
         if kolommen_te_selecteren[i] in geselecteerde_kolommen:
-            if kolommen_te_selecteren[i] == 'huidige_waarden':
+            if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
                 scatter = px.scatter(df_k, x='huidige_waarden', y='code', 
@@ -1057,7 +1061,7 @@ fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_mk[['minimaal'
 
 for i in range(len(kolommen_te_selecteren)):
         if kolommen_te_selecteren[i] in geselecteerde_kolommen:
-            if kolommen_te_selecteren[i] == 'huidige_waarden':
+            if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
                 scatter = px.scatter(df_mk, x='huidige_waarden', y='code', 
@@ -1095,6 +1099,8 @@ st.plotly_chart(fig2)
 
 
 df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten', 'milieukosten', 'afwijkingen'])
+df2.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+
 df_a = df2[['oplossing', 'afwijkingen']]
 
 df_a = df_a.T
@@ -1118,7 +1124,7 @@ fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_a[['minimaal',
 
 for i in range(len(kolommen_te_selecteren)):
         if kolommen_te_selecteren[i] in geselecteerde_kolommen:
-            if kolommen_te_selecteren[i] == 'huidige_waarden':
+            if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
                 scatter = px.scatter(df_a, x='huidige_waarden', y='code', 
