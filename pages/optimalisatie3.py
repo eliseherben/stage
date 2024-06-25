@@ -941,7 +941,7 @@ for productgroep in df['productgroep']:
                 kleur_teller += 1
                 scatter = px.scatter(df_productgroep, x='huidige_waarden', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                     size=[10], symbol = ['huidig'])
+                                     size=[10], symbol = ['Huidige waarde'])
 
                 scatter_hovertemplate = f'Huidige waarde: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
                 scatter.update_traces(hovertemplate=scatter_hovertemplate)
