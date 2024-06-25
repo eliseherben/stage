@@ -552,10 +552,10 @@ else:
         # Stap 3: Kleuren toepassen met RGB-codes
         def highlight_difference(row):
             # Vergelijk de waarden van kolom 'A' met kolom 'B' en 'C'
-            styles = []
-            for col in row.index:
+            styles = [''] * 2
+            for col in row.index[2:]:
                 if row[col] != row['Huidige waarden']:  # Vergelijk elke cel met de waarde in kolom 'A'
-                    styles.append('background-color: rgba(212, 0, 60, 0.5)')  # Rood voor niet gelijke waarden
+                    styles.append('color: rgba(212, 0, 60, 1.0)')  # Rood voor niet gelijke waarden
                 else:
                     styles.append('')
             return styles
