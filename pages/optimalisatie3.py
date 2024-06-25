@@ -552,6 +552,7 @@ else:
 
     uitkomsten.columns = columns
     st.session_state.oplossingen = result_df
+    st.dataframe(result_df)
     st.session_state.doelwaardes = doelwaardes
     gevoeligheidsanalyse = uitkomsten.drop(['eenheid', 'huidige_waarden'], axis=1)
     gevoeligheidsanalyse = gevoeligheidsanalyse.transpose()
