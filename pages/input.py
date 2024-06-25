@@ -485,17 +485,17 @@ data['maximaal'] = data['maximaal'].fillna(1)
 #                 key='_budget', on_change=set_budget)
 
 huidig_budget = st.number_input("Vul het budget in op basis van de huidige hoeveelheden binnen het project")
-streven_budget = st.number_input("Vul het te streven budget in voor het huidige project")
 
-st.markdown(f'factor: {huidig_budget / streven_budget}, budget optimalisatie: {((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)}')
+# st.markdown(f'factor: {huidig_budget / streven_budget}, budget optimalisatie: {((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)}')
 
 budget = ((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)
-min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
-max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
-
-if budget < min_value or budget > max_value:
-    st.error("budget is buiten bereik")
+minimaal = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
+maximaal = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
     
+streven_budget = st.number_input("Vul het te streven budget in voor het huidige project", 
+                                min_value = minimaal * (huidig_budget/budget), 
+                                max_value = maximaal * (huidig_budget/budget))
+
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
 st.selectbox("Wat heeft meer prioriteit binnen dit project? *", 
