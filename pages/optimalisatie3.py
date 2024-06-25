@@ -1101,6 +1101,7 @@ df2 = pd.DataFrame(st.session_state.doelwaardes, columns=['oplossing', 'kosten',
 df2.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
 
 df_a = df2[['oplossing', 'afwijkingen']]
+st.dataframe(df_a)
 
 df_a = df_a.T
 df_a.columns = df_a.iloc[0]
