@@ -1085,7 +1085,7 @@ df_mk['code'] = '00'
 
 kleur_teller = 0
 
-st.dataframe(df_mf)
+st.dataframe(df_mk)
 
 fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='Milieukosten', 
