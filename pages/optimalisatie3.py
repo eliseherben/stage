@@ -1085,6 +1085,8 @@ df_mk['code'] = '00'
 
 kleur_teller = 0
 
+st.dataframe(df_mf)
+
 fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='Milieukosten', 
                  hover_data={'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
@@ -1147,6 +1149,8 @@ df_a = df_a.round(1)
 df_a['aantal'] = df_a['maximaal'] - df_a['minimaal']
 df_a['code'] = '00'
 df_a = df_a.round(1) 
+
+st.dataframe(df_a)
 
 kleur_teller = 0
 fig2 = px.bar(df_a, x='aantal', y='code', base = 'minimaal',
