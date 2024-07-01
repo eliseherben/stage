@@ -140,14 +140,6 @@ st.session_state.maximaal = maximaal_list
 # result_kosten['Kosten per eenheid'] = result_kosten['maximaal'] - result_kosten['minimaal']
 
 # # Voorbeeld lijst met kleuren
-# kleuren_schema = [
-#     'rgba(212, 0, 60, 1.0)',
-#     'rgba(241, 142, 47, 1.0)', 
-#     'rgba(255, 211, 0, 1.0)',
-#     'rgba(0, 158, 224, 1.0)', 
-#     'rgba(151, 191, 13, 1.0)', 
-#     'rgba(147, 16, 126, 1.0)',  
-#     'rgba(119, 118, 121, 1.0)']
 
 # fig_kosten = px.bar(result_kosten, x='Kosten per eenheid', y = 'code', base = 'minimaal', 
 #                     color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
@@ -269,6 +261,15 @@ st.session_state.maximaal = maximaal_list
 
 
 # Controleer of het projectbestand is geüpload
+kleuren_schema = [
+    'rgba(212, 0, 60, 1.0)',
+    'rgba(241, 142, 47, 1.0)', 
+    'rgba(255, 211, 0, 1.0)',
+    'rgba(0, 158, 224, 1.0)', 
+    'rgba(151, 191, 13, 1.0)', 
+    'rgba(147, 16, 126, 1.0)',  
+    'rgba(119, 118, 121, 1.0)']
+
 if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
 else:
