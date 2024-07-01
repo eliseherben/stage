@@ -415,6 +415,10 @@ tab1, tab2 = st.tabs(["Optimalisatie", "Visualisatie productgroepen"])
 
 
 with tab1:
+    st.markdown("**Aantal appartementen**")
+    st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
+                    on_change=set_appartementen)
+
     import streamlit as st
 
 
@@ -470,10 +474,6 @@ with tab1:
 
 
 with tab1:
-    st.markdown("**Aantal appartementen**")
-    st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
-                    on_change=set_appartementen)
-
     st.markdown("**Budget**")
     data['aantal'] = None
     data.iloc[0, -1] = st.session_state.Buitenwanden
