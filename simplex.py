@@ -165,9 +165,9 @@ if uploaded_file is not None:
 # In[ ]:
 
 
-# if st.button("clear all"):
-#     st.session_state.clear()
-#     st.experimental_rerun()  # Rerun the app to refresh the page
+if st.button("clear all"):
+    st.session_state.clear()
+    st.experimental_rerun()  # Rerun the app to refresh the page
 
 if uploaded_file is not None:
     st.page_link("pages/input.py", label="Naar input")
