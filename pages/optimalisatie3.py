@@ -597,41 +597,41 @@ else:
     [i for i in uitkomsten.columns[3:]], default = [i for i in uitkomsten.columns[3:]])
     
     if len(options) != 0:
-    num_options = len(options)
-    num_columns = 2  # Number of columns to divide into
+        num_options = len(options)
+        num_columns = 2  # Number of columns to divide into
 
-    # Calculate how to distribute options across columns
-    options_per_column = num_options // num_columns
-    remainder = num_options % num_columns
+        # Calculate how to distribute options across columns
+        options_per_column = num_options // num_columns
+        remainder = num_options % num_columns
 
-    columns = st.columns(num_columns)
-    current_column = 0
-    option_index = 0
+        columns = st.columns(num_columns)
+        current_column = 0
+        option_index = 0
 
     
-    for i in range(num_columns):
-        with columns[i]:
-            while option_index < num_options and (i < remainder or option_index < num_options - 1):
-                option = options[option_index]
-                st.markdown(f"**{option}**")
-                with st.expander("Details"):
-                    x = int(option[-1])  # Adjust based on how you extract the correct index
-                    st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
-                    st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
-                option_index += 1
+        for i in range(num_columns):
+            with columns[i]:
+                while option_index < num_options and (i < remainder or option_index < num_options - 1):
+                    option = options[option_index]
+                    st.markdown(f"**{option}**")
+                    with st.expander("Details"):
+                        x = int(option[-1])  # Adjust based on how you extract the correct index
+                        st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
+                        st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
+                    option_index += 1
 #     with st.expander("Zie de verdeling van de oplossingen"):
 #         for i, option in enumerate(options):
 #             st.markdown(f"**{option}**")
 #             x = pd.to_numeric(option[10:])
 #             st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
 #             st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
-    kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
-    vergelijken = uitkomsten[kolommen]
-    vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
-    styled_df = vergelijken.style.apply(highlight_difference, axis=1)
-    styled_df = styled_df.format(precision=0)
+        kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
+        vergelijken = uitkomsten[kolommen]
+        vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+        styled_df = vergelijken.style.apply(highlight_difference, axis=1)
+        styled_df = styled_df.format(precision=0)
 
-    st.dataframe(styled_df, hide_index = True)
+        st.dataframe(styled_df, hide_index = True)
 
 
 # gevoeligheidsanalyse
