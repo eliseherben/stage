@@ -945,7 +945,7 @@ for productgroep in df['productgroep']:
     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
     st.dataframe(df_geselecteerd)
     
-    df_select = df_productgroep[columns]
+    df_select = df_geselecteerd[columns]
     st.dataframe(df_select)
     if df_geselecteerd.nunique().eq(1).all():
         continue
