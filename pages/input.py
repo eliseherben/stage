@@ -549,7 +549,7 @@ with tab1:
 
 
 with tab2:
-    if st.session_state.appartementen is not None:
+    if st.session_state.appartementen is not None and st.session_state.appartementen != 0:
         data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
         data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
         data.iloc[-1, 3] = data.iloc[-1, 3] + 1
