@@ -112,153 +112,153 @@ st.session_state.maximaal = maximaal_list
 # In[ ]:
 
 
-st.markdown("##### Verdeling productgroepen")
-filtered = data.dropna(subset=['minimaal', 'maximaal'])
+# st.markdown("##### Verdeling productgroepen")
+# filtered = data.dropna(subset=['minimaal', 'maximaal'])
 
-opties = st.selectbox("Soort visualisatie", 
-                         ["Alleen de productgroepen met m2 als eenheid", 
-                          "Alleen de productgroepen met stuks als eenheid", "Alle productgroepen"], index = None, 
-                      placeholder = 'Kies een visualisatie')
+# opties = st.selectbox("Soort visualisatie", 
+#                          ["Alleen de productgroepen met m2 als eenheid", 
+#                           "Alleen de productgroepen met stuks als eenheid", "Alle productgroepen"], index = None, 
+#                       placeholder = 'Kies een visualisatie')
 
-if opties == "Alleen de productgroepen met m2 als eenheid":
-    filtered = filtered[filtered['eenheid'] == 'm2']
-if opties == "Alleen de productgroepen met stuks als eenheid":
-    filtered = filtered[filtered['eenheid'] == 'stuks']
+# if opties == "Alleen de productgroepen met m2 als eenheid":
+#     filtered = filtered[filtered['eenheid'] == 'm2']
+# if opties == "Alleen de productgroepen met stuks als eenheid":
+#     filtered = filtered[filtered['eenheid'] == 'stuks']
 
-productgroepen = filtered['productgroep'].unique()
-selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen, 
-                                         placeholder = 'Selecteer productgroep(en)')
-filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
+# productgroepen = filtered['productgroep'].unique()
+# selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen, 
+#                                          placeholder = 'Selecteer productgroep(en)')
+# filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
 
-result_kosten = filtered_data[['productgroep', 'kosten']]
-result_kosten = result_kosten.transpose()
-result_kosten.columns = result_kosten.iloc[0]
-result_kosten = result_kosten[1:]
-result_kosten.insert(0, 'minimaal', min(filtered['kosten']))
-result_kosten.insert(1, 'maximaal', max(filtered['kosten']))
-result_kosten.insert(2, 'code', '01')
-result_kosten['Kosten per eenheid'] = result_kosten['maximaal'] - result_kosten['minimaal']
+# result_kosten = filtered_data[['productgroep', 'kosten']]
+# result_kosten = result_kosten.transpose()
+# result_kosten.columns = result_kosten.iloc[0]
+# result_kosten = result_kosten[1:]
+# result_kosten.insert(0, 'minimaal', min(filtered['kosten']))
+# result_kosten.insert(1, 'maximaal', max(filtered['kosten']))
+# result_kosten.insert(2, 'code', '01')
+# result_kosten['Kosten per eenheid'] = result_kosten['maximaal'] - result_kosten['minimaal']
 
-# Voorbeeld lijst met kleuren
-kleuren_schema = [
-    'rgba(212, 0, 60, 1.0)',
-    'rgba(241, 142, 47, 1.0)', 
-    'rgba(255, 211, 0, 1.0)',
-    'rgba(0, 158, 224, 1.0)', 
-    'rgba(151, 191, 13, 1.0)', 
-    'rgba(147, 16, 126, 1.0)',  
-    'rgba(119, 118, 121, 1.0)']
+# # Voorbeeld lijst met kleuren
+# kleuren_schema = [
+#     'rgba(212, 0, 60, 1.0)',
+#     'rgba(241, 142, 47, 1.0)', 
+#     'rgba(255, 211, 0, 1.0)',
+#     'rgba(0, 158, 224, 1.0)', 
+#     'rgba(151, 191, 13, 1.0)', 
+#     'rgba(147, 16, 126, 1.0)',  
+#     'rgba(119, 118, 121, 1.0)']
 
-fig_kosten = px.bar(result_kosten, x='Kosten per eenheid', y = 'code', base = 'minimaal', 
-                    color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
+# fig_kosten = px.bar(result_kosten, x='Kosten per eenheid', y = 'code', base = 'minimaal', 
+#                     color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
 
-kleur_teller = 0
-# fig_kosten.update_traces(marker_size=20)
-for i in range(len(selected_productgroepen)):
-    if result_kosten.columns[i+3] in selected_productgroepen:
-        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-        kleur_teller += 1
-        fig_kosten.add_trace(px.scatter(result_kosten, x=result_kosten.columns[i+3], y='code', 
-                                     color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                     size=[10], symbol = [result_kosten.columns[i+3]]).data[0])
+# kleur_teller = 0
+# # fig_kosten.update_traces(marker_size=20)
+# for i in range(len(selected_productgroepen)):
+#     if result_kosten.columns[i+3] in selected_productgroepen:
+#         kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#         kleur_teller += 1
+#         fig_kosten.add_trace(px.scatter(result_kosten, x=result_kosten.columns[i+3], y='code', 
+#                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                      size=[10], symbol = [result_kosten.columns[i+3]]).data[0])
 
-fig_kosten.update_yaxes(visible=False)
+# fig_kosten.update_yaxes(visible=False)
 
-fig_kosten.update_layout(
-    legend=dict(
-        orientation="h",
-        yanchor="bottom",
-        y=1.02,
-        xanchor="right",
-        x=1))
+# fig_kosten.update_layout(
+#     legend=dict(
+#         orientation="h",
+#         yanchor="bottom",
+#         y=1.02,
+#         xanchor="right",
+#         x=1))
 
-fig_kosten.update_layout(height=250)
+# fig_kosten.update_layout(height=250)
 
-st.plotly_chart(fig_kosten)
-
-
-# In[ ]:
-
-
-if st.session_state.projectbestand is None:
-    st.markdown("Upload een bestand")
-else:
-    result_milieukosten = filtered_data[['productgroep', 'circulair']]
-    result_milieukosten = result_milieukosten.transpose()
-    result_milieukosten.columns = result_milieukosten.iloc[0]
-    result_milieukosten = result_milieukosten[1:]
-    result_milieukosten.insert(0, 'minimaal', min(filtered['circulair']))
-    result_milieukosten.insert(1, 'maximaal', max(filtered['circulair']))
-    result_milieukosten.insert(2, 'code', '02')
-    result_milieukosten['Milieukosten per eenheid'] = result_milieukosten['maximaal'] - result_milieukosten['minimaal']
-
-    # Voorbeeld lijst met kleuren
-    kleuren_schema = [
-        'rgba(212, 0, 60, 1.0)',
-        'rgba(241, 142, 47, 1.0)', 
-        'rgba(255, 211, 0, 1.0)',
-        'rgba(0, 158, 224, 1.0)', 
-        'rgba(151, 191, 13, 1.0)', 
-        'rgba(147, 16, 126, 1.0)',  
-        'rgba(119, 118, 121, 1.0)']
-
-    fig_circulair = px.bar(result_milieukosten, x='Milieukosten per eenheid', y = 'code', base = 'minimaal', 
-                        color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
-
-    kleur_teller = 0
-    # fig_kosten.update_traces(marker_size=20)
-    for i in range(len(selected_productgroepen)):
-        if result_milieukosten.columns[i+3] in selected_productgroepen:
-            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-            kleur_teller += 1
-            fig_circulair.add_trace(px.scatter(result_milieukosten, x=result_milieukosten.columns[i+3], y='code', 
-                                         color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                         size=[10], symbol = [result_milieukosten.columns[i+3]]).data[0])
-
-    fig_circulair.update_yaxes(visible=False)
-
-    fig_circulair.update_layout(
-        legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="right",
-            x=1))
-
-    fig_circulair.update_layout(height=250)
-
-    st.plotly_chart(fig_circulair)
+# st.plotly_chart(fig_kosten)
 
 
 # In[ ]:
 
 
-if st.session_state.projectbestand is None:
-    st.markdown("upload een bestand")
-else: 
-    st.markdown("#")
-    col1, col2 = st.columns(2)
-    with col1:
-        budget = data.sort_values(by='kosten')
+# if st.session_state.projectbestand is None:
+#     st.markdown("Upload een bestand")
+# else:
+#     result_milieukosten = filtered_data[['productgroep', 'circulair']]
+#     result_milieukosten = result_milieukosten.transpose()
+#     result_milieukosten.columns = result_milieukosten.iloc[0]
+#     result_milieukosten = result_milieukosten[1:]
+#     result_milieukosten.insert(0, 'minimaal', min(filtered['circulair']))
+#     result_milieukosten.insert(1, 'maximaal', max(filtered['circulair']))
+#     result_milieukosten.insert(2, 'code', '02')
+#     result_milieukosten['Milieukosten per eenheid'] = result_milieukosten['maximaal'] - result_milieukosten['minimaal']
 
-        st.markdown(
-            f"""
-            Minste kosten per eenheid:
-            - {budget['productgroep'].iloc[0]}
-            - {budget['productgroep'].iloc[1]}
-            - {budget['productgroep'].iloc[2]}
-            """)
+#     # Voorbeeld lijst met kleuren
+#     kleuren_schema = [
+#         'rgba(212, 0, 60, 1.0)',
+#         'rgba(241, 142, 47, 1.0)', 
+#         'rgba(255, 211, 0, 1.0)',
+#         'rgba(0, 158, 224, 1.0)', 
+#         'rgba(151, 191, 13, 1.0)', 
+#         'rgba(147, 16, 126, 1.0)',  
+#         'rgba(119, 118, 121, 1.0)']
+
+#     fig_circulair = px.bar(result_milieukosten, x='Milieukosten per eenheid', y = 'code', base = 'minimaal', 
+#                         color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
+
+#     kleur_teller = 0
+#     # fig_kosten.update_traces(marker_size=20)
+#     for i in range(len(selected_productgroepen)):
+#         if result_milieukosten.columns[i+3] in selected_productgroepen:
+#             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#             kleur_teller += 1
+#             fig_circulair.add_trace(px.scatter(result_milieukosten, x=result_milieukosten.columns[i+3], y='code', 
+#                                          color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                          size=[10], symbol = [result_milieukosten.columns[i+3]]).data[0])
+
+#     fig_circulair.update_yaxes(visible=False)
+
+#     fig_circulair.update_layout(
+#         legend=dict(
+#             orientation="h",
+#             yanchor="bottom",
+#             y=1.02,
+#             xanchor="right",
+#             x=1))
+
+#     fig_circulair.update_layout(height=250)
+
+#     st.plotly_chart(fig_circulair)
+
+
+# In[ ]:
+
+
+# if st.session_state.projectbestand is None:
+#     st.markdown("upload een bestand")
+# else: 
+#     st.markdown("#")
+#     col1, col2 = st.columns(2)
+#     with col1:
+#         budget = data.sort_values(by='kosten')
+
+#         st.markdown(
+#             f"""
+#             Minste kosten per eenheid:
+#             - {budget['productgroep'].iloc[0]}
+#             - {budget['productgroep'].iloc[1]}
+#             - {budget['productgroep'].iloc[2]}
+#             """)
     
-    with col2:
-        circulair = data.sort_values(by='circulair')
+#     with col2:
+#         circulair = data.sort_values(by='circulair')
 
-        st.markdown(
-            f"""
-            Laagste milieukosten per eenheid:
-            - {circulair['productgroep'].iloc[0]}
-            - {circulair['productgroep'].iloc[1]}
-            - {circulair['productgroep'].iloc[2]}
-            """)
+#         st.markdown(
+#             f"""
+#             Laagste milieukosten per eenheid:
+#             - {circulair['productgroep'].iloc[0]}
+#             - {circulair['productgroep'].iloc[1]}
+#             - {circulair['productgroep'].iloc[2]}
+#             """)
 
 
 # **minimale afwijking**
@@ -947,7 +947,6 @@ for productgroep in df['productgroep']:
     df_select = df_geselecteerd[geselecteerde_kolommen]
     row = df_select.iloc[0]
     if row.nunique() == 1:
-        st.markdown('alles gelijk')
         continue
     
     df_productgroep['aantal'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
