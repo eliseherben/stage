@@ -596,17 +596,7 @@ else:
     "Selecteer de oplossingen voor de vergelijking",
     [i for i in uitkomsten.columns[3:]], default = [i for i in uitkomsten.columns[3:]])
     
-    if len(options) != 0:
-    num_options = len(options)
-    num_columns = 2  # Number of columns to divide into
 
-    # Calculate how to distribute options across columns
-    options_per_column = num_options // num_columns
-    remainder = num_options % num_columns
-
-    columns = st.columns(num_columns)
-    current_column = 0
-    option_index = 0
 
 #     with st.expander("Zie de verdeling van de oplossingen"):
 #         for i, option in enumerate(options):
