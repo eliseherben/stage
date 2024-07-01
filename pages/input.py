@@ -520,7 +520,8 @@ with tab1:
     budget = ((data["kosten"] * data["aantal"]).sum())
     minimaal = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
     maximaal = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
-    st.session_state.factor = st.session_state.huidig_budget/budget
+    if st.session_state.huidig_budget is not None and budget is not None:
+        st.session_state.factor = st.session_state.huidig_budget/budget
 
     st.number_input("Vul het te streven budget in voor het huidige project", 
                     min_value = minimaal * (st.session_state.factor), 
