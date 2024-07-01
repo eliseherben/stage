@@ -947,7 +947,7 @@ for productgroep in df['productgroep']:
     
     df_select = df_geselecteerd[geselecteerde_kolommen]
     st.dataframe(df_select)
-    row = df_geselecteerd.iloc[0]
+    row = df_select.iloc[0]
     if row.nunique() == 1:
         st.markdown('alles gelijk')
         continue
