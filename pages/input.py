@@ -521,7 +521,7 @@ with tab1:
     budget = ((data["kosten"] * data["aantal"]).sum())
     minimaal = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
     maximaal = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
-    if st.session_state.huidig_budget is not None and budget is not 0:
+    if st.session_state.huidig_budget is not None and budget is not 0.0:
         st.markdown(st.session_state.huidig_budget)
         st.markdown(budget)
         st.session_state.factor = st.session_state.huidig_budget/budget
@@ -531,7 +531,7 @@ with tab1:
                         min_value = minimaal * (st.session_state.factor), 
                         max_value = maximaal * (st.session_state.factor), 
                        key = '_streven_budget', on_change=set_streven_budget)
-    if st.session_state.streven_budget is not None and st.session_state.factor is not 0:
+    if st.session_state.streven_budget is not None and st.session_state.factor is not 0.0:
         st.session_state.budget = st.session_state.streven_budget / (st.session_state.factor)
     st.markdown("**Primair thema**")
     # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
