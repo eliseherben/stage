@@ -524,10 +524,11 @@ with tab1:
     if st.session_state.huidig_budget is not None and budget is not None:
         st.session_state.factor = st.session_state.huidig_budget/budget
 
-    st.number_input("Vul het te streven budget in voor het huidige project", 
-                    min_value = minimaal * (st.session_state.factor), 
-                    max_value = maximaal * (st.session_state.factor), 
-                   key = '_streven_budget', on_change=set_streven_budget)
+    if st.session_state.factor is not None:
+        st.number_input("Vul het te streven budget in voor het huidige project", 
+                        min_value = minimaal * (st.session_state.factor), 
+                        max_value = maximaal * (st.session_state.factor), 
+                       key = '_streven_budget', on_change=set_streven_budget)
     if st.session_state.streven_budget is not None and st.session_state.factor is not None:
         st.session_state.budget = st.session_state.streven_budget / (st.session_state.factor)
     st.markdown("**Primair thema**")
