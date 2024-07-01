@@ -408,10 +408,8 @@ def set_Terreininrichting_on():
 
 st.title("Productgroepen")
 st.page_link("simplex.py", label = 'Homepagina')
-st.markdown("**Aantal appartementen**")
-st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
-                    on_change=set_appartementen)
-tab1, tab2 = st.tabs(["Optimalisatie", "Visualisatie productgroepen"])
+
+tab1, tab2 = st.tabs(["Input optimalisatie", "Visualisatie productgroepen"])
 
 
 # In[ ]:
@@ -473,6 +471,10 @@ with tab1:
 
 
 with tab1:
+    st.markdown("**Aantal appartementen**")
+    st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
+                    on_change=set_appartementen)
+    
     st.markdown("**Budget**")
     data['aantal'] = None
     data.iloc[0, -1] = st.session_state.Buitenwanden
@@ -543,8 +545,12 @@ with tab1:
 # In[ ]:
 
 
-if st.session_state.appartementen is not None:
-    with tab2:
+with tab2:
+    if st.session_state.appartementen is None:
+        st.markdown("**Aantal appartementen**")
+        st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
+                    on_change=set_appartementen)
+    else:
         data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
         data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
         data.iloc[-1, 3] = data.iloc[-1, 3] + 1
