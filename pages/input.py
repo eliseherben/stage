@@ -546,11 +546,7 @@ with tab1:
 
 
 with tab2:
-    if st.session_state.appartementen is None:
-        st.markdown("**Aantal appartementen**")
-        st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
-                    on_change=set_appartementen)
-    else:
+    if st.session_state.appartementen is not None:
         data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
         data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
         data.iloc[-1, 3] = data.iloc[-1, 3] + 1
@@ -669,4 +665,8 @@ with tab2:
         fig_circulair.update_layout(height=250)
 
         st.plotly_chart(fig_circulair)
+    else:
+        st.markdown("**Aantal appartementen**")
+        st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
+                    on_change=set_appartementen)
 
