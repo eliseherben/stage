@@ -948,6 +948,7 @@ for productgroep in df['productgroep']:
     df_select = df_geselecteerd[geselecteerde_kolommen]
     st.dataframe(df_select)
     if all(df_select[geselecteerde_kolommen].nunique() == 1):
+        st.markdown('alles gelijk')
         continue
     
     df_productgroep['aantal'] = df_productgroep['maximaal'] - df_productgroep['minimaal']
