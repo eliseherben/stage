@@ -110,7 +110,7 @@ st.session_state.projectbestand = uploaded_file
 if uploaded_file is not None:
     st.session_state.name = uploaded_file.name
     dataframe = pd.read_csv(uploaded_file)
-    
+
     if st.session_state.afdeling in ['Nieuwbouw ontwikkeling', 'Renovatie ontwikkeling', 'Planmatig onderhoud ontwikkeling']:
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29, 31, 33, 35, 37]], axis = 1)
         dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
@@ -118,11 +118,11 @@ if uploaded_file is not None:
         dataframe.rename(columns={dataframe.columns[14]: "impact kwaliteit"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[15]: "impact budget"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[16]: "impact woonbeleving"}, inplace=True)
-        
+
         dataframe = dataframe.dropna(how='all')
         dataframe = dataframe.drop(0)
         dataframe = dataframe.reset_index(drop=True)
-        
+
     if st.session_state.afdeling in ['Nieuwbouw realisatie', 'Renovatie realisatie', 'Planmatig onderhoud realisatie']:
         dataframe = dataframe.drop(dataframe.columns[[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 29]], axis = 1)
         dataframe.rename(columns={dataframe.columns[12]: "impact onderhoud"}, inplace=True)
@@ -130,7 +130,7 @@ if uploaded_file is not None:
         dataframe.rename(columns={dataframe.columns[14]: "impact kwaliteit"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[15]: "impact budget"}, inplace=True)
         dataframe.rename(columns={dataframe.columns[16]: "impact woonbeleving"}, inplace=True)
-        
+
         dataframe = dataframe.dropna(how='all')
         dataframe = dataframe.drop(0)
         dataframe = dataframe.reset_index(drop=True)
@@ -150,14 +150,14 @@ if uploaded_file is not None:
             return 'actueel'
         else:
             return 'onbekend'
-        
+
     df1 = dataframe[['status in ontwerp:', 'productgroep']]
     df2 = df1.groupby('productgroep')['status in ontwerp:'].apply(status).reset_index()
-    
+
 #     st.dataframe(df2)
     lijst = [df2.iloc[i, 0][:2] for i in range(len(df2)) if df2.iloc[i, 1] == 'actueel']
     st.session_state.list = lijst
-    
+
     st.dataframe(dataframe, hide_index = True)
     st.session_state.dataframe = dataframe
 
@@ -171,4 +171,134 @@ if uploaded_file is not None:
 
 if uploaded_file is not None:
     st.page_link("pages/input.py", label="Naar input")
+
+
+# In[ ]:
+
+
+# with tab2:
+#     data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
+#     data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
+#     data.iloc[-1, 3] = data.iloc[-1, 3] + 1
+    
+#     data['minimaal'] = data['minimaal'] * st.session_state.appartementen
+#     data['maximaal'] = data['maximaal'] * st.session_state.appartementen
+#     data['constant'] = ['']*len(data)
+    
+#     st.markdown("##### Verdeling productgroepen")
+#     filtered = data.dropna(subset=['minimaal', 'maximaal'])
+
+#     opties = st.selectbox("Soort visualisatie", 
+#                              ["Alleen de productgroepen met m2 als eenheid", 
+#                               "Alleen de productgroepen met stuks als eenheid", "Alle productgroepen"], index = None, 
+#                           placeholder = 'Kies een visualisatie')
+
+#     if opties == "Alleen de productgroepen met m2 als eenheid":
+#         filtered = filtered[filtered['eenheid'] == 'm2']
+#     if opties == "Alleen de productgroepen met stuks als eenheid":
+#         filtered = filtered[filtered['eenheid'] == 'stuks']
+
+#     productgroepen = filtered['productgroep'].unique()
+#     selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen, 
+#                                              placeholder = 'Selecteer productgroep(en)')
+#     filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
+
+#     result_kosten = filtered_data[['productgroep', 'kosten']]
+#     result_kosten = result_kosten.transpose()
+#     result_kosten.columns = result_kosten.iloc[0]
+#     result_kosten = result_kosten[1:]
+#     result_kosten.insert(0, 'minimaal', min(filtered['kosten']))
+#     result_kosten.insert(1, 'maximaal', max(filtered['kosten']))
+#     result_kosten.insert(2, 'code', '01')
+#     result_kosten['Kosten per eenheid'] = result_kosten['maximaal'] - result_kosten['minimaal']
+
+#     # Voorbeeld lijst met kleuren
+#     kleuren_schema = [
+#         'rgba(212, 0, 60, 1.0)',
+#         'rgba(241, 142, 47, 1.0)', 
+#         'rgba(255, 211, 0, 1.0)',
+#         'rgba(0, 158, 224, 1.0)', 
+#         'rgba(151, 191, 13, 1.0)', 
+#         'rgba(147, 16, 126, 1.0)',  
+#         'rgba(119, 118, 121, 1.0)']
+
+#     fig_kosten = px.bar(result_kosten, x='Kosten per eenheid', y = 'code', base = 'minimaal', 
+#                         color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
+
+#     kleur_teller = 0
+#     # fig_kosten.update_traces(marker_size=20)
+#     for i in range(len(selected_productgroepen)):
+#         if result_kosten.columns[i+3] in selected_productgroepen:
+#             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#             kleur_teller += 1
+#             fig_kosten.add_trace(px.scatter(result_kosten, x=result_kosten.columns[i+3], y='code', 
+#                                          color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                          size=[10], symbol = [result_kosten.columns[i+3]]).data[0])
+
+#     fig_kosten.update_yaxes(visible=False)
+
+#     fig_kosten.update_layout(
+#         legend=dict(
+#             orientation="h",
+#             yanchor="bottom",
+#             y=1.02,
+#             xanchor="right",
+#             x=1))
+
+#     fig_kosten.update_layout(height=250)
+
+#     st.plotly_chart(fig_kosten)
+    
+
+#     result_milieukosten = filtered_data[['productgroep', 'circulair']]
+#     result_milieukosten = result_milieukosten.transpose()
+#     result_milieukosten.columns = result_milieukosten.iloc[0]
+#     result_milieukosten = result_milieukosten[1:]
+#     result_milieukosten.insert(0, 'minimaal', min(filtered['circulair']))
+#     result_milieukosten.insert(1, 'maximaal', max(filtered['circulair']))
+#     result_milieukosten.insert(2, 'code', '02')
+#     result_milieukosten['Milieukosten per eenheid'] = result_milieukosten['maximaal'] - result_milieukosten['minimaal']
+
+#     # Voorbeeld lijst met kleuren
+#     kleuren_schema = [
+#         'rgba(212, 0, 60, 1.0)',
+#         'rgba(241, 142, 47, 1.0)', 
+#         'rgba(255, 211, 0, 1.0)',
+#         'rgba(0, 158, 224, 1.0)', 
+#         'rgba(151, 191, 13, 1.0)', 
+#         'rgba(147, 16, 126, 1.0)',  
+#         'rgba(119, 118, 121, 1.0)']
+
+#     fig_circulair = px.bar(result_milieukosten, x='Milieukosten per eenheid', y = 'code', base = 'minimaal', 
+#                         color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
+
+#     kleur_teller = 0
+#     # fig_kosten.update_traces(marker_size=20)
+#     for i in range(len(selected_productgroepen)):
+#         if result_milieukosten.columns[i+3] in selected_productgroepen:
+#             kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+#             kleur_teller += 1
+#             fig_circulair.add_trace(px.scatter(result_milieukosten, x=result_milieukosten.columns[i+3], y='code', 
+#                                          color_discrete_sequence=[kleur], labels={'x': ''}, 
+#                                          size=[10], symbol = [result_milieukosten.columns[i+3]]).data[0])
+
+#     fig_circulair.update_yaxes(visible=False)
+
+#     fig_circulair.update_layout(
+#         legend=dict(
+#             orientation="h",
+#             yanchor="bottom",
+#             y=1.02,
+#             xanchor="right",
+#             x=1))
+
+#     fig_circulair.update_layout(height=250)
+
+#     st.plotly_chart(fig_circulair)
+
+
+# In[ ]:
+
+
+
 
