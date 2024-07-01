@@ -409,7 +409,7 @@ def set_Terreininrichting_on():
 st.title("Productgroepen")
 st.page_link("simplex.py", label = 'Homepagina')
 st.markdown("**Aantal appartementen**")
-    st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
+st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
                     on_change=set_appartementen)
 tab1, tab2 = st.tabs(["Optimalisatie", "Visualisatie productgroepen"])
 
