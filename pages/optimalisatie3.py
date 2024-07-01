@@ -591,28 +591,24 @@ else:
 #         fig = px.line(gevoeligheidsanalyse, x=x, y=col)
 #         st.plotly_chart(fig)
 
-    col1, col2, col3 = st.columns(3)
     st.markdown("##### Vergelijking")
     options = st.multiselect(
-    "Kies tot 4 oplossingen voor een vergelijking",
+    "Selecteer de oplossingen voor de vergelijking",
     [i for i in uitkomsten.columns[3:]], default = [i for i in uitkomsten.columns[3:]])
-    
-    if len(options) != 0:
-        cols = st.columns(len(options))
 
-        for i, option in enumerate(options):
-            with cols[i]:
-                st.markdown(f"**{option}**")
-                x = pd.to_numeric(option[10:])
-                st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
-                st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
-        kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
-        vergelijken = uitkomsten[kolommen]
-        vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
-        styled_df = vergelijken.style.apply(highlight_difference, axis=1)
-        styled_df = styled_df.format(precision=0)
-        
-        st.dataframe(styled_df, hide_index = True)
+    for i, option in enumerate(options):
+        with st.popover("Zie de verdeling van de oplossingen")
+        st.markdown(f"**{option}**")
+        x = pd.to_numeric(option[10:])
+        st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
+        st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
+    kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
+    vergelijken = uitkomsten[kolommen]
+    vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+    styled_df = vergelijken.style.apply(highlight_difference, axis=1)
+    styled_df = styled_df.format(precision=0)
+
+    st.dataframe(styled_df, hide_index = True)
 
 
 # gevoeligheidsanalyse
