@@ -943,10 +943,8 @@ for productgroep in df['productgroep']:
 
     # Selecteer alle kolommen behalve de uitgesloten kolommen
     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
-    st.dataframe(df_geselecteerd)
     
     df_select = df_geselecteerd[geselecteerde_kolommen]
-    st.dataframe(df_select)
     row = df_select.iloc[0]
     if row.nunique() == 1:
         st.markdown('alles gelijk')
