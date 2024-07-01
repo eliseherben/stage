@@ -525,8 +525,6 @@ with tab1:
     minimaal = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
     maximaal = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
     if st.session_state.huidig_budget is not None and budget != 0.0:
-        st.markdown(st.session_state.huidig_budget)
-        st.markdown(budget)
         st.session_state.factor = st.session_state.huidig_budget/budget
 
     if st.session_state.factor is not None:
