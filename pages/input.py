@@ -408,130 +408,259 @@ def set_Terreininrichting_on():
 
 st.title("Productgroepen")
 st.page_link("simplex.py", label = 'Homepagina')
+tab1, tab2 = st.tabs(["Optimalisatie", "Visualisatie productgroepen"])
 
 
 # In[ ]:
 
 
-import streamlit as st
+with tab1:
+    import streamlit as st
 
 
-# Define a list of dictionaries for each wall type and their corresponding attributes
-elements = [
-    {"type": "21 Buitenwanden", "label": "Aantal m2 aan buitenwanden in het huidige project *", "key_input": "_Buitenwanden", "key_toggle": "_Buitenwanden_on", "on_change_input": set_Buitenwanden, "on_change_toggle": set_Buitenwanden_on},
-    {"type": "22 Binnenwanden", "label": "Aantal m2 aan binnenwanden in het huidige project *", "key_input": "_Binnenwanden", "key_toggle": "_Binnenwanden_on", "on_change_input": set_Binnenwanden, "on_change_toggle": set_Binnenwanden_on},
-    {"type": "23 Vloeren", "label": "Aantal m2 aan vloeren in het huidige project *", "key_input": "_Vloeren", "key_toggle": "_Vloeren_on", "on_change_input": set_Vloeren, "on_change_toggle": set_Vloeren_on},
-    {"type": "24 Trappen en hellingen", "label": "Aantal stuks aan trappen en hellingen in het huidige project *", "key_input": "_Trappen_en_hellingen", "key_toggle": "_Trappen_en_hellingen_on", "on_change_input": set_Trappen_en_hellingen, "on_change_toggle": set_Trappen_en_hellingen_on},
-    {"type": "27 Daken", "label": "Aantal m2 aan daken in het huidige project *", "key_input": "_Daken", "key_toggle": "_Daken_on", "on_change_input": set_Daken, "on_change_toggle": set_Daken_on},
-    {"type": "28 Hoofddraagconstructie", "label": "Aantal m2 aan hoofddraagconstructie in het huidige project *", "key_input": "_Hoofddraagconstructie", "key_toggle": "_Hoofddraagconstructie_on", "on_change_input": set_Hoofddraagconstructie, "on_change_toggle": set_Hoofddraagconstructie_on},
-    {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "label": "Aantal stuks aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project *", "key_input": "_Buitenkozijnen", "key_toggle": "_Buitenkozijnen_on", "on_change_input": set_Buitenkozijnen, "on_change_toggle": set_Buitenkozijnen_on},
-    {"type": "32 Binnenkozijnen en -deuren", "label": "Aantal stuks aan binnenkozijnen en -deuren in het huidige project *", "key_input": "_Binnenkozijnen_en__deuren", "key_toggle": "_Binnenkozijnen_en__deuren_on", "on_change_input": set_Binnenkozijnen_en__deuren, "on_change_toggle": set_Binnenkozijnen_en__deuren_on},
-    {"type": "33 Luiken en vensters", "label": "Aantal stuks aan luiken en vensters in het huidige project *", "key_input": "_Luiken_en_vensters", "key_toggle": "_Luiken_en_vensters_on", "on_change_input": set_Luiken_en_vensters, "on_change_toggle": set_Luiken_en_vensters_on},
-    {"type": "34 Balustrades en leuningen", "label": "Aantal m aan balustrades en leuningen in het huidige project *", "key_input": "_Balustrades_en_leuningen", "key_toggle": "_Balustrades_en_leuningen_on", "on_change_input": set_Balustrades_en_leuningen, "on_change_toggle": set_Balustrades_en_leuningen_on},
-    {"type": "42 Binnenwandafwerkingen", "label": "Aantal m2 aan binnenwandafwerkingen in het huidige project *", "key_input": "_Binnenwandafwerkingen", "key_toggle": "_Binnenwandafwerkingen_on", "on_change_input": set_Binnenwandafwerkingen, "on_change_toggle": set_Binnenwandafwerkingen_on},
-    {"type": "43 Vloerafwerkingen", "label": "Aantal m2 aan vloerafwerkingen in het huidige project *", "key_input": "_Vloerafwerkingen", "key_toggle": "_Vloerafwerkingen_on", "on_change_input": set_Vloerafwerkingen, "on_change_toggle": set_Vloerafwerkingen_on},
-    {"type": "45 Plafonds", "label": "Aantal m2 aan plafonds in het huidige project *", "key_input": "_Plafonds", "key_toggle": "_Plafonds_on", "on_change_input": set_Plafonds, "on_change_toggle": set_Plafonds_on},
-    {"type": "64 Vaste gebouwvoorziening", "label": "Aantal stuks aan vaste gebouwvoorziening in het huidige project *", "key_input": "_Vaste_gebouwvoorziening", "key_toggle": "_Vaste_gebouwvoorziening_on", "on_change_input": set_Vaste_gebouwvoorziening, "on_change_toggle": set_Vaste_gebouwvoorziening_on},
-    {"type": "73 Keuken", "label": "Aantal stuks aan keuken in het huidige project *", "key_input": "_Keuken", "key_toggle": "_Keuken_on", "on_change_input": set_Keuken, "on_change_toggle": set_Keuken_on},
-    {"type": "90 Terreininrichting", "label": "Aantal stuks aan terreininrichting in het huidige project *", "key_input": "_Terreininrichting", "key_toggle": "_Terreininrichting_on", "on_change_input": set_Terreininrichting, "on_change_toggle": set_Terreininrichting_on}
-]
-keys = ['factor', 'streven_budget', 'budget', 'appartementen', 'doelstelling']
-# Loop through the list to create the UI elements for each element type
-for element in elements:
-    if element['type'][:2] in st.session_state.list:
-        keys.append(element['key_input'][1:])
-        st.markdown(f"**{element['type']}**")
-        st.number_input(element['label'], value=None, 
-                        placeholder="vul het aantal m2 in" if 'm2' in element['label'] else "vul het aantal stuks in", 
-                        key=element['key_input'], 
-                        on_change=element['on_change_input'])
-        col1, col2 = st.columns([0.5, 9.5])
-        with col1:
-            toggle = st.toggle("", key=element['key_toggle'], 
-                               on_change=element['on_change_toggle'])
-        with col2:
-            if toggle:
-                st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} mogelijk")
-            else:
-                st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} **niet** mogelijk")
+    # Define a list of dictionaries for each wall type and their corresponding attributes
+    elements = [
+        {"type": "21 Buitenwanden", "label": "Aantal m2 aan buitenwanden in het huidige project *", "key_input": "_Buitenwanden", "key_toggle": "_Buitenwanden_on", "on_change_input": set_Buitenwanden, "on_change_toggle": set_Buitenwanden_on},
+        {"type": "22 Binnenwanden", "label": "Aantal m2 aan binnenwanden in het huidige project *", "key_input": "_Binnenwanden", "key_toggle": "_Binnenwanden_on", "on_change_input": set_Binnenwanden, "on_change_toggle": set_Binnenwanden_on},
+        {"type": "23 Vloeren", "label": "Aantal m2 aan vloeren in het huidige project *", "key_input": "_Vloeren", "key_toggle": "_Vloeren_on", "on_change_input": set_Vloeren, "on_change_toggle": set_Vloeren_on},
+        {"type": "24 Trappen en hellingen", "label": "Aantal stuks aan trappen en hellingen in het huidige project *", "key_input": "_Trappen_en_hellingen", "key_toggle": "_Trappen_en_hellingen_on", "on_change_input": set_Trappen_en_hellingen, "on_change_toggle": set_Trappen_en_hellingen_on},
+        {"type": "27 Daken", "label": "Aantal m2 aan daken in het huidige project *", "key_input": "_Daken", "key_toggle": "_Daken_on", "on_change_input": set_Daken, "on_change_toggle": set_Daken_on},
+        {"type": "28 Hoofddraagconstructie", "label": "Aantal m2 aan hoofddraagconstructie in het huidige project *", "key_input": "_Hoofddraagconstructie", "key_toggle": "_Hoofddraagconstructie_on", "on_change_input": set_Hoofddraagconstructie, "on_change_toggle": set_Hoofddraagconstructie_on},
+        {"type": "31 Buitenkozijnen, -ramen, -deuren en -puien", "label": "Aantal stuks aan buitenkozijnen, -ramen, -deuren en -puien in het huidige project *", "key_input": "_Buitenkozijnen", "key_toggle": "_Buitenkozijnen_on", "on_change_input": set_Buitenkozijnen, "on_change_toggle": set_Buitenkozijnen_on},
+        {"type": "32 Binnenkozijnen en -deuren", "label": "Aantal stuks aan binnenkozijnen en -deuren in het huidige project *", "key_input": "_Binnenkozijnen_en__deuren", "key_toggle": "_Binnenkozijnen_en__deuren_on", "on_change_input": set_Binnenkozijnen_en__deuren, "on_change_toggle": set_Binnenkozijnen_en__deuren_on},
+        {"type": "33 Luiken en vensters", "label": "Aantal stuks aan luiken en vensters in het huidige project *", "key_input": "_Luiken_en_vensters", "key_toggle": "_Luiken_en_vensters_on", "on_change_input": set_Luiken_en_vensters, "on_change_toggle": set_Luiken_en_vensters_on},
+        {"type": "34 Balustrades en leuningen", "label": "Aantal m aan balustrades en leuningen in het huidige project *", "key_input": "_Balustrades_en_leuningen", "key_toggle": "_Balustrades_en_leuningen_on", "on_change_input": set_Balustrades_en_leuningen, "on_change_toggle": set_Balustrades_en_leuningen_on},
+        {"type": "42 Binnenwandafwerkingen", "label": "Aantal m2 aan binnenwandafwerkingen in het huidige project *", "key_input": "_Binnenwandafwerkingen", "key_toggle": "_Binnenwandafwerkingen_on", "on_change_input": set_Binnenwandafwerkingen, "on_change_toggle": set_Binnenwandafwerkingen_on},
+        {"type": "43 Vloerafwerkingen", "label": "Aantal m2 aan vloerafwerkingen in het huidige project *", "key_input": "_Vloerafwerkingen", "key_toggle": "_Vloerafwerkingen_on", "on_change_input": set_Vloerafwerkingen, "on_change_toggle": set_Vloerafwerkingen_on},
+        {"type": "45 Plafonds", "label": "Aantal m2 aan plafonds in het huidige project *", "key_input": "_Plafonds", "key_toggle": "_Plafonds_on", "on_change_input": set_Plafonds, "on_change_toggle": set_Plafonds_on},
+        {"type": "64 Vaste gebouwvoorziening", "label": "Aantal stuks aan vaste gebouwvoorziening in het huidige project *", "key_input": "_Vaste_gebouwvoorziening", "key_toggle": "_Vaste_gebouwvoorziening_on", "on_change_input": set_Vaste_gebouwvoorziening, "on_change_toggle": set_Vaste_gebouwvoorziening_on},
+        {"type": "73 Keuken", "label": "Aantal stuks aan keuken in het huidige project *", "key_input": "_Keuken", "key_toggle": "_Keuken_on", "on_change_input": set_Keuken, "on_change_toggle": set_Keuken_on},
+        {"type": "90 Terreininrichting", "label": "Aantal stuks aan terreininrichting in het huidige project *", "key_input": "_Terreininrichting", "key_toggle": "_Terreininrichting_on", "on_change_input": set_Terreininrichting, "on_change_toggle": set_Terreininrichting_on}
+    ]
+    keys = ['factor', 'streven_budget', 'budget', 'appartementen', 'doelstelling']
+    # Loop through the list to create the UI elements for each element type
+    for element in elements:
+        if element['type'][:2] in st.session_state.list:
+            keys.append(element['key_input'][1:])
+            st.markdown(f"**{element['type']}**")
+            st.number_input(element['label'], value=None, 
+                            placeholder="vul het aantal m2 in" if 'm2' in element['label'] else "vul het aantal stuks in", 
+                            key=element['key_input'], 
+                            on_change=element['on_change_input'])
+            col1, col2 = st.columns([0.5, 9.5])
+            with col1:
+                toggle = st.toggle("", key=element['key_toggle'], 
+                                   on_change=element['on_change_toggle'])
+            with col2:
+                if toggle:
+                    st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} mogelijk")
+                else:
+                    st.markdown(f"Aanpassingen aan de hoeveelheid van {element['type'][2:].lower()} **niet** mogelijk")
 
 
 # In[3]:
 
 
-data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
-# data
+with tab1:
+    data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
+    # data
 
 
 # In[ ]:
 
 
-st.markdown("**Aantal appartementen**")
-st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
-                on_change=set_appartementen)
+with tab1:
+    st.markdown("**Aantal appartementen**")
+    st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
+                    on_change=set_appartementen)
 
-st.markdown("**Budget**")
-data['aantal'] = None
-data.iloc[0, -1] = st.session_state.Buitenwanden
-data.iloc[1, -1] = st.session_state.Binnenwanden
-data.iloc[2, -1] = st.session_state.Vloeren
-data.iloc[3, -1] = st.session_state.Trappen_en_hellingen
-data.iloc[4, -1] = st.session_state.Daken
-data.iloc[5, -1] = st.session_state.Hoofddraagconstructie
-data.iloc[6, -1] = st.session_state.Buitenkozijnen
-data.iloc[7, -1] = st.session_state.Binnenkozijnen_en__deuren
-data.iloc[8, -1] = st.session_state.Luiken_en_vensters
-data.iloc[9, -1] = st.session_state.Balustrades_en_leuningen
-data.iloc[10, -1] = st.session_state.Binnenwandafwerkingen
-data.iloc[11, -1] = st.session_state.Vloerafwerkingen
-data.iloc[12, -1] = st.session_state.Plafonds
-data.iloc[13, -1] = st.session_state.appartementen
-data.iloc[14, -1] = st.session_state.appartementen
-data.iloc[15, -1] = st.session_state.appartementen
-data.iloc[16, -1] = st.session_state.appartementen
-data.iloc[17, -1] = st.session_state.appartementen
-data.iloc[18, -1] = st.session_state.appartementen
-data.iloc[19, -1] = st.session_state.Vaste_gebouwvoorziening
-data.iloc[20, -1] = st.session_state.appartementen
-data.iloc[21, -1] = st.session_state.appartementen
-data.iloc[22, -1] = st.session_state.Keuken
-data.iloc[23, -1] = st.session_state.appartementen
-data.iloc[24, -1] = st.session_state.Terreininrichting
+    st.markdown("**Budget**")
+    data['aantal'] = None
+    data.iloc[0, -1] = st.session_state.Buitenwanden
+    data.iloc[1, -1] = st.session_state.Binnenwanden
+    data.iloc[2, -1] = st.session_state.Vloeren
+    data.iloc[3, -1] = st.session_state.Trappen_en_hellingen
+    data.iloc[4, -1] = st.session_state.Daken
+    data.iloc[5, -1] = st.session_state.Hoofddraagconstructie
+    data.iloc[6, -1] = st.session_state.Buitenkozijnen
+    data.iloc[7, -1] = st.session_state.Binnenkozijnen_en__deuren
+    data.iloc[8, -1] = st.session_state.Luiken_en_vensters
+    data.iloc[9, -1] = st.session_state.Balustrades_en_leuningen
+    data.iloc[10, -1] = st.session_state.Binnenwandafwerkingen
+    data.iloc[11, -1] = st.session_state.Vloerafwerkingen
+    data.iloc[12, -1] = st.session_state.Plafonds
+    data.iloc[13, -1] = st.session_state.appartementen
+    data.iloc[14, -1] = st.session_state.appartementen
+    data.iloc[15, -1] = st.session_state.appartementen
+    data.iloc[16, -1] = st.session_state.appartementen
+    data.iloc[17, -1] = st.session_state.appartementen
+    data.iloc[18, -1] = st.session_state.appartementen
+    data.iloc[19, -1] = st.session_state.Vaste_gebouwvoorziening
+    data.iloc[20, -1] = st.session_state.appartementen
+    data.iloc[21, -1] = st.session_state.appartementen
+    data.iloc[22, -1] = st.session_state.Keuken
+    data.iloc[23, -1] = st.session_state.appartementen
+    data.iloc[24, -1] = st.session_state.Terreininrichting
 
-# st.markdown(f"Totale kosten gebasseerd op huidige hoeveelheden: €{((data['kosten'] * data['aantal']).sum()):.2f}")
+    # st.markdown(f"Totale kosten gebasseerd op huidige hoeveelheden: €{((data['kosten'] * data['aantal']).sum()):.2f}")
 
-data['minimaal'] = data['minimaal'].fillna(1)
-data['maximaal'] = data['maximaal'].fillna(1)
+    data['minimaal'] = data['minimaal'].fillna(1)
+    data['maximaal'] = data['maximaal'].fillna(1)
 
-# st.number_input("Vul het budget in voor het huidige project *",  
-#                 min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum(), 
-#                 max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(),
-#                 key='_budget', on_change=set_budget)
+    # st.number_input("Vul het budget in voor het huidige project *",  
+    #                 min_value = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum(), 
+    #                 max_value = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum(),
+    #                 key='_budget', on_change=set_budget)
 
-st.number_input("Vul het budget in op basis van de huidige hoeveelheden binnen het project", 
-                               key = '_huidig_budget', on_change=set_huidig_budget)
+    st.number_input("Vul het budget in op basis van de huidige hoeveelheden binnen het project", 
+                                   key = '_huidig_budget', on_change=set_huidig_budget)
 
-# st.markdown(f'factor: {huidig_budget / streven_budget}, budget optimalisatie: {((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)}')
+    # st.markdown(f'factor: {huidig_budget / streven_budget}, budget optimalisatie: {((data["kosten"] * data["aantal"]).sum())/(huidig_budget / streven_budget)}')
 
-budget = ((data["kosten"] * data["aantal"]).sum())
-minimaal = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
-maximaal = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
-st.session_state.factor = st.session_state.huidig_budget/budget
-    
-st.number_input("Vul het te streven budget in voor het huidige project", 
-                min_value = minimaal * (st.session_state.factor), 
-                max_value = maximaal * (st.session_state.factor), 
-               key = '_streven_budget', on_change=set_streven_budget)
-if st.session_state.streven_budget is not None and st.session_state.factor is not None:
-    st.session_state.budget = st.session_state.streven_budget / (st.session_state.factor)
-st.markdown("**Primair thema**")
-# st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
-st.selectbox("Wat heeft meer prioriteit binnen dit project? *", 
-            ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
-            key='_doelstelling', on_change=set_doelstelling)
+    budget = ((data["kosten"] * data["aantal"]).sum())
+    minimaal = (data['minimaal'] * st.session_state.appartementen * data['kosten']).sum()
+    maximaal = (data['maximaal'] * st.session_state.appartementen * data['kosten']).sum()
+    st.session_state.factor = st.session_state.huidig_budget/budget
+
+    st.number_input("Vul het te streven budget in voor het huidige project", 
+                    min_value = minimaal * (st.session_state.factor), 
+                    max_value = maximaal * (st.session_state.factor), 
+                   key = '_streven_budget', on_change=set_streven_budget)
+    if st.session_state.streven_budget is not None and st.session_state.factor is not None:
+        st.session_state.budget = st.session_state.streven_budget / (st.session_state.factor)
+    st.markdown("**Primair thema**")
+    # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
+    st.selectbox("Wat heeft meer prioriteit binnen dit project? *", 
+                ("Minimale milieukosten", "Minimale afwijkingen van de huidge aantallen", "Geen voorkeur"), 
+                key='_doelstelling', on_change=set_doelstelling)
 
 
-if all(st.session_state[key] is not None for key in keys): 
-    st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
+    if all(st.session_state[key] is not None for key in keys): 
+        st.page_link("pages/optimalisatie3.py", label="Naar optimalisatie")
 
+
+
+# In[ ]:
+
+
+if st.session_state.appartementen is not None:
+    with tab2:
+        data = pd.read_csv("dataframe.csv", sep=';', decimal = ',')
+        data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
+        data.iloc[-1, 3] = data.iloc[-1, 3] + 1
+
+        data['minimaal'] = data['minimaal'] * st.session_state.appartementen
+        data['maximaal'] = data['maximaal'] * st.session_state.appartementen
+        data['constant'] = ['']*len(data)
+
+        st.markdown("##### Verdeling productgroepen")
+        filtered = data.dropna(subset=['minimaal', 'maximaal'])
+
+        opties = st.selectbox("Soort visualisatie", 
+                                 ["Alleen de productgroepen met m2 als eenheid", 
+                                  "Alleen de productgroepen met stuks als eenheid", "Alle productgroepen"], index = None, 
+                              placeholder = 'Kies een visualisatie')
+
+        if opties == "Alleen de productgroepen met m2 als eenheid":
+            filtered = filtered[filtered['eenheid'] == 'm2']
+        if opties == "Alleen de productgroepen met stuks als eenheid":
+            filtered = filtered[filtered['eenheid'] == 'stuks']
+
+        productgroepen = filtered['productgroep'].unique()
+        selected_productgroepen = st.multiselect("Selecteer een productgroep", productgroepen, 
+                                                 placeholder = 'Selecteer productgroep(en)')
+        filtered_data = filtered[filtered['productgroep'].isin(selected_productgroepen)]
+
+        result_kosten = filtered_data[['productgroep', 'kosten']]
+        result_kosten = result_kosten.transpose()
+        result_kosten.columns = result_kosten.iloc[0]
+        result_kosten = result_kosten[1:]
+        result_kosten.insert(0, 'minimaal', min(filtered['kosten']))
+        result_kosten.insert(1, 'maximaal', max(filtered['kosten']))
+        result_kosten.insert(2, 'code', '01')
+        result_kosten['Kosten per eenheid'] = result_kosten['maximaal'] - result_kosten['minimaal']
+
+        # Voorbeeld lijst met kleuren
+        kleuren_schema = [
+            'rgba(212, 0, 60, 1.0)',
+            'rgba(241, 142, 47, 1.0)', 
+            'rgba(255, 211, 0, 1.0)',
+            'rgba(0, 158, 224, 1.0)', 
+            'rgba(151, 191, 13, 1.0)', 
+            'rgba(147, 16, 126, 1.0)',  
+            'rgba(119, 118, 121, 1.0)']
+
+        fig_kosten = px.bar(result_kosten, x='Kosten per eenheid', y = 'code', base = 'minimaal', 
+                            color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
+
+        kleur_teller = 0
+        # fig_kosten.update_traces(marker_size=20)
+        for i in range(len(selected_productgroepen)):
+            if result_kosten.columns[i+3] in selected_productgroepen:
+                kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+                kleur_teller += 1
+                fig_kosten.add_trace(px.scatter(result_kosten, x=result_kosten.columns[i+3], y='code', 
+                                             color_discrete_sequence=[kleur], labels={'x': ''}, 
+                                             size=[10], symbol = [result_kosten.columns[i+3]]).data[0])
+
+        fig_kosten.update_yaxes(visible=False)
+
+        fig_kosten.update_layout(
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1))
+
+        fig_kosten.update_layout(height=250)
+
+        st.plotly_chart(fig_kosten)
+
+
+        result_milieukosten = filtered_data[['productgroep', 'circulair']]
+        result_milieukosten = result_milieukosten.transpose()
+        result_milieukosten.columns = result_milieukosten.iloc[0]
+        result_milieukosten = result_milieukosten[1:]
+        result_milieukosten.insert(0, 'minimaal', min(filtered['circulair']))
+        result_milieukosten.insert(1, 'maximaal', max(filtered['circulair']))
+        result_milieukosten.insert(2, 'code', '02')
+        result_milieukosten['Milieukosten per eenheid'] = result_milieukosten['maximaal'] - result_milieukosten['minimaal']
+
+        # Voorbeeld lijst met kleuren
+        kleuren_schema = [
+            'rgba(212, 0, 60, 1.0)',
+            'rgba(241, 142, 47, 1.0)', 
+            'rgba(255, 211, 0, 1.0)',
+            'rgba(0, 158, 224, 1.0)', 
+            'rgba(151, 191, 13, 1.0)', 
+            'rgba(147, 16, 126, 1.0)',  
+            'rgba(119, 118, 121, 1.0)']
+
+        fig_circulair = px.bar(result_milieukosten, x='Milieukosten per eenheid', y = 'code', base = 'minimaal', 
+                            color_discrete_sequence=['rgba(119, 118, 121, 0.1)'])
+
+        kleur_teller = 0
+        # fig_kosten.update_traces(marker_size=20)
+        for i in range(len(selected_productgroepen)):
+            if result_milieukosten.columns[i+3] in selected_productgroepen:
+                kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+                kleur_teller += 1
+                fig_circulair.add_trace(px.scatter(result_milieukosten, x=result_milieukosten.columns[i+3], y='code', 
+                                             color_discrete_sequence=[kleur], labels={'x': ''}, 
+                                             size=[10], symbol = [result_milieukosten.columns[i+3]]).data[0])
+
+        fig_circulair.update_yaxes(visible=False)
+
+        fig_circulair.update_layout(
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1))
+
+        fig_circulair.update_layout(height=250)
+
+        st.plotly_chart(fig_circulair)
 
