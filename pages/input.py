@@ -51,8 +51,11 @@ if "appartementen" not in st.session_state:
     
 st.session_state._appartementen = st.session_state.appartementen
 
-def set_appartementen():
-    st.session_state.appartementen = st.session_state._appartementen
+def set_appartementen_tab1():
+    st.session_state.appartementen = st.session_state.tab1_input
+    
+def set_appartementen_tab2():
+    st.session_state.appartementen = st.session_state.tab2_input
     
 if "doelstelling" not in st.session_state:
     st.session_state.doelstelling = None
@@ -472,8 +475,8 @@ with tab1:
 
 with tab1:
     st.markdown("**Aantal appartementen**")
-    st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
-                    on_change=set_appartementen)
+    st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='tab1_input', 
+                    on_change=set_appartementen_tab1)
     
     st.markdown("**Budget**")
     data['aantal'] = None
@@ -670,6 +673,6 @@ with tab2:
         st.plotly_chart(fig_circulair)
     else:
         st.markdown("**Aantal appartementen**")
-        st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='_appartementen', 
-                    on_change=set_appartementen)
+        st.number_input("Het aantal appartementen dat gebouwd worden in dit project *", key='tab2_input', 
+                    on_change=set_appartementen_tab2)
 
