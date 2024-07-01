@@ -522,7 +522,7 @@ st.number_input("Vul het te streven budget in voor het huidige project",
                 min_value = minimaal * (st.session_state.factor), 
                 max_value = maximaal * (st.session_state.factor), 
                key = '_streven_budget', on_change=set_streven_budget)
-if all(st.session_state.streven_budget and st.session_state.factor is not None):
+if st.session_state.streven_budget is not None and st.session_state.factor is not None:
     st.session_state.budget = st.session_state.streven_budget / (st.session_state.factor)
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
