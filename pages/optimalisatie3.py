@@ -596,8 +596,8 @@ else:
     "Selecteer de oplossingen voor de vergelijking",
     [i for i in uitkomsten.columns[3:]], default = [i for i in uitkomsten.columns[3:]])
 
-    for i, option in enumerate(options):
-        with st.expander("Zie de verdeling van de oplossingen"):
+    with st.expander("Zie de verdeling van de oplossingen"):
+        for i, option in enumerate(options):
             st.markdown(f"**{option}**")
             x = pd.to_numeric(option[10:])
             st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
