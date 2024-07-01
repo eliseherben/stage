@@ -435,7 +435,7 @@ elements = [
     {"type": "73 Keuken", "label": "Aantal stuks aan keuken in het huidige project *", "key_input": "_Keuken", "key_toggle": "_Keuken_on", "on_change_input": set_Keuken, "on_change_toggle": set_Keuken_on},
     {"type": "90 Terreininrichting", "label": "Aantal stuks aan terreininrichting in het huidige project *", "key_input": "_Terreininrichting", "key_toggle": "_Terreininrichting_on", "on_change_input": set_Terreininrichting, "on_change_toggle": set_Terreininrichting_on}
 ]
-keys = ['budget', 'appartementen', 'doelstelling']
+keys = ['factor', 'streven_budget', 'budget', 'appartementen', 'doelstelling']
 # Loop through the list to create the UI elements for each element type
 for element in elements:
     if element['type'][:2] in st.session_state.list:
@@ -522,8 +522,8 @@ st.number_input("Vul het te streven budget in voor het huidige project",
                 min_value = minimaal * (st.session_state.factor), 
                 max_value = maximaal * (st.session_state.factor), 
                key = '_streven_budget', on_change=set_streven_budget)
-
-st.session_state.budget = st.session_state.streven_budget / (st.session_state.factor)
+if all(st.session_state.streven_budget and st.session_state.factor is not None):
+    st.session_state.budget = st.session_state.streven_budget / (st.session_state.factor)
 st.markdown("**Primair thema**")
 # st.markdown("De verschillende thema's krijgen in de optimalisatie een weging. Op basis van de keuze van het primaire thema zal de weging voor dit thema hoger liggen dan de weging voor het andere thema. Hiermee zal het primaire thema, met een hogere weging dus als belangrijker gezien worden in de optimalisatie. ")
 st.selectbox("Wat heeft meer prioriteit binnen dit project? *", 
