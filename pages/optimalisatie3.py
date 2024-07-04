@@ -706,10 +706,10 @@ else:
                 data.at[index, 'huidige_waarden'] = st.session_state[huidige['key_input']]
     
     # Definieer de LP variabelen
-    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0, cat='Integer') for index, row in data.iterrows() 
+    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
                   if row["optimalisatie"] == 'ja'}
     
-    variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0, cat='Integer') for index, row in data.iterrows() 
+    variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
                    if row["optimalisatie"] == 'nee' and row["productgroep"] != '48 Na-isolatie'}
     
     # Maak de variabelenlijst
@@ -841,7 +841,7 @@ else:
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
-    uitkomsten = uitkomsten.round(1) 
+    uitkomsten = uitkomsten.round() 
     columns = uitkomsten.columns.tolist()
     
     def plot_pie(milieukosten, afwijkingen):
@@ -896,6 +896,7 @@ else:
 
     # Itereer over elke kolom behalve de laatste kolom (nu 'Y')
     x = 'x'
+    gevoeligheidsanalyse
     for col in gevoeligheidsanalyse.columns[:-1]:
         fig = px.line(gevoeligheidsanalyse, x=x, y=col)
         st.plotly_chart(fig)
