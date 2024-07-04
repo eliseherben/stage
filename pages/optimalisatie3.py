@@ -706,10 +706,10 @@ else:
                 data.at[index, 'huidige_waarden'] = st.session_state[huidige['key_input']]
     
     # Definieer de LP variabelen
-    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0, cat='Integer') for index, row in data.iterrows() 
+    variabelen = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
                   if row["optimalisatie"] == 'ja'}
     
-    variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0, cat='Integer') for index, row in data.iterrows() 
+    variabelen2 = {row["productgroep"]: pl.LpVariable(row["productgroep"], lowBound=0) for index, row in data.iterrows() 
                    if row["optimalisatie"] == 'nee' and row["productgroep"] != '48 Na-isolatie'}
     
     # Maak de variabelenlijst
