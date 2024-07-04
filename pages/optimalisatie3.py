@@ -841,7 +841,7 @@ else:
     kolommen_uitsluiten = ['minimaal', 'maximaal', 'kosten', 'circulair', 'optimalisatie', 'constant', 'code']
     uitkomsten = data.drop(columns=kolommen_uitsluiten)
     uitkomsten[uitkomsten.columns[3:]] = uitkomsten[uitkomsten.columns[3:]].apply(pd.to_numeric)
-    uitkomsten = uitkomsten.round() 
+    uitkomsten = uitkomsten.round(1) 
     columns = uitkomsten.columns.tolist()
     
     def plot_pie(milieukosten, afwijkingen):
@@ -896,7 +896,6 @@ else:
 
     # Itereer over elke kolom behalve de laatste kolom (nu 'Y')
     x = 'x'
-    gevoeligheidsanalyse
     for col in gevoeligheidsanalyse.columns[:-1]:
         fig = px.line(gevoeligheidsanalyse, x=x, y=col)
         st.plotly_chart(fig)
