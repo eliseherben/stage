@@ -273,7 +273,6 @@ kleuren_schema = [
 if st.session_state.projectbestand is None:
     st.markdown("Upload een bestand")
 else:
-    st.markdown("#")
     st.markdown("##### Oplossingen optimalisatie")
     
     for i in range(len(data)):
