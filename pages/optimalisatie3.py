@@ -617,7 +617,7 @@ else:
     st.dataframe(result_df)
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
-    vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+    vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)S
     
     def highlight_difference(row):
         # Vergelijk de waarden van kolom 'A' met kolom 'B' en 'C'
@@ -633,7 +633,7 @@ else:
     styled_df = vergelijken.style.apply(highlight_difference, axis=1)
     styled_df = styled_df.format(precision=0)
 
-    st.dataframe(styled_df, height = 910, width = 800, hide_index = True)
+    st.dataframe(styled_df, height = 920, width = 800, hide_index = True)
 
 
 # gevoeligheidsanalyse
