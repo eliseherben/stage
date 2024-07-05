@@ -629,10 +629,9 @@ else:
                 styles.append('')
         return styles
 
-    
+    vergelijken.set_index('productgroep', inplace=True)
     styled_df = vergelijken.style.apply(highlight_difference, axis=1)
     styled_df = styled_df.format(precision=0)
-    styled_df.set_index('productgroep', inplace=True)
 
     st.dataframe(styled_df, height = 920, width = 1800)
 
