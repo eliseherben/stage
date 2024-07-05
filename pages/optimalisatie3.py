@@ -531,8 +531,8 @@ else:
         fig.update(layout_showlegend=False)
         return fig
 
+    expander = st.expander("Specificatie oplossingen")
     for i in range(len(columns)-3):
-        expander = st.expander("Specificatie oplossingen")
         expander.markdown(f"**Oplossing {i+1}:**")
         expander.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, i] * 100)}%")
         expander.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, i] * 100)}%")
