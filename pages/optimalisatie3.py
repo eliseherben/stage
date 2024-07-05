@@ -608,13 +608,13 @@ else:
 #     st.dataframe(omslagpunten_df)
 
     if len(options) != 0:
-        result_df = pd.DataFrame(columns=options)
+        wegingen_df = pd.DataFrame(columns=options)
         for option in options:
             x = pd.to_numeric(option[10:])
-            result_df[option] = [round(omslagpunten_df.loc['Gewicht circulair', option] * 100),
+            wegingen_df[option] = [round(omslagpunten_df.loc['Gewicht circulair', option] * 100),
                              round(omslagpunten_df.loc['Gewicht afwijkingen', option] * 100)]
-        result_df = result_df.rename(index={0: 'Milieukosten (%)', 1: 'Afwijkingen (%)'})
-    st.dataframe(result_df)
+        wegingen_df = wegingen_df.rename(index={0: 'Milieukosten (%)', 1: 'Afwijkingen (%)'})
+    st.dataframe(wegingen_df)
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
     vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
