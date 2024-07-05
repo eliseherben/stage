@@ -633,7 +633,7 @@ else:
     styled_df = vergelijken.style.apply(highlight_difference, axis=1)
     styled_df = styled_df.format(precision=0)
 
-    st.dataframe(styled_df, height = 920, width = 1800)
+    st.dataframe(styled_df, height = 915, width = 1800)
 
 
 # gevoeligheidsanalyse
@@ -979,35 +979,35 @@ for productgroep in df['productgroep']:
     
     bar_hovertemplate = 'Minimaal: %{customdata[0]} %{customdata[2]}<br>Maximaal: %{customdata[1]} %{customdata[2]}<br>'
     fig.update_traces(hovertemplate=bar_hovertemplate, customdata=df_productgroep[['minimaal', 'maximaal', 'eenheid']].values)
+    if len(options) != 0:
+        kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+        kleur_teller += 1
+        scatter = px.scatter(df_productgroep, x='Huidige waarden', y='code', 
+                             color_discrete_sequence=[kleur], labels={'x': ''}, 
+                             size=[10], symbol = ['Huidige waarde'])
+
+        scatter_hovertemplate = f'Huidige waarde: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
+        scatter.update_traces(hovertemplate=scatter_hovertemplate)
+        fig.add_trace(scatter.data[0])
+        
     for i in range(len(kolommen_te_selecteren)):
         if kolommen_te_selecteren[i] in options:
-            if kolommen_te_selecteren[i] == 'Huidige waarden':
-                kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-                kleur_teller += 1
-                scatter = px.scatter(df_productgroep, x='Huidige waarden', y='code', 
+            selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
+            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+            kleur_teller += 1
+            scatter = px.scatter(df_productgroep, x=f'{kolommen_te_selecteren[i]}', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                     size=[10], symbol = ['Huidige waarde'])
+                                     size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
 
-                scatter_hovertemplate = f'Huidige waarde: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
-                scatter.update_traces(hovertemplate=scatter_hovertemplate)
-                fig.add_trace(scatter.data[0])
-            else:
-                selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
-                kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-                kleur_teller += 1
-                scatter = px.scatter(df_productgroep, x=f'{kolommen_te_selecteren[i]}', y='code', 
-                                         color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                         size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
-
-                scatter_hovertemplate = (
-                    f'{kolommen_te_selecteren[i]}: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
-                    'Weging milieukosten: %{customdata[0]:.2f}%<br>'
-                    'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
-                )
-                scatter.update_traces(
-                    hovertemplate=scatter_hovertemplate, 
-                customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-                fig.add_trace(scatter.data[0])
+            scatter_hovertemplate = (
+                f'{kolommen_te_selecteren[i]}: %{{x}} {df_productgroep["eenheid"].iloc[0]}<br>'
+                'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+                'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+            )
+            scatter.update_traces(
+                hovertemplate=scatter_hovertemplate, 
+            customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
+            fig.add_trace(scatter.data[0])
             
     fig.update_layout(height=250)
     
@@ -1043,35 +1043,35 @@ fig2 = px.bar(df_k, x='aantal', y='code', base = 'minimaal',
 bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{customdata[1]:,.2f}<br>'
 fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_k[['minimaal', 'maximaal']].values)
 
+if len(options) != 0:
+    kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+    kleur_teller += 1
+    scatter = px.scatter(df_k, x='Huidige waarden', y='code', 
+                         color_discrete_sequence=[kleur], labels={'x': ''}, 
+                         size=[10], symbol = ['Huidige waarde'])
+
+    scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    fig2.add_trace(scatter.data[0])
+    
 for i in range(len(kolommen_te_selecteren)):
         if kolommen_te_selecteren[i] in options:
-            if kolommen_te_selecteren[i] == 'Huidige waarden':
-                kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-                kleur_teller += 1
-                scatter = px.scatter(df_k, x='Huidige waarden', y='code', 
+            selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
+            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+            kleur_teller += 1
+            scatter = px.scatter(df_k, x=f'{kolommen_te_selecteren[i]}', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                     size=[10], symbol = ['Huidige waarde'])
+                                     size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
 
-                scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
-                scatter.update_traces(hovertemplate=scatter_hovertemplate)
-                fig2.add_trace(scatter.data[0])
-            else:
-                selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
-                kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-                kleur_teller += 1
-                scatter = px.scatter(df_k, x=f'{kolommen_te_selecteren[i]}', y='code', 
-                                         color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                         size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
-
-                scatter_hovertemplate = (
-                    f'{kolommen_te_selecteren[i]} : €%{{x:,.2f}}<br>'
-                    'Weging milieukosten: %{customdata[0]:.2f}%<br>'
-                    'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
-                )
-                scatter.update_traces(
-                    hovertemplate=scatter_hovertemplate, 
-                customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-                fig2.add_trace(scatter.data[0])
+            scatter_hovertemplate = (
+                f'{kolommen_te_selecteren[i]} : €%{{x:,.2f}}<br>'
+                'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+                'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+            )
+            scatter.update_traces(
+                hovertemplate=scatter_hovertemplate, 
+            customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
+            fig2.add_trace(scatter.data[0])
     
 fig2.update_layout(height=250)
 
@@ -1105,35 +1105,35 @@ fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
 bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{customdata[1]:,.2f}<br>'
 fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_mk[['minimaal', 'maximaal']].values)
 
+if len(options) != 0:
+    kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+    kleur_teller += 1
+    scatter = px.scatter(df_mk, x='Huidige waarden', y='code', 
+                         color_discrete_sequence=[kleur], labels={'x': ''}, 
+                         size=[10], symbol = ['Huidige waarde'])
+
+    scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
+    scatter.update_traces(hovertemplate=scatter_hovertemplate)
+    fig2.add_trace(scatter.data[0])
+
 for i in range(len(kolommen_te_selecteren)):
         if kolommen_te_selecteren[i] in options:
-            if kolommen_te_selecteren[i] == 'Huidige waarden':
-                kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-                kleur_teller += 1
-                scatter = px.scatter(df_mk, x='Huidige waarden', y='code', 
+            selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
+            kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
+            kleur_teller += 1
+            scatter = px.scatter(df_mk, x=f'{kolommen_te_selecteren[i]}', y='code', 
                                      color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                     size=[10], symbol = ['Huidige waarde'])
+                                     size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
 
-                scatter_hovertemplate = f'Huidige waarde: €%{{x:,.2f}}<br>'
-                scatter.update_traces(hovertemplate=scatter_hovertemplate)
-                fig2.add_trace(scatter.data[0])
-            else:
-                selected_row = gewichten_df.loc[[f'{kolommen_te_selecteren[i]}']]
-                kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
-                kleur_teller += 1
-                scatter = px.scatter(df_mk, x=f'{kolommen_te_selecteren[i]}', y='code', 
-                                         color_discrete_sequence=[kleur], labels={'x': ''}, 
-                                         size=[10], symbol = [f'{kolommen_te_selecteren[i]}'])
-
-                scatter_hovertemplate = (
-                    f'{kolommen_te_selecteren[i]}: €%{{x:,.2f}}<br>'
-                    'Weging milieukosten: %{customdata[0]:.2f}%<br>'
-                    'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
-                )
-                scatter.update_traces(
-                    hovertemplate=scatter_hovertemplate, 
-                customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
-                fig2.add_trace(scatter.data[0])
+            scatter_hovertemplate = (
+                f'{kolommen_te_selecteren[i]}: €%{{x:,.2f}}<br>'
+                'Weging milieukosten: %{customdata[0]:.2f}%<br>'
+                'Weging afwijkingen: %{customdata[1]:.2f}%<br>'
+            )
+            scatter.update_traces(
+                hovertemplate=scatter_hovertemplate, 
+            customdata=selected_row[['Gewicht circulair (%)', 'Gewicht afwijkingen (%)']])
+            fig2.add_trace(scatter.data[0])
         
 fig2.update_layout(height=250)
 
