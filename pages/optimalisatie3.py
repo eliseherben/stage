@@ -257,7 +257,7 @@ st.session_state.maximaal = maximaal_list
 
 # uitwerkingen voor visualisaties
 
-# In[ ]:
+# In[1]:
 
 
 # Controleer of het projectbestand is geüpload
@@ -544,23 +544,23 @@ else:
 #             # Weergeven van de pie chart in Streamlit
 #             st.plotly_chart(fig, use_container_width=True)
 
-        columns[i+3] = f'Oplossing {i+1}'
-        uitkomsten.columns = columns
-        uitkomsten.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
-        oplossing = uitkomsten[['productgroep', 'eenheid', 'Huidige waarden', f'Oplossing {i+1}']]
-        # Stap 3: Kleuren toepassen met RGB-codes
-    def highlight_difference(row):
-        # Vergelijk de waarden van kolom 'A' met kolom 'B' en 'C'
-        styles = [''] * 2
-        for col in row.index[2:]:
-            if row[col] != row['Huidige waarden']:  # Vergelijk elke cel met de waarde in kolom 'A'
-                styles.append('color: rgba(212, 0, 60, 1.0)')  # Rood voor niet gelijke waarden
-            else:
-                styles.append('')
-        return styles
+#         columns[i+3] = f'Oplossing {i+1}'
+#         uitkomsten.columns = columns
+#         uitkomsten.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+#         oplossing = uitkomsten[['productgroep', 'eenheid', 'Huidige waarden', f'Oplossing {i+1}']]
+#         # Stap 3: Kleuren toepassen met RGB-codes
+#         def highlight_difference(row):
+#             # Vergelijk de waarden van kolom 'A' met kolom 'B' en 'C'
+#             styles = [''] * 2
+#             for col in row.index[2:]:
+#                 if row[col] != row['Huidige waarden']:  # Vergelijk elke cel met de waarde in kolom 'A'
+#                     styles.append('color: rgba(212, 0, 60, 1.0)')  # Rood voor niet gelijke waarden
+#                 else:
+#                     styles.append('')
+#             return styles
 
-    styled_df = oplossing.style.apply(highlight_difference, axis=1)
-    styled_df = styled_df.format(precision=0)
+#         styled_df = oplossing.style.apply(highlight_difference, axis=1)
+#         styled_df = styled_df.format(precision=0)
 #         expander.dataframe(styled_df, hide_index = True)
 
     
@@ -617,6 +617,18 @@ else:
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
     vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+    
+    def highlight_difference(row):
+        # Vergelijk de waarden van kolom 'A' met kolom 'B' en 'C'
+        styles = [''] * 2
+        for col in row.index[2:]:
+            if row[col] != row['Huidige waarden']:  # Vergelijk elke cel met de waarde in kolom 'A'
+                styles.append('color: rgba(212, 0, 60, 1.0)')  # Rood voor niet gelijke waarden
+            else:
+                styles.append('')
+    return styles
+
+    
     styled_df = vergelijken.style.apply(highlight_difference, axis=1)
     styled_df = styled_df.format(precision=0)
 
