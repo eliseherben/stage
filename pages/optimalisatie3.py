@@ -633,7 +633,7 @@ else:
     styled_df = vergelijken.style.apply(highlight_difference, axis=1)
     styled_df = styled_df.format(precision=0)
 
-    st.dataframe(styled_df, height = 300, hide_index = True)
+    st.dataframe(styled_df, height = 900, hide_index = True)
 
 
 # gevoeligheidsanalyse
