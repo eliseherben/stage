@@ -605,7 +605,7 @@ else:
 #             x = pd.to_numeric(option[10:])
 #             st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
 #             st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
-
+    st.markdown(omslagpunten_df)
     with st.expander("test"):
         if len(options) != 0:
             result_df = pd.DataFrame(columns=options)
