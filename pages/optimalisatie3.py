@@ -606,13 +606,14 @@ else:
 #             st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
 #             st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
     st.dataframe(omslagpunten_df)
-    with st.expander("test"):
-        if len(options) != 0:
-            result_df = pd.DataFrame(columns=options)
-            for option in options:
-                x = pd.to_numeric(option[10:])
-                result_df[option] = [round(omslagpunten_df.loc['Gewicht circulair', option] * 100),
-                                 round(omslagpunten_df.loc['Gewicht afwijkingen', option] * 100)]
+
+    if len(options) != 0:
+        result_df = pd.DataFrame(columns=options)
+        for option in options:
+            x = pd.to_numeric(option[10:])
+            result_df[option] = [round(omslagpunten_df.loc['Gewicht circulair', option] * 100),
+                             round(omslagpunten_df.loc['Gewicht afwijkingen', option] * 100)]
+    st.dataframe(result_df)
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
     vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
