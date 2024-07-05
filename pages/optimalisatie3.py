@@ -595,7 +595,7 @@ else:
 #     st.markdown("##### Vergelijking")
     options = st.multiselect(
     "Selecteer de oplossingen voor de vergelijking",
-    [i for i in uitkomsten.columns[3:]], default = [i for i in uitkomsten.columns[3:]])
+    [i for i in uitkomsten.columns[3:]])
 
 
 #     with st.expander("Zie de verdeling van de oplossingen"):
