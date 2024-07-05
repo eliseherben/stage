@@ -531,13 +531,13 @@ else:
         fig.update(layout_showlegend=False)
         return fig
 
-    expander = st.expander("Specificatie oplossingen")
-    for i in range(len(columns)-3):
-        expander.markdown(f"**Oplossing {i+1}:**")
-        expander.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, i] * 100)}%")
-        expander.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, i] * 100)}%")
+#     expander = st.expander("Specificatie oplossingen")
+#     for i in range(len(columns)-3):
+#         expander.markdown(f"**Oplossing {i+1}:**")
+#         expander.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, i] * 100)}%")
+#         expander.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, i] * 100)}%")
 
-#         with col2:
+# #         with col2:
 #             # Maak een pie chart
 #             fig = plot_pie(gewichten[i][0] * 100, gewichten[i][1] * 100)
 
@@ -561,7 +561,7 @@ else:
 
         styled_df = oplossing.style.apply(highlight_difference, axis=1)
         styled_df = styled_df.format(precision=0)
-        expander.dataframe(styled_df, hide_index = True)
+#         expander.dataframe(styled_df, hide_index = True)
 
     
     result_df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
