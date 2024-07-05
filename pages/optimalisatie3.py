@@ -632,8 +632,9 @@ else:
     
     styled_df = vergelijken.style.apply(highlight_difference, axis=1)
     styled_df = styled_df.format(precision=0)
+    styled_df.set_index('productgroep', inplace=True)
 
-    st.dataframe(styled_df, height = 920, width = 800, hide_index = True)
+    st.dataframe(styled_df, height = 920, width = 800)
 
 
 # gevoeligheidsanalyse
