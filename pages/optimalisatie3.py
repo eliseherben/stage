@@ -532,10 +532,10 @@ else:
         return fig
 
     for i in range(len(columns)-3):
-        with st.expander(f"Zie oplossing {i+1}"):
-            st.markdown(f"**Oplossing {i+1}:**")
-            st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, i] * 100)}%")
-            st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, i] * 100)}%")
+        expander = st.expander("Specificatie oplossingen")
+        expander.markdown(f"**Oplossing {i+1}:**")
+        expander.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, i] * 100)}%")
+        expander.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, i] * 100)}%")
 
 #         with col2:
 #             # Maak een pie chart
@@ -543,25 +543,26 @@ else:
 
 #             # Weergeven van de pie chart in Streamlit
 #             st.plotly_chart(fig, use_container_width=True)
-        
-            columns[i+3] = f'Oplossing {i+1}'
-            uitkomsten.columns = columns
-            uitkomsten.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
-            oplossing = uitkomsten[['productgroep', 'eenheid', 'Huidige waarden', f'Oplossing {i+1}']]
-            # Stap 3: Kleuren toepassen met RGB-codes
-            def highlight_difference(row):
-                # Vergelijk de waarden van kolom 'A' met kolom 'B' en 'C'
-                styles = [''] * 2
-                for col in row.index[2:]:
-                    if row[col] != row['Huidige waarden']:  # Vergelijk elke cel met de waarde in kolom 'A'
-                        styles.append('color: rgba(212, 0, 60, 1.0)')  # Rood voor niet gelijke waarden
-                    else:
-                        styles.append('')
-                return styles
 
-            styled_df = oplossing.style.apply(highlight_difference, axis=1)
-            styled_df = styled_df.format(precision=0)
-            st.dataframe(styled_df, hide_index = True)
+        columns[i+3] = f'Oplossing {i+1}'
+        uitkomsten.columns = columns
+        uitkomsten.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
+        oplossing = uitkomsten[['productgroep', 'eenheid', 'Huidige waarden', f'Oplossing {i+1}']]
+        # Stap 3: Kleuren toepassen met RGB-codes
+        def highlight_difference(row):
+            # Vergelijk de waarden van kolom 'A' met kolom 'B' en 'C'
+            styles = [''] * 2
+            for col in row.index[2:]:
+                if row[col] != row['Huidige waarden']:  # Vergelijk elke cel met de waarde in kolom 'A'
+                    styles.append('color: rgba(212, 0, 60, 1.0)')  # Rood voor niet gelijke waarden
+                else:
+                    styles.append('')
+            return styles
+
+        styled_df = oplossing.style.apply(highlight_difference, axis=1)
+        styled_df = styled_df.format(precision=0)
+        expander.dataframe(styled_df, hide_index = True)
+
     
     result_df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
     
@@ -596,7 +597,6 @@ else:
     options = st.multiselect(
     "Selecteer de oplossingen voor de vergelijking",
     [i for i in uitkomsten.columns[3:]], default = [i for i in uitkomsten.columns[3:]])
-    
 
 
 #     with st.expander("Zie de verdeling van de oplossingen"):
