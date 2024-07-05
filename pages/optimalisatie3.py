@@ -549,18 +549,18 @@ else:
         uitkomsten.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
         oplossing = uitkomsten[['productgroep', 'eenheid', 'Huidige waarden', f'Oplossing {i+1}']]
         # Stap 3: Kleuren toepassen met RGB-codes
-        def highlight_difference(row):
-            # Vergelijk de waarden van kolom 'A' met kolom 'B' en 'C'
-            styles = [''] * 2
-            for col in row.index[2:]:
-                if row[col] != row['Huidige waarden']:  # Vergelijk elke cel met de waarde in kolom 'A'
-                    styles.append('color: rgba(212, 0, 60, 1.0)')  # Rood voor niet gelijke waarden
-                else:
-                    styles.append('')
-            return styles
+    def highlight_difference(row):
+        # Vergelijk de waarden van kolom 'A' met kolom 'B' en 'C'
+        styles = [''] * 2
+        for col in row.index[2:]:
+            if row[col] != row['Huidige waarden']:  # Vergelijk elke cel met de waarde in kolom 'A'
+                styles.append('color: rgba(212, 0, 60, 1.0)')  # Rood voor niet gelijke waarden
+            else:
+                styles.append('')
+        return styles
 
-        styled_df = oplossing.style.apply(highlight_difference, axis=1)
-        styled_df = styled_df.format(precision=0)
+    styled_df = oplossing.style.apply(highlight_difference, axis=1)
+    styled_df = styled_df.format(precision=0)
 #         expander.dataframe(styled_df, hide_index = True)
 
     
