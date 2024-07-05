@@ -614,7 +614,7 @@ else:
             wegingen_df[option] = [round(omslagpunten_df.loc['Gewicht circulair', option] * 100),
                              round(omslagpunten_df.loc['Gewicht afwijkingen', option] * 100)]
         wegingen_df = wegingen_df.rename(index={0: 'Milieukosten (%)', 1: 'Afwijkingen (%)'})
-    st.dataframe(wegingen_df)
+        st.dataframe(wegingen_df)
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
     vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
