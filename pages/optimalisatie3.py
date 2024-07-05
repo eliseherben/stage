@@ -593,7 +593,7 @@ else:
 #         fig = px.line(gevoeligheidsanalyse, x=x, y=col)
 #         st.plotly_chart(fig)
 
-    st.markdown("##### Vergelijking")
+#     st.markdown("##### Vergelijking")
     options = st.multiselect(
     "Selecteer de oplossingen voor de vergelijking",
     [i for i in uitkomsten.columns[3:]], default = [i for i in uitkomsten.columns[3:]])
@@ -605,7 +605,7 @@ else:
 #             x = pd.to_numeric(option[10:])
 #             st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
 #             st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
-    st.dataframe(omslagpunten_df)
+#     st.dataframe(omslagpunten_df)
 
     if len(options) != 0:
         result_df = pd.DataFrame(columns=options)
@@ -613,6 +613,7 @@ else:
             x = pd.to_numeric(option[10:])
             result_df[option] = [round(omslagpunten_df.loc['Gewicht circulair', option] * 100),
                              round(omslagpunten_df.loc['Gewicht afwijkingen', option] * 100)]
+        result_df = result_df.rename(index={0: 'Milieukosten (%)', 1: 'Afwijkingen (%)'})
     st.dataframe(result_df)
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
