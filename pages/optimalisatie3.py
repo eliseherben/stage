@@ -928,10 +928,10 @@ st.markdown("##### Visualisaties")
 df = st.session_state.oplossingen
 # df.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
 
-kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
-                          'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
-kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
-geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
+# kolommen_te_uitsluiten = ['eenheid', 'kosten', 'circulair', 'optimalisatie', 
+#                           'constant', 'productgroep', 'code', 'minimaal', 'maximaal']
+# kolommen_te_selecteren = [kolom for kolom in df.columns if kolom not in kolommen_te_uitsluiten]
+# geselecteerde_kolommen = st.multiselect('Selecteer oplossingen', kolommen_te_selecteren)
 
 df = df[df['eenheid'].notna()]
 
@@ -952,7 +952,7 @@ for productgroep in df['productgroep']:
     # Selecteer alle kolommen behalve de uitgesloten kolommen
     df_geselecteerd = df_productgroep.drop(columns=kolommen_te_uitsluiten)
     
-    df_select = df_geselecteerd[geselecteerde_kolommen]
+    df_select = df_geselecteerd[options]
     row = df_select.iloc[0]
     if row.nunique() == 1:
         continue
@@ -967,7 +967,7 @@ for productgroep in df['productgroep']:
     bar_hovertemplate = 'Minimaal: %{customdata[0]} %{customdata[2]}<br>Maximaal: %{customdata[1]} %{customdata[2]}<br>'
     fig.update_traces(hovertemplate=bar_hovertemplate, customdata=df_productgroep[['minimaal', 'maximaal', 'eenheid']].values)
     for i in range(len(kolommen_te_selecteren)):
-        if kolommen_te_selecteren[i] in geselecteerde_kolommen:
+        if kolommen_te_selecteren[i] in options:
             if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
@@ -1031,7 +1031,7 @@ bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{custom
 fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_k[['minimaal', 'maximaal']].values)
 
 for i in range(len(kolommen_te_selecteren)):
-        if kolommen_te_selecteren[i] in geselecteerde_kolommen:
+        if kolommen_te_selecteren[i] in options:
             if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
@@ -1085,8 +1085,6 @@ df_mk['code'] = '00'
 
 kleur_teller = 0
 
-st.dataframe(df_mk)
-
 fig2 = px.bar(df_mk, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='Milieukosten', 
                  hover_data={'minimaal': True, 'maximaal': True, 'code': False, 'aantal': False})
@@ -1095,7 +1093,7 @@ bar_hovertemplate = 'Minimaal: €%{customdata[0]:,.2f}<br>Maximaal: €%{custom
 fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_mk[['minimaal', 'maximaal']].values)
 
 for i in range(len(kolommen_te_selecteren)):
-        if kolommen_te_selecteren[i] in geselecteerde_kolommen:
+        if kolommen_te_selecteren[i] in options:
             if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
@@ -1150,8 +1148,6 @@ df_a['aantal'] = df_a['maximaal'] - df_a['minimaal']
 df_a['code'] = '00'
 df_a = df_a.round(1) 
 
-st.dataframe(df_a)
-
 kleur_teller = 0
 fig2 = px.bar(df_a, x='aantal', y='code', base = 'minimaal',
                  color_discrete_sequence=['rgba(119, 118, 121, 0.1)'], title='Afwijkingen', 
@@ -1161,7 +1157,7 @@ bar_hovertemplate = 'Minimaal: %{customdata[0]}<br>Maximaal: %{customdata[1]}<br
 fig2.update_traces(hovertemplate=bar_hovertemplate, customdata=df_a[['minimaal', 'maximaal']].values)
 
 for i in range(len(kolommen_te_selecteren)):
-        if kolommen_te_selecteren[i] in geselecteerde_kolommen:
+        if kolommen_te_selecteren[i] in options:
             if kolommen_te_selecteren[i] == 'Huidige waarden':
                 kleur = kleuren_schema[kleur_teller % len(kleuren_schema)]
                 kleur_teller += 1
