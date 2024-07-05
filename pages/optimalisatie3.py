@@ -611,8 +611,8 @@ else:
             result_df = pd.DataFrame(columns=options)
             for option in options:
                 x = pd.to_numeric(option[10:])
-                result_df[option] = [round(omslagpunten_df.loc['Milieukosten (%)', option] * 100),
-                                 round(omslagpunten_df.loc['Afwijkingen (%)', option] * 100)]
+                result_df[option] = [round(omslagpunten_df.loc['Gewicht circulair', option] * 100),
+                                 round(omslagpunten_df.loc['Gewicht afwijkingen', option] * 100)]
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
     vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
