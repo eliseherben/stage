@@ -608,12 +608,11 @@ else:
 
     with st.expander("test"):
         if len(options) != 0:
+            result_df = pd.DataFrame(columns=options)
             for option in options:
-                st.columns(2)
-                st.markdown(f"**{option}**")
                 x = pd.to_numeric(option[10:])
-                st.markdown(f"- Milieukosten {round(omslagpunten_df.iloc[0, x-1] * 100)}%")
-                st.markdown(f"- Afwijkingen {round(omslagpunten_df.iloc[1, x-1] * 100)}%")
+                result_df[option] = [round(omslagpunten_df.loc['Milieukosten (%)', option] * 100),
+                                 round(omslagpunten_df.loc['Afwijkingen (%)', option] * 100)]
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
     vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
