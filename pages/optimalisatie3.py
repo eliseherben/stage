@@ -626,7 +626,7 @@ else:
                 styles.append('color: rgba(212, 0, 60, 1.0)')  # Rood voor niet gelijke waarden
             else:
                 styles.append('')
-    return styles
+        return styles
 
     
     styled_df = vergelijken.style.apply(highlight_difference, axis=1)
