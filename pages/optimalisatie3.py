@@ -634,7 +634,7 @@ else:
     styled_df = styled_df.format(precision=0)
     styled_df.set_index('productgroep', inplace=True)
 
-    st.dataframe(styled_df, height = 920, width = 800)
+    st.dataframe(styled_df, height = 920, width = 1800)
 
 
 # gevoeligheidsanalyse
