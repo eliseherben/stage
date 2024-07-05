@@ -617,7 +617,7 @@ else:
     st.dataframe(result_df)
     kolommen = ['productgroep', 'eenheid', 'huidige_waarden'] + options
     vergelijken = uitkomsten[kolommen]
-    vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)S
+    vergelijken.rename(columns = {'huidige_waarden':'Huidige waarden'}, inplace = True)
     
     def highlight_difference(row):
         # Vergelijk de waarden van kolom 'A' met kolom 'B' en 'C'
