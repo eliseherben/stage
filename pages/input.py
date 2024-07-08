@@ -558,8 +558,8 @@ with tab2:
         data['optimalisatie'] = data.apply(lambda row: 'nee' if row.isnull().any() else 'ja', axis=1)
         data.iloc[-1, 3] = data.iloc[-1, 3] + 1
 
-        data['minimaal'] = data['minimaal'] * st.session_state.appartementen
-        data['maximaal'] = data['maximaal'] * st.session_state.appartementen
+#         data['minimaal'] = data['minimaal'] * st.session_state.appartementen
+#         data['maximaal'] = data['maximaal'] * st.session_state.appartementen
         data['constant'] = ['']*len(data)
 
         st.markdown("##### Verdeling productgroepen")
